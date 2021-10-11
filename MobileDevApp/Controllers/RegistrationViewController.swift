@@ -7,11 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController {
 
 	private var authenticationTableView: UITableView = UITableView()
-	private let cellID = "CellID"
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.view.backgroundColor = .white
@@ -20,26 +19,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 	func setupTableView() {
 		self.authenticationTableView = UITableView(frame: view.bounds)
-		self.authenticationTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+		self.authenticationTableView.register(UINib(nibName: AuthenticationCell.Constant.nibName, bundle: nil), forCellReuseIdentifier: AuthenticationCell.Constant.cellID)
+		self.authenticationTableView.separatorStyle = .none
 		self.authenticationTableView.delegate = self
 		self.authenticationTableView.dataSource = self
 		self.authenticationTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		
 		self.view.addSubview(authenticationTableView)
 	}
-	
-	
-	// MARK: - UITableView methods
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 10
-	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-		cell.textLabel?.text = String(indexPath.row)
-		return cell
-	}
-	
+
 }
 
+extension ViewController: UITableViewDataSource {
+
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return 4
+	}
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		guard let cell = authenticationTableView.dequeueReusableCell(withIdentifier: AuthenticationCell.Constant.cellID, for: indexPath) as? AuthenticationCell else {
+				fatalError("Can't dequeue reusable cell.")
+		}
+		
+		return cell
+	}
+
+}
+
+extension ViewController: UITableViewDelegate {
+
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return AuthenticationCell.Constant.rowHeight
+	}
+
+}

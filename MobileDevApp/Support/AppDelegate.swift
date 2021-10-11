@@ -12,20 +12,12 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
-		let vc = ViewController()
-		let nvc = UINavigationController(rootViewController: vc)
-		
+		let viewController = ViewController()
+		let navigationControllet = UINavigationController(rootViewController: viewController)
 		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = nvc
+		window?.rootViewController = navigationControllet
 		window?.makeKeyAndVisible()
-		
 		return true
 	}
-
-	
-
 }
-
