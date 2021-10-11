@@ -7,21 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */; };
+		1F1DA4AB2701A24700757C9E /* AuthenticationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */; };
+		1F550B4A27144EE3007BADB6 /* TrackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F550B4927144EE3007BADB6 /* TrackListViewController.swift */; };
 		1F59B64826FE477400C5A614 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59B64726FE477400C5A614 /* AppDelegate.swift */; };
-		1F59B64C26FE477400C5A614 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59B64B26FE477400C5A614 /* ViewController.swift */; };
+		1F59B64C26FE477400C5A614 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59B64B26FE477400C5A614 /* RegistrationViewController.swift */; };
 		1F59B65226FE477500C5A614 /* MobileDevApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F59B65026FE477400C5A614 /* MobileDevApp.xcdatamodeld */; };
 		1F59B65426FE478100C5A614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F59B65326FE478100C5A614 /* Assets.xcassets */; };
 		1F59B65726FE478100C5A614 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F59B65526FE478100C5A614 /* LaunchScreen.storyboard */; };
+		1F6EDF01271052EC00DC994B /* TextFieldData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF00271052EC00DC994B /* TextFieldData.swift */; };
+		1F6EDF0727105A6B00DC994B /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF0627105A6B00DC994B /* ValidationManager.swift */; };
+		1F6EDF0B2710609E00DC994B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF0A2710609E00DC994B /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCell.swift; sourceTree = "<group>"; };
+		1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthenticationCell.xib; sourceTree = "<group>"; };
+		1F550B4927144EE3007BADB6 /* TrackListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListViewController.swift; sourceTree = "<group>"; };
 		1F59B64426FE477400C5A614 /* MobileDevApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileDevApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F59B64726FE477400C5A614 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F59B64B26FE477400C5A614 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1F59B64B26FE477400C5A614 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		1F59B65126FE477400C5A614 /* MobileDevApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MobileDevApp.xcdatamodel; sourceTree = "<group>"; };
 		1F59B65326FE478100C5A614 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F59B65626FE478100C5A614 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F59B65826FE478100C5A614 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F6EDF00271052EC00DC994B /* TextFieldData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldData.swift; sourceTree = "<group>"; };
+		1F6EDF0627105A6B00DC994B /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
+		1F6EDF0A2710609E00DC994B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +66,60 @@
 		1F59B64626FE477400C5A614 /* MobileDevApp */ = {
 			isa = PBXGroup;
 			children = (
-				1F59B64726FE477400C5A614 /* AppDelegate.swift */,
-				1F59B64B26FE477400C5A614 /* ViewController.swift */,
+				1F6EDEFF2710529600DC994B /* Model */,
+				1F6EDEFD270F993F00DC994B /* CoreData */,
+				1F6EDEFC270F992B00DC994B /* Support */,
+				1F6EDEFB270F991C00DC994B /* AuthenticationTableCell */,
+				1F6EDEFA270F990B00DC994B /* Controllers */,
 				1F59B65326FE478100C5A614 /* Assets.xcassets */,
 				1F59B65526FE478100C5A614 /* LaunchScreen.storyboard */,
 				1F59B65826FE478100C5A614 /* Info.plist */,
-				1F59B65026FE477400C5A614 /* MobileDevApp.xcdatamodeld */,
 			);
 			path = MobileDevApp;
+			sourceTree = "<group>";
+		};
+		1F6EDEFA270F990B00DC994B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1F59B64B26FE477400C5A614 /* RegistrationViewController.swift */,
+				1F6EDF0A2710609E00DC994B /* LoginViewController.swift */,
+				1F550B4927144EE3007BADB6 /* TrackListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1F6EDEFB270F991C00DC994B /* AuthenticationTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */,
+				1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */,
+			);
+			path = AuthenticationTableCell;
+			sourceTree = "<group>";
+		};
+		1F6EDEFC270F992B00DC994B /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				1F59B64726FE477400C5A614 /* AppDelegate.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		1F6EDEFD270F993F00DC994B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				1F59B65026FE477400C5A614 /* MobileDevApp.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		1F6EDEFF2710529600DC994B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F6EDF00271052EC00DC994B /* TextFieldData.swift */,
+				1F6EDF0627105A6B00DC994B /* ValidationManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +132,8 @@
 				1F59B64026FE477400C5A614 /* Sources */,
 				1F59B64126FE477400C5A614 /* Frameworks */,
 				1F59B64226FE477400C5A614 /* Resources */,
+				1F1DA43C26FF88DF00757C9E /* ShellScript */,
+				1F1DA4A42701A1C700757C9E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -123,19 +183,62 @@
 			files = (
 				1F59B65726FE478100C5A614 /* LaunchScreen.storyboard in Resources */,
 				1F59B65426FE478100C5A614 /* Assets.xcassets in Resources */,
+				1F1DA4AB2701A24700757C9E /* AuthenticationCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F1DA43C26FF88DF00757C9E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+		};
+		1F1DA4A42701A1C700757C9E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1F59B64026FE477400C5A614 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F59B64C26FE477400C5A614 /* ViewController.swift in Sources */,
+				1F550B4A27144EE3007BADB6 /* TrackListViewController.swift in Sources */,
+				1F6EDF0B2710609E00DC994B /* LoginViewController.swift in Sources */,
+				1F59B64C26FE477400C5A614 /* RegistrationViewController.swift in Sources */,
 				1F59B65226FE477500C5A614 /* MobileDevApp.xcdatamodeld in Sources */,
+				1F6EDF0727105A6B00DC994B /* ValidationManager.swift in Sources */,
 				1F59B64826FE477400C5A614 /* AppDelegate.swift in Sources */,
+				1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */,
+				1F6EDF01271052EC00DC994B /* TextFieldData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

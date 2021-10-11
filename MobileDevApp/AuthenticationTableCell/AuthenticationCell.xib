@@ -15,17 +15,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evn-qZ-XrD">
-                        <rect key="frame" x="16" y="5" width="382" height="34"/>
+                    <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evn-qZ-XrD">
+                        <rect key="frame" x="44" y="0.0" width="326" height="44"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="evn-qZ-XrD" firstAttribute="leading" secondItem="vCF-gN-KEV" secondAttribute="leading" constant="16" id="7kL-OO-LEx"/>
-                    <constraint firstAttribute="bottom" secondItem="evn-qZ-XrD" secondAttribute="bottom" constant="5" id="G6V-4F-KnQ"/>
-                    <constraint firstItem="evn-qZ-XrD" firstAttribute="top" secondItem="vCF-gN-KEV" secondAttribute="top" constant="5" id="U6p-vJ-5VK"/>
-                    <constraint firstAttribute="trailing" secondItem="evn-qZ-XrD" secondAttribute="trailing" constant="16" id="b1k-17-Ys1"/>
+                    <constraint firstAttribute="bottom" secondItem="evn-qZ-XrD" secondAttribute="bottom" id="kxD-2W-9hs"/>
+                    <constraint firstAttribute="trailing" secondItem="evn-qZ-XrD" secondAttribute="trailing" constant="44" id="mHU-Ij-xov"/>
+                    <constraint firstItem="evn-qZ-XrD" firstAttribute="leading" secondItem="vCF-gN-KEV" secondAttribute="leading" constant="44" id="ncU-A6-GyY"/>
+                    <constraint firstItem="evn-qZ-XrD" firstAttribute="top" secondItem="vCF-gN-KEV" secondAttribute="top" id="sXh-wG-QeC"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
