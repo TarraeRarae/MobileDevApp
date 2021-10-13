@@ -10,14 +10,24 @@ import UIKit
 class AuthenticationCell: UITableViewCell {
 
 	struct Constant {
-
 		static let cellID = "CellID"
 		static let nibName = "AuthenticationCell"
 		static let rowHeight: CGFloat = 50
-
 	}
 
-	@IBOutlet private var textField: UITextField!
+    @IBOutlet private var textField: UITextField! {
+        didSet {
+            
+        }
+    }
+    weak var viewModel: TableViewCellViewModelProtocol? {
+        willSet(viewModel) {
+            guard let viewModel = viewModel else { return }
+            textField.placeholder = viewModel.placeholder
+            textField.textContentType = viewModel.contentType
+            textField.isSecureTextEntry = viewModel.isSequreTextField
+        }
+    }
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -29,7 +39,6 @@ class AuthenticationCell: UITableViewCell {
 		textField.backgroundColor = .clear
 		textField.textAlignment = .left
 		textField.autocorrectionType = .no
-		textField.passwordRules = .none
 		textField.clearButtonMode = .unlessEditing
 		textField.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
 		textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
@@ -45,16 +54,10 @@ class AuthenticationCell: UITableViewCell {
 	override func prepareForReuse() {
 		super.prepareForReuse()
 		makeTextFieldValid()
-		textField.text = ""
+		textField.text = nil
 		textField.textContentType = .none
 		textField.placeholder = nil
 		textField.isSecureTextEntry = false
-	}
-
-	public func setTextField(data: TextFieldData) {
-		textField.textContentType = data.contentType
-		textField.placeholder = data.placeholder
-		textField.isSecureTextEntry = data.isSequre
 	}
 
 	public func getTextField() -> UITextField {
@@ -71,7 +74,7 @@ class AuthenticationCell: UITableViewCell {
 
 	private func makeTextFieldValid() {
 		textField.textColor = .black
-		textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
 	}
 
 	@objc private func textFieldDidChange(textField: UITextField) {

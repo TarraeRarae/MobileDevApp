@@ -9,13 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private var textFieldDataArray: [TextFieldData] = [
-        TextFieldData(placeholder: "Email", isSequre: false, contentType: .emailAddress),
-        TextFieldData(placeholder: "Username", isSequre: false, contentType: .username),
-        TextFieldData(placeholder: "*********", isSequre: true, contentType: .password),
-        TextFieldData(placeholder: "*********", isSequre: true, contentType: .password)
-    ]
-
+    private let viewModel: TableViewViewModelProtocol? = RegistrationTableViewModel()
 	private var authenticationTableView: UITableView = UITableView()
 	private var keyboardDismissTapGesture: UIGestureRecognizer?
     private let loginView = LoginViewController()
@@ -163,46 +157,46 @@ class ViewController: UIViewController {
 	}
 
 	@objc func authorize() {
-		var isDataValid = true
-		if authenticationTableView.dataSource === self {
-			ValidationManager.password = nil
-			var arrayOfString: [String] = []
-			for row in 0..<textFieldDataArray.count {
-				let indexPath = IndexPath(row: row, section: 0)
-				guard let cell = authenticationTableView.cellForRow(at: indexPath) as? AuthenticationCell else {
-					return
-				}
-				let textField = cell.getTextField()
-				if !ValidationManager.isRegistrationTextFieldValid(textField) {
-					cell.makeTextFieldInvalid()
-					isDataValid = false
-				} else if row < 2 {
-					arrayOfString.append(textField.text!)
-				}
-			}
-			if !confirmSwitch.isOn {
-				isDataValid = false
-			}
-			if isDataValid {
-				UserDefaults.standard.setValue(arrayOfString[0], forKeyPath: "Username")
-				UserDefaults.standard.setValue(arrayOfString[1], forKeyPath: "UserPassword")
-			}
-		} else {
-			for row in 0..<2 {
-				let indexPath = IndexPath(row: row, section: 0)
-				guard let cell = authenticationTableView.cellForRow(at: indexPath) as? AuthenticationCell else {
-					return
-				}
-				let textField = cell.getTextField()
-				if !ValidationManager.isLoginTextFieldValid(textField) {
-					cell.makeTextFieldInvalid()
-					isDataValid = false
-				}
-			}
-		}
-		if isDataValid {
-			show(TrackListViewController(), sender: nil)
-		}
+//		var isDataValid = true
+//		if authenticationTableView.dataSource === self {
+//			ValidationManager.password = nil
+//			var arrayOfString: [String] = []
+//			for row in 0..<textFieldDataArray.count {
+//				let indexPath = IndexPath(row: row, section: 0)
+//				guard let cell = authenticationTableView.cellForRow(at: indexPath) as? AuthenticationCell else {
+//					return
+//				}
+//				let textField = cell.getTextField()
+//				if !ValidationManager.isRegistrationTextFieldValid(textField) {
+//					cell.makeTextFieldInvalid()
+//					isDataValid = false
+//				} else if row < 2 {
+//					arrayOfString.append(textField.text!)
+//				}
+//			}
+//			if !confirmSwitch.isOn {
+//				isDataValid = false
+//			}
+//			if isDataValid {
+//				UserDefaults.standard.setValue(arrayOfString[0], forKeyPath: "Username")
+//				UserDefaults.standard.setValue(arrayOfString[1], forKeyPath: "UserPassword")
+//			}
+//		} else {
+//			for row in 0..<2 {
+//				let indexPath = IndexPath(row: row, section: 0)
+//				guard let cell = authenticationTableView.cellForRow(at: indexPath) as? AuthenticationCell else {
+//					return
+//				}
+//				let textField = cell.getTextField()
+//				if !ValidationManager.isLoginTextFieldValid(textField) {
+//					cell.makeTextFieldInvalid()
+//					isDataValid = false
+//				}
+//			}
+//		}
+//		if isDataValid {
+//			show(TrackListViewController(), sender: nil)
+//		}
 	}
 
 }
@@ -210,15 +204,14 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return textFieldDataArray.count
+        guard let viewModel = viewModel else { fatalError() }
+        return viewModel.numberOfRows()
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = authenticationTableView.dequeueReusableCell(withIdentifier: AuthenticationCell.Constant.cellID, for: indexPath) as? AuthenticationCell else {
-				fatalError("Can't dequeue reusable cell.")
-		}
+		guard let cell = authenticationTableView.dequeueReusableCell(withIdentifier: AuthenticationCell.Constant.cellID, for: indexPath) as? AuthenticationCell, let viewModel = viewModel else { fatalError() }
 		cell.backgroundColor = .clear
-		cell.setTextField(data: textFieldDataArray[indexPath.row])
+        cell.viewModel = viewModel.cellViewModel(forIndexPath: indexPath)
 		return cell
 	}
 

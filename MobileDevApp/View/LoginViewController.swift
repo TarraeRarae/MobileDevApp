@@ -9,24 +9,19 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-	private var textFieldDataArray: [TextFieldData] = [
-		TextFieldData(placeholder: "Login", isSequre: false, contentType: .emailAddress),
-		TextFieldData(placeholder: "Password", isSequre: true, contentType: .password)
-	]
+    private let viewModel: TableViewViewModelProtocol? = LoginTableViewViewModel()
 	weak var tableView: UITableView!
-
 }
 
 extension LoginViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return textFieldDataArray.count
+        guard let viewModel = viewModel else { fatalError() }
+        return viewModel.numberOfRows()
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: AuthenticationCell.Constant.cellID, for: indexPath) as? AuthenticationCell else {
-				fatalError("Can't dequeue reusable cell.")
-		}
-		cell.setTextField(data: textFieldDataArray[indexPath.row])
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: AuthenticationCell.Constant.cellID, for: indexPath) as? AuthenticationCell, let viewModel = viewModel else { fatalError() }
+        cell.viewModel = viewModel.cellViewModel(forIndexPath: indexPath)
 		return cell
 	}
 
