@@ -9,5 +9,5 @@ import Foundation
 import UIKit
 
 protocol AuthenticationCellViewModelDelegate: AnyObject {
-    func validateTextField(text: String, textContentType: UITextContentType) -> Bool
+    func validateTextField(text: String?, textContentType: UITextContentType) -> Bool
 }

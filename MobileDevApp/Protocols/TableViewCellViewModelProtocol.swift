@@ -12,5 +12,5 @@ protocol TableViewCellViewModelProtocol: AnyObject {
     var placeholder: String { get }
     var contentType: UITextContentType { get }
     var isSequreTextField: Bool { get }
-    func validate(text: String) -> Bool
+    func validate(text: String?) -> Bool
 }

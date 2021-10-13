@@ -27,11 +27,8 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
         self.cellData = cellData
     }
 
-    public func validate(text: String) -> Bool {
+    public func validate(text: String?) -> Bool {
         guard let delegate = delegate else { fatalError() }
-        if delegate.validateTextField(text: text, textContentType: cellData.contentType) {
-            return true
-        }
-        return false
+        return delegate.validateTextField(text: text, textContentType: cellData.contentType)
     }
 }

@@ -38,7 +38,7 @@ class AuthenticationCell: UITableViewCell {
         textField.autocorrectionType = .no
         textField.clearButtonMode = .unlessEditing
         textField.keyboardType = .default
-        textField.addTarget(self, action: #selector(textFieldDidEnd), for: UIControl.Event.editingChanged)
+        textField.addTarget(self, action: #selector(textFieldDidEnd), for: .valueChanged)
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
 
@@ -69,12 +69,11 @@ class AuthenticationCell: UITableViewCell {
     }
 
     @objc private func textFieldDidEnd(textField: UITextField) {
-        guard let viewModel = viewModel, let text = textField.text else {
-            makeTextFieldInvalid()
+        guard let viewModel = viewModel else {
             return
         }
         makeTextFieldValid()
-        if !viewModel.validate(text: text) {
+        if !viewModel.validate(text: textField.text) {
             makeTextFieldInvalid()
         }
     }
