@@ -26,7 +26,6 @@ class AuthenticationCell: UITableViewCell {
 	}
 
 	private func customizeTextField() {
-		textField.font = .boldSystemFont(ofSize: 15)
 		textField.backgroundColor = .clear
 		textField.textAlignment = .left
 		textField.autocorrectionType = .no

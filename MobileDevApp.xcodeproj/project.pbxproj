@@ -47,6 +47,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F0AEA0F2717651500052509 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1F0AEA102717651D00052509 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		1F59B63B26FE477400C5A614 = {
 			isa = PBXGroup;
 			children = (
@@ -66,11 +80,13 @@
 		1F59B64626FE477400C5A614 /* MobileDevApp */ = {
 			isa = PBXGroup;
 			children = (
+				1F0AEA102717651D00052509 /* Protocols */,
+				1F0AEA0F2717651500052509 /* ViewModel */,
 				1F6EDEFF2710529600DC994B /* Model */,
 				1F6EDEFD270F993F00DC994B /* CoreData */,
 				1F6EDEFC270F992B00DC994B /* Support */,
 				1F6EDEFB270F991C00DC994B /* AuthenticationTableCell */,
-				1F6EDEFA270F990B00DC994B /* Controllers */,
+				1F6EDEFA270F990B00DC994B /* View */,
 				1F59B65326FE478100C5A614 /* Assets.xcassets */,
 				1F59B65526FE478100C5A614 /* LaunchScreen.storyboard */,
 				1F59B65826FE478100C5A614 /* Info.plist */,
@@ -78,14 +94,14 @@
 			path = MobileDevApp;
 			sourceTree = "<group>";
 		};
-		1F6EDEFA270F990B00DC994B /* Controllers */ = {
+		1F6EDEFA270F990B00DC994B /* View */ = {
 			isa = PBXGroup;
 			children = (
 				1F59B64B26FE477400C5A614 /* RegistrationViewController.swift */,
 				1F6EDF0A2710609E00DC994B /* LoginViewController.swift */,
 				1F550B4927144EE3007BADB6 /* TrackListViewController.swift */,
 			);
-			path = Controllers;
+			path = View;
 			sourceTree = "<group>";
 		};
 		1F6EDEFB270F991C00DC994B /* AuthenticationTableCell */ = {

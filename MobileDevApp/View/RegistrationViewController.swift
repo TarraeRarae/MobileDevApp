@@ -9,21 +9,81 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    private var textFieldDataArray: [TextFieldData] = [
+        TextFieldData(placeholder: "Email", isSequre: false, contentType: .emailAddress),
+        TextFieldData(placeholder: "Username", isSequre: false, contentType: .username),
+        TextFieldData(placeholder: "*********", isSequre: true, contentType: .password),
+        TextFieldData(placeholder: "*********", isSequre: true, contentType: .password)
+    ]
+
 	private var authenticationTableView: UITableView = UITableView()
-	private var textFieldDataArray: [TextFieldData] = [
-		TextFieldData(placeholder: "Email", isSequre: false, contentType: .emailAddress),
-		TextFieldData(placeholder: "Username", isSequre: false, contentType: .username),
-		TextFieldData(placeholder: "*********", isSequre: true, contentType: .password),
-		TextFieldData(placeholder: "*********", isSequre: true, contentType: .password)
-	]
 	private var keyboardDismissTapGesture: UIGestureRecognizer?
-	private let loginPageButton: UIButton = UIButton()
-	private let registerPageButton: UIButton = UIButton()
-	private let nextButton: UIButton = UIButton()
-	private let loginView = LoginViewController()
-	private let confirmLabel: UILabel = UILabel()
-	private let confirmSwitch: UISwitch = UISwitch()
-	private let backgroundImage: UIImageView = UIImageView(image: UIImage(named: "background"))
+    private let loginView = LoginViewController()
+    private let backgroundImage: UIImageView = UIImageView(image: UIImage(named: "background"))
+	private let loginPageButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 15)
+        button.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+        button.layer.borderWidth = 0.5
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.5
+        button.layer.shadowRadius = 5
+        button.layer.shadowOffset = CGSize(width: 1.0, height: 3)
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 10
+        button.addTarget(nil, action: #selector(setLoginTableView), for: .touchUpInside)
+        button.setTitle("Login", for: .normal)
+        return button
+    }()
+
+    private let registerPageButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.titleLabel?.font = .boldSystemFont(ofSize: 15)
+        button.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+        button.layer.borderWidth = 0.5
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.5
+        button.layer.shadowRadius = 5
+        button.layer.shadowOffset = CGSize(width: 1.0, height: 3)
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 10
+        button.addTarget(nil, action: #selector(setRegisterTableView), for: .touchUpInside)
+        button.setTitle("Register", for: .normal)
+        return button
+    }()
+
+	private let nextButton: UIButton = {
+        let button = UIButton()
+        button.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+        button.layer.borderWidth = 0.5
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.5
+        button.layer.shadowRadius = 5
+        button.layer.shadowOffset = CGSize(width: 1.0, height: 3)
+        button.addTarget(nil, action: #selector(authorize), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "arrow.right"), for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 10
+        button.tintColor = .black
+        return button
+    }()
+
+	private let confirmLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Confirm our privacy policy"
+        label.textColor = .black
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        return label
+    }()
+	private let confirmSwitch: UISwitch = {
+        let switcher = UISwitch()
+        switcher.preferredStyle = .automatic
+        return switcher
+    }()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -35,10 +95,6 @@ class ViewController: UIViewController {
 		view.insertSubview(backgroundImage, at: 0)
 		loginView.tableView = authenticationTableView
 		setupTableView()
-		setupLoginPageButton()
-		setupRegisterPageButton()
-		setupConfirmLabel()
-		setupNextButton()
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -61,62 +117,6 @@ class ViewController: UIViewController {
 		authenticationTableView.dataSource = self
 
 		view.addSubview(authenticationTableView)
-	}
-
-	func setupLoginPageButton() {
-		loginPageButton.backgroundColor = .white
-		loginPageButton.setTitleColor(.black, for: .normal)
-		loginPageButton.titleLabel?.font = .boldSystemFont(ofSize: 15)
-		loginPageButton.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
-		loginPageButton.layer.borderWidth = 0.5
-		loginPageButton.layer.shadowColor = UIColor.black.cgColor
-		loginPageButton.layer.shadowOpacity = 0.5
-		loginPageButton.layer.shadowRadius = 5
-		loginPageButton.layer.shadowOffset = CGSize(width: 1.0, height: 3)
-		loginPageButton.setTitleColor(.black, for: .normal)
-		loginPageButton.layer.cornerRadius = 10
-		loginPageButton.addTarget(nil, action: #selector(setLoginTableView), for: .touchUpInside)
-		loginPageButton.setTitle("Login", for: .normal)
-	}
-
-	func setupRegisterPageButton() {
-		registerPageButton.backgroundColor = .white
-		registerPageButton.titleLabel?.font = .boldSystemFont(ofSize: 15)
-		registerPageButton.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
-		registerPageButton.layer.borderWidth = 0.5
-		registerPageButton.layer.shadowColor = UIColor.black.cgColor
-		registerPageButton.layer.shadowOpacity = 0.5
-		registerPageButton.layer.shadowRadius = 5
-		registerPageButton.layer.shadowOffset = CGSize(width: 1.0, height: 3)
-		registerPageButton.setTitleColor(.black, for: .normal)
-		registerPageButton.layer.cornerRadius = 10
-		registerPageButton.addTarget(nil, action: #selector(setRegisterTableView), for: .touchUpInside)
-		registerPageButton.setTitle("Register", for: .normal)
-	}
-
-	func setupNextButton() {
-		nextButton.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
-		nextButton.layer.borderWidth = 0.5
-		nextButton.layer.shadowColor = UIColor.black.cgColor
-		nextButton.layer.shadowOpacity = 0.5
-		nextButton.layer.shadowRadius = 5
-		nextButton.layer.shadowOffset = CGSize(width: 1.0, height: 3)
-		nextButton.addTarget(nil, action: #selector(authorize), for: .touchUpInside)
-		nextButton.setImage(UIImage(systemName: "arrow.right"), for: .normal)
-		nextButton.backgroundColor = .white
-		nextButton.layer.cornerRadius = 10
-		nextButton.tintColor = .black
-	}
-
-	func setupConfirmLabel() {
-		confirmLabel.text = "Confirm our privacy policy"
-		confirmLabel.textColor = .black
-		confirmLabel.lineBreakMode = .byWordWrapping
-		confirmLabel.numberOfLines = 0
-	}
-
-	func setupSwitch() {
-		confirmSwitch.preferredStyle = .automatic
 	}
 
 	func registerKeyboardNotifications() {
