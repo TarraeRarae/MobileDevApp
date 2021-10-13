@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 	private var authenticationTableView: UITableView = UITableView()
 	private var keyboardDismissTapGesture: UIGestureRecognizer?
     private let loginView = LoginViewController()
+    private var keyboardFrameHeight: CGFloat = 0
     private let backgroundImage: UIImageView = UIImageView(image: UIImage(named: "background"))
 	private let loginPageButton: UIButton = {
         let button = UIButton()
@@ -101,7 +102,7 @@ class ViewController: UIViewController {
 	}
 
 	func setupTableView() {
-		authenticationTableView = UITableView(frame: view.bounds)
+        authenticationTableView = UITableView(frame: view.bounds, style: .grouped)
 		authenticationTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		authenticationTableView.backgroundColor = .clear
 		authenticationTableView.isScrollEnabled = false
@@ -124,9 +125,12 @@ class ViewController: UIViewController {
 	}
 
 	@objc func keyboardWillShow(_ notification: Notification) {
-		let userInfo = notification.userInfo
-		let keyboardFrameSize = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-		authenticationTableView.contentOffset = CGPoint(x: 0, y: keyboardFrameSize!.height / 2)
+        if keyboardFrameHeight == 0 {
+            let userInfo = notification.userInfo
+            guard let keyboardFrameSize = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+            self.keyboardFrameHeight = keyboardFrameSize.height
+        }
+        authenticationTableView.contentOffset = CGPoint(x: 0, y: keyboardFrameHeight * 0.9)
 		if keyboardDismissTapGesture == nil {
 			keyboardDismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
 			keyboardDismissTapGesture?.cancelsTouchesInView = false

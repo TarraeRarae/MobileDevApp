@@ -12,6 +12,7 @@
 		1F0AEA16271768A800052509 /* RegistrationTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AEA15271768A800052509 /* RegistrationTableViewModel.swift */; };
 		1F0AEA182717694900052509 /* AuthenticationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AEA172717694900052509 /* AuthenticationCellViewModel.swift */; };
 		1F0AEA1A27176A5400052509 /* LoginTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AEA1927176A5400052509 /* LoginTableViewViewModel.swift */; };
+		1F0AEA1C27177EFF00052509 /* AuthenticationCellViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AEA1B27177EFE00052509 /* AuthenticationCellViewModelDelegate.swift */; };
 		1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */; };
 		1F1DA4AB2701A24700757C9E /* AuthenticationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */; };
 		1F550B4A27144EE3007BADB6 /* TrackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F550B4927144EE3007BADB6 /* TrackListViewController.swift */; };
@@ -21,7 +22,7 @@
 		1F59B65426FE478100C5A614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F59B65326FE478100C5A614 /* Assets.xcassets */; };
 		1F59B65726FE478100C5A614 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F59B65526FE478100C5A614 /* LaunchScreen.storyboard */; };
 		1F6EDF01271052EC00DC994B /* TextFieldData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF00271052EC00DC994B /* TextFieldData.swift */; };
-		1F6EDF0727105A6B00DC994B /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF0627105A6B00DC994B /* ValidationManager.swift */; };
+		1F6EDF0727105A6B00DC994B /* RegistrationValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF0627105A6B00DC994B /* RegistrationValidationManager.swift */; };
 		1F6EDF0B2710609E00DC994B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF0A2710609E00DC994B /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		1F0AEA15271768A800052509 /* RegistrationTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTableViewModel.swift; sourceTree = "<group>"; };
 		1F0AEA172717694900052509 /* AuthenticationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCellViewModel.swift; sourceTree = "<group>"; };
 		1F0AEA1927176A5400052509 /* LoginTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableViewViewModel.swift; sourceTree = "<group>"; };
+		1F0AEA1B27177EFE00052509 /* AuthenticationCellViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCellViewModelDelegate.swift; sourceTree = "<group>"; };
 		1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCell.swift; sourceTree = "<group>"; };
 		1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthenticationCell.xib; sourceTree = "<group>"; };
 		1F550B4927144EE3007BADB6 /* TrackListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListViewController.swift; sourceTree = "<group>"; };
@@ -42,7 +44,7 @@
 		1F59B65626FE478100C5A614 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F59B65826FE478100C5A614 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F6EDF00271052EC00DC994B /* TextFieldData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldData.swift; sourceTree = "<group>"; };
-		1F6EDF0627105A6B00DC994B /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
+		1F6EDF0627105A6B00DC994B /* RegistrationValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationValidationManager.swift; sourceTree = "<group>"; };
 		1F6EDF0A2710609E00DC994B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,9 +62,9 @@
 		1F0AEA0F2717651500052509 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1F0AEA172717694900052509 /* AuthenticationCellViewModel.swift */,
 				1F0AEA15271768A800052509 /* RegistrationTableViewModel.swift */,
 				1F0AEA1927176A5400052509 /* LoginTableViewViewModel.swift */,
-				1F0AEA172717694900052509 /* AuthenticationCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -70,6 +72,7 @@
 		1F0AEA102717651D00052509 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				1F0AEA1B27177EFE00052509 /* AuthenticationCellViewModelDelegate.swift */,
 				1F0AEA112717679C00052509 /* TableViewViewModelProtocol.swift */,
 				1F0AEA13271767C800052509 /* TableViewCellViewModelProtocol.swift */,
 			);
@@ -140,7 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				1F6EDF00271052EC00DC994B /* TextFieldData.swift */,
-				1F6EDF0627105A6B00DC994B /* ValidationManager.swift */,
+				1F6EDF0627105A6B00DC994B /* RegistrationValidationManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -259,12 +262,13 @@
 				1F59B64C26FE477400C5A614 /* RegistrationViewController.swift in Sources */,
 				1F0AEA16271768A800052509 /* RegistrationTableViewModel.swift in Sources */,
 				1F59B65226FE477500C5A614 /* MobileDevApp.xcdatamodeld in Sources */,
-				1F6EDF0727105A6B00DC994B /* ValidationManager.swift in Sources */,
+				1F6EDF0727105A6B00DC994B /* RegistrationValidationManager.swift in Sources */,
 				1F59B64826FE477400C5A614 /* AppDelegate.swift in Sources */,
 				1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */,
 				1F0AEA182717694900052509 /* AuthenticationCellViewModel.swift in Sources */,
 				1F0AEA122717679C00052509 /* TableViewViewModelProtocol.swift in Sources */,
 				1F0AEA1A27176A5400052509 /* LoginTableViewViewModel.swift in Sources */,
+				1F0AEA1C27177EFF00052509 /* AuthenticationCellViewModelDelegate.swift in Sources */,
 				1F0AEA14271767C800052509 /* TableViewCellViewModelProtocol.swift in Sources */,
 				1F6EDF01271052EC00DC994B /* TextFieldData.swift in Sources */,
 			);

@@ -5,7 +5,7 @@
 //  Created by TarraeRarae on 13.10.2021.
 //
 
-import Foundation
+import UIKit
 
 class LoginTableViewViewModel: TableViewViewModelProtocol {
     private let cellDataArray: [AuthenticationCellData] = [
@@ -18,6 +18,6 @@ class LoginTableViewViewModel: TableViewViewModelProtocol {
     }
 
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TableViewCellViewModelProtocol? {
-        return AuthenticationcellViewModel(cellData: cellDataArray[indexPath.row])
+        return AuthenticationCellViewModel(cellData: cellDataArray[indexPath.row])
     }
 }

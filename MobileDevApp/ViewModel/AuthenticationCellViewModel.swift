@@ -7,8 +7,9 @@
 
 import UIKit
 
-class AuthenticationcellViewModel: TableViewCellViewModelProtocol {
+class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
     private var cellData: AuthenticationCellData
+    weak var delegate: AuthenticationCellViewModelDelegate?
 
     var placeholder: String {
         return cellData.placeholder
@@ -22,20 +23,15 @@ class AuthenticationcellViewModel: TableViewCellViewModelProtocol {
         return cellData.isSequreTextField
     }
 
-    var textOfTextField: String? {
-        didSet {
-            guard let textOfTextField = textOfTextField else {
-                return
-            }
-            self.validate(text: textOfTextField)
-        }
-    }
-
     init(cellData: AuthenticationCellData) {
         self.cellData = cellData
     }
 
-    private func validate(text: String) {
-        print(text)
+    public func validate(text: String) -> Bool {
+        guard let delegate = delegate else { fatalError() }
+        if delegate.validateTextField(text: text, textContentType: cellData.contentType) {
+            return true
+        }
+        return false
     }
 }
