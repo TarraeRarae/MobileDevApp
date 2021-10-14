@@ -25,6 +25,9 @@ class AuthenticationCell: UITableViewCell {
             textField.isSecureTextEntry = viewModel.isSequreTextField
         }
     }
+    var isTextFieldValid: Bool {
+        return validateAuthenticationCellTextField()
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,7 +41,6 @@ class AuthenticationCell: UITableViewCell {
         textField.autocorrectionType = .no
         textField.clearButtonMode = .unlessEditing
         textField.keyboardType = .default
-        textField.addTarget(self, action: #selector(textFieldDidEnd), for: .valueChanged)
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
 
@@ -58,7 +60,7 @@ class AuthenticationCell: UITableViewCell {
         textField.isSecureTextEntry = false
     }
 
-    public func makeTextFieldInvalid() {
+    private func makeTextFieldInvalid() {
         textField.textColor = .red
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
     }
@@ -68,13 +70,15 @@ class AuthenticationCell: UITableViewCell {
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
     }
 
-    @objc private func textFieldDidEnd(textField: UITextField) {
-        guard let viewModel = viewModel else {
-            return
+    private func validateAuthenticationCellTextField() -> Bool {
+        guard let viewModel = viewModel, let text = textField.text else {
+            return false
         }
-        makeTextFieldValid()
-        if !viewModel.validate(text: textField.text) {
-            makeTextFieldInvalid()
+        if viewModel.validate(text: text) {
+            makeTextFieldValid()
+            return true
         }
+        makeTextFieldInvalid()
+        return false
     }
 }

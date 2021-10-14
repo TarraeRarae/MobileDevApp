@@ -14,8 +14,11 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
         AuthenticationCellData(placeholder: "Username", isSequreTextField: false, contentType: .username),
         AuthenticationCellData(placeholder: "*********", isSequreTextField: true, contentType: .password),
         AuthenticationCellData(placeholder: "*********", isSequreTextField: true, contentType: .password)]
-
     private let validator: AuthenticationCellViewModelDelegate = RegistrationValidationManager()
+    weak var tableView: UITableView?
+    var isTableViewValid: Bool {
+        return self.validateTableView()
+    }
 
     func numberOfRows() -> Int {
         return cellDataArray.count
@@ -25,5 +28,17 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
         let cellViewModel = AuthenticationCellViewModel(cellData: cellDataArray[indexPath.row])
         cellViewModel.delegate = validator
         return cellViewModel
+    }
+
+    private func validateTableView() -> Bool {
+        var isValid: Bool = true
+        for row in 0..<numberOfRows() {
+            guard let cell = tableView?.cellForRow(at: IndexPath(row: row, section: 0)) as? AuthenticationCell else {
+                return false
+            }
+            isValid = isValid && cell.isTextFieldValid
+            print("\(isValid)")
+        }
+        return isValid
     }
 }

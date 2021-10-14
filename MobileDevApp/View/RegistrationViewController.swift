@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     private let loginView = LoginViewController()
     private var keyboardFrameHeight: CGFloat = 0
     private let backgroundImage: UIImageView = UIImageView(image: UIImage(named: "background"))
+
 	private let loginPageButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
@@ -156,52 +157,17 @@ class ViewController: UIViewController {
 		}
 	}
 
-	@objc func dismissKeyboard() {
-		view.endEditing(true)
-	}
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 
-	@objc func authorize() {
-//		var isDataValid = true
-//		if authenticationTableView.dataSource === self {
-//			ValidationManager.password = nil
-//			var arrayOfString: [String] = []
-//			for row in 0..<textFieldDataArray.count {
-//				let indexPath = IndexPath(row: row, section: 0)
-//				guard let cell = authenticationTableView.cellForRow(at: indexPath) as? AuthenticationCell else {
-//					return
-//				}
-//				let textField = cell.getTextField()
-//				if !ValidationManager.isRegistrationTextFieldValid(textField) {
-//					cell.makeTextFieldInvalid()
-//					isDataValid = false
-//				} else if row < 2 {
-//					arrayOfString.append(textField.text!)
-//				}
-//			}
-//			if !confirmSwitch.isOn {
-//				isDataValid = false
-//			}
-//			if isDataValid {
-//				UserDefaults.standard.setValue(arrayOfString[0], forKeyPath: "Username")
-//				UserDefaults.standard.setValue(arrayOfString[1], forKeyPath: "UserPassword")
-//			}
-//		} else {
-//			for row in 0..<2 {
-//				let indexPath = IndexPath(row: row, section: 0)
-//				guard let cell = authenticationTableView.cellForRow(at: indexPath) as? AuthenticationCell else {
-//					return
-//				}
-//				let textField = cell.getTextField()
-//				if !ValidationManager.isLoginTextFieldValid(textField) {
-//					cell.makeTextFieldInvalid()
-//					isDataValid = false
-//				}
-//			}
-//		}
-//		if isDataValid {
-//			show(TrackListViewController(), sender: nil)
-//		}
-	}
+    @objc func authorize() {
+        guard let viewModel = viewModel else { return }
+        if viewModel.isTableViewValid {
+            show(TrackListViewController(), sender: nil)
+        }
+        return
+    }
 
 }
 

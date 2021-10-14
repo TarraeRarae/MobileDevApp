@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 protocol TableViewViewModelProtocol {
+    var isTableViewValid: Bool { get }
+    var tableView: UITableView? { get set }
     func numberOfRows() -> Int
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TableViewCellViewModelProtocol?
 }
