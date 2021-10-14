@@ -11,6 +11,17 @@ class LoginViewController: UIViewController {
 
     private let viewModel: TableViewViewModelProtocol? = LoginTableViewViewModel()
 	weak var tableView: UITableView!
+
+    override func viewDidLoad() {
+        if var viewModel = viewModel {
+            viewModel.tableView = tableView
+        }
+    }
+    
+    func isTableViewValid() -> Bool {
+        guard let viewModel = viewModel else { fatalError() }
+        return viewModel.isTableViewValid
+    }
 }
 
 extension LoginViewController: UITableViewDataSource {

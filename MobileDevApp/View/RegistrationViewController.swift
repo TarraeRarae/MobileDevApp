@@ -165,9 +165,11 @@ class ViewController: UIViewController {
 
     @objc func authorize() {
         guard let viewModel = viewModel else { return }
-        var isValidInput = viewModel.isTableViewValid
+        var isValidInput = true
         if  authenticationTableView.dataSource === self {
-            isValidInput = isValidInput && self.confirmSwitch.isOn
+            isValidInput = isValidInput && self.confirmSwitch.isOn && viewModel.isTableViewValid
+        } else {
+            isValidInput = isValidInput && loginView.isTableViewValid()
         }
         if isValidInput {
             show(TrackListViewController(), sender: nil)
