@@ -17,7 +17,7 @@ class AuthenticationCell: UITableViewCell {
 
     @IBOutlet private var textField: UITextField!
 
-    weak var viewModel: TableViewCellViewModelProtocol? {
+    var viewModel: TableViewCellViewModelProtocol? {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
             textField.placeholder = viewModel.placeholder
@@ -43,7 +43,7 @@ class AuthenticationCell: UITableViewCell {
         textField.keyboardType = .default
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
-
+        textField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0.0, y: textField.frame.height - 1, width: textField.bounds.width, height: 1.0)
         bottomLine.backgroundColor = UIColor.black.cgColor
@@ -71,14 +71,16 @@ class AuthenticationCell: UITableViewCell {
     }
 
     private func validateAuthenticationCellTextField() -> Bool {
-        guard let viewModel = viewModel, let text = textField.text else {
-            return false
-        }
-        if viewModel.validate(text: text) {
-            makeTextFieldValid()
-            return true
+        if let viewModel = viewModel {
+            if textField.hasText && viewModel.validate(text: textField.text!) {
+                return true
+            }
         }
         makeTextFieldInvalid()
         return false
+    }
+
+    @objc func textFieldDidChanged() {
+        makeTextFieldValid()
     }
 }

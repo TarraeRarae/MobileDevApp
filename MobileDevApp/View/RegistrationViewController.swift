@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private let viewModel: TableViewViewModelProtocol? = RegistrationTableViewModel()
+    private var viewModel: TableViewViewModelProtocol? = RegistrationTableViewModel()
 	private var authenticationTableView: UITableView = UITableView()
 	private var keyboardDismissTapGesture: UIGestureRecognizer?
     private let loginView = LoginViewController()
@@ -83,14 +83,17 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		UserDefaults.standard.removeObject(forKey: "Username")
-		UserDefaults.standard.removeObject(forKey: "UserPassword")
+//		UserDefaults.standard.removeObject(forKey: "Username")
+//		UserDefaults.standard.removeObject(forKey: "UserPassword")
 		registerKeyboardNotifications()
 		backgroundImage.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		backgroundImage.frame = UIScreen.main.bounds
 		view.insertSubview(backgroundImage, at: 0)
 		loginView.tableView = authenticationTableView
 		setupTableView()
+        if var viewModel = viewModel {
+            viewModel.tableView = authenticationTableView
+        }
 	}
 
 	override func viewWillAppear(_ animated: Bool) {

@@ -31,14 +31,20 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
     }
 
     private func validateTableView() -> Bool {
+        guard let tableView = tableView else { return false }
         var isValid: Bool = true
-        for row in 0..<numberOfRows() {
-            guard let cell = tableView?.cellForRow(at: IndexPath(row: row, section: 0)) as? AuthenticationCell else {
-                return false
-            }
-            isValid = isValid && cell.isTextFieldValid
-            print("\(isValid)")
+        for cell in tableView.visibleCells {
+            guard let authCell = cell as? AuthenticationCell else { return false }
+            isValid = isValid && authCell.isTextFieldValid
+            print("\(authCell.isTextFieldValid)")
+        }
+        if isValid {
+            
         }
         return isValid
+    }
+    
+    private func addUserDataToUserDefaults() {
+        
     }
 }

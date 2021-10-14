@@ -12,7 +12,7 @@ class LoginTableViewViewModel: TableViewViewModelProtocol {
         AuthenticationCellData(placeholder: "Login", isSequreTextField: false, contentType: .emailAddress),
         AuthenticationCellData(placeholder: "Password", isSequreTextField: true, contentType: .password)
     ]
-    private let validator: AuthenticationCellViewModelDelegate = RegistrationValidationManager()
+    private let validator: AuthenticationCellViewModelDelegate = LoginValidationManager()
     weak var tableView: UITableView?
     var isTableViewValid: Bool {
         return self.validateTableView()
@@ -23,7 +23,9 @@ class LoginTableViewViewModel: TableViewViewModelProtocol {
     }
 
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TableViewCellViewModelProtocol? {
-        return AuthenticationCellViewModel(cellData: cellDataArray[indexPath.row])
+        let cellViewModel = AuthenticationCellViewModel(cellData: cellDataArray[indexPath.row])
+        cellViewModel.delegate = validator
+        return cellViewModel
     }
 
     private func validateTableView() -> Bool {
