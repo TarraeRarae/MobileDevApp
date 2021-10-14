@@ -72,7 +72,7 @@ class AuthenticationCell: UITableViewCell {
 
     private func validateAuthenticationCellTextField() -> Bool {
         if let viewModel = viewModel, let text = textField.text {
-            if viewModel.validate(text: textField.text!) {
+            if (viewModel.validate(text: text)) && (textField.hasText) {
                 viewModel.addUserDataToUserDefaults(text: text, textContentType: textField.textContentType)
                 return true
             }

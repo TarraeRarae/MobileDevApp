@@ -63,21 +63,4 @@ class RegistrationValidationManager: AuthenticationCellViewModelDelegate {
         }
         return true
     }
-
-//    func isLoginTextFieldValid(_ textField: UITextField) -> Bool {
-//        switch textField.textContentType {
-//        case UITextContentType.emailAddress:
-//            if UserDefaults.standard.string(forKey: "Username") == textField.text {
-//                return true
-//            }
-//            return false
-//        case UITextContentType.password:
-//            if UserDefaults.standard.string(forKey: "UserPassword") == textField.text {
-//                return true
-//            }
-//            return false
-//        default:
-//            return false
-//        }
-//    }
 }

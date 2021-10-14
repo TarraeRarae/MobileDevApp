@@ -35,7 +35,8 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
         var isValid: Bool = true
         for cell in tableView.visibleCells {
             guard let authCell = cell as? AuthenticationCell else { return false }
-            isValid = isValid && authCell.isTextFieldValid
+            let isCellValid = authCell.isTextFieldValid
+            isValid = isValid && isCellValid
         }
         if !isValid {
            removeUserDataFromUserDefaults()

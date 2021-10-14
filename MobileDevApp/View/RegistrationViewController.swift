@@ -83,8 +83,6 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-//		UserDefaults.standard.removeObject(forKey: "Username")
-//		UserDefaults.standard.removeObject(forKey: "UserPassword")
 		registerKeyboardNotifications()
 		backgroundImage.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		backgroundImage.frame = UIScreen.main.bounds
@@ -99,6 +97,7 @@ class ViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		navigationController?.navigationBar.isHidden = true
 		authenticationTableView.reloadData()
+        confirmSwitch.isOn = false
 	}
 
 	deinit {
@@ -166,12 +165,15 @@ class ViewController: UIViewController {
 
     @objc func authorize() {
         guard let viewModel = viewModel else { return }
-        if viewModel.isTableViewValid {
+        var isValidInput = viewModel.isTableViewValid
+        if  authenticationTableView.dataSource === self {
+            isValidInput = isValidInput && self.confirmSwitch.isOn
+        }
+        if isValidInput {
             show(TrackListViewController(), sender: nil)
         }
         return
     }
-
 }
 
 extension ViewController: UITableViewDataSource {
@@ -191,7 +193,6 @@ extension ViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
-
 }
 
 extension ViewController: UITableViewDelegate {
@@ -265,5 +266,4 @@ extension ViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return AuthenticationCell.Constant.rowHeight
 	}
-
 }
