@@ -174,7 +174,6 @@ class ViewController: UIViewController {
         if isValidInput {
             show(TrackListViewController(), sender: nil)
         }
-        return
     }
 }
 

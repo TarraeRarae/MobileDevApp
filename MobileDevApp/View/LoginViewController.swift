@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
             viewModel.tableView = tableView
         }
     }
-    
+
     func isTableViewValid() -> Bool {
         guard let viewModel = viewModel else { fatalError() }
         return viewModel.isTableViewValid
