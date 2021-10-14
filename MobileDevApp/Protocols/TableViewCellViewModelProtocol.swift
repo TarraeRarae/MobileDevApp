@@ -13,4 +13,5 @@ protocol TableViewCellViewModelProtocol: AnyObject {
     var contentType: UITextContentType { get }
     var isSequreTextField: Bool { get }
     func validate(text: String?) -> Bool
+    func addUserDataToUserDefaults(text: String, textContentType: UITextContentType)
 }

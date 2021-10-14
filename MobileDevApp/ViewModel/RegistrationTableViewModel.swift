@@ -36,15 +36,15 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
         for cell in tableView.visibleCells {
             guard let authCell = cell as? AuthenticationCell else { return false }
             isValid = isValid && authCell.isTextFieldValid
-            print("\(authCell.isTextFieldValid)")
         }
-        if isValid {
-            
+        if !isValid {
+           removeUserDataFromUserDefaults()
         }
         return isValid
     }
-    
-    private func addUserDataToUserDefaults() {
-        
+
+    private func removeUserDataFromUserDefaults() {
+        UserDefaults.standard.set(nil, forKey: "Username")
+        UserDefaults.standard.set(nil, forKey: "UserPassword")
     }
 }
