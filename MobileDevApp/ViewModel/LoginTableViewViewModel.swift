@@ -8,12 +8,13 @@
 import UIKit
 
 class LoginTableViewViewModel: TableViewViewModelProtocol {
+
     private let cellDataArray: [AuthenticationCellData] = [
-        AuthenticationCellData(placeholder: "Login", isSequreTextField: false, contentType: .emailAddress),
+        AuthenticationCellData(placeholder: "Login", isSequreTextField: false, contentType: .username),
         AuthenticationCellData(placeholder: "Password", isSequreTextField: true, contentType: .password)
     ]
     private let validator: AuthenticationCellViewModelDelegate = LoginValidationManager()
-    weak var tableView: UITableView?
+    var tableView: UITableView?
     var isTableViewValid: Bool {
         return self.validateTableView()
     }
@@ -29,10 +30,12 @@ class LoginTableViewViewModel: TableViewViewModelProtocol {
     }
 
     private func validateTableView() -> Bool {
+        guard let tableView = tableView else { return false }
         var isValid: Bool = true
-        for row in 0..<numberOfRows() {
-            guard let cell = tableView?.cellForRow(at: IndexPath(row: row, section: 0)) as? AuthenticationCell else { return false }
-            isValid = isValid && cell.isTextFieldValid
+        for cell in tableView.visibleCells {
+            guard let authCell = cell as? AuthenticationCell else { return false }
+            let isCellValid = authCell.isTextFieldValid
+            isValid = isValid && isCellValid
         }
         return isValid
     }

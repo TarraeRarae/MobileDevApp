@@ -10,16 +10,22 @@ import UIKit
 class LoginViewController: UIViewController {
 
     private let viewModel: TableViewViewModelProtocol? = LoginTableViewViewModel()
-	weak var tableView: UITableView!
+    var tableView: UITableView?
 
-    override func viewDidLoad() {
+    init(tableView: UITableView) {
+        self.tableView = tableView
         if var viewModel = viewModel {
             viewModel.tableView = tableView
         }
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     func isTableViewValid() -> Bool {
-        guard let viewModel = viewModel else { fatalError() }
+        guard let viewModel = viewModel, tableView != nil else { fatalError() }
         return viewModel.isTableViewValid
     }
 }

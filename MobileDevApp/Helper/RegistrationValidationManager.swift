@@ -13,15 +13,26 @@ class RegistrationValidationManager: AuthenticationCellViewModelDelegate {
 
     func validateTextField(text: String?, textContentType: UITextContentType) -> Bool {
         guard let text = text else { return false }
-
+        var isValid = true
         switch textContentType {
         case UITextContentType.emailAddress:
-            return validateEmail(text: text)
+            isValid = validateEmail(text: text)
         case UITextContentType.password:
-            return validatePassword(text: text)
+            isValid = validatePassword(text: text)
         default:
-            return true
+            break
         }
+        if isValid {
+            switch textContentType {
+            case .username:
+                UserDefaults.standard.set(text, forKey: "Username")
+            case .password:
+                UserDefaults.standard.set(text, forKey: "UserPassword")
+            default:
+                break
+            }
+        }
+        return isValid
     }
 
     private func validateEmail(text: String) -> Bool {
@@ -61,6 +72,7 @@ class RegistrationValidationManager: AuthenticationCellViewModelDelegate {
         if self.password == nil {
             password = text
         }
+
         return true
     }
 }

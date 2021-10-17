@@ -3,3 +3,6 @@ type_name:
 identifier_name:
   min_length: 2
 line_length: 220
+excluded:
+  - Carthage
+  - Pods

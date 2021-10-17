@@ -12,49 +12,23 @@ class ViewController: UIViewController {
     private var viewModel: TableViewViewModelProtocol? = RegistrationTableViewModel()
 	private var authenticationTableView: UITableView = UITableView()
 	private var keyboardDismissTapGesture: UIGestureRecognizer?
-    private let loginView = LoginViewController()
+    private var loginView: LoginViewController?
     private var keyboardFrameHeight: CGFloat = 0
     private let backgroundImage: UIImageView = UIImageView(image: UIImage(named: "background"))
-
-	private let loginPageButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .white
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 15)
-        button.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
-        button.layer.borderWidth = 0.5
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowRadius = 5
-        button.layer.shadowOffset = CGSize(width: 1.0, height: 3)
-        button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 10
-        button.addTarget(nil, action: #selector(setLoginTableView), for: .touchUpInside)
-        button.setTitle("Login", for: .normal)
-        return button
-    }()
-
-    private let registerPageButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .white
-        button.titleLabel?.font = .boldSystemFont(ofSize: 15)
-        button.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
-        button.layer.borderWidth = 0.5
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowRadius = 5
-        button.layer.shadowOffset = CGSize(width: 1.0, height: 3)
-        button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 10
-        button.addTarget(nil, action: #selector(setRegisterTableView), for: .touchUpInside)
-        button.setTitle("Register", for: .normal)
-        return button
+    private var pageControll: UISegmentedControl = {
+        let segmentedControll = UISegmentedControl()
+        segmentedControll.backgroundColor = .white
+        segmentedControll.selectedSegmentTintColor = .white
+        segmentedControll.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        segmentedControll.insertSegment(withTitle: "Login", at: 0, animated: true)
+        segmentedControll.insertSegment(withTitle: "Registration", at: 1, animated: true)
+        segmentedControll.selectedSegmentIndex = 1
+        segmentedControll.addTarget(self, action: #selector(indexChanged(_:)), for: .valueChanged)
+        return segmentedControll
     }()
 
 	private let nextButton: UIButton = {
         let button = UIButton()
-        button.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
-        button.layer.borderWidth = 0.5
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.5
         button.layer.shadowRadius = 5
@@ -75,23 +49,24 @@ class ViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
+
 	private let confirmSwitch: UISwitch = {
         let switcher = UISwitch()
-        switcher.preferredStyle = .automatic
         return switcher
     }()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		registerKeyboardNotifications()
 		backgroundImage.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        backgroundImage.contentMode = .scaleAspectFill
 		backgroundImage.frame = UIScreen.main.bounds
-		view.insertSubview(backgroundImage, at: 0)
-		loginView.tableView = authenticationTableView
+        view.addSubview(backgroundImage)
+        view.sendSubviewToBack(backgroundImage)
 		setupTableView()
         if var viewModel = viewModel {
             viewModel.tableView = authenticationTableView
         }
+        loginView = LoginViewController(tableView: authenticationTableView)
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -100,15 +75,11 @@ class ViewController: UIViewController {
         confirmSwitch.isOn = false
 	}
 
-	deinit {
-		removeKeyboardNotifications()
-	}
-
 	func setupTableView() {
         authenticationTableView = UITableView(frame: view.bounds, style: .grouped)
 		authenticationTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		authenticationTableView.backgroundColor = .clear
-		authenticationTableView.isScrollEnabled = false
+		authenticationTableView.isScrollEnabled = true
 		authenticationTableView.register(UINib(nibName: AuthenticationCell.Constant.nibName, bundle: nil), forCellReuseIdentifier: AuthenticationCell.Constant.cellID)
 		authenticationTableView.separatorStyle = .none
 		authenticationTableView.delegate = self
@@ -117,62 +88,28 @@ class ViewController: UIViewController {
 		view.addSubview(authenticationTableView)
 	}
 
-	func registerKeyboardNotifications() {
-		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-	}
-
-	func removeKeyboardNotifications() {
-		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-	}
-
-	@objc func keyboardWillShow(_ notification: Notification) {
-        if keyboardFrameHeight == 0 {
-            let userInfo = notification.userInfo
-            guard let keyboardFrameSize = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-            self.keyboardFrameHeight = keyboardFrameSize.height
-        }
-        authenticationTableView.contentOffset = CGPoint(x: 0, y: keyboardFrameHeight * 0.9)
-		if keyboardDismissTapGesture == nil {
-			keyboardDismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-			keyboardDismissTapGesture?.cancelsTouchesInView = false
-			self.view.addGestureRecognizer(keyboardDismissTapGesture!)
-		}
-	}
-
-	@objc func setLoginTableView() {
-		authenticationTableView.dataSource = loginView
-		authenticationTableView.reloadData()
-	}
-
-	@objc func setRegisterTableView() {
-		authenticationTableView.dataSource = self
-		authenticationTableView.reloadData()
-	}
-
-	@objc func keyboardWillHide(_ notification: Notification) {
-		authenticationTableView.contentOffset = CGPoint.zero
-		if keyboardDismissTapGesture != nil {
-			self.view.removeGestureRecognizer(keyboardDismissTapGesture!)
-			keyboardDismissTapGesture = nil
-		}
-	}
-
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-
     @objc func authorize() {
         guard let viewModel = viewModel else { return }
         var isValidInput = true
         if  authenticationTableView.dataSource === self {
-            isValidInput = isValidInput && self.confirmSwitch.isOn && viewModel.isTableViewValid
+            isValidInput = isValidInput && viewModel.isTableViewValid && self.confirmSwitch.isOn
         } else {
-            isValidInput = isValidInput && loginView.isTableViewValid()
+            if let loginView = loginView {
+                isValidInput = isValidInput && loginView.isTableViewValid()
+            }
         }
         if isValidInput {
             show(TrackListViewController(), sender: nil)
+        }
+    }
+
+    @objc func indexChanged(_ sender: UISegmentedControl) {
+        if pageControll.selectedSegmentIndex == 0 {
+            authenticationTableView.dataSource = loginView
+            authenticationTableView.reloadData()
+        } else if pageControll.selectedSegmentIndex == 1 {
+            authenticationTableView.dataSource = self
+            authenticationTableView.reloadData()
         }
     }
 }
@@ -201,23 +138,14 @@ extension ViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: authenticationTableView.bounds.width, height: authenticationTableView.frame.height * 0.4))
 		tableHeaderView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		tableHeaderView.addSubview(loginPageButton)
-		tableHeaderView.addSubview(registerPageButton)
-
-		loginPageButton.translatesAutoresizingMaskIntoConstraints = false
-		registerPageButton.translatesAutoresizingMaskIntoConstraints = false
-
-		NSLayoutConstraint.activate([
-			loginPageButton.topAnchor.constraint(equalTo: tableHeaderView.topAnchor, constant: tableHeaderView.frame.height * 0.4),
-			loginPageButton.leadingAnchor.constraint(equalTo: tableHeaderView.leadingAnchor, constant: tableHeaderView.frame.width * 0.1),
-			loginPageButton.trailingAnchor.constraint(equalTo: registerPageButton.leadingAnchor, constant: -tableHeaderView.frame.width * 0.2),
-			loginPageButton.heightAnchor.constraint(equalTo: tableHeaderView.heightAnchor, multiplier: 0.1),
-
-			registerPageButton.topAnchor.constraint(equalTo: tableHeaderView.topAnchor, constant: tableHeaderView.frame.height * 0.4),
-			registerPageButton.trailingAnchor.constraint(equalTo: tableHeaderView.trailingAnchor, constant: -tableHeaderView.frame.width * 0.1),
-			registerPageButton.heightAnchor.constraint(equalTo: tableHeaderView.heightAnchor, multiplier: 0.1),
-			registerPageButton.widthAnchor.constraint(equalTo: tableHeaderView.widthAnchor, multiplier: 0.3)
-		])
+        pageControll.translatesAutoresizingMaskIntoConstraints = false
+        tableHeaderView.addSubview(pageControll)
+        NSLayoutConstraint.activate([
+            pageControll.centerXAnchor.constraint(equalTo: tableHeaderView.centerXAnchor),
+            pageControll.centerYAnchor.constraint(equalTo: tableHeaderView.centerYAnchor),
+            pageControll.widthAnchor.constraint(equalTo: tableHeaderView.widthAnchor, multiplier: 0.6),
+            pageControll.heightAnchor.constraint(equalTo: tableHeaderView.heightAnchor, multiplier: 0.15)
+        ])
 		tableHeaderView.layoutIfNeeded()
 		return tableHeaderView
 	}

@@ -31,15 +31,4 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
         guard let delegate = delegate else { fatalError() }
         return delegate.validateTextField(text: text, textContentType: cellData.contentType)
     }
-
-    public func addUserDataToUserDefaults(text: String, textContentType: UITextContentType) {
-        switch textContentType {
-        case .username:
-            UserDefaults.standard.set(text, forKey: "Username")
-        case .password:
-            UserDefaults.standard.set(text, forKey: "UserPassword")
-        default:
-            return
-        }
-    }
 }

@@ -7,7 +7,13 @@
 
 import UIKit
 
-class AuthenticationCell: UITableViewCell {
+// protocol AuthenticationCellDelegate: AnyObject {
+//
+//    func authCellChangeItsValue()
+//
+// }
+
+class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
 
     struct Constant {
         static let cellID = "CellID"
@@ -23,8 +29,10 @@ class AuthenticationCell: UITableViewCell {
             textField.placeholder = viewModel.placeholder
             textField.textContentType = viewModel.contentType
             textField.isSecureTextEntry = viewModel.isSequreTextField
+            makeTextFieldValid()
         }
     }
+
     var isTextFieldValid: Bool {
         return validateAuthenticationCellTextField()
     }
@@ -40,20 +48,24 @@ class AuthenticationCell: UITableViewCell {
         textField.textAlignment = .left
         textField.autocorrectionType = .no
         textField.clearButtonMode = .unlessEditing
+        textField.tintColor = .black
         textField.keyboardType = .default
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: AuthenticationCell.Constant.rowHeight))
         textField.leftViewMode = .always
         textField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
+        textField.keyboardType = .default
         let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0.0, y: textField.frame.height - 1, width: textField.bounds.width, height: 1.0)
+        bottomLine.frame = CGRect(x: 0.0, y: textField.frame.maxY, width: textField.frame.width - textField.frame.minX, height: 1.0)
         bottomLine.backgroundColor = UIColor.black.cgColor
         textField.borderStyle = .none
         textField.layer.addSublayer(bottomLine)
+
+        // Important !!!
+        textField.delegate = self
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        makeTextFieldValid()
         textField.text = nil
         textField.textContentType = .none
         textField.placeholder = nil
@@ -62,18 +74,17 @@ class AuthenticationCell: UITableViewCell {
 
     private func makeTextFieldInvalid() {
         textField.textColor = .red
-        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.red.withAlphaComponent(0.3)])
     }
 
     private func makeTextFieldValid() {
         textField.textColor = .black
-        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
+        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.3)])
     }
 
     private func validateAuthenticationCellTextField() -> Bool {
         if let viewModel = viewModel, let text = textField.text {
             if (viewModel.validate(text: text)) && (textField.hasText) {
-                viewModel.addUserDataToUserDefaults(text: text, textContentType: textField.textContentType)
                 return true
             }
         }
@@ -84,4 +95,8 @@ class AuthenticationCell: UITableViewCell {
     @objc func textFieldDidChanged() {
         makeTextFieldValid()
     }
+
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//
+//    }
 }

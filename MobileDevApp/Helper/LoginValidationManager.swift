@@ -16,6 +16,11 @@ class LoginValidationManager: AuthenticationCellViewModelDelegate {
                 return true
             }
             return false
+        case UITextContentType.username:
+            if UserDefaults.standard.string(forKey: "Username") == text {
+                return true
+            }
+            return false
         default:
             return true
         }

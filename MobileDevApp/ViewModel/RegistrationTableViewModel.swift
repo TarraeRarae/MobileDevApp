@@ -15,7 +15,7 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
         AuthenticationCellData(placeholder: "*********", isSequreTextField: true, contentType: .password),
         AuthenticationCellData(placeholder: "*********", isSequreTextField: true, contentType: .password)]
     private let validator: AuthenticationCellViewModelDelegate = RegistrationValidationManager()
-    weak var tableView: UITableView?
+    var tableView: UITableView?
     var isTableViewValid: Bool {
         return self.validateTableView()
     }
@@ -41,6 +41,7 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
         if !isValid {
            removeUserDataFromUserDefaults()
         }
+
         return isValid
     }
 
