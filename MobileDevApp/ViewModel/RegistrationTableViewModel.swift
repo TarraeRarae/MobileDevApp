@@ -12,8 +12,8 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
     private let cellDataArray: [AuthenticationCellData] =  [
         AuthenticationCellData(placeholder: "Email", isSequreTextField: false, contentType: .emailAddress),
         AuthenticationCellData(placeholder: "Username", isSequreTextField: false, contentType: .username),
-        AuthenticationCellData(placeholder: "*********", isSequreTextField: true, contentType: .password),
-        AuthenticationCellData(placeholder: "*********", isSequreTextField: true, contentType: .password)]
+        AuthenticationCellData(placeholder: "Password. Example: 1234Aa", isSequreTextField: true, contentType: .password),
+        AuthenticationCellData(placeholder: "Confirm password", isSequreTextField: true, contentType: .password)]
     private let validator: AuthenticationCellViewModelDelegate = RegistrationValidationManager()
     var tableView: UITableView?
     var isTableViewValid: Bool {
