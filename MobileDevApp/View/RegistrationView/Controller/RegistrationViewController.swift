@@ -11,8 +11,8 @@ import IQKeyboardManagerSwift
 class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterViewDelegate {
 
     private var viewModel: TableViewViewModelProtocol? = RegistrationTableViewModel()
-	private var authenticationTableView: UITableView = UITableView()
-	private var keyboardDismissTapGesture: UIGestureRecognizer?
+    private var authenticationTableView: UITableView = UITableView()
+    private var keyboardDismissTapGesture: UIGestureRecognizer?
     private var loginView: LoginViewController?
     private var tableHeaderView: AuthenticationTableHeaderView?
     private var registrationTableFooterView: RegistraionTableFooterView?
@@ -50,10 +50,6 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
 		navigationController?.navigationBar.isHidden = true
 		authenticationTableView.reloadData()
 	}
-//
-//    deinit {
-//        removeKeyboardNotifications()
-//    }
 
 	func setupTableView() {
         authenticationTableView = UITableView(frame: view.bounds, style: .grouped)
