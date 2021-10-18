@@ -8,9 +8,16 @@
 import UIKit
 
 class TrackListViewController: UIViewController {
+
+    private var trackListView: TrackListView?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = .blue
+        trackListView = TrackListView(frame: view.frame)
+        view.backgroundColor = .white
+        if let trackListView = trackListView {
+            view.addSubview(trackListView)
+        }
 		navigationController?.navigationBar.isHidden = false
 	}
 }

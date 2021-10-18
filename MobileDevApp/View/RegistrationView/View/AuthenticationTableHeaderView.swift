@@ -10,6 +10,7 @@ import UIKit
 class AuthenticationTableHeaderView: UIView {
 
     weak var delegate: TableHeaderViewDelegate?
+
     var pageControll: UISegmentedControl = {
         let segmentedControll = UISegmentedControl()
         segmentedControll.backgroundColor = .white

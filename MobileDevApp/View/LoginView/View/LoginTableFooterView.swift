@@ -10,6 +10,7 @@ import UIKit
 class LoginTableFooterView: UIView {
 
     weak var delegate: TableFooterViewDelegate?
+
     private let nextButton: UIButton = {
         let button = UIButton()
         button.layer.shadowColor = UIColor.black.cgColor
