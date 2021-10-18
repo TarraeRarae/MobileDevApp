@@ -37,7 +37,7 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
         guard let delegate = delegate else { fatalError() }
         guard let text = text else { return ValidationErrorInfo(isValid: false, errorInfo: nil) }
         if text.count == 0 {
-            return ValidationErrorInfo(isValid: false, errorInfo: "Input data")
+            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Input data", comment: ""))
         }
         switch cellData.contentType {
         case .emailAddress:
@@ -51,7 +51,7 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
         case .username:
             return ValidationErrorInfo(isValid: true, errorInfo: nil)
         default:
-            return ValidationErrorInfo(isValid: false, errorInfo: "Unexpected error")
+            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Unexpected error", comment: ""))
         }
     }
 
@@ -59,7 +59,7 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
         guard let delegate = delegate else { fatalError() }
         guard let text = text else { return ValidationErrorInfo(isValid: false, errorInfo: nil) }
         if text.count == 0 {
-            return ValidationErrorInfo(isValid: false, errorInfo: "Input data")
+            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Input data", comment: ""))
         }
         switch cellData.contentType {
         case .username:
@@ -67,7 +67,7 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
         case .password:
             return delegate.checkPassword(password: text)
         default:
-            return ValidationErrorInfo(isValid: false, errorInfo: "Unexpected error")
+            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Unexpected error", comment: ""))
         }
     }
 

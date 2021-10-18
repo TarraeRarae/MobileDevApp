@@ -10,10 +10,10 @@ import UIKit
 class RegistrationTableViewModel: TableViewViewModelProtocol {
 
     private let cellDataArray: [AuthenticationCellData] =  [
-        AuthenticationCellData(placeholder: "Email", isSequreTextField: false, contentType: .emailAddress),
-        AuthenticationCellData(placeholder: "Username", isSequreTextField: false, contentType: .username),
-        AuthenticationCellData(placeholder: "Password. At least 6. Must contains num", isSequreTextField: true, contentType: .password),
-        AuthenticationCellData(placeholder: "Confirm password", isSequreTextField: true, contentType: .password)]
+        AuthenticationCellData(placeholder: NSLocalizedString("Email", comment: ""), isSequreTextField: false, contentType: .emailAddress),
+        AuthenticationCellData(placeholder: NSLocalizedString("Username", comment: ""), isSequreTextField: false, contentType: .username),
+        AuthenticationCellData(placeholder: NSLocalizedString("Password. At least 6. Must contains num", comment: ""), isSequreTextField: true, contentType: .password),
+        AuthenticationCellData(placeholder: NSLocalizedString("Confirm password", comment: ""), isSequreTextField: true, contentType: .password)]
     private let validator: AuthenticationCellViewModelDelegate = Helper()
     var tableView: UITableView?
     var isTableViewValid: [ValidationErrorInfo] {

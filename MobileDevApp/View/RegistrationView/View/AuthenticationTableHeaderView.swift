@@ -15,8 +15,8 @@ class AuthenticationTableHeaderView: UIView {
         segmentedControll.backgroundColor = .white
         segmentedControll.selectedSegmentTintColor = .white
         segmentedControll.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
-        segmentedControll.insertSegment(withTitle: "Login", at: 0, animated: true)
-        segmentedControll.insertSegment(withTitle: "Registration", at: 1, animated: true)
+        segmentedControll.insertSegment(withTitle: NSLocalizedString("Login", comment: ""), at: 0, animated: true)
+        segmentedControll.insertSegment(withTitle: NSLocalizedString("Registration", comment: ""), at: 1, animated: true)
         segmentedControll.selectedSegmentIndex = 1
         segmentedControll.addTarget(self, action: #selector(indexChanged(_:)), for: .valueChanged)
         segmentedControll.endEditing(true)

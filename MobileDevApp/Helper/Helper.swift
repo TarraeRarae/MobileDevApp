@@ -18,7 +18,7 @@ class Helper: AuthenticationCellViewModelDelegate {
         if isValid {
             return ValidationErrorInfo(isValid: isValid, errorInfo: nil)
         }
-        return ValidationErrorInfo(isValid: isValid, errorInfo: "Email isn't valid")
+        return ValidationErrorInfo(isValid: isValid, errorInfo: NSLocalizedString("Email isn't valid", comment: ""))
     }
 
     func validatePassword(password: String) -> ValidationErrorInfo {
@@ -33,7 +33,7 @@ class Helper: AuthenticationCellViewModelDelegate {
             self.password = password
             return ValidationErrorInfo(isValid: isValid, errorInfo: nil)
         }
-        return ValidationErrorInfo(isValid: isValid, errorInfo: "Password must have 6 or more symbols and at least 1 number")
+        return ValidationErrorInfo(isValid: isValid, errorInfo: NSLocalizedString("Password must contains 6 or more symbols and at least 1 number", comment: ""))
     }
 
     func checkUsername(username: String) -> ValidationErrorInfo {
@@ -41,7 +41,7 @@ class Helper: AuthenticationCellViewModelDelegate {
         if isValid {
             return ValidationErrorInfo(isValid: isValid, errorInfo: nil)
         }
-        return ValidationErrorInfo(isValid: isValid, errorInfo: "Incorrect username")
+        return ValidationErrorInfo(isValid: isValid, errorInfo: NSLocalizedString("Incorrect username", comment: ""))
     }
 
     func checkPassword(password: String) -> ValidationErrorInfo {
@@ -50,7 +50,7 @@ class Helper: AuthenticationCellViewModelDelegate {
         if isValid {
             return ValidationErrorInfo(isValid: isValid, errorInfo: nil)
         }
-        return ValidationErrorInfo(isValid: isValid, errorInfo: "Incorrect password")
+        return ValidationErrorInfo(isValid: isValid, errorInfo: NSLocalizedString("Incorrect password", comment: ""))
     }
 
     func comparePasswords(password: String) -> ValidationErrorInfo {
@@ -59,6 +59,6 @@ class Helper: AuthenticationCellViewModelDelegate {
         if isValid {
             return ValidationErrorInfo(isValid: isValid, errorInfo: nil)
         }
-        return ValidationErrorInfo(isValid: isValid, errorInfo: "Passwords aren't equal")
+        return ValidationErrorInfo(isValid: isValid, errorInfo: NSLocalizedString("Passwords aren't equal", comment: ""))
     }
 }

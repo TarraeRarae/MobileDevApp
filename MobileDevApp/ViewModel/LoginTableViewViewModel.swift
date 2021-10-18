@@ -10,8 +10,8 @@ import UIKit
 class LoginTableViewViewModel: TableViewViewModelProtocol {
 
     private let cellDataArray: [AuthenticationCellData] = [
-        AuthenticationCellData(placeholder: "Login", isSequreTextField: false, contentType: .username),
-        AuthenticationCellData(placeholder: "Password", isSequreTextField: true, contentType: .password)
+        AuthenticationCellData(placeholder: NSLocalizedString("Username", comment: ""), isSequreTextField: false, contentType: .username),
+        AuthenticationCellData(placeholder: NSLocalizedString("Password", comment: ""), isSequreTextField: true, contentType: .password)
     ]
     private let validator: AuthenticationCellViewModelDelegate = Helper()
     var tableView: UITableView?

@@ -27,10 +27,10 @@ class RegistraionTableFooterView: UIView {
 
     private let confirmLabel: UILabel = {
         let label = UILabel()
-        label.text = "Confirm our privacy policy"
+        label.text = NSLocalizedString("Confirm our privacy policy", comment: "")
         label.textColor = .black
         label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         return label
     }()
 
