@@ -29,7 +29,7 @@ class RegistraionTableFooterView: UIView {
     private let confirmLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("Confirm our privacy policy", comment: "")
-        label.textColor = .black
+        label.textColor = .label
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         return label
@@ -66,7 +66,7 @@ class RegistraionTableFooterView: UIView {
         NSLayoutConstraint.activate([
             nextButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.4),
             nextButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            nextButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15),
+            nextButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1),
             nextButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2)
         ])
     }

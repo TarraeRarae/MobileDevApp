@@ -46,7 +46,6 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         textField.textAlignment = .left
         textField.autocorrectionType = .no
         textField.clearButtonMode = .unlessEditing
-        textField.tintColor = .black
         textField.keyboardType = .default
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: AuthenticationCell.Constant.rowHeight))
         textField.leftViewMode = .always
@@ -79,8 +78,8 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
     }
 
     private func makeTextFieldValid() {
-        textField.textColor = .black
-        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.3)])
+        textField.textColor = .label
+        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.label.withAlphaComponent(0.3)])
     }
 
     private func validateAuthenticationCellTextField() -> ValidationErrorInfo {
