@@ -29,6 +29,7 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
         view.addSubview(backgroundImage)
         view.sendSubviewToBack(backgroundImage)
 		setupTableView()
+
         tableHeaderView = AuthenticationTableHeaderView(frame: CGRect(x: 0, y: 0, width: authenticationTableView.bounds.width, height: authenticationTableView.bounds.height * 0.4))
         tableHeaderView?.delegate = self
 
@@ -118,10 +119,6 @@ extension ViewController: UITableViewDelegate {
 
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return tableHeaderView
-	}
-
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		return authenticationTableView.bounds.height * 0.4
 	}
 
 	func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

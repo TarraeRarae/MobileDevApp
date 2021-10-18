@@ -31,6 +31,7 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: UITableViewDataSource {
+
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { fatalError() }
         return viewModel.numberOfRows()
