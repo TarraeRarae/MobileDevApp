@@ -68,13 +68,12 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
     func authorize() {
         guard let viewModel = viewModel else { return }
         var isValidInput = true
-        var errors: [String] = []
+        var errors: Set<String> = []
         if authenticationTableView.dataSource === self {
             for item in viewModel.isTableViewValid {
                 isValidInput = isValidInput && item.isValid
                 if let errorInfo = item.errorInfo {
-                    errors.append(errorInfo)
-                    print(errorInfo)
+                    errors.insert(errorInfo)
                 }
             }
         } else {
@@ -82,17 +81,28 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
                 for item in loginView.isTableViewValid() {
                     isValidInput = isValidInput && item.isValid
                     if let errorInfo = item.errorInfo {
-                        errors.append(errorInfo)
-                        print(errorInfo)
+                        errors.insert(errorInfo)
                     }
                 }
             }
         }
         if isValidInput {
             show(TrackListViewController(), sender: nil)
+        } else {
+            self.setupAlertController(data: errors)
         }
     }
 
+    private func setupAlertController(data: Set<String>) {
+        var alertMessage: String = """
+"""
+        for item in data {
+            alertMessage += item + "\n"
+        }
+        let alertController = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
     // MARK: - TableHeaderViewDelegate method
 
     func updateTableView() {

@@ -33,7 +33,7 @@ class Helper: AuthenticationCellViewModelDelegate {
             self.password = password
             return ValidationErrorInfo(isValid: isValid, errorInfo: nil)
         }
-        return ValidationErrorInfo(isValid: isValid, errorInfo: "Password must have 6 or more symbols and at leaset 1 number")
+        return ValidationErrorInfo(isValid: isValid, errorInfo: "Password must have 6 or more symbols and at least 1 number")
     }
 
     func checkUsername(username: String) -> ValidationErrorInfo {
