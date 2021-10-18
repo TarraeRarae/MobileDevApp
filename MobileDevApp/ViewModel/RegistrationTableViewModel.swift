@@ -12,11 +12,11 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
     private let cellDataArray: [AuthenticationCellData] =  [
         AuthenticationCellData(placeholder: "Email", isSequreTextField: false, contentType: .emailAddress),
         AuthenticationCellData(placeholder: "Username", isSequreTextField: false, contentType: .username),
-        AuthenticationCellData(placeholder: "Password. Example: 1234Aa", isSequreTextField: true, contentType: .password),
+        AuthenticationCellData(placeholder: "Password. At least 6. Must contains num", isSequreTextField: true, contentType: .password),
         AuthenticationCellData(placeholder: "Confirm password", isSequreTextField: true, contentType: .password)]
-    private let validator: AuthenticationCellViewModelDelegate = RegistrationValidationManager()
+    private let validator: AuthenticationCellViewModelDelegate = Helper()
     var tableView: UITableView?
-    var isTableViewValid: Bool {
+    var isTableViewValid: [ValidationErrorInfo] {
         return self.validateTableView()
     }
 
@@ -30,19 +30,15 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
         return cellViewModel
     }
 
-    private func validateTableView() -> Bool {
-        guard let tableView = tableView else { return false }
-        var isValid: Bool = true
+    private func validateTableView() -> [ValidationErrorInfo] {
+        guard let tableView = tableView else { return [] }
+        var validationErrors: [ValidationErrorInfo] = []
         for cell in tableView.visibleCells {
-            guard let authCell = cell as? AuthenticationCell else { return false }
-            let isCellValid = authCell.isTextFieldValid
-            isValid = isValid && isCellValid
+            guard let authCell = cell as? AuthenticationCell else { return [] }
+            let cellValidation = authCell.isTextFieldValid
+            validationErrors.append(cellValidation)
         }
-        if !isValid {
-           removeUserDataFromUserDefaults()
-        }
-
-        return isValid
+        return validationErrors
     }
 
     private func removeUserDataFromUserDefaults() {

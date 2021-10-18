@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterViewDelegate {
 
@@ -67,11 +68,24 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
     func authorize() {
         guard let viewModel = viewModel else { return }
         var isValidInput = true
-        if  authenticationTableView.dataSource === self {
-            isValidInput = isValidInput && viewModel.isTableViewValid
+        var errors: [String] = []
+        if authenticationTableView.dataSource === self {
+            for item in viewModel.isTableViewValid {
+                isValidInput = isValidInput && item.isValid
+                if let errorInfo = item.errorInfo {
+                    errors.append(errorInfo)
+                    print(errorInfo)
+                }
+            }
         } else {
             if let loginView = loginView {
-                isValidInput = isValidInput && loginView.isTableViewValid()
+                for item in loginView.isTableViewValid() {
+                    isValidInput = isValidInput && item.isValid
+                    if let errorInfo = item.errorInfo {
+                        errors.append(errorInfo)
+                        print(errorInfo)
+                    }
+                }
             }
         }
         if isValidInput {

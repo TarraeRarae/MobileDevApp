@@ -8,5 +8,6 @@
 import Foundation
 
 protocol TableHeaderViewDelegate: AnyObject {
+
     func updateTableView()
 }

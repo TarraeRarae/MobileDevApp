@@ -6,8 +6,13 @@
 //
 
 import Foundation
-import UIKit
 
 protocol AuthenticationCellViewModelDelegate: AnyObject {
-    func validateTextField(text: String?, textContentType: UITextContentType) -> Bool
+
+    var password: String? { get }
+    func validateEmail(email: String) -> ValidationErrorInfo
+    func validatePassword(password: String) -> ValidationErrorInfo
+    func checkUsername(username: String) -> ValidationErrorInfo
+    func checkPassword(password: String) -> ValidationErrorInfo
+    func comparePasswords(password: String) -> ValidationErrorInfo
 }

@@ -19,6 +19,7 @@ class AuthenticationTableHeaderView: UIView {
         segmentedControll.insertSegment(withTitle: "Registration", at: 1, animated: true)
         segmentedControll.selectedSegmentIndex = 1
         segmentedControll.addTarget(self, action: #selector(indexChanged(_:)), for: .valueChanged)
+        segmentedControll.endEditing(true)
         segmentedControll.layer.shadowColor = UIColor.black.cgColor
         segmentedControll.layer.shadowRadius = 10
         segmentedControll.layer.shadowOpacity = 0.5

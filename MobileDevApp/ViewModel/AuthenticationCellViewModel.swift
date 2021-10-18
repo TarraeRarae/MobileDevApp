@@ -27,8 +27,37 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
         self.cellData = cellData
     }
 
-    public func validate(text: String?) -> Bool {
+    public func validate(text: String?) -> ValidationErrorInfo {
         guard let delegate = delegate else { fatalError() }
-        return delegate.validateTextField(text: text, textContentType: cellData.contentType)
+        guard let text = text else { return ValidationErrorInfo(isValid: false, errorInfo: nil) }
+
+        switch cellData.contentType {
+        case .emailAddress:
+            return delegate.validateEmail(email: text)
+        case .password:
+            if delegate.password == nil {
+                return delegate.validatePassword(password: text)
+            } else {
+                return delegate.comparePasswords(password: text)
+            }
+        case .username:
+            return ValidationErrorInfo(isValid: true, errorInfo: nil)
+        default:
+            return ValidationErrorInfo(isValid: false, errorInfo: "Unexpected error")
+        }
+    }
+
+    public func checkRegistered(text: String?) -> ValidationErrorInfo {
+        guard let delegate = delegate else { fatalError() }
+        guard let text = text else { return ValidationErrorInfo(isValid: false, errorInfo: nil) }
+
+        switch cellData.contentType {
+        case .username:
+            return delegate.checkUsername(username: text)
+        case .password:
+            return delegate.checkPassword(password: text)
+        default:
+            return ValidationErrorInfo(isValid: false, errorInfo: "Unexpected error")
+        }
     }
 }

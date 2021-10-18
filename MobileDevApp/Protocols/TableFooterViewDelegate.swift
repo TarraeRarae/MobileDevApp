@@ -8,5 +8,6 @@
 import Foundation
 
 protocol TableFooterViewDelegate: AnyObject {
+
     func authorize()
 }

@@ -33,8 +33,12 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         }
     }
 
-    var isTextFieldValid: Bool {
+    var isTextFieldValid: ValidationErrorInfo {
         return validateAuthenticationCellTextField()
+    }
+
+    var isTextFieldRegistered: ValidationErrorInfo {
+        return checkTextFieldRegistered()
     }
 
     override func awakeFromNib() {
@@ -60,7 +64,7 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         textField.borderStyle = .none
         textField.layer.addSublayer(bottomLine)
 
-        // Important !!!
+        // Important
         textField.delegate = self
     }
 
@@ -82,14 +86,36 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.3)])
     }
 
-    private func validateAuthenticationCellTextField() -> Bool {
-        if let viewModel = viewModel, let text = textField.text {
-            if (viewModel.validate(text: text)) && (textField.hasText) {
-                return true
-            }
+    private func validateAuthenticationCellTextField() -> ValidationErrorInfo {
+        guard let viewModel = viewModel, let text = textField.text else {
+            makeTextFieldInvalid()
+            return ValidationErrorInfo(isValid: false, errorInfo: nil)
         }
-        makeTextFieldInvalid()
-        return false
+        if !textField.hasText {
+            makeTextFieldInvalid()
+            return ValidationErrorInfo(isValid: false, errorInfo: "Input all data")
+        }
+        let errorInfo = viewModel.validate(text: text)
+        if !errorInfo.isValid {
+            makeTextFieldInvalid()
+        }
+        return errorInfo
+    }
+
+    private func checkTextFieldRegistered() -> ValidationErrorInfo {
+        guard let viewModel = viewModel, let text = textField.text else {
+            makeTextFieldInvalid()
+            return ValidationErrorInfo(isValid: false, errorInfo: nil)
+        }
+        if !textField.hasText {
+            makeTextFieldInvalid()
+            return ValidationErrorInfo(isValid: false, errorInfo: "Input all data")
+        }
+        let errorInfo = viewModel.checkRegistered(text: text)
+        if !errorInfo.isValid {
+            makeTextFieldInvalid()
+        }
+        return errorInfo
     }
 
     @objc func textFieldDidChanged() {

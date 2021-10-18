@@ -13,9 +13,9 @@ class LoginTableViewViewModel: TableViewViewModelProtocol {
         AuthenticationCellData(placeholder: "Login", isSequreTextField: false, contentType: .username),
         AuthenticationCellData(placeholder: "Password", isSequreTextField: true, contentType: .password)
     ]
-    private let validator: AuthenticationCellViewModelDelegate = LoginValidationManager()
+    private let validator: AuthenticationCellViewModelDelegate = Helper()
     var tableView: UITableView?
-    var isTableViewValid: Bool {
+    var isTableViewValid: [ValidationErrorInfo] {
         return self.validateTableView()
     }
 
@@ -29,14 +29,14 @@ class LoginTableViewViewModel: TableViewViewModelProtocol {
         return cellViewModel
     }
 
-    private func validateTableView() -> Bool {
-        guard let tableView = tableView else { return false }
-        var isValid: Bool = true
+    private func validateTableView() -> [ValidationErrorInfo] {
+        guard let tableView = tableView else { return [] }
+        var validationErrors: [ValidationErrorInfo] = []
         for cell in tableView.visibleCells {
-            guard let authCell = cell as? AuthenticationCell else { return false }
-            let isCellValid = authCell.isTextFieldValid
-            isValid = isValid && isCellValid
+            guard let authCell = cell as? AuthenticationCell else { return [] }
+            let cellValidation = authCell.isTextFieldRegistered
+            validationErrors.append(cellValidation)
         }
-        return isValid
+        return validationErrors
     }
 }

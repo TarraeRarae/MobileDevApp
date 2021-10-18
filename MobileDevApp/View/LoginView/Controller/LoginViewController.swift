@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func isTableViewValid() -> Bool {
+    func isTableViewValid() -> [ValidationErrorInfo] {
         guard let viewModel = viewModel, tableView != nil else { fatalError() }
         return viewModel.isTableViewValid
     }
