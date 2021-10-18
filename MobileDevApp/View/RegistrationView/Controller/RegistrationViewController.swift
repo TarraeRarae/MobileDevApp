@@ -22,14 +22,14 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
 
     // MARK: - That's OK
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		backgroundImage.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        backgroundImage.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         backgroundImage.contentMode = .scaleAspectFill
-		backgroundImage.frame = UIScreen.main.bounds
+        backgroundImage.frame = UIScreen.main.bounds
         view.addSubview(backgroundImage)
         view.sendSubviewToBack(backgroundImage)
-		setupTableView()
+        setupTableView()
 
         tableHeaderView = AuthenticationTableHeaderView(frame: CGRect(x: 0, y: 0, width: authenticationTableView.bounds.width, height: authenticationTableView.bounds.height * 0.4))
         tableHeaderView?.delegate = self
@@ -44,24 +44,24 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
             viewModel.tableView = authenticationTableView
         }
         loginView = LoginViewController(tableView: authenticationTableView)
-	}
+    }
 
-	override func viewWillAppear(_ animated: Bool) {
-		navigationController?.navigationBar.isHidden = true
-		authenticationTableView.reloadData()
-	}
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+        authenticationTableView.reloadData()
+    }
 
-	func setupTableView() {
+    func setupTableView() {
         authenticationTableView = UITableView(frame: view.bounds, style: .grouped)
-		authenticationTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		authenticationTableView.backgroundColor = .clear
-		authenticationTableView.isScrollEnabled = true
-		authenticationTableView.register(UINib(nibName: AuthenticationCell.Constant.nibName, bundle: nil), forCellReuseIdentifier: AuthenticationCell.Constant.cellID)
-		authenticationTableView.separatorStyle = .none
-		authenticationTableView.delegate = self
-		authenticationTableView.dataSource = self
-		view.addSubview(authenticationTableView)
-	}
+        authenticationTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        authenticationTableView.backgroundColor = .clear
+        authenticationTableView.isScrollEnabled = true
+        authenticationTableView.register(UINib(nibName: AuthenticationCell.Constant.nibName, bundle: nil), forCellReuseIdentifier: AuthenticationCell.Constant.cellID)
+        authenticationTableView.separatorStyle = .none
+        authenticationTableView.delegate = self
+        authenticationTableView.dataSource = self
+        view.addSubview(authenticationTableView)
+    }
 
     // MARK: - TableFooterViewDelegate method
 
@@ -122,40 +122,40 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
 
 extension ViewController: UITableViewDataSource {
 
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { fatalError() }
         return viewModel.numberOfRows()
-	}
+    }
 
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = authenticationTableView.dequeueReusableCell(withIdentifier: AuthenticationCell.Constant.cellID, for: indexPath) as? AuthenticationCell, let viewModel = viewModel else { fatalError() }
-		cell.backgroundColor = .clear
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = authenticationTableView.dequeueReusableCell(withIdentifier: AuthenticationCell.Constant.cellID, for: indexPath) as? AuthenticationCell, let viewModel = viewModel else { fatalError() }
+        cell.backgroundColor = .clear
         cell.viewModel = viewModel.cellViewModel(forIndexPath: indexPath)
-		return cell
-	}
+        return cell
+    }
 
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		tableView.deselectRow(at: indexPath, animated: true)
-	}
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 // MARK: - UITableViewDelegate methods
 
 extension ViewController: UITableViewDelegate {
 
-	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return tableHeaderView
-	}
+    }
 
-	func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if authenticationTableView.dataSource === self {
             registrationTableFooterView?.updateSwitcher()
             return self.registrationTableFooterView
         }
         return loginTableFooterView
-	}
+    }
 
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return AuthenticationCell.Constant.rowHeight
-	}
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return AuthenticationCell.Constant.rowHeight
+    }
 }
