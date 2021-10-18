@@ -38,11 +38,21 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
             let cellValidation = authCell.isTextFieldValid
             validationErrors.append(cellValidation)
         }
+        saveUserData(data: validationErrors)
         return validationErrors
     }
 
-    private func removeUserDataFromUserDefaults() {
-        UserDefaults.standard.set(nil, forKey: "Username")
-        UserDefaults.standard.set(nil, forKey: "UserPassword")
+    private func saveUserData(data: [ValidationErrorInfo]) {
+        var isValid: Bool = true
+        for item in data {
+            isValid = isValid && item.isValid
+        }
+        if isValid {
+            guard let tableView = tableView else { return }
+            for cell in tableView.visibleCells {
+                guard let authCell = cell as? AuthenticationCell else { return }
+                authCell.saveUserData()
+            }
+        }
     }
 }

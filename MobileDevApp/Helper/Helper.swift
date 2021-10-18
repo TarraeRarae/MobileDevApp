@@ -37,7 +37,7 @@ class Helper: AuthenticationCellViewModelDelegate {
     }
 
     func checkUsername(username: String) -> ValidationErrorInfo {
-        let isValid = UserDefaults.standard.string(forKey: "Username") == username
+        let isValid = UserDefaults.standard.string(forKey: AuthenticationCellViewModel.Constant.usernameKey) == username
         if isValid {
             return ValidationErrorInfo(isValid: isValid, errorInfo: nil)
         }
@@ -45,7 +45,7 @@ class Helper: AuthenticationCellViewModelDelegate {
     }
 
     func checkPassword(password: String) -> ValidationErrorInfo {
-        let isValid = UserDefaults.standard.string(forKey: "UserPassword") == password
+        let isValid = UserDefaults.standard.string(forKey: AuthenticationCellViewModel.Constant.userPasswordKey) == password
         self.password = password
         if isValid {
             return ValidationErrorInfo(isValid: isValid, errorInfo: nil)

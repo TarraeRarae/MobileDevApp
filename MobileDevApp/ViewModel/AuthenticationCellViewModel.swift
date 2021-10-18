@@ -8,6 +8,12 @@
 import UIKit
 
 class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
+    
+    struct Constant {
+        static let usernameKey = "Username"
+        static let userPasswordKey = "UserPassword"
+    }
+
     private var cellData: AuthenticationCellData
     weak var delegate: AuthenticationCellViewModelDelegate?
 
@@ -30,7 +36,9 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
     public func validate(text: String?) -> ValidationErrorInfo {
         guard let delegate = delegate else { fatalError() }
         guard let text = text else { return ValidationErrorInfo(isValid: false, errorInfo: nil) }
-
+        if text.count == 0 {
+            return ValidationErrorInfo(isValid: false, errorInfo: "Input data")
+        }
         switch cellData.contentType {
         case .emailAddress:
             return delegate.validateEmail(email: text)
@@ -50,7 +58,9 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
     public func checkRegistered(text: String?) -> ValidationErrorInfo {
         guard let delegate = delegate else { fatalError() }
         guard let text = text else { return ValidationErrorInfo(isValid: false, errorInfo: nil) }
-
+        if text.count == 0 {
+            return ValidationErrorInfo(isValid: false, errorInfo: "Input data")
+        }
         switch cellData.contentType {
         case .username:
             return delegate.checkUsername(username: text)
@@ -58,6 +68,17 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
             return delegate.checkPassword(password: text)
         default:
             return ValidationErrorInfo(isValid: false, errorInfo: "Unexpected error")
+        }
+    }
+
+    public func saveUserData(text: String) {
+        switch cellData.contentType {
+        case .username:
+            UserDefaults.standard.set(text, forKey: AuthenticationCellViewModel.Constant.usernameKey)
+        case .password:
+            UserDefaults.standard.set(text, forKey: AuthenticationCellViewModel.Constant.userPasswordKey)
+        default:
+            return
         }
     }
 }

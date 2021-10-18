@@ -76,6 +76,12 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         textField.isSecureTextEntry = false
     }
 
+    public func saveUserData() {
+        if let viewModel = viewModel, let text = textField.text {
+            viewModel.saveUserData(text: text)
+        }
+    }
+
     private func makeTextFieldInvalid() {
         textField.textColor = .red
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.red.withAlphaComponent(0.3)])
@@ -91,10 +97,6 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
             makeTextFieldInvalid()
             return ValidationErrorInfo(isValid: false, errorInfo: nil)
         }
-        if !textField.hasText {
-            makeTextFieldInvalid()
-            return ValidationErrorInfo(isValid: false, errorInfo: "Input all data")
-        }
         let errorInfo = viewModel.validate(text: text)
         if !errorInfo.isValid {
             makeTextFieldInvalid()
@@ -106,10 +108,6 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         guard let viewModel = viewModel, let text = textField.text else {
             makeTextFieldInvalid()
             return ValidationErrorInfo(isValid: false, errorInfo: nil)
-        }
-        if !textField.hasText {
-            makeTextFieldInvalid()
-            return ValidationErrorInfo(isValid: false, errorInfo: "Input all data")
         }
         let errorInfo = viewModel.checkRegistered(text: text)
         if !errorInfo.isValid {

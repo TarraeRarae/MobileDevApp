@@ -14,4 +14,5 @@ protocol TableViewCellViewModelProtocol: AnyObject {
     var isSequreTextField: Bool { get }
     func validate(text: String?) -> ValidationErrorInfo
     func checkRegistered(text: String?) -> ValidationErrorInfo
+    func saveUserData(text: String)
 }

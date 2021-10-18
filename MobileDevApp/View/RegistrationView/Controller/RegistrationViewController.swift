@@ -103,6 +103,7 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
+
     // MARK: - TableHeaderViewDelegate method
 
     func updateTableView() {
