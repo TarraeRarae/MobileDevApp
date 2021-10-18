@@ -8,7 +8,7 @@
 import UIKit
 
 class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
-    
+
     struct Constant {
         static let usernameKey = "Username"
         static let userPasswordKey = "UserPassword"

@@ -50,6 +50,10 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
 		navigationController?.navigationBar.isHidden = true
 		authenticationTableView.reloadData()
 	}
+//
+//    deinit {
+//        removeKeyboardNotifications()
+//    }
 
 	func setupTableView() {
         authenticationTableView = UITableView(frame: view.bounds, style: .grouped)
@@ -107,6 +111,7 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
     // MARK: - TableHeaderViewDelegate method
 
     func updateTableView() {
+        self.view.endEditing(true)
         if authenticationTableView.dataSource === self {
             authenticationTableView.dataSource = loginView
             authenticationTableView.reloadData()
