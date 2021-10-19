@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,8 +23,22 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                     </textField>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gdl-8w-YUT">
+                        <rect key="frame" x="378" y="0.0" width="36" height="44"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="eye" catalog="system"/>
+                        <connections>
+                            <action selector="changePasswordVisibility:" destination="TrH-aO-TRE" eventType="touchUpInside" id="hn9-bT-lBs"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Gdl-8w-YUT" firstAttribute="leading" secondItem="evn-qZ-XrD" secondAttribute="trailing" constant="8" symbolic="YES" id="CMr-ze-654"/>
+                    <constraint firstItem="Gdl-8w-YUT" firstAttribute="top" secondItem="vCF-gN-KEV" secondAttribute="top" id="JgA-12-bZz"/>
+                    <constraint firstAttribute="trailing" secondItem="Gdl-8w-YUT" secondAttribute="trailing" id="Smt-g2-TOf"/>
+                    <constraint firstItem="Gdl-8w-YUT" firstAttribute="centerY" secondItem="vCF-gN-KEV" secondAttribute="centerY" id="bNH-nu-rwk"/>
+                    <constraint firstAttribute="bottom" secondItem="Gdl-8w-YUT" secondAttribute="bottom" id="h9j-Db-wVc"/>
                     <constraint firstAttribute="bottom" secondItem="evn-qZ-XrD" secondAttribute="bottom" id="kxD-2W-9hs"/>
                     <constraint firstAttribute="trailing" secondItem="evn-qZ-XrD" secondAttribute="trailing" constant="44" id="mHU-Ij-xov"/>
                     <constraint firstItem="evn-qZ-XrD" firstAttribute="leading" secondItem="vCF-gN-KEV" secondAttribute="leading" constant="44" id="ncU-A6-GyY"/>
@@ -31,9 +46,16 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="showPasswordButton" destination="Gdl-8w-YUT" id="bnQ-vu-B0d"/>
                 <outlet property="textField" destination="evn-qZ-XrD" id="Jtm-Dj-mJj"/>
             </connections>
             <point key="canvasLocation" x="31.884057971014496" y="40.848214285714285"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="eye" catalog="system" width="128" height="81"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

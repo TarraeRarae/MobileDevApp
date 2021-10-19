@@ -16,6 +16,7 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
     }
 
     @IBOutlet private var textField: UITextField!
+    @IBOutlet private var showPasswordButton: UIButton!
 
     var viewModel: TableViewCellViewModelProtocol? {
         willSet(viewModel) {
@@ -23,6 +24,7 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
             textField.placeholder = viewModel.placeholder
             textField.textContentType = viewModel.contentType
             textField.isSecureTextEntry = viewModel.isSequreTextField
+            setupShowPasswordButton(isSecure: textField.isSecureTextEntry)
             makeTextFieldValid()
         }
     }
@@ -51,8 +53,8 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         textField.leftViewMode = .always
         textField.keyboardType = .default
         let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0.0, y: textField.frame.maxY, width: textField.frame.width - textField.frame.minX, height: 1.0)
-        bottomLine.backgroundColor = UIColor.black.cgColor
+        bottomLine.frame = CGRect(x: 0.0, y: textField.frame.maxY, width: textField.bounds.width, height: 1.0)
+        bottomLine.backgroundColor = UIColor.label.cgColor
         textField.borderStyle = .none
         textField.layer.addSublayer(bottomLine)
         textField.delegate = self
@@ -64,6 +66,7 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         textField.textContentType = .none
         textField.placeholder = nil
         textField.isSecureTextEntry = false
+        setupShowPasswordButton(isSecure: textField.isSecureTextEntry)
     }
 
     public func saveUserData() {
@@ -104,6 +107,24 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
             makeTextFieldInvalid()
         }
         return errorInfo
+    }
+
+    private func setupShowPasswordButton(isSecure: Bool) {
+        if isSecure {
+            showPasswordButton.isEnabled = true
+            showPasswordButton.isHidden = false
+            return
+        }
+        showPasswordButton.isEnabled = false
+        showPasswordButton.isHidden = true
+    }
+
+    @IBAction func changePasswordVisibility(_ sender: Any) {
+        if textField.isSecureTextEntry {
+            textField.isSecureTextEntry = false
+        } else {
+            textField.isSecureTextEntry = true
+        }
     }
 
     @objc func textFieldDidChanged() {
