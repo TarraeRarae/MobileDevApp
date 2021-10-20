@@ -16,6 +16,7 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
         AuthenticationCellData(placeholder: NSLocalizedString("Confirm password", comment: ""), isSequreTextField: true, contentType: .password)]
     private let validator: AuthenticationCellViewModelDelegate = Helper()
     var tableView: UITableView?
+
     var isTableViewValid: [ValidationErrorInfo] {
         return self.validateTableView()
     }

@@ -15,6 +15,7 @@ class LoginTableViewViewModel: TableViewViewModelProtocol {
     ]
     private let validator: AuthenticationCellViewModelDelegate = Helper()
     var tableView: UITableView?
+
     var isTableViewValid: [ValidationErrorInfo] {
         return self.validateTableView()
     }

@@ -8,6 +8,7 @@
 import Foundation
 
 struct ValidationErrorInfo {
+
     var isValid: Bool
     var errorInfo: String?
 }
