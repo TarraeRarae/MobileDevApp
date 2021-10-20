@@ -10,6 +10,7 @@ import UIKit
 class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
 
     struct Constant {
+
         static let cellID = "CellID"
         static let nibName = "AuthenticationCell"
         static let rowHeight: CGFloat = 50
@@ -51,11 +52,10 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         textField.keyboardType = .default
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: AuthenticationCell.Constant.rowHeight))
         textField.leftViewMode = .always
-        textField.keyboardType = .default
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0.0, y: textField.frame.maxY, width: textField.bounds.width - textField.frame.minX, height: 1.0)
-        bottomLine.backgroundColor = UIColor.label.cgColor
         textField.borderStyle = .none
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(x: 0.0, y: textField.frame.maxY, width: textField.frame.width, height: 1.0)
+        bottomLine.backgroundColor = UIColor.label.cgColor
         textField.layer.addSublayer(bottomLine)
         textField.delegate = self
     }

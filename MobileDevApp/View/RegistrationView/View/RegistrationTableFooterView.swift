@@ -46,9 +46,12 @@ class RegistraionTableFooterView: UIView {
         super.init(frame: frame)
         self.frame = frame
         self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(nextButton)
+        self.addSubview(confirmLabel)
+        self.addSubview(confirmSwitch)
+        setupNextButton()
         setupSwitcher()
         setupConfirmLabel()
-        setupNextButton()
     }
 
     required init?(coder: NSCoder) {
@@ -61,18 +64,16 @@ class RegistraionTableFooterView: UIView {
     }
 
     private func setupNextButton() {
-        self.addSubview(nextButton)
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nextButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.4),
+            nextButton.topAnchor.constraint(equalTo: confirmLabel.bottomAnchor, constant: self.bounds.height * 0.2),
             nextButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            nextButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1),
-            nextButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2)
+            nextButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.4),
+            nextButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -self.bounds.width * 0.3)
         ])
     }
 
     private func setupConfirmLabel() {
-        self.addSubview(confirmLabel)
         confirmLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             confirmLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.07),
@@ -83,7 +84,6 @@ class RegistraionTableFooterView: UIView {
     }
 
     private func setupSwitcher() {
-        self.addSubview(confirmSwitch)
         confirmSwitch.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             confirmSwitch.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.1),
