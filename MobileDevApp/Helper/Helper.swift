@@ -37,20 +37,20 @@ class Helper: AuthenticationCellViewModelDelegate {
     }
 
     func checkUsername(username: String) -> ValidationErrorInfo {
-        let isValid = UserDefaults.standard.string(forKey: AuthenticationCellViewModel.Constant.usernameKey) == username
-        if isValid {
-            return ValidationErrorInfo(isValid: isValid, errorInfo: nil)
+        let isChecked = UserDefaults.standard.string(forKey: AuthenticationCellViewModel.Constant.usernameKey) == username
+        if isChecked {
+            return ValidationErrorInfo(isValid: isChecked, errorInfo: nil)
         }
-        return ValidationErrorInfo(isValid: isValid, errorInfo: NSLocalizedString("Incorrect username", comment: ""))
+        return ValidationErrorInfo(isValid: isChecked, errorInfo: NSLocalizedString("Incorrect username", comment: ""))
     }
 
     func checkPassword(password: String) -> ValidationErrorInfo {
-        let isValid = UserDefaults.standard.string(forKey: AuthenticationCellViewModel.Constant.userPasswordKey) == password
+        let isChecked = UserDefaults.standard.string(forKey: AuthenticationCellViewModel.Constant.userPasswordKey) == password
         self.password = password
-        if isValid {
-            return ValidationErrorInfo(isValid: isValid, errorInfo: nil)
+        if isChecked {
+            return ValidationErrorInfo(isValid: isChecked, errorInfo: nil)
         }
-        return ValidationErrorInfo(isValid: isValid, errorInfo: NSLocalizedString("Incorrect password", comment: ""))
+        return ValidationErrorInfo(isValid: isChecked, errorInfo: NSLocalizedString("Incorrect password", comment: ""))
     }
 
     func comparePasswords(password: String) -> ValidationErrorInfo {
