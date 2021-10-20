@@ -19,7 +19,7 @@
 "Incorrect password" = "Неверный пароль";
 "Passwords aren't equal" = "Пароли не совпадают";
 "Email isn't valid" = "Email не существует";
-"Input data" = "Введите данные";
+"Input data into all fields" = "Заполните все поля";
 "Unexpected error" = "Непредвиденная ошибка";
 "Error" = "Ошибка";
 "You're athorized" = "Вы авторизовались";

@@ -37,7 +37,7 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
         guard let delegate = delegate else { fatalError() }
         guard let text = text else { return ValidationErrorInfo(isValid: false, errorInfo: nil) }
         if text.count == 0 {
-            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Input data", comment: ""))
+            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Input data into all fields", comment: ""))
         }
         switch cellData.contentType {
         case .emailAddress:
@@ -59,7 +59,7 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
         guard let delegate = delegate else { fatalError() }
         guard let text = text else { return ValidationErrorInfo(isValid: false, errorInfo: nil) }
         if text.count == 0 {
-            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Input data", comment: ""))
+            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Input data into all fields", comment: ""))
         }
         switch cellData.contentType {
         case .username:

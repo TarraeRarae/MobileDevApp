@@ -24,6 +24,7 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerObservers()
         backgroundImage.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         backgroundImage.contentMode = .scaleAspectFill
         backgroundImage.frame = UIScreen.main.bounds
@@ -51,6 +52,10 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
         authenticationTableView.reloadData()
     }
 
+    deinit {
+        removeObservers()
+    }
+
     func setupTableView() {
         authenticationTableView = UITableView(frame: view.bounds, style: .grouped)
         authenticationTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -63,34 +68,69 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
         view.addSubview(authenticationTableView)
     }
 
+    func registerObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(disableSegmentedControll), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enableSegmentedControll), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+
+    @objc func enableSegmentedControll() {
+        tableHeaderView?.enableSegmentedControll()
+    }
+
+    @objc func disableSegmentedControll() {
+        tableHeaderView?.disableSegmentedControll()
+    }
+
     // MARK: - TableFooterViewDelegate method
 
     func authorize() {
-        guard let viewModel = viewModel else { return }
+        var isValid: Bool = true
+        if authenticationTableView.dataSource === self {
+            isValid = registration()
+        } else {
+           isValid =  login()
+        }
+        if isValid {
+            show(TrackListViewController(), sender: nil)
+        }
+    }
+
+    private func registration() -> Bool {
+        guard let viewModel = viewModel else { return false }
         var isValidInput = true
         var errors: Set<String> = []
-        if authenticationTableView.dataSource === self {
-            for item in viewModel.isTableViewValid {
+        for item in viewModel.isTableViewValid {
+            isValidInput = isValidInput && item.isValid
+            if let errorInfo = item.errorInfo {
+                errors.insert(errorInfo)
+            }
+        }
+        if !isValidInput {
+            self.setupAlertController(data: errors)
+        }
+        return isValidInput
+    }
+
+    private func login() -> Bool {
+        var isValidInput = true
+        var errors: Set<String> = []
+        if let loginView = loginView {
+            for item in loginView.isTableViewValid() {
                 isValidInput = isValidInput && item.isValid
                 if let errorInfo = item.errorInfo {
                     errors.insert(errorInfo)
                 }
             }
-        } else {
-            if let loginView = loginView {
-                for item in loginView.isTableViewValid() {
-                    isValidInput = isValidInput && item.isValid
-                    if let errorInfo = item.errorInfo {
-                        errors.insert(errorInfo)
-                    }
-                }
-            }
         }
-        if isValidInput {
-            show(TrackListViewController(), sender: nil)
-        } else {
+        if !isValidInput {
             self.setupAlertController(data: errors)
         }
+        return isValidInput
     }
 
     private func setupAlertController(data: Set<String>) {
@@ -106,14 +146,16 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
 
     // MARK: - TableHeaderViewDelegate method
 
-    func updateTableView() {
-        self.view.endEditing(true)
-        if authenticationTableView.dataSource === self {
+    func updateTableView(indexOfSection index: Int) {
+        switch index {
+        case 0:
             authenticationTableView.dataSource = loginView
             authenticationTableView.reloadData()
-        } else {
+        case 1:
             authenticationTableView.dataSource = self
             authenticationTableView.reloadData()
+        default:
+            return
         }
     }
 }

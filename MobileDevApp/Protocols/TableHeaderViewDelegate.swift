@@ -9,5 +9,5 @@ import Foundation
 
 protocol TableHeaderViewDelegate: AnyObject {
 
-    func updateTableView()
+    func updateTableView(indexOfSection index: Int)
 }

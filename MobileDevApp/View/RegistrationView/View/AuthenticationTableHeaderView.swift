@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class AuthenticationTableHeaderView: UIView {
 
@@ -13,6 +14,7 @@ class AuthenticationTableHeaderView: UIView {
 
     var pageControll: UISegmentedControl = {
         let segmentedControll = UISegmentedControl()
+        segmentedControll.isEnabled = true
         segmentedControll.backgroundColor = .white
         segmentedControll.selectedSegmentTintColor = .white
         segmentedControll.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
@@ -48,7 +50,15 @@ class AuthenticationTableHeaderView: UIView {
         ])
     }
 
+    public func enableSegmentedControll() {
+        pageControll.isEnabled = true
+    }
+
+    public func disableSegmentedControll() {
+        pageControll.isEnabled = false
+    }
+
     @objc func indexChanged(_ sender: UISegmentedControl) {
-        delegate?.updateTableView()
+        delegate?.updateTableView(indexOfSection: sender.selectedSegmentIndex)
     }
 }

@@ -53,7 +53,7 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         textField.leftViewMode = .always
         textField.keyboardType = .default
         let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0.0, y: textField.frame.maxY, width: textField.bounds.width, height: 1.0)
+        bottomLine.frame = CGRect(x: 0.0, y: textField.frame.maxY, width: textField.bounds.width - textField.frame.minX, height: 1.0)
         bottomLine.backgroundColor = UIColor.label.cgColor
         textField.borderStyle = .none
         textField.layer.addSublayer(bottomLine)
