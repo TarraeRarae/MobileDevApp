@@ -40,11 +40,12 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .white
+        self.backgroundColor = .clear
         customizeTextField()
     }
 
     private func customizeTextField() {
+        addBottomBorderToTextField()
         textField.backgroundColor = .clear
         textField.textAlignment = .left
         textField.autocorrectionType = .no
@@ -53,11 +54,15 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: AuthenticationCell.Constant.rowHeight))
         textField.leftViewMode = .always
         textField.borderStyle = .none
+        textField.autoresizesSubviews = true
+        textField.delegate = self
+    }
+
+    private func addBottomBorderToTextField() {
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0.0, y: textField.frame.maxY, width: textField.frame.width, height: 1.0)
         bottomLine.backgroundColor = UIColor.label.cgColor
         textField.layer.addSublayer(bottomLine)
-        textField.delegate = self
     }
 
     override func prepareForReuse() {

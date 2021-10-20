@@ -57,7 +57,7 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
     }
 
     func setupTableView() {
-        authenticationTableView = UITableView(frame: view.bounds, style: .grouped)
+        authenticationTableView = UITableView(frame: view.frame, style: .grouped)
         authenticationTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         authenticationTableView.backgroundColor = .clear
         authenticationTableView.isScrollEnabled = true
@@ -173,6 +173,7 @@ extension ViewController: UITableViewDataSource {
         guard let cell = authenticationTableView.dequeueReusableCell(withIdentifier: AuthenticationCell.Constant.cellID, for: indexPath) as? AuthenticationCell, let viewModel = viewModel else { fatalError() }
         cell.backgroundColor = .clear
         cell.viewModel = viewModel.cellViewModel(forIndexPath: indexPath)
+        print("cell = \(cell.frame.width)")
         return cell
     }
 
