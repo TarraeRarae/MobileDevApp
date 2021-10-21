@@ -8,7 +8,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 
-class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterViewDelegate {
+class RegistrationViewController: UIViewController {
 
     private var viewModel: TableViewViewModelProtocol? = RegistrationTableViewModel()
     private var authenticationTableView: UITableView = UITableView()
@@ -19,8 +19,6 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
     private var loginTableFooterView: LoginTableFooterView?
     private var keyboardFrameHeight: CGFloat = 0
     private let backgroundImage: UIImageView = UIImageView(image: UIImage(named: "background"))
-
-    // MARK: - That's OK
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,20 +84,6 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
         tableHeaderView?.disableSegmentedControll()
     }
 
-    // MARK: - TableFooterViewDelegate method
-
-    func authorize() {
-        var isValid: Bool = true
-        if authenticationTableView.dataSource === self {
-            isValid = registration()
-        } else {
-           isValid =  login()
-        }
-        if isValid {
-            show(TrackListViewController(), sender: nil)
-        }
-    }
-
     private func registration() -> Bool {
         guard let viewModel = viewModel else { return false }
         var isValidInput = true
@@ -143,26 +127,11 @@ class ViewController: UIViewController, TableHeaderViewDelegate, TableFooterView
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
-
-    // MARK: - TableHeaderViewDelegate method
-
-    func updateTableView(indexOfSection index: Int) {
-        switch index {
-        case 0:
-            authenticationTableView.dataSource = loginView
-            authenticationTableView.reloadData()
-        case 1:
-            authenticationTableView.dataSource = self
-            authenticationTableView.reloadData()
-        default:
-            return
-        }
-    }
 }
 
 // MARK: - UITableViewDataSource methods
 
-extension ViewController: UITableViewDataSource {
+extension RegistrationViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { fatalError() }
@@ -184,7 +153,7 @@ extension ViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate methods
 
-extension ViewController: UITableViewDelegate {
+extension RegistrationViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return tableHeaderView
@@ -200,5 +169,36 @@ extension ViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return AuthenticationCell.Constant.rowHeight
+    }
+}
+
+extension RegistrationViewController: TableHeaderViewDelegate {
+
+    func updateTableView(indexOfSection index: Int) {
+        switch index {
+        case 0:
+            authenticationTableView.dataSource = loginView
+            authenticationTableView.reloadData()
+        case 1:
+            authenticationTableView.dataSource = self
+            authenticationTableView.reloadData()
+        default:
+            return
+        }
+    }
+}
+
+extension RegistrationViewController: TableFooterViewDelegate {
+
+    func authorize() {
+        var isValid: Bool = true
+        if authenticationTableView.dataSource === self {
+            isValid = registration()
+        } else {
+           isValid =  login()
+        }
+        if isValid {
+            show(TrackListViewController(), sender: nil)
+        }
     }
 }

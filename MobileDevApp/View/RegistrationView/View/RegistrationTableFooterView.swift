@@ -77,8 +77,8 @@ class RegistraionTableFooterView: UIView {
         confirmLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             confirmLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.07),
-            confirmLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -self.frame.width * 0.2),
-            confirmLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3),
+            confirmLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -self.frame.width * 0.05),
+            confirmLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
             confirmLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
         ])
     }
@@ -86,7 +86,7 @@ class RegistraionTableFooterView: UIView {
     private func setupSwitcher() {
         confirmSwitch.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            confirmSwitch.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.1),
+            confirmSwitch.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.17),
             confirmSwitch.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.2),
             confirmSwitch.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1),
             confirmSwitch.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25)
