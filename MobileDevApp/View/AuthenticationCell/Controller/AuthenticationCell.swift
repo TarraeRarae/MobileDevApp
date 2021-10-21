@@ -127,11 +127,7 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
     }
 
     @IBAction func changePasswordVisibility(_ sender: Any) {
-        if textField.isSecureTextEntry {
-            textField.isSecureTextEntry = false
-        } else {
-            textField.isSecureTextEntry = true
-        }
+        textField.isSecureTextEntry.toggle()
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
