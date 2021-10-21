@@ -173,7 +173,7 @@ extension ViewController: UITableViewDataSource {
         guard let cell = authenticationTableView.dequeueReusableCell(withIdentifier: AuthenticationCell.Constant.cellID, for: indexPath) as? AuthenticationCell, let viewModel = viewModel else { fatalError() }
         cell.backgroundColor = .clear
         cell.viewModel = viewModel.cellViewModel(forIndexPath: indexPath)
-        print("cell = \(cell.frame.width)")
+        cell.layoutIfNeeded()
         return cell
     }
 

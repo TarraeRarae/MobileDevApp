@@ -38,14 +38,16 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         return checkTextFieldRegistered()
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.backgroundColor = .clear
+    override func draw(_ rect: CGRect) {
         customizeTextField()
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.backgroundColor = .clear
+    }
+
     private func customizeTextField() {
-        addBottomBorderToTextField()
         textField.backgroundColor = .clear
         textField.textAlignment = .left
         textField.autocorrectionType = .no
@@ -54,13 +56,13 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: AuthenticationCell.Constant.rowHeight))
         textField.leftViewMode = .always
         textField.borderStyle = .none
-        textField.autoresizesSubviews = true
         textField.delegate = self
+        addBottomBorderToTextField()
     }
 
     private func addBottomBorderToTextField() {
         let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0.0, y: textField.frame.maxY, width: textField.frame.width, height: 1.0)
+        bottomLine.frame = CGRect(x: 0.0, y: AuthenticationCell.Constant.rowHeight - 1, width: textField.frame.width, height: 1.0)
         bottomLine.backgroundColor = UIColor.label.cgColor
         textField.layer.addSublayer(bottomLine)
     }
@@ -130,10 +132,6 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         } else {
             textField.isSecureTextEntry = true
         }
-    }
-
-    @objc func textFieldDidChanged() {
-        makeTextFieldValid()
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
