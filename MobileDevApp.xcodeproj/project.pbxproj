@@ -24,7 +24,7 @@
 		1F65FFCF2722CFD7008BEF65 /* AuthenticationCellContentTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F65FFCE2722CFD7008BEF65 /* AuthenticationCellContentTypes.swift */; };
 		1F65FFD12722D528008BEF65 /* LoginDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F65FFD02722D528008BEF65 /* LoginDataSourceProtocol.swift */; };
 		1F6EDF01271052EC00DC994B /* TextFieldData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF00271052EC00DC994B /* TextFieldData.swift */; };
-		1F6EDF0B2710609E00DC994B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF0A2710609E00DC994B /* LoginViewController.swift */; };
+		1F6EDF0B2710609E00DC994B /* LoginDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF0A2710609E00DC994B /* LoginDataSource.swift */; };
 		1F7D3F81271B73C000B9248F /* AuthenticationTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D3F80271B73C000B9248F /* AuthenticationTableHeaderView.swift */; };
 		1FC706E9271C4586002BFC2F /* TableHeaderViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC706E8271C4586002BFC2F /* TableHeaderViewDelegate.swift */; };
 		1FC706EB271C4925002BFC2F /* RegistrationTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC706EA271C4925002BFC2F /* RegistrationTableFooterView.swift */; };
@@ -56,7 +56,7 @@
 		1F65FFCE2722CFD7008BEF65 /* AuthenticationCellContentTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCellContentTypes.swift; sourceTree = "<group>"; };
 		1F65FFD02722D528008BEF65 /* LoginDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSourceProtocol.swift; sourceTree = "<group>"; };
 		1F6EDF00271052EC00DC994B /* TextFieldData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldData.swift; sourceTree = "<group>"; };
-		1F6EDF0A2710609E00DC994B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1F6EDF0A2710609E00DC994B /* LoginDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSource.swift; sourceTree = "<group>"; };
 		1F7D3F80271B73C000B9248F /* AuthenticationTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTableHeaderView.swift; sourceTree = "<group>"; };
 		1FC706E8271C4586002BFC2F /* TableHeaderViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderViewDelegate.swift; sourceTree = "<group>"; };
 		1FC706EA271C4925002BFC2F /* RegistrationTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTableFooterView.swift; sourceTree = "<group>"; };
@@ -90,8 +90,8 @@
 			isa = PBXGroup;
 			children = (
 				1F0AEA172717694900052509 /* AuthenticationCellViewModel.swift */,
-				1F0AEA15271768A800052509 /* RegistrationTableViewModel.swift */,
 				1F0AEA1927176A5400052509 /* LoginTableViewViewModel.swift */,
+				1F0AEA15271768A800052509 /* RegistrationTableViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -100,11 +100,11 @@
 			isa = PBXGroup;
 			children = (
 				1F0AEA1B27177EFE00052509 /* AuthenticationCellViewModelDelegate.swift */,
+				1F65FFD02722D528008BEF65 /* LoginDataSourceProtocol.swift */,
 				1F0AEA112717679C00052509 /* TableViewViewModelProtocol.swift */,
 				1F0AEA13271767C800052509 /* TableViewCellViewModelProtocol.swift */,
 				1FC706E8271C4586002BFC2F /* TableHeaderViewDelegate.swift */,
 				1FC706EC271C4E01002BFC2F /* TableFooterViewDelegate.swift */,
-				1F65FFD02722D528008BEF65 /* LoginDataSourceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -219,9 +219,9 @@
 		1F6EDEFF2710529600DC994B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F65FFCE2722CFD7008BEF65 /* AuthenticationCellContentTypes.swift */,
 				1F6EDF00271052EC00DC994B /* TextFieldData.swift */,
 				1FC706F8271CD52A002BFC2F /* ValidationErrorInfo.swift */,
-				1F65FFCE2722CFD7008BEF65 /* AuthenticationCellContentTypes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -237,7 +237,7 @@
 		1FC706FA271CE06B002BFC2F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1F6EDF0A2710609E00DC994B /* LoginViewController.swift */,
+				1F6EDF0A2710609E00DC994B /* LoginDataSource.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -443,7 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F550B4A27144EE3007BADB6 /* TrackListViewController.swift in Sources */,
-				1F6EDF0B2710609E00DC994B /* LoginViewController.swift in Sources */,
+				1F6EDF0B2710609E00DC994B /* LoginDataSource.swift in Sources */,
 				1F65FFCF2722CFD7008BEF65 /* AuthenticationCellContentTypes.swift in Sources */,
 				1FC706EB271C4925002BFC2F /* RegistrationTableFooterView.swift in Sources */,
 				1FC706F9271CD52A002BFC2F /* ValidationErrorInfo.swift in Sources */,

@@ -35,7 +35,7 @@ class RegistrationViewController: UIViewController {
         if var viewModel = viewModel {
             viewModel.tableView = authenticationTableView
         }
-        loginDataSource = LoginViewController(tableView: authenticationTableView)
+        loginDataSource = LoginDataSource(tableView: authenticationTableView)
     }
 
     override func viewWillAppear(_ animated: Bool) {

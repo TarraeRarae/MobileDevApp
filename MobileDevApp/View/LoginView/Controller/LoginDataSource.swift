@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginDataSource: NSObject {
 
     private let viewModel: TableViewViewModelProtocol? = LoginTableViewViewModel()
     var tableView: UITableView?
@@ -17,15 +17,10 @@ class LoginViewController: UIViewController {
         if var viewModel = viewModel {
             viewModel.tableView = tableView
         }
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension LoginViewController: LoginDataSourceProtocol {
+extension LoginDataSource: LoginDataSourceProtocol {
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { fatalError() }
