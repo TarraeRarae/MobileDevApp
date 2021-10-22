@@ -14,7 +14,7 @@ class RegistrationViewController: UIViewController {
     private var authenticationTableView: UITableView = UITableView()
     private var keyboardDismissTapGesture: UIGestureRecognizer?
     private var loginView: LoginViewController?
-    private var tableHeaderView: AuthenticationTableHeaderView?
+    private var authenticationTableHeaderView: AuthenticationTableHeaderView?
     private var registrationTableFooterView: RegistraionTableFooterView?
     private var loginTableFooterView: LoginTableFooterView?
     private var keyboardFrameHeight: CGFloat = 0
@@ -22,7 +22,6 @@ class RegistrationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerObservers()
         backgroundImage.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         backgroundImage.contentMode = .scaleAspectFill
         backgroundImage.frame = UIScreen.main.bounds
@@ -30,14 +29,9 @@ class RegistrationViewController: UIViewController {
         view.sendSubviewToBack(backgroundImage)
         setupTableView()
 
-        tableHeaderView = AuthenticationTableHeaderView(frame: CGRect(x: 0, y: 0, width: authenticationTableView.bounds.width, height: authenticationTableView.bounds.height * 0.4))
-        tableHeaderView?.delegate = self
-
-        registrationTableFooterView = RegistraionTableFooterView(frame: CGRect(x: 0, y: 0, width: authenticationTableView.bounds.width, height: authenticationTableView.bounds.height * 0.4))
-        registrationTableFooterView?.delegate = self
-
-        loginTableFooterView = LoginTableFooterView(frame: CGRect(x: 0, y: 0, width: authenticationTableView.bounds.width, height: authenticationTableView.bounds.height * 0.4))
-        loginTableFooterView?.delegate = self
+        setupAuthenticationHeaderView()
+        setupRegistrationFooterView()
+        setupLoginFooterView()
 
         if var viewModel = viewModel {
             viewModel.tableView = authenticationTableView
@@ -46,15 +40,16 @@ class RegistrationViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        registerObservers()
         navigationController?.navigationBar.isHidden = true
         authenticationTableView.reloadData()
     }
 
-    deinit {
+    override func viewWillDisappear(_ animated: Bool) {
         removeObservers()
     }
 
-    func setupTableView() {
+    private func setupTableView() {
         authenticationTableView = UITableView(frame: view.frame, style: .grouped)
         authenticationTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         authenticationTableView.backgroundColor = .clear
@@ -66,22 +61,37 @@ class RegistrationViewController: UIViewController {
         view.addSubview(authenticationTableView)
     }
 
-    func registerObservers() {
+    private func setupAuthenticationHeaderView() {
+        authenticationTableHeaderView = AuthenticationTableHeaderView(frame: CGRect(x: 0, y: 0, width: authenticationTableView.bounds.width, height: authenticationTableView.bounds.height * 0.4))
+        authenticationTableHeaderView?.delegate = self
+    }
+
+    private func setupRegistrationFooterView() {
+        registrationTableFooterView = RegistraionTableFooterView(frame: CGRect(x: 0, y: 0, width: authenticationTableView.bounds.width, height: authenticationTableView.bounds.height * 0.4))
+        registrationTableFooterView?.delegate = self
+    }
+
+    private func setupLoginFooterView() {
+        loginTableFooterView = LoginTableFooterView(frame: CGRect(x: 0, y: 0, width: authenticationTableView.bounds.width, height: authenticationTableView.bounds.height * 0.4))
+        loginTableFooterView?.delegate = self
+    }
+
+    private func registerObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(disableSegmentedControll), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(enableSegmentedControll), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-    func removeObservers() {
+    private func removeObservers() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
 
     @objc func enableSegmentedControll() {
-        tableHeaderView?.enableSegmentedControll()
+        authenticationTableHeaderView?.enableSegmentedControll()
     }
 
     @objc func disableSegmentedControll() {
-        tableHeaderView?.disableSegmentedControll()
+        authenticationTableHeaderView?.disableSegmentedControll()
     }
 
     private func registration() -> Bool {
@@ -118,8 +128,7 @@ class RegistrationViewController: UIViewController {
     }
 
     private func setupAlertController(data: Set<String>) {
-        var alertMessage: String = """
-"""
+        var alertMessage: String = ""
         for item in data {
             alertMessage += item + "\n"
         }
@@ -156,7 +165,7 @@ extension RegistrationViewController: UITableViewDataSource {
 extension RegistrationViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableHeaderView
+        return authenticationTableHeaderView
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
