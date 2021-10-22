@@ -20,6 +20,8 @@ class LoginDataSource: NSObject {
     }
 }
 
+// MARK: - LoginDataSourceProtocol methods
+
 extension LoginDataSource: LoginDataSourceProtocol {
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
