@@ -28,7 +28,6 @@ class RegistrationViewController: UIViewController {
         view.addSubview(backgroundImage)
         view.sendSubviewToBack(backgroundImage)
         setupTableView()
-
         setupAuthenticationHeaderView()
         setupRegistrationFooterView()
         setupLoginFooterView()
@@ -86,14 +85,6 @@ class RegistrationViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
 
-    @objc func enableSegmentedControll() {
-        authenticationTableHeaderView?.enableSegmentedControll()
-    }
-
-    @objc func disableSegmentedControll() {
-        authenticationTableHeaderView?.disableSegmentedControll()
-    }
-
     private func registration() -> Bool {
         guard let viewModel = viewModel else { return false }
         var isValidInput = true
@@ -135,6 +126,14 @@ class RegistrationViewController: UIViewController {
         let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: alertMessage, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
+    }
+
+    @objc func enableSegmentedControll() {
+        authenticationTableHeaderView?.enableSegmentedControll()
+    }
+
+    @objc func disableSegmentedControll() {
+        authenticationTableHeaderView?.disableSegmentedControll()
     }
 }
 
@@ -181,6 +180,8 @@ extension RegistrationViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - TableHeaderViewDelegate method
+
 extension RegistrationViewController: TableHeaderViewDelegate {
 
     func updateTableView(indexOfSection index: Int) {
@@ -196,6 +197,8 @@ extension RegistrationViewController: TableHeaderViewDelegate {
         }
     }
 }
+
+// MARK: - TableFooterViewDelegate method
 
 extension RegistrationViewController: TableFooterViewDelegate {
 
