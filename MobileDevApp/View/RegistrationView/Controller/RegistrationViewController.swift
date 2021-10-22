@@ -168,11 +168,15 @@ extension RegistrationViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if authenticationTableView.dataSource === self {
-            registrationTableFooterView?.updateSwitcher()
-            return self.registrationTableFooterView
+        guard let tableHeaderView = authenticationTableHeaderView else { return nil }
+        switch tableHeaderView.getCurrentSegmentIndex() {
+        case 0:
+            return loginTableFooterView
+        case 1:
+            return registrationTableFooterView
+        default:
+            return nil
         }
-        return loginTableFooterView
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -203,11 +207,15 @@ extension RegistrationViewController: TableHeaderViewDelegate {
 extension RegistrationViewController: TableFooterViewDelegate {
 
     func authorize() {
+        guard let tableHeaderView = authenticationTableHeaderView else { return }
         var isValid: Bool = true
-        if authenticationTableView.dataSource === self {
+        switch tableHeaderView.getCurrentSegmentIndex() {
+        case 0:
+            isValid = login()
+        case 1:
             isValid = registration()
-        } else {
-           isValid =  login()
+        default:
+            return
         }
         if isValid {
             show(TrackListViewController(), sender: nil)

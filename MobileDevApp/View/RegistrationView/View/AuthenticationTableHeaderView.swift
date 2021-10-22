@@ -58,6 +58,10 @@ class AuthenticationTableHeaderView: UIView {
         pageControll.isEnabled = false
     }
 
+    public func getCurrentSegmentIndex() -> Int {
+        return pageControll.selectedSegmentIndex
+    }
+
     @objc func indexChanged(_ sender: UISegmentedControl) {
         delegate?.updateTableView(indexOfSection: sender.selectedSegmentIndex)
     }
