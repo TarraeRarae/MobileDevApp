@@ -54,6 +54,9 @@ class Helper: AuthenticationCellViewModelDelegate {
     }
 
     func comparePasswords(password: String) -> ValidationErrorInfo {
+        guard self.password != nil else {
+            return ValidationErrorInfo(isValid: false, errorInfo: "Passwords aren't equal")
+        }
         let isValid = password == self.password
         self.password = nil
         if isValid {

@@ -11,5 +11,5 @@ struct AuthenticationCellData {
 
 	let placeholder: String
 	let isSequreTextField: Bool
-	let contentType: UITextContentType
+	let contentType: AuthenticationCellContentTypes
 }

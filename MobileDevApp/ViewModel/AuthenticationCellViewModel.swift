@@ -23,7 +23,14 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
     }
 
     var contentType: UITextContentType {
-        return cellData.contentType
+        switch cellData.contentType {
+        case .emailAddress:
+            return .emailAddress
+        case .username:
+            return .username
+        case .password, .confirmPassword:
+            return .password
+        }
     }
 
     var isSequreTextField: Bool {
@@ -44,15 +51,11 @@ class AuthenticationCellViewModel: TableViewCellViewModelProtocol {
         case .emailAddress:
             return delegate.validateEmail(email: text)
         case .password:
-            if delegate.password == nil {
                 return delegate.validatePassword(password: text)
-            } else {
-                return delegate.comparePasswords(password: text)
-            }
         case .username:
             return ValidationErrorInfo(isValid: true, errorInfo: nil)
-        default:
-            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Unexpected error", comment: ""))
+        case .confirmPassword:
+            return delegate.comparePasswords(password: text)
         }
     }
 
