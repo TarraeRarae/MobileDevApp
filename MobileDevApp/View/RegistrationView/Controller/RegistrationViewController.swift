@@ -13,7 +13,7 @@ class RegistrationViewController: UIViewController {
     private var viewModel: TableViewViewModelProtocol? = RegistrationTableViewModel()
     private var authenticationTableView: UITableView = UITableView()
     private var keyboardDismissTapGesture: UIGestureRecognizer?
-    private var loginView: LoginViewController?
+    private var loginDataSource: LoginDataSourceProtocol?
     private var authenticationTableHeaderView: AuthenticationTableHeaderView?
     private var registrationTableFooterView: RegistraionTableFooterView?
     private var loginTableFooterView: LoginTableFooterView?
@@ -35,7 +35,7 @@ class RegistrationViewController: UIViewController {
         if var viewModel = viewModel {
             viewModel.tableView = authenticationTableView
         }
-        loginView = LoginViewController(tableView: authenticationTableView)
+        loginDataSource = LoginViewController(tableView: authenticationTableView)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -104,7 +104,7 @@ class RegistrationViewController: UIViewController {
     private func login() -> Bool {
         var isValidInput = true
         var errors: Set<String> = []
-        if let loginView = loginView {
+        if let loginView = loginDataSource {
             for item in loginView.isTableViewValid() {
                 isValidInput = isValidInput && item.isValid
                 if let errorInfo = item.errorInfo {
@@ -191,7 +191,7 @@ extension RegistrationViewController: TableHeaderViewDelegate {
     func updateTableView(indexOfSection index: Int) {
         switch index {
         case 0:
-            authenticationTableView.dataSource = loginView
+            authenticationTableView.dataSource = loginDataSource
             authenticationTableView.reloadData()
         case 1:
             authenticationTableView.dataSource = self

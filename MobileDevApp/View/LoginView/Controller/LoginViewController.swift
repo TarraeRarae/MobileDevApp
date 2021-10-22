@@ -23,14 +23,9 @@ class LoginViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    func isTableViewValid() -> [ValidationErrorInfo] {
-        guard let viewModel = viewModel, tableView != nil else { fatalError() }
-        return viewModel.isTableViewValid
-    }
 }
 
-extension LoginViewController: UITableViewDataSource {
+extension LoginViewController: LoginDataSourceProtocol {
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { fatalError() }
@@ -46,4 +41,9 @@ extension LoginViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
+
+    func isTableViewValid() -> [ValidationErrorInfo] {
+        guard let viewModel = viewModel, tableView != nil else { fatalError() }
+        return viewModel.isTableViewValid
+    }
 }
