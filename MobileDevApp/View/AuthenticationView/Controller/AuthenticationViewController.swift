@@ -8,7 +8,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 
-class RegistrationViewController: UIViewController {
+class AuthenticationViewController: UIViewController {
 
     private var viewModel: TableViewViewModelProtocol? = RegistrationTableViewModel()
     private var authenticationTableView: UITableView = UITableView()
@@ -139,7 +139,7 @@ class RegistrationViewController: UIViewController {
 
 // MARK: - UITableViewDataSource methods
 
-extension RegistrationViewController: UITableViewDataSource {
+extension AuthenticationViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { fatalError() }
@@ -161,7 +161,7 @@ extension RegistrationViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate methods
 
-extension RegistrationViewController: UITableViewDelegate {
+extension AuthenticationViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return authenticationTableHeaderView
@@ -186,7 +186,7 @@ extension RegistrationViewController: UITableViewDelegate {
 
 // MARK: - TableHeaderViewDelegate method
 
-extension RegistrationViewController: TableHeaderViewDelegate {
+extension AuthenticationViewController: TableHeaderViewDelegate {
 
     func updateTableView(indexOfSection index: Int) {
         switch index {
@@ -204,7 +204,7 @@ extension RegistrationViewController: TableHeaderViewDelegate {
 
 // MARK: - TableFooterViewDelegate method
 
-extension RegistrationViewController: TableFooterViewDelegate {
+extension AuthenticationViewController: TableFooterViewDelegate {
 
     func authorize() {
         guard let tableHeaderView = authenticationTableHeaderView else { return }

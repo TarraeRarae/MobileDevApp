@@ -17,7 +17,7 @@
 		1F1DA4AB2701A24700757C9E /* AuthenticationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */; };
 		1F550B4A27144EE3007BADB6 /* TrackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F550B4927144EE3007BADB6 /* TrackListViewController.swift */; };
 		1F59B64826FE477400C5A614 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59B64726FE477400C5A614 /* AppDelegate.swift */; };
-		1F59B64C26FE477400C5A614 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59B64B26FE477400C5A614 /* RegistrationViewController.swift */; };
+		1F59B64C26FE477400C5A614 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59B64B26FE477400C5A614 /* AuthenticationViewController.swift */; };
 		1F59B65226FE477500C5A614 /* MobileDevApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F59B65026FE477400C5A614 /* MobileDevApp.xcdatamodeld */; };
 		1F59B65426FE478100C5A614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F59B65326FE478100C5A614 /* Assets.xcassets */; };
 		1F59B65726FE478100C5A614 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F59B65526FE478100C5A614 /* LaunchScreen.storyboard */; };
@@ -49,7 +49,7 @@
 		1F550B4927144EE3007BADB6 /* TrackListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListViewController.swift; sourceTree = "<group>"; };
 		1F59B64426FE477400C5A614 /* MobileDevApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileDevApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F59B64726FE477400C5A614 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F59B64B26FE477400C5A614 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		1F59B64B26FE477400C5A614 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		1F59B65126FE477400C5A614 /* MobileDevApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MobileDevApp.xcdatamodel; sourceTree = "<group>"; };
 		1F59B65326FE478100C5A614 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F59B65826FE478100C5A614 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,13 +117,13 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		1F0AEA222719938400052509 /* RegistrationView */ = {
+		1F0AEA222719938400052509 /* AuthenticationView */ = {
 			isa = PBXGroup;
 			children = (
 				1FC706FB271CE4EE002BFC2F /* View */,
 				1F7D3F7F271B735E00B9248F /* Controller */,
 			);
-			path = RegistrationView;
+			path = AuthenticationView;
 			sourceTree = "<group>";
 		};
 		1F0AEA242719939C00052509 /* AuthenticationCell */ = {
@@ -133,15 +133,6 @@
 				1FC706FE271CE519002BFC2F /* Controller */,
 			);
 			path = AuthenticationCell;
-			sourceTree = "<group>";
-		};
-		1F0AEA25271993B300052509 /* LoginView */ = {
-			isa = PBXGroup;
-			children = (
-				1FC706FC271CE4FA002BFC2F /* View */,
-				1FC706FA271CE06B002BFC2F /* Controller */,
-			);
-			path = LoginView;
 			sourceTree = "<group>";
 		};
 		1F0AEA26271993BF00052509 /* TrackListView */ = {
@@ -193,8 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				1F0AEA242719939C00052509 /* AuthenticationCell */,
-				1F0AEA222719938400052509 /* RegistrationView */,
-				1F0AEA25271993B300052509 /* LoginView */,
+				1F0AEA222719938400052509 /* AuthenticationView */,
 				1F0AEA26271993BF00052509 /* TrackListView */,
 			);
 			path = View;
@@ -229,15 +219,8 @@
 		1F7D3F7F271B735E00B9248F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1F59B64B26FE477400C5A614 /* RegistrationViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1FC706FA271CE06B002BFC2F /* Controller */ = {
-			isa = PBXGroup;
-			children = (
 				1F6EDF0A2710609E00DC994B /* LoginDataSource.swift */,
+				1F59B64B26FE477400C5A614 /* AuthenticationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -245,16 +228,9 @@
 		1FC706FB271CE4EE002BFC2F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1FC706EE271C50C8002BFC2F /* LoginTableFooterView.swift */,
 				1F7D3F80271B73C000B9248F /* AuthenticationTableHeaderView.swift */,
 				1FC706EA271C4925002BFC2F /* RegistrationTableFooterView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1FC706FC271CE4FA002BFC2F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1FC706EE271C50C8002BFC2F /* LoginTableFooterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -448,7 +424,7 @@
 				1FC706EB271C4925002BFC2F /* RegistrationTableFooterView.swift in Sources */,
 				1FC706F9271CD52A002BFC2F /* ValidationErrorInfo.swift in Sources */,
 				1FC706E9271C4586002BFC2F /* TableHeaderViewDelegate.swift in Sources */,
-				1F59B64C26FE477400C5A614 /* RegistrationViewController.swift in Sources */,
+				1F59B64C26FE477400C5A614 /* AuthenticationViewController.swift in Sources */,
 				1F0AEA16271768A800052509 /* RegistrationTableViewModel.swift in Sources */,
 				1FC706ED271C4E01002BFC2F /* TableFooterViewDelegate.swift in Sources */,
 				1FC706F5271CD4D3002BFC2F /* Helper.swift in Sources */,
