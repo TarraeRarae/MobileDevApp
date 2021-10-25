@@ -9,8 +9,8 @@ import Foundation
 
 enum AuthenticationCellContentTypes: Int {
 
-    case emailAddress = 0
-    case username = 1
-    case password = 2
-    case confirmPassword = 3
+    case emailAddress
+    case username
+    case password
+    case confirmPassword
 }
