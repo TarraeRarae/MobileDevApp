@@ -76,8 +76,8 @@ class AuthenticationViewController: UIViewController {
     }
 
     private func registerObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(disableSegmentedControll), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(enableSegmentedControll), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(disableView), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enableView), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     private func removeObservers() {
@@ -128,12 +128,14 @@ class AuthenticationViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 
-    @objc func enableSegmentedControll() {
+    @objc func enableView() {
         authenticationTableHeaderView?.enableSegmentedControll()
+        registrationTableFooterView?.enableSwitcher()
     }
 
-    @objc func disableSegmentedControll() {
+    @objc func disableView() {
         authenticationTableHeaderView?.disableSegmentedControll()
+        registrationTableFooterView?.disableSwitcher()
     }
 }
 

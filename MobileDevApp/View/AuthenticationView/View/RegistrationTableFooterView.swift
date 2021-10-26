@@ -63,6 +63,14 @@ class RegistraionTableFooterView: UIView {
         nextButton.isEnabled = false
     }
 
+    public func enableSwitcher() {
+        self.confirmSwitch.isEnabled = true
+    }
+
+    public func disableSwitcher() {
+        self.confirmSwitch.isEnabled = false
+    }
+
     private func setupNextButton() {
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
