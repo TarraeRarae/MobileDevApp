@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  MobileDevApp
+
+  Created by TarraeRarae on 18.10.2021.
+  
+*/
+
+"Confirm our privacy policy" = "Confirm our privacy policy";
+"Email" = "Email";
+"Username" = "Username";
+"Password" = "Password";
+"Password. At least 6. Must contains num" = "Password. At least 6. Must contains num";
+"Confirm password" = "Confirm password";
+"Login" = "Login";
+"Registration" = "Registration";
+"Password must contains 6 or more symbols and at least 1 number" = "Password must contains 6 or more symbols and at least 1 number";
+"Incorrect username" = "Incorrect username";
+"Incorrect password" = "Incorrect password";
+"Passwords aren't equal" = "Passwords aren't equal";
+"Email isn't valid" = "Email isn't valid";
+"Input data into all fields" = "Input data into all fields";
+"Unexpected error" = "Unexpected error";
+"Error" = "Error";
+"You're athorized" = "You're athorized";

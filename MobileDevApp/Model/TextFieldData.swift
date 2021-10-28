@@ -7,10 +7,9 @@
 
 import UIKit
 
-struct TextFieldData {
+struct AuthenticationCellData {
 
 	let placeholder: String
-	let isSequre: Bool
-	let contentType: UITextContentType
-
+	let isSequreTextField: Bool
+	let contentType: AuthenticationCellContentTypes
 }
