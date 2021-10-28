@@ -31,7 +31,6 @@ class AuthenticationViewController: UIViewController {
         setupAuthenticationHeaderView()
         setupRegistrationFooterView()
         setupLoginFooterView()
-
         if var viewModel = viewModel {
             viewModel.tableView = authenticationTableView
         }
