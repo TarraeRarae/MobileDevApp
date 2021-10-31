@@ -9,10 +9,10 @@ import UIKit
 
 protocol TableViewCellViewModelProtocol: AnyObject {
 
+    var cellData: AuthenticationCellData { get }
     var placeholder: String { get }
     var contentType: UITextContentType { get }
     var isSequreTextField: Bool { get }
-    func validate(text: String?) -> ValidationErrorInfo
-    func checkRegistered(text: String?) -> ValidationErrorInfo
-    func saveUserData(text: String)
+    var tag: Int { get }
+    func moveToNextTextField()
 }

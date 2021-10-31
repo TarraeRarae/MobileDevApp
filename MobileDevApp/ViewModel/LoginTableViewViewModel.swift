@@ -10,10 +10,10 @@ import UIKit
 class LoginTableViewViewModel: TableViewViewModelProtocol {
 
     private let cellDataArray: [AuthenticationCellData] = [
-        AuthenticationCellData(placeholder: NSLocalizedString("Username", comment: ""), isSequreTextField: false, contentType: .username),
-        AuthenticationCellData(placeholder: NSLocalizedString("Password", comment: ""), isSequreTextField: true, contentType: .password)
+        AuthenticationCellData(tag: 0, placeholder: NSLocalizedString("Username", comment: ""), isSequreTextField: false, contentType: .username),
+        AuthenticationCellData(tag: 0, placeholder: NSLocalizedString("Password", comment: ""), isSequreTextField: true, contentType: .password)
     ]
-    private let validator: AuthenticationCellViewModelDelegate = Helper()
+    private let validator = Helper()
     var tableView: UITableView?
 
     var isTableViewValid: [ValidationErrorInfo] {
@@ -26,7 +26,6 @@ class LoginTableViewViewModel: TableViewViewModelProtocol {
 
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TableViewCellViewModelProtocol? {
         let cellViewModel = AuthenticationCellViewModel(cellData: cellDataArray[indexPath.row])
-        cellViewModel.delegate = validator
         return cellViewModel
     }
 
@@ -34,10 +33,25 @@ class LoginTableViewViewModel: TableViewViewModelProtocol {
         guard let tableView = tableView else { return [] }
         var validationErrors: [ValidationErrorInfo] = []
         for cell in tableView.visibleCells {
-            guard let authCell = cell as? AuthenticationCell else { return [] }
-            let cellValidation = authCell.isTextFieldRegistered
+            guard let authCell = cell as? AuthenticationCell, let viewModel = authCell.viewModel else { return [] }
+            let cellValidation = checkRegistered(text: authCell.textField.text, cellData: viewModel.cellData)
             validationErrors.append(cellValidation)
         }
         return validationErrors
+    }
+
+    public func checkRegistered(text: String?, cellData: AuthenticationCellData) -> ValidationErrorInfo {
+        guard let text = text else { return ValidationErrorInfo(isValid: false, errorInfo: nil) }
+        if text.count == 0 {
+            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Input data into all fields", comment: ""))
+        }
+        switch cellData.contentType {
+        case .username:
+            return validator.checkUsername(username: text)
+        case .password:
+            return validator.checkPassword(password: text)
+        default:
+            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Unexpected error", comment: ""))
+        }
     }
 }

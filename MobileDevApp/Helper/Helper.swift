@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Helper: AuthenticationCellViewModelDelegate {
+class Helper {
 
     var password: String?
 

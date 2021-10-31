@@ -9,6 +9,7 @@ import UIKit
 
 struct AuthenticationCellData {
 
+    let tag: Int
 	let placeholder: String
 	let isSequreTextField: Bool
 	let contentType: AuthenticationCellContentTypes

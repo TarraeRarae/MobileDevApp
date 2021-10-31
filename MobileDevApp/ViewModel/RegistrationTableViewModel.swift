@@ -10,11 +10,11 @@ import UIKit
 class RegistrationTableViewModel: TableViewViewModelProtocol {
 
     private let cellDataArray: [AuthenticationCellData] =  [
-        AuthenticationCellData(placeholder: NSLocalizedString("Email", comment: ""), isSequreTextField: false, contentType: .emailAddress),
-        AuthenticationCellData(placeholder: NSLocalizedString("Username", comment: ""), isSequreTextField: false, contentType: .username),
-        AuthenticationCellData(placeholder: NSLocalizedString("Password. At least 6. Must contains num", comment: ""), isSequreTextField: true, contentType: .password),
-        AuthenticationCellData(placeholder: NSLocalizedString("Confirm password", comment: ""), isSequreTextField: true, contentType: .password)]
-    private let validator: AuthenticationCellViewModelDelegate = Helper()
+        AuthenticationCellData(tag: 0, placeholder: NSLocalizedString("Email", comment: ""), isSequreTextField: false, contentType: .emailAddress),
+        AuthenticationCellData(tag: 0, placeholder: NSLocalizedString("Username", comment: ""), isSequreTextField: false, contentType: .username),
+        AuthenticationCellData(tag: 0, placeholder: NSLocalizedString("Password. At least 6. Must contains num", comment: ""), isSequreTextField: true, contentType: .password),
+        AuthenticationCellData(tag: 0, placeholder: NSLocalizedString("Confirm password", comment: ""), isSequreTextField: true, contentType: .password)]
+    private let validator = Helper()
     var tableView: UITableView?
 
     var isTableViewValid: [ValidationErrorInfo] {
@@ -27,7 +27,11 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
 
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TableViewCellViewModelProtocol? {
         let cellViewModel = AuthenticationCellViewModel(cellData: cellDataArray[indexPath.row])
-        cellViewModel.delegate = validator
+        cellViewModel.complition = { tag in
+            if self.tableView?.viewWithTag(cellViewModel.tag) != nil {
+                // Closure for change editing textField
+            }
+        }
         return cellViewModel
     }
 
@@ -35,8 +39,11 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
         guard let tableView = tableView else { return [] }
         var validationErrors: [ValidationErrorInfo] = []
         for cell in tableView.visibleCells {
-            guard let authCell = cell as? AuthenticationCell else { return [] }
-            let cellValidation = authCell.isTextFieldValid
+            guard let authCell = cell as? AuthenticationCell, let viewModel = authCell.viewModel else { return [] }
+            let cellValidation = validate(text: authCell.textField.text, cellData: viewModel.cellData)
+            if !cellValidation.isValid {
+                authCell.makeTextFieldInvalid()
+            }
             validationErrors.append(cellValidation)
         }
         saveUserData(data: validationErrors)
@@ -51,9 +58,38 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
         if isValid {
             guard let tableView = tableView else { return }
             for cell in tableView.visibleCells {
-                guard let authCell = cell as? AuthenticationCell else { return }
-                authCell.saveUserData()
+                guard let authCell = cell as? AuthenticationCell, let viewModel = authCell.viewModel else { return }
+                self.addUserDataToUserDefaults(text: authCell.textField.text, cellData: viewModel.cellData)
             }
+        }
+    }
+
+    public func validate(text: String?, cellData: AuthenticationCellData) -> ValidationErrorInfo {
+        guard let text = text else { return ValidationErrorInfo(isValid: false, errorInfo: nil) }
+        if text.count == 0 {
+            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Input data into all fields", comment: ""))
+        }
+        switch cellData.contentType {
+        case .emailAddress:
+            return validator.validateEmail(email: text)
+        case .password:
+                return validator.validatePassword(password: text)
+        case .username:
+            return ValidationErrorInfo(isValid: true, errorInfo: nil)
+        case .confirmPassword:
+            return validator.comparePasswords(password: text)
+        }
+    }
+
+    public func addUserDataToUserDefaults(text: String?, cellData: AuthenticationCellData) {
+        guard let text = text else { return }
+        switch cellData.contentType {
+        case .username:
+            UserDefaults.standard.set(text, forKey: AuthenticationCellViewModel.Constant.usernameKey)
+        case .password:
+            UserDefaults.standard.set(text, forKey: AuthenticationCellViewModel.Constant.userPasswordKey)
+        default:
+            return
         }
     }
 }

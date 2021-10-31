@@ -16,26 +16,19 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         static let rowHeight: CGFloat = 50
     }
 
-    @IBOutlet private var textField: UITextField!
+    @IBOutlet var textField: UITextField!
     @IBOutlet private var showPasswordButton: UIButton!
 
     var viewModel: TableViewCellViewModelProtocol? {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
+            textField.tag = viewModel.tag
             textField.placeholder = viewModel.placeholder
             textField.textContentType = viewModel.contentType
             textField.isSecureTextEntry = viewModel.isSequreTextField
             setupShowPasswordButton(isSecure: textField.isSecureTextEntry)
             makeTextFieldValid()
         }
-    }
-
-    var isTextFieldValid: ValidationErrorInfo {
-        return validateAuthenticationCellTextField()
-    }
-
-    var isTextFieldRegistered: ValidationErrorInfo {
-        return checkTextFieldRegistered()
     }
 
     override func draw(_ rect: CGRect) {
@@ -48,6 +41,7 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
     }
 
     private func customizeTextField() {
+        textField.keyboardAppearance = .default
         textField.backgroundColor = .clear
         textField.textAlignment = .left
         textField.autocorrectionType = .no
@@ -76,44 +70,14 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         setupShowPasswordButton(isSecure: textField.isSecureTextEntry)
     }
 
-    public func saveUserData() {
-        if let viewModel = viewModel, let text = textField.text {
-            viewModel.saveUserData(text: text)
-        }
-    }
-
-    private func makeTextFieldInvalid() {
+    func makeTextFieldInvalid() {
         textField.textColor = .red
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.red.withAlphaComponent(0.3)])
     }
 
-    private func makeTextFieldValid() {
+    func makeTextFieldValid() {
         textField.textColor = .label
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.label.withAlphaComponent(0.3)])
-    }
-
-    private func validateAuthenticationCellTextField() -> ValidationErrorInfo {
-        guard let viewModel = viewModel, let text = textField.text else {
-            makeTextFieldInvalid()
-            return ValidationErrorInfo(isValid: false, errorInfo: nil)
-        }
-        let errorInfo = viewModel.validate(text: text)
-        if !errorInfo.isValid {
-            makeTextFieldInvalid()
-        }
-        return errorInfo
-    }
-
-    private func checkTextFieldRegistered() -> ValidationErrorInfo {
-        guard let viewModel = viewModel, let text = textField.text else {
-            makeTextFieldInvalid()
-            return ValidationErrorInfo(isValid: false, errorInfo: nil)
-        }
-        let errorInfo = viewModel.checkRegistered(text: text)
-        if !errorInfo.isValid {
-            makeTextFieldInvalid()
-        }
-        return errorInfo
     }
 
     private func setupShowPasswordButton(isSecure: Bool) {
@@ -134,4 +98,12 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         makeTextFieldValid()
         return true
     }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let viewModel = viewModel else { return false }
+        textField.resignFirstResponder()
+        viewModel.moveToNextTextField()
+        return true
+    }
+
 }
