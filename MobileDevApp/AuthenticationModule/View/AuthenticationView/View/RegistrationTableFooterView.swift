@@ -74,17 +74,16 @@ class RegistraionTableFooterView: UIView {
     private func setupNextButton() {
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nextButton.topAnchor.constraint(equalTo: confirmLabel.bottomAnchor, constant: self.bounds.height * 0.2),
+            nextButton.topAnchor.constraint(equalTo: confirmLabel.topAnchor, constant: self.frame.height * 0.2),
             nextButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            nextButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.4),
-            nextButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -self.bounds.width * 0.3)
+            nextButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.4)
         ])
     }
 
     private func setupConfirmLabel() {
         confirmLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            confirmLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.07),
+            confirmLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.16),
             confirmLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -self.frame.width * 0.05),
             confirmLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
             confirmLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)

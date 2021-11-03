@@ -17,6 +17,7 @@ class TrackListViewController: UIViewController {
         self.view.backgroundColor = .white
 		navigationController?.navigationBar.isHidden = false
         navigationItem.hidesBackButton = true
+        trackListTitleView.delegate = self
         navigationItem.titleView = trackListTitleView
         setupTrackTableView()
 	}
@@ -52,5 +53,15 @@ extension TrackListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension TrackListViewController: TrackListTitleViewDelegate {
+
+    func presentMoreMenu(alertController: UIAlertController) {
+        alertController.addAction(UIAlertAction(title: "Exit", style: .destructive, handler: { (_: UIAlertAction) in
+            self.show(AuthenticationViewController(), sender: nil)
+        }))
+        self.present(alertController, animated: true, completion: nil)
     }
 }

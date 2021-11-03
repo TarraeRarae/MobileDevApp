@@ -22,6 +22,7 @@
 		1F59B65726FE478100C5A614 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F59B65526FE478100C5A614 /* LaunchScreen.storyboard */; };
 		1F5E84E22732B46D00CAA36A /* TrackCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5E84E12732B46D00CAA36A /* TrackCellViewController.swift */; };
 		1F5E84E62732B4AD00CAA36A /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5E84E52732B4AD00CAA36A /* TrackCell.xib */; };
+		1F5E85092732D7AF00CAA36A /* TrackListTitleViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5E85082732D7AF00CAA36A /* TrackListTitleViewDelegate.swift */; };
 		1F65FFCF2722CFD7008BEF65 /* AuthenticationCellContentTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F65FFCE2722CFD7008BEF65 /* AuthenticationCellContentTypes.swift */; };
 		1F65FFD12722D528008BEF65 /* LoginDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F65FFD02722D528008BEF65 /* LoginDataSourceProtocol.swift */; };
 		1F6EDF01271052EC00DC994B /* AuthenticationCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF00271052EC00DC994B /* AuthenticationCellData.swift */; };
@@ -55,6 +56,7 @@
 		1F59B65826FE478100C5A614 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F5E84E12732B46D00CAA36A /* TrackCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCellViewController.swift; sourceTree = "<group>"; };
 		1F5E84E52732B4AD00CAA36A /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
+		1F5E85082732D7AF00CAA36A /* TrackListTitleViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTitleViewDelegate.swift; sourceTree = "<group>"; };
 		1F65FFCE2722CFD7008BEF65 /* AuthenticationCellContentTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCellContentTypes.swift; sourceTree = "<group>"; };
 		1F65FFD02722D528008BEF65 /* LoginDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSourceProtocol.swift; sourceTree = "<group>"; };
 		1F6EDF00271052EC00DC994B /* AuthenticationCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCellData.swift; sourceTree = "<group>"; };
@@ -167,8 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				1F59B65826FE478100C5A614 /* Info.plist */,
-				1F5E84DE2732B28100CAA36A /* MainModule */,
 				1F5E84DD2732B25A00CAA36A /* Localizing */,
+				1F5E84DE2732B28100CAA36A /* MainModule */,
 				1F5E84DC2732B22700CAA36A /* AuthenticationModule */,
 				1F6EDEFD270F993F00DC994B /* CoreData */,
 				1F6EDEFC270F992B00DC994B /* Support */,
@@ -199,6 +201,7 @@
 		1F5E84DE2732B28100CAA36A /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
+				1F5E85072732D7A200CAA36A /* Protocol */,
 				1F5E84DF2732B29E00CAA36A /* View */,
 			);
 			path = MainModule;
@@ -236,6 +239,14 @@
 				1F5E84E52732B4AD00CAA36A /* TrackCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1F5E85072732D7A200CAA36A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				1F5E85082732D7AF00CAA36A /* TrackListTitleViewDelegate.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		1F6EDEFA270F990B00DC994B /* View */ = {
@@ -486,6 +497,7 @@
 				1FC706E9271C4586002BFC2F /* TableHeaderViewDelegate.swift in Sources */,
 				1F59B64C26FE477400C5A614 /* AuthenticationViewController.swift in Sources */,
 				1F0AEA16271768A800052509 /* RegistrationTableViewModel.swift in Sources */,
+				1F5E85092732D7AF00CAA36A /* TrackListTitleViewDelegate.swift in Sources */,
 				1FC706ED271C4E01002BFC2F /* TableFooterViewDelegate.swift in Sources */,
 				1FC706F5271CD4D3002BFC2F /* Helper.swift in Sources */,
 				1FC706EF271C50C8002BFC2F /* LoginTableFooterView.swift in Sources */,
