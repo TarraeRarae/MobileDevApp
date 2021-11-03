@@ -18,7 +18,7 @@ class AuthenticationViewController: UIViewController {
     private var registrationTableFooterView: RegistraionTableFooterView?
     private var loginTableFooterView: LoginTableFooterView?
     private var keyboardFrameHeight: CGFloat = 0
-    private let backgroundImage: UIImageView = UIImageView(image: UIImage(named: "background"))
+    private let backgroundImage: UIImageView = UIImageView(image: UIImage(named: AuthenticationHelper.Constant.backgroundImageName))
 
     override func viewDidLoad() {
         super.viewDidLoad()

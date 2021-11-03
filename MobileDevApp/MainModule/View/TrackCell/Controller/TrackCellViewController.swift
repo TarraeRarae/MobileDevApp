@@ -28,7 +28,7 @@ class TrackCellViewController: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        trackImage.image = UIImage(named: "trackPlaceholder")
+        trackImage.image = UIImage(named: MainHelper.Constant.placeholderImageName)
         trackNameLabel.text = "TrackName"
         singerNameLabel.text = "SingerName"
     }

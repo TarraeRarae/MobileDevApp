@@ -7,7 +7,13 @@
 
 import Foundation
 
-class Helper {
+class AuthenticationHelper {
+
+    struct Constant {
+
+        static let nextButtonImageName = "arrow.right"
+        static let backgroundImageName = "background"
+    }
 
     var password: String?
 

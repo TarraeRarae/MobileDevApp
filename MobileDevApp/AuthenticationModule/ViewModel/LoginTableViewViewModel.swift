@@ -13,7 +13,7 @@ class LoginTableViewViewModel: TableViewViewModelProtocol {
         AuthenticationCellData(tag: 0, placeholder: NSLocalizedString("Username", comment: ""), isSequreTextField: false, contentType: .username),
         AuthenticationCellData(tag: 0, placeholder: NSLocalizedString("Password", comment: ""), isSequreTextField: true, contentType: .password)
     ]
-    private let validator = Helper()
+    private let validator = AuthenticationHelper()
     var tableView: UITableView?
 
     var isTableViewValid: [ValidationErrorInfo] {

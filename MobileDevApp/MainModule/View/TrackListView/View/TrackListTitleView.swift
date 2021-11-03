@@ -16,7 +16,7 @@ class TrackListTitleView: UIView {
         let button = UIButton()
         button.addTarget(nil, action: #selector(showMoreMenu), for: .touchUpInside)
         button.tintColor = .label
-        button.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
+        button.setImage(UIImage(systemName: MainHelper.Constant.moreMenuImageName), for: .normal)
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
         return button

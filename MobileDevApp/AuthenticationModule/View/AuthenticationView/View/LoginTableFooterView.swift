@@ -18,7 +18,7 @@ class LoginTableFooterView: UIView {
         button.layer.shadowRadius = 5
         button.layer.shadowOffset = CGSize(width: 1.0, height: 3)
         button.addTarget(nil, action: #selector(register), for: .touchUpInside)
-        button.setImage(UIImage(systemName: "arrow.right"), for: .normal)
+        button.setImage(UIImage(systemName: AuthenticationHelper.Constant.nextButtonImageName), for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
         button.tintColor = .black
