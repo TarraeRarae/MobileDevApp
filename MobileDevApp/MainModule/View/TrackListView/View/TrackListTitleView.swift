@@ -12,19 +12,11 @@ class TrackListTitleView: UIView {
 
     weak var delegate: TrackListTitleViewDelegate?
 
-    private var moreButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .clear
-        button.tintColor = .black
-        button.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
-        button.contentHorizontalAlignment = .fill
-        button.contentVerticalAlignment = .fill
-        button.addTarget(nil, action: #selector(moreButtonAction), for: .touchUpInside)
-        return button
-    }()
+    private var moreButton  = UIButton()
 
     private var moreMenu: UIAlertController {
         let alertController = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         let popover = alertController.popoverPresentationController
         popover?.sourceView = self
         popover?.sourceRect = CGRect(x: 32, y: 32, width: 64, height: 64)
@@ -34,8 +26,6 @@ class TrackListTitleView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.frame = frame
-        self.backgroundColor = .clear
-        self.addSubview(moreButton)
         setupButton()
     }
 
@@ -44,13 +34,20 @@ class TrackListTitleView: UIView {
     }
 
     private func setupButton() {
+        moreButton.addTarget(nil, action: #selector(moreButtonAction), for: .touchUpInside)
+        moreButton.tintColor = .black
+        moreButton.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
+        moreButton.contentHorizontalAlignment = .fill
+        moreButton.contentVerticalAlignment = .fill
+
+        self.addSubview(moreButton)
+
         moreButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(5)
-            make.left.equalTo(self).offset(350)
-            make.width.equalTo(30)
+            make.left.equalTo(self).offset(UIScreen.main.bounds.width * 0.83)
             make.height.equalTo(27)
+            make.width.equalTo(30)
         }
-
         moreButton.imageEdgeInsets = UIEdgeInsets(
               top: moreButton.frame.size.height / 2,
               left: moreButton.frame.size.width  / 2,

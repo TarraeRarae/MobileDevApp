@@ -201,6 +201,7 @@
 		1F5E84DE2732B28100CAA36A /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
+				1F5E850A2732DD0500CAA36A /* Model */,
 				1F5E85072732D7A200CAA36A /* Protocol */,
 				1F5E84DF2732B29E00CAA36A /* View */,
 			);
@@ -247,6 +248,13 @@
 				1F5E85082732D7AF00CAA36A /* TrackListTitleViewDelegate.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		1F5E850A2732DD0500CAA36A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1F6EDEFA270F990B00DC994B /* View */ = {

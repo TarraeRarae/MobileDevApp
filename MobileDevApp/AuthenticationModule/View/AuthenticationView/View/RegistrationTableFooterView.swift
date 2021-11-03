@@ -74,7 +74,7 @@ class RegistraionTableFooterView: UIView {
     private func setupNextButton() {
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nextButton.topAnchor.constraint(equalTo: confirmLabel.topAnchor, constant: self.frame.height * 0.2),
+            nextButton.topAnchor.constraint(equalTo: confirmLabel.topAnchor, constant: self.frame.height * 0.25),
             nextButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             nextButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.4)
         ])
@@ -83,7 +83,7 @@ class RegistraionTableFooterView: UIView {
     private func setupConfirmLabel() {
         confirmLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            confirmLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.16),
+            confirmLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.1),
             confirmLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -self.frame.width * 0.05),
             confirmLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
             confirmLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
@@ -93,7 +93,7 @@ class RegistraionTableFooterView: UIView {
     private func setupSwitcher() {
         confirmSwitch.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            confirmSwitch.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.17),
+            confirmSwitch.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.11),
             confirmSwitch.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.2),
             confirmSwitch.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1),
             confirmSwitch.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25)
