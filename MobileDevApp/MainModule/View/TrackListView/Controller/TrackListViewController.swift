@@ -10,13 +10,15 @@ import UIKit
 class TrackListViewController: UIViewController {
 
     private var trackTableView = UITableView()
-    private var trackListTitleView = TrackListTitleView()
+    private var trackListTitleView: TrackListTitleView?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
         self.view.backgroundColor = .white
 		navigationController?.navigationBar.isHidden = false
         navigationItem.hidesBackButton = true
+        trackListTitleView = TrackListTitleView(frame: self.view.frame)
+        guard let trackListTitleView = trackListTitleView else { fatalError() }
         trackListTitleView.delegate = self
         navigationItem.titleView = trackListTitleView
         setupTrackTableView()
@@ -52,6 +54,7 @@ extension TrackListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        present(SingleTrackViewController(), animated: true, completion: nil)
     }
 }
 

@@ -28,6 +28,8 @@
 		1F6EDF01271052EC00DC994B /* AuthenticationCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF00271052EC00DC994B /* AuthenticationCellData.swift */; };
 		1F6EDF0B2710609E00DC994B /* LoginDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF0A2710609E00DC994B /* LoginDataSource.swift */; };
 		1F7D3F81271B73C000B9248F /* AuthenticationTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D3F80271B73C000B9248F /* AuthenticationTableHeaderView.swift */; };
+		1FB258512732EE6000438837 /* SingleTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB258502732EE6000438837 /* SingleTrackViewController.swift */; };
+		1FB258532732EE7000438837 /* SingleTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB258522732EE7000438837 /* SingleTrackView.swift */; };
 		1FC706E9271C4586002BFC2F /* TableHeaderViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC706E8271C4586002BFC2F /* TableHeaderViewDelegate.swift */; };
 		1FC706EB271C4925002BFC2F /* RegistrationTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC706EA271C4925002BFC2F /* RegistrationTableFooterView.swift */; };
 		1FC706ED271C4E01002BFC2F /* TableFooterViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC706EC271C4E01002BFC2F /* TableFooterViewDelegate.swift */; };
@@ -62,6 +64,8 @@
 		1F6EDF00271052EC00DC994B /* AuthenticationCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCellData.swift; sourceTree = "<group>"; };
 		1F6EDF0A2710609E00DC994B /* LoginDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSource.swift; sourceTree = "<group>"; };
 		1F7D3F80271B73C000B9248F /* AuthenticationTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTableHeaderView.swift; sourceTree = "<group>"; };
+		1FB258502732EE6000438837 /* SingleTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTrackViewController.swift; sourceTree = "<group>"; };
+		1FB258522732EE7000438837 /* SingleTrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTrackView.swift; sourceTree = "<group>"; };
 		1FC706E8271C4586002BFC2F /* TableHeaderViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderViewDelegate.swift; sourceTree = "<group>"; };
 		1FC706EA271C4925002BFC2F /* RegistrationTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTableFooterView.swift; sourceTree = "<group>"; };
 		1FC706EC271C4E01002BFC2F /* TableFooterViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableFooterViewDelegate.swift; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 		1F5E84DF2732B29E00CAA36A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1FB2584D2732EE2B00438837 /* SingleTrackView */,
 				1F5E84E02732B42F00CAA36A /* TrackCell */,
 				1F0AEA26271993BF00052509 /* TrackListView */,
 			);
@@ -301,6 +306,31 @@
 				1F59B64B26FE477400C5A614 /* AuthenticationViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		1FB2584D2732EE2B00438837 /* SingleTrackView */ = {
+			isa = PBXGroup;
+			children = (
+				1FB2584F2732EE3A00438837 /* View */,
+				1FB2584E2732EE3500438837 /* Controller */,
+			);
+			path = SingleTrackView;
+			sourceTree = "<group>";
+		};
+		1FB2584E2732EE3500438837 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1FB258502732EE6000438837 /* SingleTrackViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1FB2584F2732EE3A00438837 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1FB258522732EE7000438837 /* SingleTrackView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1FC706FB271CE4EE002BFC2F /* View */ = {
@@ -501,7 +531,9 @@
 				1F6EDF0B2710609E00DC994B /* LoginDataSource.swift in Sources */,
 				1F65FFCF2722CFD7008BEF65 /* AuthenticationCellContentTypes.swift in Sources */,
 				1FC706EB271C4925002BFC2F /* RegistrationTableFooterView.swift in Sources */,
+				1FB258512732EE6000438837 /* SingleTrackViewController.swift in Sources */,
 				1FC706F9271CD52A002BFC2F /* ValidationErrorInfo.swift in Sources */,
+				1FB258532732EE7000438837 /* SingleTrackView.swift in Sources */,
 				1FC706E9271C4586002BFC2F /* TableHeaderViewDelegate.swift in Sources */,
 				1F59B64C26FE477400C5A614 /* AuthenticationViewController.swift in Sources */,
 				1F0AEA16271768A800052509 /* RegistrationTableViewModel.swift in Sources */,

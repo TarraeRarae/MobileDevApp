@@ -12,7 +12,15 @@ class TrackListTitleView: UIView {
 
     weak var delegate: TrackListTitleViewDelegate?
 
-    private var moreButton  = UIButton()
+    private var moreButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(nil, action: #selector(moreButtonAction), for: .touchUpInside)
+        button.tintColor = .black
+        button.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        return button
+    }()
 
     private var moreMenu: UIAlertController {
         let alertController = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
@@ -34,17 +42,10 @@ class TrackListTitleView: UIView {
     }
 
     private func setupButton() {
-        moreButton.addTarget(nil, action: #selector(moreButtonAction), for: .touchUpInside)
-        moreButton.tintColor = .black
-        moreButton.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
-        moreButton.contentHorizontalAlignment = .fill
-        moreButton.contentVerticalAlignment = .fill
-
         self.addSubview(moreButton)
-
         moreButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(5)
-            make.left.equalTo(self).offset(UIScreen.main.bounds.width * 0.83)
+            make.left.equalTo(self).offset(self.frame.width * 0.83)
             make.height.equalTo(27)
             make.width.equalTo(30)
         }
