@@ -186,10 +186,10 @@
 			isa = PBXGroup;
 			children = (
 				1F0AEA212719830800052509 /* Helper */,
+				1F0AEA102717651D00052509 /* Protocols */,
 				1F6EDEFF2710529600DC994B /* Model */,
 				1F6EDEFA270F990B00DC994B /* View */,
 				1F0AEA0F2717651500052509 /* ViewModel */,
-				1F0AEA102717651D00052509 /* Protocols */,
 			);
 			path = AuthenticationModule;
 			sourceTree = "<group>";
@@ -205,8 +205,9 @@
 		1F5E84DE2732B28100CAA36A /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
+				1F5E85072732D7A200CAA36A /* Protocols */,
 				1F5E850A2732DD0500CAA36A /* Model */,
-				1F5E85072732D7A200CAA36A /* Protocol */,
+				1FB258542733299100438837 /* ViewModel */,
 				1F5E84DF2732B29E00CAA36A /* View */,
 			);
 			path = MainModule;
@@ -247,12 +248,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		1F5E85072732D7A200CAA36A /* Protocol */ = {
+		1F5E85072732D7A200CAA36A /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				1F5E85082732D7AF00CAA36A /* TrackListTitleViewDelegate.swift */,
 			);
-			path = Protocol;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		1F5E850A2732DD0500CAA36A /* Model */ = {
@@ -331,6 +332,13 @@
 				1FB258522732EE7000438837 /* SingleTrackView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1FB258542733299100438837 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		1FC706FB271CE4EE002BFC2F /* View */ = {
