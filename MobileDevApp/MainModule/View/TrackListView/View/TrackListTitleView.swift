@@ -14,8 +14,8 @@ class TrackListTitleView: UIView {
 
     private var moreButton: UIButton = {
         let button = UIButton()
-        button.addTarget(nil, action: #selector(moreButtonAction), for: .touchUpInside)
-        button.tintColor = .black
+        button.addTarget(nil, action: #selector(showMoreMenu), for: .touchUpInside)
+        button.tintColor = .label
         button.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
@@ -56,7 +56,7 @@ class TrackListTitleView: UIView {
               right: moreButton.frame.size.width / 2)
     }
 
-    @objc private func moreButtonAction() {
+    @objc private func showMoreMenu() {
         if let delegate = delegate {
             delegate.presentMoreMenu(alertController: self.moreMenu)
         }
