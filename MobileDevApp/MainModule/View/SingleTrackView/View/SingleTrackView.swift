@@ -58,32 +58,33 @@ class SingleTrackView: UIView {
 
     private func setupTrackImageView() {
         trackImageView.backgroundColor = .clear
+        trackImageView.contentMode = .scaleAspectFit
         self.addSubview(trackImageView)
         trackImageView.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(self).offset(20)
-            make.top.equalTo(self).offset(20)
-            make.right.equalTo(self).offset(-20)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.5)
+            make.top.equalTo(self).offset(self.frame.width * 0.05)
+            make.bottom.equalTo(self).offset(-self.frame.height * 0.4)
+            make.left.equalTo(self).offset(self.frame.width * 0.05)
+            make.right.equalTo(self).offset(-self.frame.width * 0.05)
         }
     }
 
     private func setupTrackNameLabel() {
         self.addSubview(trackNameLabel)
         trackNameLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(self.frame.height * 0.5)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.4)
-            make.left.equalTo(self).offset(20)
-            make.right.equalTo(self).offset(-20)
+            make.top.equalTo(self).offset(self.frame.height * 0.55)
+            make.bottom.equalTo(self).offset(-self.frame.height * 0.3)
+            make.left.equalTo(self).offset(self.frame.width * 0.05)
+            make.right.equalTo(self).offset(-self.frame.width * 0.05)
         }
     }
 
     private func setupSingerNameLabel() {
         self.addSubview(singerNameLabel)
         singerNameLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(self.frame.height * 0.55)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.35)
-            make.left.equalTo(self).offset(20)
-            make.right.equalTo(self).offset(-20)
+            make.top.equalTo(self).offset(self.frame.height * 0.6)
+            make.bottom.equalTo(self).offset(-self.frame.height * 0.25)
+            make.left.equalTo(self).offset(self.frame.width * 0.05)
+            make.right.equalTo(self).offset(-self.frame.width * 0.05)
         }
     }
 
@@ -95,7 +96,6 @@ class SingleTrackView: UIView {
             make.left.equalTo(self).offset(self.frame.width * 0.4)
             make.right.equalTo(self).offset(-self.frame.width * 0.4)
         }
-
         playButton.imageEdgeInsets = UIEdgeInsets(
               top: playButton.frame.size.height / 2,
               left: playButton.frame.size.width  / 2,
