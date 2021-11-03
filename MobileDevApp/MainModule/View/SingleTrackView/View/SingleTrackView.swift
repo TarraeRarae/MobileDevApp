@@ -32,7 +32,8 @@ class SingleTrackView: UIView {
 
     private var playButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "pause"), for: .normal)
+        button.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        button.setImage(UIImage(systemName: "play.fill"), for: .selected)
         button.addTarget(nil, action: #selector(playTrack), for: .touchUpInside)
         button.backgroundColor = .clear
         button.tintColor = .label
@@ -103,6 +104,6 @@ class SingleTrackView: UIView {
     }
 
     @objc private func playTrack() {
-        print("Tapped")
+        playButton.isSelected.toggle()
     }
 }
