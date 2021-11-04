@@ -27,6 +27,7 @@ class TrackOverviewView: UIControl {
         button.setImage(UIImage(systemName: MainHelper.Constant.pauseImageName), for: .normal)
         button.setImage(UIImage(systemName: MainHelper.Constant.playImageName), for: .selected)
         button.addTarget(nil, action: #selector(playTrack), for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFit
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
         button.backgroundColor = .clear
@@ -55,6 +56,7 @@ class TrackOverviewView: UIControl {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(systemName: MainHelper.Constant.multiplyImageName), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
         button.addTarget(nil, action: #selector(closeTrack), for: .touchUpInside)
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
@@ -100,11 +102,12 @@ class TrackOverviewView: UIControl {
     private func setupPlayButton() {
         self.addSubview(playButton)
         playButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(15)
-            make.bottom.equalTo(self).offset(-15)
-            make.left.equalTo(self).offset(self.frame.width * 0.75)
-            make.width.equalTo(self.frame.width * 0.1)
+            make.top.equalTo(self).offset(0)
+            make.bottom.equalTo(self).offset(0)
+            make.left.equalTo(self).offset(self.frame.width * 0.7)
+            make.width.equalTo(self.frame.width * 0.15)
         }
+        playButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
     }
 
     private func setupTrackNameLabel() {
@@ -113,7 +116,7 @@ class TrackOverviewView: UIControl {
             make.top.equalTo(self)
             make.bottom.equalTo(self).offset(-self.frame.height * 0.5)
             make.left.equalTo(self).offset(self.frame.width * 0.26)
-            make.width.equalTo(self.frame.width * 0.49)
+            make.width.equalTo(self.frame.width * 0.44)
         }
     }
 
@@ -123,18 +126,19 @@ class TrackOverviewView: UIControl {
             make.top.equalTo(self).offset(self.frame.height * 0.5)
             make.bottom.equalTo(self)
             make.left.equalTo(self).offset(self.frame.width * 0.26)
-            make.width.equalTo(self.frame.width * 0.49)
+            make.width.equalTo(self.frame.width * 0.44)
         }
     }
 
     private func setupCloseButton() {
         self.addSubview(closeButton)
         closeButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(25)
-            make.bottom.equalTo(self).offset(-25)
-            make.left.equalTo(self).offset(self.frame.width * 0.9)
-            make.width.equalTo(self.frame.width * 0.05)
+            make.top.equalTo(self).offset(0)
+            make.bottom.equalTo(self).offset(0)
+            make.right.equalTo(self).offset(0)
+            make.width.equalTo(self.frame.width * 0.15)
         }
+        closeButton.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     }
 
     @objc private func playTrack() {
