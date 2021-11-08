@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import IQKeyboardManagerSwift
 
 class TrackOverviewView: UIControl {
 
@@ -69,6 +68,7 @@ class TrackOverviewView: UIControl {
         let size = CGRect(x: 0, y: frame.height * 0.1, width: frame.width, height: frame.height * 0.08)
         self.frame = size
         self.addTarget(nil, action: #selector(showSingleTrackView), for: .touchUpInside)
+        self.backgroundColor = .white
         customizeView()
         setupTrackImageView()
         setupPlayButton()

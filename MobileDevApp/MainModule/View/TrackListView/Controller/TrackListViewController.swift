@@ -14,7 +14,7 @@ class TrackListViewController: UIViewController {
     private var trackOverviewView: TrackOverviewView? {
         didSet {
             if let trackOverviewView = trackOverviewView {
-                self.view.addSubview(trackOverviewView)
+                self.view.insertSubview(trackOverviewView, aboveSubview: trackTableView)
                 trackTableView.frame = CGRect(x: 0, y: trackOverviewView.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - trackOverviewView.frame.height)
                 trackTableView.contentSize = CGSize(width: self.view.frame.width, height: trackTableView.contentSize.height + trackOverviewView.frame.height * 2)
             }
