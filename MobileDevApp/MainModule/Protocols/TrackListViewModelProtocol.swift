@@ -10,6 +10,6 @@ import Foundation
 protocol TrackListViewModelProtocol: AnyObject {
 
     func numberOfRows() -> Int
-    func getData(for indexPath: IndexPath) -> TrackData?
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TrackListCellViewModelProtocol?
+    func overviewViewModel(for indexPath: IndexPath) -> TrackOverviewViewModelProtocol?
 }

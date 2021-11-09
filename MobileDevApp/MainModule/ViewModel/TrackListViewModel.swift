@@ -23,8 +23,8 @@ class TrackListViewModel: TrackListViewModelProtocol {
         return trackData.count
     }
 
-    func getData(for indexPath: IndexPath) -> TrackData? {
-        return trackData[indexPath.row]
+    func overviewViewModel(for indexPath: IndexPath) -> TrackOverviewViewModelProtocol? {
+        return TrackOverviewViewModel(data: trackData[indexPath.row])
     }
 
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TrackListCellViewModelProtocol? {

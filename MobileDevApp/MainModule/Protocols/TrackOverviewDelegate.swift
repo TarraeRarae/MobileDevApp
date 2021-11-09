@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol TrackOverviewProtocol: AnyObject {
+protocol TrackOverviewDelegate: AnyObject {
 
-    func presentSingleTrackView(data: TrackData, isPaused: Bool)
+    func presentSingleTrackView(viewModel: TrackOverviewViewModelProtocol, isPaused: Bool)
     func closeTrack()
 }

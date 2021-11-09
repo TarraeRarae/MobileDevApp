@@ -10,8 +10,8 @@ import SnapKit
 
 class TrackOverviewView: UIControl {
 
-    weak var delegate: TrackOverviewProtocol?
-    var data: TrackData?
+    weak var delegate: TrackOverviewDelegate?
+    var viewModel: TrackOverviewViewModelProtocol?
     var indexPath: IndexPath
     var isTrackPaused: Bool {
         return playButton.isSelected
@@ -68,10 +68,10 @@ class TrackOverviewView: UIControl {
         return button
     }()
 
-    init(frame: CGRect, data: TrackData?, for indexPath: IndexPath) {
+    init(frame: CGRect, viewModel: TrackOverviewViewModelProtocol?, for indexPath: IndexPath) {
         self.indexPath = indexPath
         super.init(frame: frame)
-        self.data = data
+        self.viewModel = viewModel
         let size = CGRect(x: 0, y: frame.height * 0.1, width: frame.width, height: frame.height * 0.08)
         self.frame = size
         self.addTarget(nil, action: #selector(showSingleTrackView), for: .touchUpInside)
@@ -89,9 +89,9 @@ class TrackOverviewView: UIControl {
     }
 
     private func customizeView() {
-        if let data = data {
-            self.singerNameLabel.text = data.artistsNames[0]
-            self.trackNameLabel.text = data.name
+        if let viewModel = viewModel {
+            self.singerNameLabel.text = viewModel.artistsNames[0]
+            self.trackNameLabel.text = viewModel.trackName
         }
         self.backgroundColor = .clear
         let bottomLine = CALayer()
@@ -161,8 +161,8 @@ class TrackOverviewView: UIControl {
     }
 
     @objc private func showSingleTrackView() {
-        if let data = data, let delegate = delegate {
-            delegate.presentSingleTrackView(data: data, isPaused: self.playButton.isSelected)
+        if let viewModel = viewModel, let delegate = delegate {
+            delegate.presentSingleTrackView(viewModel: viewModel, isPaused: self.playButton.isSelected)
         }
     }
 

@@ -12,7 +12,6 @@ class SingleTrackView: UIView {
 
     weak var delegate: SingleTrackViewDelegate?
     private var trackImageView: UIImageView = UIImageView(image: UIImage(named: MainHelper.Constant.placeholderImageName))
-    private var data: TrackData
 
     private var trackNameLabel: UILabel = {
         let label = UILabel()
@@ -44,8 +43,7 @@ class SingleTrackView: UIView {
         return button
     }()
 
-    init(frame: CGRect, data: TrackData) {
-        self.data = data
+    override init(frame: CGRect) {
         super.init(frame: frame)
         self.frame = frame
         self.backgroundColor = .white
@@ -72,7 +70,6 @@ class SingleTrackView: UIView {
     }
 
     private func setupTrackNameLabel() {
-        trackNameLabel.text = data.name
         self.addSubview(trackNameLabel)
         trackNameLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(self.frame.height * 0.55)
@@ -83,7 +80,6 @@ class SingleTrackView: UIView {
     }
 
     private func setupSingerNameLabel() {
-        singerNameLabel.text = data.artistsNames[0]
         self.addSubview(singerNameLabel)
         singerNameLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(self.frame.height * 0.6)
@@ -110,6 +106,14 @@ class SingleTrackView: UIView {
 
     public func setTrackCondition(isPaused: Bool) {
         self.playButton.isSelected = isPaused
+    }
+
+    public func setTrackName(text: String) {
+        self.trackNameLabel.text = text
+    }
+
+    public func setSingerName(text: String) {
+        self.singerNameLabel.text = text
     }
 
     @objc private func playTrack() {

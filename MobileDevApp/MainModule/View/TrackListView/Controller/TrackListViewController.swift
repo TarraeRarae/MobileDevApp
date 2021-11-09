@@ -69,7 +69,7 @@ extension TrackListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let viewModel = viewModel else { return }
         guard let trackOverviewView = trackOverviewView else {
-            trackOverviewView = TrackOverviewView(frame: self.view.frame, data: viewModel.getData(for: indexPath), for: indexPath)
+            trackOverviewView = TrackOverviewView(frame: self.view.frame, viewModel: viewModel.overviewViewModel(for: indexPath), for: indexPath)
             trackOverviewView?.delegate = self
             return
         }
@@ -92,12 +92,12 @@ extension TrackListViewController: TrackListTitleViewDelegate {
     }
 }
 
-extension TrackListViewController: TrackOverviewProtocol {
+extension TrackListViewController: TrackOverviewDelegate {
 
-    func presentSingleTrackView(data: TrackData, isPaused: Bool) {
+    func presentSingleTrackView(viewModel: TrackOverviewViewModelProtocol, isPaused: Bool) {
         let singleTrackViewController = SingleTrackViewController()
         singleTrackViewController.delegate = self
-        singleTrackViewController.data = data
+        singleTrackViewController.viewModel = viewModel
         singleTrackViewController.isPaused = isPaused
         present(singleTrackViewController, animated: true, completion: nil)
     }
