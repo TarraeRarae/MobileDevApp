@@ -18,6 +18,4 @@ class MainHelper {
         static let placeholderImageName = "trackPlaceholder"
         static let moreMenuImageName = "ellipsis.circle"
     }
-
-//    static var isTrackPaused: Bool = false
 }
