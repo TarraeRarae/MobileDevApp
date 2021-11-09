@@ -68,11 +68,17 @@ extension TrackListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let viewModel = viewModel else { return }
-        if let trackOverviewView = trackOverviewView {
-            trackOverviewView.removeFromSuperview()
+        guard let trackOverviewView = trackOverviewView else {
+            trackOverviewView = TrackOverviewView(frame: self.view.frame, data: viewModel.getData(for: indexPath), for: indexPath)
+            trackOverviewView?.delegate = self
+            return
         }
-        trackOverviewView = TrackOverviewView(frame: self.view.frame, data: viewModel.getData(for: indexPath))
-        trackOverviewView?.delegate = self
+        if trackOverviewView.indexPath != indexPath {
+            closeTrack()
+            self.tableView(tableView, didSelectRowAt: indexPath)
+        } else {
+            self.updateTrackCondition(isPaused: !trackOverviewView.isTrackPaused)
+        }
     }
 }
 
@@ -100,6 +106,7 @@ extension TrackListViewController: TrackOverviewProtocol {
         if let trackOverviewView = trackOverviewView {
             trackOverviewView.removeFromSuperview()
             trackTableView.frame = self.view.frame
+            self.trackOverviewView = nil
         }
     }
 }

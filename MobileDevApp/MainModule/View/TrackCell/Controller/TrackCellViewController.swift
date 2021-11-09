@@ -24,7 +24,6 @@ class TrackCellViewController: UITableViewCell {
     var viewModel: TrackListCellViewModelProtocol? {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
-            print(viewModel.name)
             self.trackNameLabel.text = viewModel.name
             self.singerNameLabel.text = viewModel.artistNames[0]
         }

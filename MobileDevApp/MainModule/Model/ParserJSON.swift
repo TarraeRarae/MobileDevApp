@@ -16,8 +16,6 @@ class ParserJSON {
             if let bundlePath = Bundle.main.path(forResource: "Data", ofType: "json"),
                let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
                 let resultData = try decoder.decode(TrackDataJSON.self, from: jsonData)
-//                trackDataJSONArray.append(resultData)
-//                return trackDataJSONArray
                 trackDataJSONArray = resultData
                 return trackDataJSONArray
             }

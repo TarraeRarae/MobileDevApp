@@ -12,6 +12,10 @@ class TrackOverviewView: UIControl {
 
     weak var delegate: TrackOverviewProtocol?
     var data: TrackData?
+    var indexPath: IndexPath
+    var isTrackPaused: Bool {
+        return playButton.isSelected
+    }
 
     private var trackImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: MainHelper.Constant.placeholderImageName))
@@ -64,7 +68,8 @@ class TrackOverviewView: UIControl {
         return button
     }()
 
-    init(frame: CGRect, data: TrackData?) {
+    init(frame: CGRect, data: TrackData?, for indexPath: IndexPath) {
+        self.indexPath = indexPath
         super.init(frame: frame)
         self.data = data
         let size = CGRect(x: 0, y: frame.height * 0.1, width: frame.width, height: frame.height * 0.08)
