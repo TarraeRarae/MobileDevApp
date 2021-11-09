@@ -11,6 +11,7 @@ class SingleTrackViewController: UIViewController {
 
     weak var delegate: SingleTrackViewControllerDelegate?
     private var singleTrackView: SingleTrackView?
+
     var isPaused: Bool? {
         willSet(isPaused) {
             guard let isPaused = isPaused else { return }
@@ -18,6 +19,7 @@ class SingleTrackViewController: UIViewController {
             singleTrackView?.setTrackCondition(isPaused: isPaused)
         }
     }
+
     var viewModel: TrackOverviewViewModelProtocol? {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }

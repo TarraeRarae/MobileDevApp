@@ -10,7 +10,6 @@ import UIKit
 class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
 
     struct Constant {
-
         static let cellID = "AuthenticationCellID"
         static let nibName = "AuthenticationCell"
         static let rowHeight: CGFloat = 50

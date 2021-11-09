@@ -10,7 +10,6 @@ import UIKit
 class TrackCellViewController: UITableViewCell {
 
     struct Constant {
-
         static let cellID = "TrackCellID"
         static let nibName = "TrackCell"
         static let rowHeight: CGFloat = 80
