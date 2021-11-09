@@ -24,7 +24,7 @@ class TrackListViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemBackground
 		navigationController?.navigationBar.isHidden = false
         navigationItem.hidesBackButton = true
         viewModel = TrackListViewModel()
@@ -85,7 +85,7 @@ extension TrackListViewController: UITableViewDelegate {
 extension TrackListViewController: TrackListTitleViewDelegate {
 
     func presentMoreMenu(alertController: UIAlertController) {
-        alertController.addAction(UIAlertAction(title: "Exit", style: .destructive, handler: { (_: UIAlertAction) in
+        alertController.addAction(UIAlertAction(title: "Exit".localized, style: .destructive, handler: { (_: UIAlertAction) in
             self.show(AuthenticationViewController(), sender: nil)
         }))
         self.present(alertController, animated: true, completion: nil)

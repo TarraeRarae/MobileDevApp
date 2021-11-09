@@ -10,10 +10,10 @@ import UIKit
 class RegistrationTableViewModel: TableViewViewModelProtocol {
 
     private let cellDataArray: [AuthenticationCellData] =  [
-        AuthenticationCellData(tag: 0, placeholder: NSLocalizedString("Email", comment: ""), isSequreTextField: false, contentType: .emailAddress),
-        AuthenticationCellData(tag: 0, placeholder: NSLocalizedString("Username", comment: ""), isSequreTextField: false, contentType: .username),
-        AuthenticationCellData(tag: 0, placeholder: NSLocalizedString("Password. At least 6. Must contains num", comment: ""), isSequreTextField: true, contentType: .password),
-        AuthenticationCellData(tag: 0, placeholder: NSLocalizedString("Confirm password", comment: ""), isSequreTextField: true, contentType: .password)]
+        AuthenticationCellData(tag: 0, placeholder: "Email".localized, isSequreTextField: false, contentType: .emailAddress),
+        AuthenticationCellData(tag: 0, placeholder: "Username".localized, isSequreTextField: false, contentType: .username),
+        AuthenticationCellData(tag: 0, placeholder: "Password. At least 6. Must contains num".localized, isSequreTextField: true, contentType: .password),
+        AuthenticationCellData(tag: 0, placeholder: "Confirm password".localized, isSequreTextField: true, contentType: .password)]
     private let validator = AuthenticationHelper()
     var tableView: UITableView?
 
@@ -67,7 +67,7 @@ class RegistrationTableViewModel: TableViewViewModelProtocol {
     public func validate(text: String?, cellData: AuthenticationCellData) -> ValidationErrorInfo {
         guard let text = text else { return ValidationErrorInfo(isValid: false, errorInfo: nil) }
         if text.count == 0 {
-            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Input data into all fields", comment: ""))
+            return ValidationErrorInfo(isValid: false, errorInfo: "Input data into all fields".localized)
         }
         switch cellData.contentType {
         case .emailAddress:

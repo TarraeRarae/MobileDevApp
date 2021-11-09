@@ -122,7 +122,7 @@ class AuthenticationViewController: UIViewController {
         for item in data {
             alertMessage += item + "\n"
         }
-        let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: alertMessage, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Error".localized, message: alertMessage, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }

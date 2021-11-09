@@ -24,7 +24,7 @@ class AuthenticationHelper {
         if isValid {
             return ValidationErrorInfo(isValid: isValid, errorInfo: nil)
         }
-        return ValidationErrorInfo(isValid: isValid, errorInfo: NSLocalizedString("Email isn't valid", comment: ""))
+        return ValidationErrorInfo(isValid: isValid, errorInfo: "Email isn't valid".localized)
     }
 
     func validatePassword(password: String) -> ValidationErrorInfo {
@@ -39,7 +39,7 @@ class AuthenticationHelper {
             self.password = password
             return ValidationErrorInfo(isValid: isValid, errorInfo: nil)
         }
-        return ValidationErrorInfo(isValid: isValid, errorInfo: NSLocalizedString("Password must contains 6 or more symbols and at least 1 number", comment: ""))
+        return ValidationErrorInfo(isValid: isValid, errorInfo: "Password must contains 6 or more symbols and at least 1 number".localized)
     }
 
     func checkUsername(username: String) -> ValidationErrorInfo {
@@ -47,7 +47,7 @@ class AuthenticationHelper {
         if isChecked {
             return ValidationErrorInfo(isValid: isChecked, errorInfo: nil)
         }
-        return ValidationErrorInfo(isValid: isChecked, errorInfo: NSLocalizedString("Incorrect username", comment: ""))
+        return ValidationErrorInfo(isValid: isChecked, errorInfo: "Incorrect username".localized)
     }
 
     func checkPassword(password: String) -> ValidationErrorInfo {
@@ -56,18 +56,18 @@ class AuthenticationHelper {
         if isChecked {
             return ValidationErrorInfo(isValid: isChecked, errorInfo: nil)
         }
-        return ValidationErrorInfo(isValid: isChecked, errorInfo: NSLocalizedString("Incorrect password", comment: ""))
+        return ValidationErrorInfo(isValid: isChecked, errorInfo: "Incorrect password".localized)
     }
 
     func comparePasswords(password: String) -> ValidationErrorInfo {
         guard self.password != nil else {
-            return ValidationErrorInfo(isValid: false, errorInfo: "Passwords aren't equal")
+            return ValidationErrorInfo(isValid: false, errorInfo: "Passwords aren't equal".localized)
         }
         let isValid = password == self.password
         self.password = nil
         if isValid {
             return ValidationErrorInfo(isValid: isValid, errorInfo: nil)
         }
-        return ValidationErrorInfo(isValid: isValid, errorInfo: NSLocalizedString("Passwords aren't equal", comment: ""))
+        return ValidationErrorInfo(isValid: isValid, errorInfo: "Passwords aren't equal".localized)
     }
 }

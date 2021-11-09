@@ -23,8 +23,8 @@ class TrackListTitleView: UIView {
     }()
 
     private var moreMenu: UIAlertController {
-        let alertController = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        let alertController = UIAlertController(title: "More".localized, message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         let popover = alertController.popoverPresentationController
         popover?.sourceView = self
         popover?.sourceRect = CGRect(x: 32, y: 32, width: 64, height: 64)

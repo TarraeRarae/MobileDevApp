@@ -15,7 +15,6 @@ class SingleTrackView: UIView {
 
     private var trackNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "TrackName"
         label.textColor = .label
         label.backgroundColor = .clear
         label.font = UIFont.boldSystemFont(ofSize: 25)
@@ -24,7 +23,6 @@ class SingleTrackView: UIView {
 
     private var singerNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "SingerName"
         label.textColor = .label
         label.backgroundColor = .clear
         label.font = UIFont.systemFont(ofSize: 15)
@@ -46,7 +44,7 @@ class SingleTrackView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.frame = frame
-        self.backgroundColor = .white
+        self.backgroundColor = .systemBackground
         setupTrackImageView()
         setupTrackNameLabel()
         setupSingerNameLabel()

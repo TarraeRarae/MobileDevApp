@@ -16,6 +16,7 @@
 		1F0AEA1A27176A5400052509 /* LoginTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AEA1927176A5400052509 /* LoginTableViewViewModel.swift */; };
 		1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */; };
 		1F1DA4AB2701A24700757C9E /* AuthenticationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */; };
+		1F40D2BD273B2672006569AF /* LocalizedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */; };
 		1F4114A12739C1540013338D /* Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F4114A02739C1540013338D /* Data.json */; };
 		1F4114A32739C3A70013338D /* TrackDataJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4114A22739C3A70013338D /* TrackDataJSON.swift */; };
 		1F4114A52739C40F0013338D /* ParserJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4114A42739C40F0013338D /* ParserJSON.swift */; };
@@ -66,6 +67,7 @@
 		1F0AEA1927176A5400052509 /* LoginTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableViewViewModel.swift; sourceTree = "<group>"; };
 		1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCell.swift; sourceTree = "<group>"; };
 		1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthenticationCell.xib; sourceTree = "<group>"; };
+		1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStringExtension.swift; sourceTree = "<group>"; };
 		1F4114A02739C1540013338D /* Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Data.json; sourceTree = "<group>"; };
 		1F4114A22739C3A70013338D /* TrackDataJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDataJSON.swift; sourceTree = "<group>"; };
 		1F4114A42739C40F0013338D /* ParserJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserJSON.swift; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				1FB2585627332BCC00438837 /* MainHelper.swift */,
+				1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				1FB258532732EE7000438837 /* SingleTrackView.swift in Sources */,
 				1FC706E9271C4586002BFC2F /* TableHeaderViewDelegate.swift in Sources */,
 				1F59B64C26FE477400C5A614 /* AuthenticationViewController.swift in Sources */,
+				1F40D2BD273B2672006569AF /* LocalizedStringExtension.swift in Sources */,
 				1F0AEA16271768A800052509 /* RegistrationTableViewModel.swift in Sources */,
 				1F0094CC273ACD2400BC30FA /* TrackOverviewViewModel.swift in Sources */,
 				1F5E85092732D7AF00CAA36A /* TrackListTitleViewDelegate.swift in Sources */,
