@@ -11,6 +11,7 @@ import SnapKit
 class TrackOverviewView: UIControl {
 
     weak var delegate: TrackOverviewProtocol?
+    var data: TrackData?
 
     private var trackImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: MainHelper.Constant.placeholderImageName))
@@ -63,12 +64,13 @@ class TrackOverviewView: UIControl {
         return button
     }()
 
-    override init(frame: CGRect) {
+    init(frame: CGRect, data: TrackData?) {
         super.init(frame: frame)
+        self.data = data
         let size = CGRect(x: 0, y: frame.height * 0.1, width: frame.width, height: frame.height * 0.08)
         self.frame = size
         self.addTarget(nil, action: #selector(showSingleTrackView), for: .touchUpInside)
-        self.backgroundColor = .white
+        self.backgroundColor = .systemBackground
         customizeView()
         setupTrackImageView()
         setupPlayButton()
@@ -82,6 +84,10 @@ class TrackOverviewView: UIControl {
     }
 
     private func customizeView() {
+        if let data = data {
+            self.singerNameLabel.text = data.artistsNames[0]
+            self.trackNameLabel.text = data.name
+        }
         self.backgroundColor = .clear
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0.0, y: self.frame.height - 0.5, width: self.frame.width, height: 0.5)
@@ -141,13 +147,18 @@ class TrackOverviewView: UIControl {
         closeButton.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     }
 
+    public func updateTrackCondition(isPaused: Bool) {
+        self.playButton.isSelected = isPaused
+    }
+
     @objc private func playTrack() {
         playButton.isSelected.toggle()
-        print("tapped")
     }
 
     @objc private func showSingleTrackView() {
-        delegate?.presentSingleTrackView()
+        if let data = data, let delegate = delegate {
+            delegate.presentSingleTrackView(data: data, isPaused: self.playButton.isSelected)
+        }
     }
 
     @objc private func closeTrack() {

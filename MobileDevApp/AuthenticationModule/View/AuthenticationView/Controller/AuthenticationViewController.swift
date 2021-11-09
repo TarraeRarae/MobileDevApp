@@ -149,9 +149,7 @@ extension AuthenticationViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = authenticationTableView.dequeueReusableCell(withIdentifier: AuthenticationCell.Constant.cellID, for: indexPath) as? AuthenticationCell, let viewModel = viewModel else { fatalError() }
-        cell.backgroundColor = .clear
         cell.viewModel = viewModel.cellViewModel(forIndexPath: indexPath)
-        cell.layoutIfNeeded()
         return cell
     }
 

@@ -9,6 +9,7 @@ import UIKit
 
 class TrackListViewController: UIViewController {
 
+    private var viewModel: TrackListViewModelProtocol?
     private var trackTableView = UITableView()
     private var trackListTitleView: TrackListTitleView?
     private var trackOverviewView: TrackOverviewView? {
@@ -26,6 +27,7 @@ class TrackListViewController: UIViewController {
         self.view.backgroundColor = .white
 		navigationController?.navigationBar.isHidden = false
         navigationItem.hidesBackButton = true
+        viewModel = TrackListViewModel()
         trackListTitleView = TrackListTitleView(frame: self.view.frame)
         guard let trackListTitleView = trackListTitleView else { fatalError() }
         trackListTitleView.delegate = self
@@ -46,11 +48,13 @@ class TrackListViewController: UIViewController {
 extension TrackListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        guard let viewModel = viewModel else { return 0 }
+        return viewModel.numberOfRows()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TrackCellViewController.Constant.cellID, for: indexPath) as? TrackCellViewController else { fatalError() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TrackCellViewController.Constant.cellID, for: indexPath) as? TrackCellViewController, let viewModel = viewModel else { fatalError() }
+        cell.viewModel = viewModel.cellViewModel(forIndexPath: indexPath)
         return cell
     }
 }
@@ -63,10 +67,11 @@ extension TrackListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        guard let viewModel = viewModel else { return }
         if let trackOverviewView = trackOverviewView {
             trackOverviewView.removeFromSuperview()
         }
-        trackOverviewView = TrackOverviewView(frame: self.view.frame)
+        trackOverviewView = TrackOverviewView(frame: self.view.frame, data: viewModel.getData(for: indexPath))
         trackOverviewView?.delegate = self
     }
 }
@@ -83,8 +88,12 @@ extension TrackListViewController: TrackListTitleViewDelegate {
 
 extension TrackListViewController: TrackOverviewProtocol {
 
-    func presentSingleTrackView() {
-        present(SingleTrackViewController(), animated: true, completion: nil)
+    func presentSingleTrackView(data: TrackData, isPaused: Bool) {
+        let singleTrackViewController = SingleTrackViewController()
+        singleTrackViewController.delegate = self
+        singleTrackViewController.data = data
+        singleTrackViewController.isPaused = isPaused
+        present(singleTrackViewController, animated: true, completion: nil)
     }
 
     func closeTrack() {
@@ -92,5 +101,12 @@ extension TrackListViewController: TrackOverviewProtocol {
             trackOverviewView.removeFromSuperview()
             trackTableView.frame = self.view.frame
         }
+    }
+}
+
+extension TrackListViewController: SingleTrackViewControllerDelegate {
+
+    func updateTrackCondition(isPaused: Bool) {
+        trackOverviewView?.updateTrackCondition(isPaused: isPaused)
     }
 }

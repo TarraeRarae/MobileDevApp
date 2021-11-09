@@ -10,7 +10,9 @@ import SnapKit
 
 class SingleTrackView: UIView {
 
+    weak var delegate: SingleTrackViewDelegate?
     private var trackImageView: UIImageView = UIImageView(image: UIImage(named: MainHelper.Constant.placeholderImageName))
+    private var data: TrackData
 
     private var trackNameLabel: UILabel = {
         let label = UILabel()
@@ -42,7 +44,8 @@ class SingleTrackView: UIView {
         return button
     }()
 
-    override init(frame: CGRect) {
+    init(frame: CGRect, data: TrackData) {
+        self.data = data
         super.init(frame: frame)
         self.frame = frame
         self.backgroundColor = .white
@@ -69,6 +72,7 @@ class SingleTrackView: UIView {
     }
 
     private func setupTrackNameLabel() {
+        trackNameLabel.text = data.name
         self.addSubview(trackNameLabel)
         trackNameLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(self.frame.height * 0.55)
@@ -79,6 +83,7 @@ class SingleTrackView: UIView {
     }
 
     private func setupSingerNameLabel() {
+        singerNameLabel.text = data.artistsNames[0]
         self.addSubview(singerNameLabel)
         singerNameLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(self.frame.height * 0.6)
@@ -103,7 +108,12 @@ class SingleTrackView: UIView {
               right: playButton.frame.size.width / 2)
     }
 
+    public func setTrackCondition(isPaused: Bool) {
+        self.playButton.isSelected = isPaused
+    }
+
     @objc private func playTrack() {
         playButton.isSelected.toggle()
+        delegate?.updateTrackCondition(isPaused: playButton.isSelected)
     }
 }

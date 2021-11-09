@@ -14,6 +14,16 @@
 		1F0AEA1A27176A5400052509 /* LoginTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AEA1927176A5400052509 /* LoginTableViewViewModel.swift */; };
 		1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */; };
 		1F1DA4AB2701A24700757C9E /* AuthenticationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */; };
+		1F4114A12739C1540013338D /* Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F4114A02739C1540013338D /* Data.json */; };
+		1F4114A32739C3A70013338D /* TrackDataJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4114A22739C3A70013338D /* TrackDataJSON.swift */; };
+		1F4114A52739C40F0013338D /* ParserJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4114A42739C40F0013338D /* ParserJSON.swift */; };
+		1F4114A72739C83D0013338D /* TrackListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4114A62739C83D0013338D /* TrackListViewModel.swift */; };
+		1F4114A92739CAF10013338D /* TrackData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4114A82739CAF10013338D /* TrackData.swift */; };
+		1F4114AB2739CBC50013338D /* TrackListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4114AA2739CBC50013338D /* TrackListViewModelProtocol.swift */; };
+		1F4114AD2739CDEA0013338D /* TrackListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4114AC2739CDEA0013338D /* TrackListCellViewModel.swift */; };
+		1F4114AF2739CE780013338D /* TrackListCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4114AE2739CE780013338D /* TrackListCellViewModelProtocol.swift */; };
+		1F499B11273AA8A6006F62CC /* SingleTrackViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F499B10273AA8A6006F62CC /* SingleTrackViewControllerDelegate.swift */; };
+		1F499B13273AA986006F62CC /* SingleTrackViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F499B12273AA986006F62CC /* SingleTrackViewDelegate.swift */; };
 		1F550B4A27144EE3007BADB6 /* TrackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F550B4927144EE3007BADB6 /* TrackListViewController.swift */; };
 		1F59B64826FE477400C5A614 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59B64726FE477400C5A614 /* AppDelegate.swift */; };
 		1F59B64C26FE477400C5A614 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59B64B26FE477400C5A614 /* AuthenticationViewController.swift */; };
@@ -52,6 +62,16 @@
 		1F0AEA1927176A5400052509 /* LoginTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableViewViewModel.swift; sourceTree = "<group>"; };
 		1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCell.swift; sourceTree = "<group>"; };
 		1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthenticationCell.xib; sourceTree = "<group>"; };
+		1F4114A02739C1540013338D /* Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Data.json; sourceTree = "<group>"; };
+		1F4114A22739C3A70013338D /* TrackDataJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDataJSON.swift; sourceTree = "<group>"; };
+		1F4114A42739C40F0013338D /* ParserJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserJSON.swift; sourceTree = "<group>"; };
+		1F4114A62739C83D0013338D /* TrackListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListViewModel.swift; sourceTree = "<group>"; };
+		1F4114A82739CAF10013338D /* TrackData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackData.swift; sourceTree = "<group>"; };
+		1F4114AA2739CBC50013338D /* TrackListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListViewModelProtocol.swift; sourceTree = "<group>"; };
+		1F4114AC2739CDEA0013338D /* TrackListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListCellViewModel.swift; sourceTree = "<group>"; };
+		1F4114AE2739CE780013338D /* TrackListCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListCellViewModelProtocol.swift; sourceTree = "<group>"; };
+		1F499B10273AA8A6006F62CC /* SingleTrackViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTrackViewControllerDelegate.swift; sourceTree = "<group>"; };
+		1F499B12273AA986006F62CC /* SingleTrackViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTrackViewDelegate.swift; sourceTree = "<group>"; };
 		1F550B4927144EE3007BADB6 /* TrackListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListViewController.swift; sourceTree = "<group>"; };
 		1F59B64426FE477400C5A614 /* MobileDevApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileDevApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F59B64726FE477400C5A614 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -260,6 +280,10 @@
 			children = (
 				1F5E85082732D7AF00CAA36A /* TrackListTitleViewDelegate.swift */,
 				1FB09148273488B40081EA22 /* TrackOverviewProtocol.swift */,
+				1F4114AA2739CBC50013338D /* TrackListViewModelProtocol.swift */,
+				1F4114AE2739CE780013338D /* TrackListCellViewModelProtocol.swift */,
+				1F499B10273AA8A6006F62CC /* SingleTrackViewControllerDelegate.swift */,
+				1F499B12273AA986006F62CC /* SingleTrackViewDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -267,6 +291,10 @@
 		1F5E850A2732DD0500CAA36A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F4114A02739C1540013338D /* Data.json */,
+				1F4114A22739C3A70013338D /* TrackDataJSON.swift */,
+				1F4114A82739CAF10013338D /* TrackData.swift */,
+				1F4114A42739C40F0013338D /* ParserJSON.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -345,6 +373,8 @@
 		1FB258542733299100438837 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1F4114A62739C83D0013338D /* TrackListViewModel.swift */,
+				1F4114AC2739CDEA0013338D /* TrackListCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -483,6 +513,7 @@
 				1FC7070E271DD5A8002BFC2F /* Localizable.strings in Resources */,
 				1F59B65426FE478100C5A614 /* Assets.xcassets in Resources */,
 				1F1DA4AB2701A24700757C9E /* AuthenticationCell.xib in Resources */,
+				1F4114A12739C1540013338D /* Data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,9 +586,11 @@
 				1F550B4A27144EE3007BADB6 /* TrackListViewController.swift in Sources */,
 				1F6EDF0B2710609E00DC994B /* LoginDataSource.swift in Sources */,
 				1F65FFCF2722CFD7008BEF65 /* AuthenticationCellContentTypes.swift in Sources */,
+				1F4114A92739CAF10013338D /* TrackData.swift in Sources */,
 				1FB09149273488B40081EA22 /* TrackOverviewProtocol.swift in Sources */,
 				1FC706EB271C4925002BFC2F /* RegistrationTableFooterView.swift in Sources */,
 				1FB258512732EE6000438837 /* SingleTrackViewController.swift in Sources */,
+				1F499B13273AA986006F62CC /* SingleTrackViewDelegate.swift in Sources */,
 				1FB2585727332BCC00438837 /* MainHelper.swift in Sources */,
 				1FC706F9271CD52A002BFC2F /* ValidationErrorInfo.swift in Sources */,
 				1FB258532732EE7000438837 /* SingleTrackView.swift in Sources */,
@@ -565,11 +598,16 @@
 				1F59B64C26FE477400C5A614 /* AuthenticationViewController.swift in Sources */,
 				1F0AEA16271768A800052509 /* RegistrationTableViewModel.swift in Sources */,
 				1F5E85092732D7AF00CAA36A /* TrackListTitleViewDelegate.swift in Sources */,
+				1F4114AF2739CE780013338D /* TrackListCellViewModelProtocol.swift in Sources */,
 				1FC706ED271C4E01002BFC2F /* TableFooterViewDelegate.swift in Sources */,
 				1FC706F5271CD4D3002BFC2F /* AuthenticationHelper.swift in Sources */,
 				1FC706EF271C50C8002BFC2F /* LoginTableFooterView.swift in Sources */,
+				1F4114A72739C83D0013338D /* TrackListViewModel.swift in Sources */,
 				1F59B65226FE477500C5A614 /* MobileDevApp.xcdatamodeld in Sources */,
+				1F4114A52739C40F0013338D /* ParserJSON.swift in Sources */,
+				1F4114A32739C3A70013338D /* TrackDataJSON.swift in Sources */,
 				1F7D3F81271B73C000B9248F /* AuthenticationTableHeaderView.swift in Sources */,
+				1F4114AB2739CBC50013338D /* TrackListViewModelProtocol.swift in Sources */,
 				1F59B64826FE477400C5A614 /* AppDelegate.swift in Sources */,
 				1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */,
 				1F0AEA182717694900052509 /* AuthenticationCellViewModel.swift in Sources */,
@@ -577,8 +615,10 @@
 				1F0AEA122717679C00052509 /* TableViewViewModelProtocol.swift in Sources */,
 				1F5E84E22732B46D00CAA36A /* TrackCellViewController.swift in Sources */,
 				1F0AEA1A27176A5400052509 /* LoginTableViewViewModel.swift in Sources */,
+				1F4114AD2739CDEA0013338D /* TrackListCellViewModel.swift in Sources */,
 				1F0AEA14271767C800052509 /* TableViewCellViewModelProtocol.swift in Sources */,
 				1FB258592733C7CD00438837 /* TrackOverviewView.swift in Sources */,
+				1F499B11273AA8A6006F62CC /* SingleTrackViewControllerDelegate.swift in Sources */,
 				1FC70715271DDD2C002BFC2F /* TrackListTitleView.swift in Sources */,
 				1F6EDF01271052EC00DC994B /* AuthenticationCellData.swift in Sources */,
 			);

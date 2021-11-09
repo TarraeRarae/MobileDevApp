@@ -21,6 +21,14 @@ class TrackCellViewController: UITableViewCell {
     @IBOutlet weak var singerNameLabel: UILabel!
     @IBOutlet weak var downloadButton: UIButton!
 
+    var viewModel: TrackListCellViewModelProtocol? {
+        willSet(viewModel) {
+            guard let viewModel = viewModel else { return }
+            print(viewModel.name)
+            self.trackNameLabel.text = viewModel.name
+            self.singerNameLabel.text = viewModel.artistNames[0]
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .clear
@@ -29,7 +37,7 @@ class TrackCellViewController: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         trackImage.image = UIImage(named: MainHelper.Constant.placeholderImageName)
-        trackNameLabel.text = "TrackName"
-        singerNameLabel.text = "SingerName"
+        trackNameLabel.text = ""
+        singerNameLabel.text = ""
     }
 }

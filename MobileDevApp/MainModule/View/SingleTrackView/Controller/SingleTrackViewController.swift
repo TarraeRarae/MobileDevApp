@@ -9,12 +9,32 @@ import UIKit
 
 class SingleTrackViewController: UIViewController {
 
+    weak var delegate: SingleTrackViewControllerDelegate?
     private var singleTrackView: SingleTrackView?
+    var isPaused: Bool? {
+        willSet(isPaused) {
+            guard let isPaused = isPaused else { return }
+            singleTrackView?.delegate = self
+            singleTrackView?.setTrackCondition(isPaused: isPaused)
+        }
+    }
+    var data: TrackData? {
+        willSet(data) {
+            guard let data = data else { return }
+            singleTrackView = SingleTrackView(frame: self.view.frame, data: data)
+            self.view = singleTrackView
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-        singleTrackView = SingleTrackView(frame: self.view.frame)
-        self.view = singleTrackView
+        self.view.backgroundColor = .systemBackground
+    }
+}
+
+extension SingleTrackViewController: SingleTrackViewDelegate {
+
+    func updateTrackCondition(isPaused: Bool) {
+        delegate?.updateTrackCondition(isPaused: isPaused)
     }
 }
