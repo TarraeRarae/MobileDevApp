@@ -93,9 +93,8 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
         textField.isSecureTextEntry.toggle()
     }
 
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         makeTextFieldValid()
-        return true
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

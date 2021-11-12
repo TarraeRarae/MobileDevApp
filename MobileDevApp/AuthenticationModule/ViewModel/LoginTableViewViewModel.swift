@@ -35,6 +35,9 @@ class LoginTableViewViewModel: TableViewViewModelProtocol {
         for cell in tableView.visibleCells {
             guard let authCell = cell as? AuthenticationCell, let viewModel = authCell.viewModel else { return [] }
             let cellValidation = checkRegistered(text: authCell.textField.text, cellData: viewModel.cellData)
+            if !cellValidation.isValid {
+                authCell.makeTextFieldInvalid()
+            }
             validationErrors.append(cellValidation)
         }
         return validationErrors

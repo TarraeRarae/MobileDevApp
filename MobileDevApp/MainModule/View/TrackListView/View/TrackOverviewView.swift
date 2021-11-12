@@ -72,7 +72,7 @@ class TrackOverviewView: UIControl {
         self.indexPath = indexPath
         super.init(frame: frame)
         self.viewModel = viewModel
-        let size = CGRect(x: 0, y: frame.height * 0.1, width: frame.width, height: frame.height * 0.08)
+        let size = CGRect(x: 0, y: frame.height * 0.91, width: frame.width, height: frame.height * 0.08)
         self.frame = size
         self.addTarget(nil, action: #selector(showSingleTrackView), for: .touchUpInside)
         self.backgroundColor = .systemBackground
@@ -95,7 +95,7 @@ class TrackOverviewView: UIControl {
         }
         self.backgroundColor = .clear
         let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0.0, y: self.frame.height - 0.5, width: self.frame.width, height: 0.5)
+        bottomLine.frame = CGRect(x: 0.0, y: 0.5, width: self.frame.width, height: 0.3)
         bottomLine.backgroundColor = UIColor.lightGray.cgColor
         self.layer.addSublayer(bottomLine)
     }
@@ -103,8 +103,8 @@ class TrackOverviewView: UIControl {
     private func setupTrackImageView() {
         self.addSubview(trackImageView)
         trackImageView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self)
-            make.bottom.equalTo(self).offset(-0.5)
+            make.top.equalTo(self).offset(3)
+            make.bottom.equalTo(self)
             make.left.equalTo(self)
             make.width.equalTo(self.frame.width * 0.25)
         }
@@ -113,8 +113,8 @@ class TrackOverviewView: UIControl {
     private func setupPlayButton() {
         self.addSubview(playButton)
         playButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(0)
-            make.bottom.equalTo(self).offset(0)
+            make.top.equalTo(self)
+            make.bottom.equalTo(self)
             make.left.equalTo(self).offset(self.frame.width * 0.7)
             make.width.equalTo(self.frame.width * 0.15)
         }
