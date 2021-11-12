@@ -27,6 +27,7 @@ class TrackCellViewController: UITableViewCell {
             self.singerNameLabel.text = viewModel.artistNames[0]
         }
     }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .clear
