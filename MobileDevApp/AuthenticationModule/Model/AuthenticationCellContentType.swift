@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AuthenticationCellContentTypes: Int {
+enum AuthenticationCellContentType: Int {
 
     case emailAddress
     case username

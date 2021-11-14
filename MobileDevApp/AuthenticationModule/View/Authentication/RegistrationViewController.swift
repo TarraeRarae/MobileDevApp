@@ -8,9 +8,8 @@
 import UIKit
 import IQKeyboardManagerSwift
 
-class AuthenticationViewController: UIViewController {
+class RegistrationViewController: UIViewController {
 
-    private var viewModel: TableViewViewModelProtocol? = RegistrationTableViewModel()
     private var authenticationTableView: UITableView = UITableView()
     private var keyboardDismissTapGesture: UIGestureRecognizer?
     private var loginDataSource: LoginDataSourceProtocol?
@@ -20,8 +19,13 @@ class AuthenticationViewController: UIViewController {
     private var keyboardFrameHeight: CGFloat = 0
     private let backgroundImage: UIImageView = UIImageView(image: UIImage(named: AuthenticationHelper.Constant.backgroundImageName))
 
+    var presenter: RegistrationPresenterProtocol?
+    var configurator = RegistrationConfigurator()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        configurator.configure(view: self)
+
         backgroundImage.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         backgroundImage.contentMode = .scaleAspectFill
         backgroundImage.frame = UIScreen.main.bounds
@@ -31,10 +35,8 @@ class AuthenticationViewController: UIViewController {
         setupAuthenticationHeaderView()
         setupRegistrationFooterView()
         setupLoginFooterView()
-        if var viewModel = viewModel {
-            viewModel.tableView = authenticationTableView
-        }
         loginDataSource = LoginDataSource(tableView: authenticationTableView)
+        presenter?.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -84,49 +86,6 @@ class AuthenticationViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
 
-    private func registration() -> Bool {
-        guard let viewModel = viewModel else { return false }
-        var isValidInput = true
-        var errors: Set<String> = []
-        for item in viewModel.isTableViewValid {
-            isValidInput = isValidInput && item.isValid
-            if let errorInfo = item.errorInfo {
-                errors.insert(errorInfo)
-            }
-        }
-        if !isValidInput {
-            self.setupAlertController(data: errors)
-        }
-        return isValidInput
-    }
-
-    private func login() -> Bool {
-        var isValidInput = true
-        var errors: Set<String> = []
-        if let loginView = loginDataSource {
-            for item in loginView.isTableViewValid() {
-                isValidInput = isValidInput && item.isValid
-                if let errorInfo = item.errorInfo {
-                    errors.insert(errorInfo)
-                }
-            }
-        }
-        if !isValidInput {
-            self.setupAlertController(data: errors)
-        }
-        return isValidInput
-    }
-
-    private func setupAlertController(data: Set<String>) {
-        var alertMessage: String = ""
-        for item in data {
-            alertMessage += item + "\n"
-        }
-        let alertController = UIAlertController(title: "Error".localized, message: alertMessage, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
-
     @objc func enableView() {
         authenticationTableHeaderView?.enableSegmentedControll()
         registrationTableFooterView?.enableSwitcher()
@@ -140,16 +99,16 @@ class AuthenticationViewController: UIViewController {
 
 // MARK: - UITableViewDataSource methods
 
-extension AuthenticationViewController: UITableViewDataSource {
+extension RegistrationViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let viewModel = viewModel else { fatalError() }
-        return viewModel.numberOfRows()
+        guard let presenter = presenter else { return 0 }
+        return presenter.numberOfRows()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = authenticationTableView.dequeueReusableCell(withIdentifier: AuthenticationCell.Constant.cellID, for: indexPath) as? AuthenticationCell, let viewModel = viewModel else { fatalError() }
-        cell.viewModel = viewModel.cellViewModel(forIndexPath: indexPath)
+        guard let cell = authenticationTableView.dequeueReusableCell(withIdentifier: AuthenticationCell.Constant.cellID, for: indexPath) as? AuthenticationCell, let presenter = presenter else { fatalError() }
+        cell.cellData = presenter.getCellData(for: indexPath)
         return cell
     }
 
@@ -160,7 +119,7 @@ extension AuthenticationViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate methods
 
-extension AuthenticationViewController: UITableViewDelegate {
+extension RegistrationViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return authenticationTableHeaderView
@@ -185,7 +144,7 @@ extension AuthenticationViewController: UITableViewDelegate {
 
 // MARK: - TableHeaderViewDelegate method
 
-extension AuthenticationViewController: TableHeaderViewDelegate {
+extension RegistrationViewController: TableHeaderViewDelegate {
 
     func updateTableView(indexOfSection index: Int) {
         switch index {
@@ -203,21 +162,37 @@ extension AuthenticationViewController: TableHeaderViewDelegate {
 
 // MARK: - TableFooterViewDelegate method
 
-extension AuthenticationViewController: TableFooterViewDelegate {
+extension RegistrationViewController: TableFooterViewDelegate {
 
     func authorize() {
-        guard let tableHeaderView = authenticationTableHeaderView else { return }
-        var isValid: Bool = true
+        guard let tableHeaderView = authenticationTableHeaderView, let presenter = presenter else { return }
         switch tableHeaderView.getCurrentSegmentIndex() {
         case 0:
-            isValid = login()
+//            isValid = login()
+            break
         case 1:
-            isValid = registration()
+            presenter.validateTableData(tableView: authenticationTableView)
         default:
             return
         }
-        if isValid {
-            show(TrackListViewController(), sender: nil)
+    }
+}
+
+extension RegistrationViewController: RegistrationViewControllerProtocol {
+
+    func reloadData() {
+        DispatchQueue.main.async {
+            self.authenticationTableView.reloadData()
         }
+    }
+
+    func setupAlertController(data: Set<String>) {
+        var alertMessage: String = ""
+        for item in data {
+            alertMessage += item + "\n"
+        }
+        let alertController = UIAlertController(title: "Error".localized, message: alertMessage, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
 }

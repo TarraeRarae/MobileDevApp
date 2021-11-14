@@ -17,7 +17,8 @@ class LoginTableViewViewModel: TableViewViewModelProtocol {
     var tableView: UITableView?
 
     var isTableViewValid: [ValidationErrorInfo] {
-        return self.validateTableView()
+//        return self.validateTableView()
+        return []
     }
 
     func numberOfRows() -> Int {
@@ -29,32 +30,32 @@ class LoginTableViewViewModel: TableViewViewModelProtocol {
         return cellViewModel
     }
 
-    private func validateTableView() -> [ValidationErrorInfo] {
-        guard let tableView = tableView else { return [] }
-        var validationErrors: [ValidationErrorInfo] = []
-        for cell in tableView.visibleCells {
-            guard let authCell = cell as? AuthenticationCell, let viewModel = authCell.viewModel else { return [] }
-            let cellValidation = checkRegistered(text: authCell.textField.text, cellData: viewModel.cellData)
-            if !cellValidation.isValid {
-                authCell.makeTextFieldInvalid()
-            }
-            validationErrors.append(cellValidation)
-        }
-        return validationErrors
-    }
+//    private func validateTableView() -> [ValidationErrorInfo] {
+//        guard let tableView = tableView else { return [] }
+//        var validationErrors: [ValidationErrorInfo] = []
+//        for cell in tableView.visibleCells {
+//            guard let authCell = cell as? AuthenticationCell, let viewModel = authCell.viewModel else { return [] }
+//            let cellValidation = checkRegistered(text: authCell.textField.text, cellData: viewModel.cellData)
+//            if !cellValidation.isValid {
+//                authCell.makeTextFieldInvalid()
+//            }
+//            validationErrors.append(cellValidation)
+//        }
+//        return validationErrors
+//    }
 
-    public func checkRegistered(text: String?, cellData: AuthenticationCellData) -> ValidationErrorInfo {
-        guard let text = text else { return ValidationErrorInfo(isValid: false, errorInfo: nil) }
-        if text.count == 0 {
-            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Input data into all fields", comment: ""))
-        }
-        switch cellData.contentType {
-        case .username:
-            return validator.checkUsername(username: text)
-        case .password:
-            return validator.checkPassword(password: text)
-        default:
-            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Unexpected error", comment: ""))
-        }
-    }
+//    public func checkRegistered(text: String?, cellData: AuthenticationCellData) -> ValidationErrorInfo {
+//        guard let text = text else { return ValidationErrorInfo(isValid: false, errorInfo: nil) }
+//        if text.count == 0 {
+//            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Input data into all fields", comment: ""))
+//        }
+//        switch cellData.contentType {
+//        case .username:
+//            return validator.checkUsername(username: text)
+//        case .password:
+//            return validator.checkPassword(password: text)
+//        default:
+//            return ValidationErrorInfo(isValid: false, errorInfo: NSLocalizedString("Unexpected error", comment: ""))
+//        }
+//    }
 }

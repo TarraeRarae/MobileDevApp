@@ -31,7 +31,7 @@ extension LoginDataSource: LoginDataSourceProtocol {
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: AuthenticationCell.Constant.cellID, for: indexPath) as? AuthenticationCell, let viewModel = viewModel else { fatalError() }
-        cell.viewModel = viewModel.cellViewModel(forIndexPath: indexPath)
+//        cell.viewModel = viewModel.cellViewModel(forIndexPath: indexPath)
 		return cell
 	}
 

@@ -87,7 +87,7 @@ extension TrackListViewController: TrackListTitleViewDelegate {
 
     func presentMoreMenu(alertController: UIAlertController) {
         alertController.addAction(UIAlertAction(title: "Exit".localized, style: .destructive, handler: { (_: UIAlertAction) in
-            self.show(AuthenticationViewController(), sender: nil)
+            self.show(RegistrationViewController(), sender: nil)
         }))
         self.present(alertController, animated: true, completion: nil)
     }
