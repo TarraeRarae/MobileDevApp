@@ -8,7 +8,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 
-class RegistrationViewController: UIViewController {
+class AuthenticationViewController: UIViewController {
 
     private var authenticationTableView: UITableView = UITableView()
     private var keyboardDismissTapGesture: UIGestureRecognizer?
@@ -18,8 +18,8 @@ class RegistrationViewController: UIViewController {
     private var keyboardFrameHeight: CGFloat = 0
     private let backgroundImage: UIImageView = UIImageView(image: UIImage(named: AuthenticationHelper.Constant.backgroundImageName))
 
-    var presenter: RegistrationPresenterProtocol?
-    var configurator = RegistrationConfigurator()
+    var presenter: AuthenticationPresenterProtocol?
+    var configurator = AuthenticationConfigurator()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +98,7 @@ class RegistrationViewController: UIViewController {
 
 // MARK: - UITableViewDataSource methods
 
-extension RegistrationViewController: UITableViewDataSource {
+extension AuthenticationViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let presenter = presenter else { return 0 }
@@ -118,7 +118,7 @@ extension RegistrationViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate methods
 
-extension RegistrationViewController: UITableViewDelegate {
+extension AuthenticationViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return authenticationTableHeaderView
@@ -143,7 +143,7 @@ extension RegistrationViewController: UITableViewDelegate {
 
 // MARK: - TableHeaderViewDelegate method
 
-extension RegistrationViewController: TableHeaderViewDelegate {
+extension AuthenticationViewController: TableHeaderViewDelegate {
 
     func updateTableView(indexOfSection index: Int) {
         guard let tableHeaderView = authenticationTableHeaderView else { return }
@@ -153,7 +153,7 @@ extension RegistrationViewController: TableHeaderViewDelegate {
 
 // MARK: - TableFooterViewDelegate method
 
-extension RegistrationViewController: TableFooterViewDelegate {
+extension AuthenticationViewController: TableFooterViewDelegate {
 
     func authorize() {
         guard let tableHeaderView = authenticationTableHeaderView, let presenter = presenter else { return }
@@ -161,7 +161,7 @@ extension RegistrationViewController: TableFooterViewDelegate {
     }
 }
 
-extension RegistrationViewController: RegistrationViewControllerProtocol {
+extension AuthenticationViewController: AuthenticationViewControllerProtocol {
 
     func reloadData() {
         DispatchQueue.main.async {

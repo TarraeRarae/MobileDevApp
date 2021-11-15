@@ -7,15 +7,15 @@
 
 import UIKit
 
-class RegistrationPresenter {
+class AuthenticationPresenter {
 
-    weak var view: RegistrationViewControllerProtocol?
-    var interactor: RegistrationInteractorProtocol?
-    var router: RegistrationRouterProtocol?
+    weak var view: AuthenticationViewControllerProtocol?
+    var interactor: AuthenticationInteractorProtocol?
+    var router: AuthenticationRouterProtocol?
 
     var data: [AuthenticationCellData] = []
 
-    required init(view: RegistrationViewControllerProtocol) {
+    required init(view: AuthenticationViewControllerProtocol) {
         self.view = view
     }
 
@@ -47,7 +47,7 @@ class RegistrationPresenter {
     }
 }
 
-extension RegistrationPresenter: RegistrationPresenterProtocol {
+extension AuthenticationPresenter: AuthenticationPresenterProtocol {
 
     func validateTableData(tableView: UITableView, for segmentedIndex: Int) {
         var cells: [AuthenticationCell] = []
@@ -91,7 +91,7 @@ extension RegistrationPresenter: RegistrationPresenterProtocol {
     }
 }
 
-extension RegistrationPresenter: RegistrationInteractorOutputProtocol {
+extension AuthenticationPresenter: AuthenticationInteractorOutputProtocol {
 
     func didReceiveData(data: [AuthenticationCellData]) {
         self.data = data

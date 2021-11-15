@@ -22,4 +22,11 @@ struct TrackData {
             artistsNames.append(item.name)
         }
     }
+
+    static func == (lhs: TrackData, rhs: TrackData) -> Bool {
+        if lhs.uri == rhs.uri {
+            return true
+        }
+        return false
+    }
 }

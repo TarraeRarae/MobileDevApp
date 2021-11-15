@@ -7,16 +7,16 @@
 
 import Foundation
 
-class RegistrationRouter {
+class AuthenticationRouter {
 
-    weak var view: RegistrationViewController?
+    weak var view: AuthenticationViewController?
 
-    required init(view: RegistrationViewController) {
+    required init(view: AuthenticationViewController) {
         self.view = view
     }
 }
 
-extension RegistrationRouter: RegistrationRouterProtocol {
+extension AuthenticationRouter: AuthenticationRouterProtocol {
 
     func presentTrackList() {
         view?.show(TrackListViewController(), sender: nil)

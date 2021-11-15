@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol RegistrationInteractorOutputProtocol: AnyObject {
+protocol AuthenticationInteractorOutputProtocol: AnyObject {
 
     func didReceiveData(data: [AuthenticationCellData])
 }

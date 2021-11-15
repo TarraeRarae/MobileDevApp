@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol RegistrationRouterProtocol {
+protocol AuthenticationRouterProtocol {
 
     func presentTrackList()
 }

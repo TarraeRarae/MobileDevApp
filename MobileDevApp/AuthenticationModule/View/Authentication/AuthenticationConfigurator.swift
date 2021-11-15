@@ -7,12 +7,12 @@
 
 import Foundation
 
-class RegistrationConfigurator {
+class AuthenticationConfigurator {
 
-    func configure(view: RegistrationViewController) {
-        let presenter = RegistrationPresenter(view: view)
-        let interactor = RegistrationInteractor(presenter: presenter)
-        let router = RegistrationRouter(view: view)
+    func configure(view: AuthenticationViewController) {
+        let presenter = AuthenticationPresenter(view: view)
+        let interactor = AuthenticationInteractor(presenter: presenter)
+        let router = AuthenticationRouter(view: view)
 
         view.presenter = presenter
         presenter.interactor = interactor

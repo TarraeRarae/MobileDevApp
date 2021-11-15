@@ -20,11 +20,11 @@ class TrackCellViewController: UITableViewCell {
     @IBOutlet weak var singerNameLabel: UILabel!
     @IBOutlet weak var downloadButton: UIButton!
 
-    var viewModel: TrackListCellViewModelProtocol? {
-        willSet(viewModel) {
-            guard let viewModel = viewModel else { return }
-            self.trackNameLabel.text = viewModel.name
-            self.singerNameLabel.text = viewModel.artistNames[0]
+    var cellData: TrackData? {
+        willSet(cellData) {
+            guard let cellData = cellData else { return }
+            self.trackNameLabel.text = cellData.name
+            self.singerNameLabel.text = cellData.artistsNames[0]
         }
     }
 

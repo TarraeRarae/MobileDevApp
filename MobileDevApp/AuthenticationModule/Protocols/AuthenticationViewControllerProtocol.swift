@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol RegistrationViewControllerProtocol: AnyObject {
+protocol AuthenticationViewControllerProtocol: AnyObject {
 
     func reloadData()
     func getCurrentSegmentedIndex() -> Int

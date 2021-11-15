@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol RegistrationInteractorProtocol: AnyObject {
+protocol AuthenticationInteractorProtocol: AnyObject {
 
     func fetchRegistrationData()
     func fetchLoginData()

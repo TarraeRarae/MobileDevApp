@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol RegistrationPresenterProtocol: AnyObject {
+protocol AuthenticationPresenterProtocol: AnyObject {
 
     func viewDidLoad(for segmentedIndex: Int)
     func validateTableData(tableView: UITableView, for segmentedIndex: Int)

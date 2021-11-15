@@ -7,16 +7,16 @@
 
 import Foundation
 
-class RegistrationInteractor {
+class AuthenticationInteractor {
 
-    weak var presenter: RegistrationInteractorOutputProtocol?
+    weak var presenter: AuthenticationInteractorOutputProtocol?
 
-    required init(presenter: RegistrationInteractorOutputProtocol) {
+    required init(presenter: AuthenticationInteractorOutputProtocol) {
         self.presenter = presenter
     }
 }
 
-extension RegistrationInteractor: RegistrationInteractorProtocol {
+extension AuthenticationInteractor: AuthenticationInteractorProtocol {
 
     func validateData(cells: [AuthenticationCell]) -> [ValidationErrorInfo] {
         var errors: [ValidationErrorInfo] = []
