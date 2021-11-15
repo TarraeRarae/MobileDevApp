@@ -10,5 +10,6 @@ import Foundation
 protocol RegistrationViewControllerProtocol: AnyObject {
 
     func reloadData()
+    func getCurrentSegmentedIndex() -> Int
     func setupAlertController(data: Set<String>)
 }

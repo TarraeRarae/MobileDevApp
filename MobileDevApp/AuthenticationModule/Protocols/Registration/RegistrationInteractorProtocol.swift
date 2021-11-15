@@ -9,6 +9,8 @@ import UIKit
 
 protocol RegistrationInteractorProtocol: AnyObject {
 
-    func fetchData()
+    func fetchRegistrationData()
+    func fetchLoginData()
     func validateData(cells: [AuthenticationCell]) -> [ValidationErrorInfo]
+    func checkRegistered(cells: [AuthenticationCell]) -> [ValidationErrorInfo]
 }

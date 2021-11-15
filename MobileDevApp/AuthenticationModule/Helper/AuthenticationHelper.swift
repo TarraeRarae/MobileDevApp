@@ -36,6 +36,20 @@ class AuthenticationHelper {
         }
     }
 
+    func checkRegistered(text: String, contentType: AuthenticationCellContentType) -> ValidationErrorInfo {
+        if text == "" {
+            return ValidationErrorInfo(isValid: false, errorInfo: "Input data into all fields".localized)
+        }
+        switch contentType {
+        case .username:
+            return checkUsername(username: text)
+        case .password:
+            return checkPassword(password: text)
+        default:
+            return ValidationErrorInfo(isValid: false, errorInfo: "Unable to check data".localized)
+        }
+    }
+
     func saveUsername(text: String) {
         UserDefaults.standard.set(text, forKey: AuthenticationHelper.Constant.usernameKey)
     }

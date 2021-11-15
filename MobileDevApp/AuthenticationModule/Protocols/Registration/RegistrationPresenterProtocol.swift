@@ -9,8 +9,8 @@ import UIKit
 
 protocol RegistrationPresenterProtocol: AnyObject {
 
-    func viewDidLoad()
-    func validateTableData(tableView: UITableView)
+    func viewDidLoad(for segmentedIndex: Int)
+    func validateTableData(tableView: UITableView, for segmentedIndex: Int)
     func numberOfRows() -> Int
     func getCellData(for indexPath: IndexPath) -> AuthenticationCellData
 }

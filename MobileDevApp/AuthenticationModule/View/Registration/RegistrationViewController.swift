@@ -12,8 +12,7 @@ class RegistrationViewController: UIViewController {
 
     private var authenticationTableView: UITableView = UITableView()
     private var keyboardDismissTapGesture: UIGestureRecognizer?
-    private var loginDataSource: LoginDataSourceProtocol?
-    private var authenticationTableHeaderView: AuthenticationTableHeaderView?
+    var authenticationTableHeaderView: AuthenticationTableHeaderView?
     private var registrationTableFooterView: RegistraionTableFooterView?
     private var loginTableFooterView: LoginTableFooterView?
     private var keyboardFrameHeight: CGFloat = 0
@@ -25,7 +24,6 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(view: self)
-
         backgroundImage.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         backgroundImage.contentMode = .scaleAspectFill
         backgroundImage.frame = UIScreen.main.bounds
@@ -35,8 +33,9 @@ class RegistrationViewController: UIViewController {
         setupAuthenticationHeaderView()
         setupRegistrationFooterView()
         setupLoginFooterView()
-        loginDataSource = LoginDataSource(tableView: authenticationTableView)
-        presenter?.viewDidLoad()
+        if let authenticationTableHeaderView = authenticationTableHeaderView {
+            presenter?.viewDidLoad(for: authenticationTableHeaderView.getCurrentSegmentIndex())
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -147,16 +146,8 @@ extension RegistrationViewController: UITableViewDelegate {
 extension RegistrationViewController: TableHeaderViewDelegate {
 
     func updateTableView(indexOfSection index: Int) {
-        switch index {
-        case 0:
-            authenticationTableView.dataSource = loginDataSource
-            authenticationTableView.reloadData()
-        case 1:
-            authenticationTableView.dataSource = self
-            authenticationTableView.reloadData()
-        default:
-            return
-        }
+        guard let tableHeaderView = authenticationTableHeaderView else { return }
+        presenter?.viewDidLoad(for: tableHeaderView.getCurrentSegmentIndex())
     }
 }
 
@@ -166,15 +157,7 @@ extension RegistrationViewController: TableFooterViewDelegate {
 
     func authorize() {
         guard let tableHeaderView = authenticationTableHeaderView, let presenter = presenter else { return }
-        switch tableHeaderView.getCurrentSegmentIndex() {
-        case 0:
-//            isValid = login()
-            break
-        case 1:
-            presenter.validateTableData(tableView: authenticationTableView)
-        default:
-            return
-        }
+        presenter.validateTableData(tableView: authenticationTableView, for: tableHeaderView.getCurrentSegmentIndex())
     }
 }
 
@@ -184,6 +167,11 @@ extension RegistrationViewController: RegistrationViewControllerProtocol {
         DispatchQueue.main.async {
             self.authenticationTableView.reloadData()
         }
+    }
+
+    func getCurrentSegmentedIndex() -> Int {
+        guard let tableHeaderView = authenticationTableHeaderView else { return 0 }
+        return tableHeaderView.getCurrentSegmentIndex()
     }
 
     func setupAlertController(data: Set<String>) {

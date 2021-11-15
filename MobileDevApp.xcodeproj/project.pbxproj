@@ -9,11 +9,6 @@
 /* Begin PBXBuildFile section */
 		1F0094CC273ACD2400BC30FA /* TrackOverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0094CB273ACD2400BC30FA /* TrackOverviewViewModel.swift */; };
 		1F0094CE273ACD6000BC30FA /* TrackOverviewViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0094CD273ACD6000BC30FA /* TrackOverviewViewModelProtocol.swift */; };
-		1F0AEA122717679C00052509 /* TableViewViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AEA112717679C00052509 /* TableViewViewModelProtocol.swift */; };
-		1F0AEA14271767C800052509 /* TableViewCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AEA13271767C800052509 /* TableViewCellViewModelProtocol.swift */; };
-		1F0AEA16271768A800052509 /* RegistrationTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AEA15271768A800052509 /* RegistrationTableViewModel.swift */; };
-		1F0AEA182717694900052509 /* AuthenticationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AEA172717694900052509 /* AuthenticationCellViewModel.swift */; };
-		1F0AEA1A27176A5400052509 /* LoginTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AEA1927176A5400052509 /* LoginTableViewViewModel.swift */; };
 		1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */; };
 		1F1DA4AB2701A24700757C9E /* AuthenticationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */; };
 		1F40D2BD273B2672006569AF /* LocalizedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */; };
@@ -37,10 +32,8 @@
 		1F5E84E62732B4AD00CAA36A /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5E84E52732B4AD00CAA36A /* TrackCell.xib */; };
 		1F5E85092732D7AF00CAA36A /* TrackListTitleViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5E85082732D7AF00CAA36A /* TrackListTitleViewDelegate.swift */; };
 		1F65FFCF2722CFD7008BEF65 /* AuthenticationCellContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F65FFCE2722CFD7008BEF65 /* AuthenticationCellContentType.swift */; };
-		1F65FFD12722D528008BEF65 /* LoginDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F65FFD02722D528008BEF65 /* LoginDataSourceProtocol.swift */; };
 		1F66D74F27416D2E0045CDD4 /* RegistrationRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F66D74E27416D2E0045CDD4 /* RegistrationRouterProtocol.swift */; };
 		1F6EDF01271052EC00DC994B /* AuthenticationCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF00271052EC00DC994B /* AuthenticationCellData.swift */; };
-		1F6EDF0B2710609E00DC994B /* LoginDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF0A2710609E00DC994B /* LoginDataSource.swift */; };
 		1F7D3F81271B73C000B9248F /* AuthenticationTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D3F80271B73C000B9248F /* AuthenticationTableHeaderView.swift */; };
 		1FB09149273488B40081EA22 /* TrackOverviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB09148273488B40081EA22 /* TrackOverviewDelegate.swift */; };
 		1FB258512732EE6000438837 /* SingleTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB258502732EE6000438837 /* SingleTrackViewController.swift */; };
@@ -70,11 +63,6 @@
 /* Begin PBXFileReference section */
 		1F0094CB273ACD2400BC30FA /* TrackOverviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOverviewViewModel.swift; sourceTree = "<group>"; };
 		1F0094CD273ACD6000BC30FA /* TrackOverviewViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOverviewViewModelProtocol.swift; sourceTree = "<group>"; };
-		1F0AEA112717679C00052509 /* TableViewViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewViewModelProtocol.swift; sourceTree = "<group>"; };
-		1F0AEA13271767C800052509 /* TableViewCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModelProtocol.swift; sourceTree = "<group>"; };
-		1F0AEA15271768A800052509 /* RegistrationTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTableViewModel.swift; sourceTree = "<group>"; };
-		1F0AEA172717694900052509 /* AuthenticationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCellViewModel.swift; sourceTree = "<group>"; };
-		1F0AEA1927176A5400052509 /* LoginTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableViewViewModel.swift; sourceTree = "<group>"; };
 		1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCell.swift; sourceTree = "<group>"; };
 		1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthenticationCell.xib; sourceTree = "<group>"; };
 		1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStringExtension.swift; sourceTree = "<group>"; };
@@ -99,10 +87,8 @@
 		1F5E84E52732B4AD00CAA36A /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
 		1F5E85082732D7AF00CAA36A /* TrackListTitleViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTitleViewDelegate.swift; sourceTree = "<group>"; };
 		1F65FFCE2722CFD7008BEF65 /* AuthenticationCellContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCellContentType.swift; sourceTree = "<group>"; };
-		1F65FFD02722D528008BEF65 /* LoginDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSourceProtocol.swift; sourceTree = "<group>"; };
 		1F66D74E27416D2E0045CDD4 /* RegistrationRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouterProtocol.swift; sourceTree = "<group>"; };
 		1F6EDF00271052EC00DC994B /* AuthenticationCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCellData.swift; sourceTree = "<group>"; };
-		1F6EDF0A2710609E00DC994B /* LoginDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSource.swift; sourceTree = "<group>"; };
 		1F7D3F80271B73C000B9248F /* AuthenticationTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTableHeaderView.swift; sourceTree = "<group>"; };
 		1FB09148273488B40081EA22 /* TrackOverviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOverviewDelegate.swift; sourceTree = "<group>"; };
 		1FB258502732EE6000438837 /* SingleTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTrackViewController.swift; sourceTree = "<group>"; };
@@ -146,23 +132,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F0AEA0F2717651500052509 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				1F0AEA172717694900052509 /* AuthenticationCellViewModel.swift */,
-				1F0AEA1927176A5400052509 /* LoginTableViewViewModel.swift */,
-				1F0AEA15271768A800052509 /* RegistrationTableViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		1F0AEA102717651D00052509 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				1FD57EA22741587200ECB77B /* VIPER */,
-				1F65FFD02722D528008BEF65 /* LoginDataSourceProtocol.swift */,
-				1F0AEA112717679C00052509 /* TableViewViewModelProtocol.swift */,
-				1F0AEA13271767C800052509 /* TableViewCellViewModelProtocol.swift */,
+				1FD57EA22741587200ECB77B /* Registration */,
 				1FC706E8271C4586002BFC2F /* TableHeaderViewDelegate.swift */,
 				1FC706EC271C4E01002BFC2F /* TableFooterViewDelegate.swift */,
 			);
@@ -177,10 +150,9 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		1F0AEA222719938400052509 /* Authentication */ = {
+		1F0AEA222719938400052509 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				1F6EDF0A2710609E00DC994B /* LoginDataSource.swift */,
 				1FD57E992741581500ECB77B /* Header */,
 				1FD57E972741580900ECB77B /* Footer */,
 				1F59B64B26FE477400C5A614 /* RegistrationViewController.swift */,
@@ -189,7 +161,7 @@
 				1FD57E9E2741585600ECB77B /* RegistrationRouter.swift */,
 				1FD57EA02741585F00ECB77B /* RegistrationConfigurator.swift */,
 			);
-			path = Authentication;
+			path = Registration;
 			sourceTree = "<group>";
 		};
 		1F0AEA242719939C00052509 /* AuthenticationCell */ = {
@@ -247,7 +219,6 @@
 				1F0AEA212719830800052509 /* Helper */,
 				1F0AEA102717651D00052509 /* Protocols */,
 				1F6EDEFF2710529600DC994B /* Model */,
-				1F0AEA0F2717651500052509 /* ViewModel */,
 				1F6EDEFA270F990B00DC994B /* View */,
 			);
 			path = AuthenticationModule;
@@ -338,7 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				1F0AEA242719939C00052509 /* AuthenticationCell */,
-				1F0AEA222719938400052509 /* Authentication */,
+				1F0AEA222719938400052509 /* Registration */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -465,7 +436,7 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
-		1FD57EA22741587200ECB77B /* VIPER */ = {
+		1FD57EA22741587200ECB77B /* Registration */ = {
 			isa = PBXGroup;
 			children = (
 				1FD57EA32741588A00ECB77B /* RegistrationViewControllerProtocol.swift */,
@@ -474,7 +445,7 @@
 				1FD57EA9274158D700ECB77B /* RegistrationInteractorOutputProtocol.swift */,
 				1F66D74E27416D2E0045CDD4 /* RegistrationRouterProtocol.swift */,
 			);
-			path = VIPER;
+			path = Registration;
 			sourceTree = "<group>";
 		};
 		9443E44A334FF2A35868E987 /* Pods */ = {
@@ -614,7 +585,6 @@
 			files = (
 				1FD57EA12741585F00ECB77B /* RegistrationConfigurator.swift in Sources */,
 				1F550B4A27144EE3007BADB6 /* TrackListViewController.swift in Sources */,
-				1F6EDF0B2710609E00DC994B /* LoginDataSource.swift in Sources */,
 				1FD57EA8274158B900ECB77B /* RegistrationInteractorProtocol.swift in Sources */,
 				1F65FFCF2722CFD7008BEF65 /* AuthenticationCellContentType.swift in Sources */,
 				1F4114A92739CAF10013338D /* TrackData.swift in Sources */,
@@ -631,7 +601,6 @@
 				1FC706E9271C4586002BFC2F /* TableHeaderViewDelegate.swift in Sources */,
 				1F59B64C26FE477400C5A614 /* RegistrationViewController.swift in Sources */,
 				1F40D2BD273B2672006569AF /* LocalizedStringExtension.swift in Sources */,
-				1F0AEA16271768A800052509 /* RegistrationTableViewModel.swift in Sources */,
 				1F0094CC273ACD2400BC30FA /* TrackOverviewViewModel.swift in Sources */,
 				1FD57E9B2741584200ECB77B /* RegistrationInteractor.swift in Sources */,
 				1F5E85092732D7AF00CAA36A /* TrackListTitleViewDelegate.swift in Sources */,
@@ -651,14 +620,9 @@
 				1F59B64826FE477400C5A614 /* AppDelegate.swift in Sources */,
 				1FD57E9F2741585600ECB77B /* RegistrationRouter.swift in Sources */,
 				1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */,
-				1F0AEA182717694900052509 /* AuthenticationCellViewModel.swift in Sources */,
-				1F65FFD12722D528008BEF65 /* LoginDataSourceProtocol.swift in Sources */,
-				1F0AEA122717679C00052509 /* TableViewViewModelProtocol.swift in Sources */,
 				1F5E84E22732B46D00CAA36A /* TrackCellViewController.swift in Sources */,
-				1F0AEA1A27176A5400052509 /* LoginTableViewViewModel.swift in Sources */,
 				1F4114AD2739CDEA0013338D /* TrackListCellViewModel.swift in Sources */,
 				1FD57EA6274158A600ECB77B /* RegistrationPresenterProtocol.swift in Sources */,
-				1F0AEA14271767C800052509 /* TableViewCellViewModelProtocol.swift in Sources */,
 				1FB258592733C7CD00438837 /* TrackOverviewView.swift in Sources */,
 				1F499B11273AA8A6006F62CC /* SingleTrackViewControllerDelegate.swift in Sources */,
 				1FC70715271DDD2C002BFC2F /* TrackListTitleView.swift in Sources */,
