@@ -238,6 +238,7 @@
 		1F5E84DD2732B25A00CAA36A /* Localizing */ = {
 			isa = PBXGroup;
 			children = (
+				1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */,
 				1FC70710271DD5A8002BFC2F /* Localizable.strings */,
 			);
 			path = Localizing;
@@ -379,7 +380,6 @@
 			isa = PBXGroup;
 			children = (
 				1FB2585627332BCC00438837 /* MainHelper.swift */,
-				1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
