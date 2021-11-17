@@ -5,4 +5,5 @@ inhibit_all_warnings!
 target 'MobileDevApp' do
    pod 'IQKeyboardManagerSwift'
    pod 'SnapKit', '~> 5.0.0'
+   pod 'Moya', '~> 15.0'
 end

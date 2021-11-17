@@ -20,12 +20,12 @@ class SingleTrackViewController: UIViewController {
         }
     }
 
-    var viewModel: TrackOverviewViewModelProtocol? {
-        willSet(viewModel) {
-            guard let viewModel = viewModel else { return }
+    var data: TrackData? {
+        willSet(data) {
+            guard let data = data else { return }
             singleTrackView = SingleTrackView(frame: self.view.frame)
-            singleTrackView?.setTrackName(text: viewModel.trackName)
-            singleTrackView?.setSingerName(text: viewModel.artistsNames[0])
+            singleTrackView?.setTrackName(text: data.name)
+            singleTrackView?.setSingerName(text: data.artistsNames[0])
             self.view = singleTrackView
         }
     }
