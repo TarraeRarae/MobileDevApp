@@ -70,7 +70,7 @@ class TrackOverviewView: UIControl {
     init(frame: CGRect, data: TrackData) {
         super.init(frame: frame)
         self.data = data
-        let size = CGRect(x: 0, y: frame.height * 0.91, width: frame.width, height: frame.height * 0.08)
+        let size = CGRect(x: 0, y: frame.height * 0.9, width: frame.width, height: frame.height * 0.1)
         self.frame = size
         self.addTarget(nil, action: #selector(showSingleTrackView), for: .touchUpInside)
         self.backgroundColor = .systemBackground
@@ -88,10 +88,10 @@ class TrackOverviewView: UIControl {
 
     private func customizeView() {
         if let data = data {
-            self.singerNameLabel.text = data.artistsNames[0]
+            self.singerNameLabel.text = data.artists[0].name
             self.trackNameLabel.text = data.name
         }
-        self.backgroundColor = .clear
+        self.backgroundColor = .white
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0.0, y: 0.5, width: self.frame.width, height: 0.3)
         bottomLine.backgroundColor = UIColor.lightGray.cgColor
@@ -102,7 +102,7 @@ class TrackOverviewView: UIControl {
         self.addSubview(trackImageView)
         trackImageView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(3)
-            make.bottom.equalTo(self)
+            make.bottom.equalTo(self).offset(-self.frame.height * 0.2)
             make.left.equalTo(self)
             make.width.equalTo(self.frame.width * 0.25)
         }
@@ -112,7 +112,7 @@ class TrackOverviewView: UIControl {
         self.addSubview(playButton)
         playButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self)
-            make.bottom.equalTo(self)
+            make.bottom.equalTo(self).offset(-self.frame.height * 0.2)
             make.left.equalTo(self).offset(self.frame.width * 0.7)
             make.width.equalTo(self.frame.width * 0.15)
         }
@@ -123,7 +123,7 @@ class TrackOverviewView: UIControl {
         self.addSubview(trackNameLabel)
         trackNameLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.5)
+            make.bottom.equalTo(self).offset(-self.frame.height * 0.4)
             make.left.equalTo(self).offset(self.frame.width * 0.26)
             make.width.equalTo(self.frame.width * 0.44)
         }
@@ -132,8 +132,8 @@ class TrackOverviewView: UIControl {
     private func setupSingerNameLabel() {
         self.addSubview(singerNameLabel)
         singerNameLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(self.frame.height * 0.5)
-            make.bottom.equalTo(self)
+            make.top.equalTo(self).offset(self.frame.height * 0.4)
+            make.bottom.equalTo(self).offset(-self.frame.height * 0.2)
             make.left.equalTo(self).offset(self.frame.width * 0.26)
             make.width.equalTo(self.frame.width * 0.44)
         }
@@ -143,7 +143,7 @@ class TrackOverviewView: UIControl {
         self.addSubview(closeButton)
         closeButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(0)
-            make.bottom.equalTo(self).offset(0)
+            make.bottom.equalTo(self).offset(-self.frame.height * 0.2)
             make.right.equalTo(self).offset(0)
             make.width.equalTo(self.frame.width * 0.15)
         }
@@ -159,9 +159,9 @@ class TrackOverviewView: UIControl {
     }
 
     @objc private func showSingleTrackView() {
-        if let data = data, let delegate = delegate {
-            delegate.presentSingleTrackView(data: data, isPaused: self.playButton.isSelected)
-        }
+//        if let data = data, let delegate = delegate {
+//            delegate.presentSingleTrackView(data: data, isPaused: self.playButton.isSelected)
+//        }
     }
 
     @objc private func closeTrack() {

@@ -24,7 +24,7 @@ class TrackCellViewController: UITableViewCell {
         willSet(cellData) {
             guard let cellData = cellData else { return }
             self.trackNameLabel.text = cellData.name
-            self.singerNameLabel.text = cellData.artistsNames[0]
+            self.singerNameLabel.text = cellData.artists[0].name
         }
     }
 

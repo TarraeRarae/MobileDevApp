@@ -9,19 +9,14 @@ import Foundation
 
 class ParserJSON {
 
-    static func parseJSON() -> TrackDataJSON? {
+    static func parseJSON(data: Data) -> TrackDataJSON? {
         let decoder = JSONDecoder()
-        var trackDataJSONArray: TrackDataJSON?
+        var dataJSON: TrackDataJSON?
         do {
-            if let bundlePath = Bundle.main.path(forResource: "Data", ofType: "json"),
-               let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
-                let resultData = try decoder.decode(TrackDataJSON.self, from: jsonData)
-                trackDataJSONArray = resultData
-                return trackDataJSONArray
-            }
+            dataJSON = try decoder.decode(TrackDataJSON.self, from: data)
         } catch {
-            print("error")
+            dataJSON = nil
         }
-        return nil
+        return dataJSON
     }
 }

@@ -89,7 +89,7 @@ extension TrackListViewController: TrackListTitleViewDelegate {
 
 extension TrackListViewController: TrackOverviewDelegate {
 
-    func presentSingleTrackView(data: TrackData, isPaused: Bool) {
+    func presentSingleTrackView(data: TrackDataJSON, isPaused: Bool) {
         let singleTrackViewController = SingleTrackViewController()
         singleTrackViewController.delegate = self
         singleTrackViewController.data = data

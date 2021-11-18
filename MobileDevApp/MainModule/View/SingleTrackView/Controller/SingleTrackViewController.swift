@@ -20,13 +20,13 @@ class SingleTrackViewController: UIViewController {
         }
     }
 
-    var data: TrackData? {
+    var data: TrackDataJSON? {
         willSet(data) {
-            guard let data = data else { return }
-            singleTrackView = SingleTrackView(frame: self.view.frame)
-            singleTrackView?.setTrackName(text: data.name)
-            singleTrackView?.setSingerName(text: data.artistsNames[0])
-            self.view = singleTrackView
+//            guard let data = data else { return }
+//            singleTrackView = SingleTrackView(frame: self.view.frame)
+//            singleTrackView?.setTrackName(text: data.name)
+//            singleTrackView?.setSingerName(text: data.artistsNames[0])
+//            self.view = singleTrackView
         }
     }
 

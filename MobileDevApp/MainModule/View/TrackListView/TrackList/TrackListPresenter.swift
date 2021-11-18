@@ -20,12 +20,12 @@ class TrackListPresenter {
 
 extension TrackListPresenter: TrackListPresenterProtocol {
 
-    func viewDidLoad() {
-        interactor?.fetchData()
-    }
-
     func getCellData(for indexPath: IndexPath) -> TrackData {
         return data[indexPath.row]
+    }
+
+    func viewDidLoad() {
+        interactor?.fetchData()
     }
 
     func numberOfRows() -> Int {
