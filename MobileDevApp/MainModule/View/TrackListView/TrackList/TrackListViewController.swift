@@ -16,7 +16,7 @@ class TrackListViewController: UIViewController {
         didSet {
             if let trackOverviewView = trackOverviewView {
                 self.view.insertSubview(trackOverviewView, aboveSubview: trackTableView)
-                trackTableView.contentSize = CGSize(width: self.view.frame.width, height: trackTableView.contentSize.height + trackOverviewView.frame.height * 2)
+                trackTableView.contentSize = CGSize(width: self.view.frame.width, height: trackTableView.contentSize.height + trackOverviewView.frame.height * 0.7)
             }
         }
     }
@@ -89,7 +89,7 @@ extension TrackListViewController: TrackListTitleViewDelegate {
 
 extension TrackListViewController: TrackOverviewDelegate {
 
-    func presentSingleTrackView(data: TrackDataJSON, isPaused: Bool) {
+    func presentSingleTrackView(data: TrackData, isPaused: Bool) {
         let singleTrackViewController = SingleTrackViewController()
         singleTrackViewController.delegate = self
         singleTrackViewController.data = data
@@ -102,14 +102,20 @@ extension TrackListViewController: TrackOverviewDelegate {
             trackOverviewView.removeFromSuperview()
             trackTableView.frame = self.view.frame
             self.trackOverviewView = nil
+            self.presenter?.closeTrack()
         }
+    }
+
+    func playButtonTaped(isPaused: Bool) {
+        presenter?.changeTrackCondition(isPaused: isPaused)
     }
 }
 
 extension TrackListViewController: SingleTrackViewControllerDelegate {
 
-    func updateTrackCondition(isPaused: Bool) {
+    func playButtonTapped(isPaused: Bool) {
         trackOverviewView?.updateTrackCondition(isPaused: isPaused)
+        presenter?.changeTrackCondition(isPaused: isPaused)
     }
 }
 
@@ -126,7 +132,7 @@ extension TrackListViewController: TrackListViewControllerProtocol {
             return
         }
         if overviewData == data {
-            self.updateTrackCondition(isPaused: !trackOverview.isTrackPaused)
+            self.playButtonTapped(isPaused: !trackOverview.isTrackPaused)
             return
         }
         closeTrack()

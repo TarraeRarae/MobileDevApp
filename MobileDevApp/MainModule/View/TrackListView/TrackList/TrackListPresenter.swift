@@ -34,6 +34,19 @@ extension TrackListPresenter: TrackListPresenterProtocol {
 
     func didCellTap(at indexPath: IndexPath) {
         view?.showTrackOverview(with: data[indexPath.row])
+        interactor?.startTrack(data: data[indexPath.row])
+    }
+
+    func closeTrack() {
+        interactor?.closeTrack()
+    }
+
+    func changeTrackCondition(isPaused: Bool) {
+        if isPaused {
+            interactor?.pauseTrack()
+        } else {
+            interactor?.playTrack()
+        }
     }
 }
 

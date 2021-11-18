@@ -102,6 +102,11 @@ class SingleTrackView: UIView {
               right: playButton.frame.size.width / 2)
     }
 
+    public func setTrackImage(image: UIImage?) {
+        guard let image = image else { return }
+        self.trackImageView.image = image
+    }
+
     public func setTrackCondition(isPaused: Bool) {
         self.playButton.isSelected = isPaused
     }
@@ -116,6 +121,6 @@ class SingleTrackView: UIView {
 
     @objc private func playTrack() {
         playButton.isSelected.toggle()
-        delegate?.updateTrackCondition(isPaused: playButton.isSelected)
+        delegate?.playButtonTapped(isPaused: playButton.isSelected)
     }
 }

@@ -15,16 +15,17 @@ class TrackCellViewController: UITableViewCell {
         static let rowHeight: CGFloat = 80
     }
 
-    @IBOutlet weak var trackImage: UIImageView!
+    @IBOutlet weak var trackImageView: UIImageView!
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var singerNameLabel: UILabel!
     @IBOutlet weak var downloadButton: UIButton!
 
     var cellData: TrackData? {
         willSet(cellData) {
-            guard let cellData = cellData else { return }
+            guard let cellData = cellData, let imageData = ImageManager.shared.getImageData(from: cellData.images[2].url) else { return }
             self.trackNameLabel.text = cellData.name
             self.singerNameLabel.text = cellData.artists[0].name
+            self.trackImageView.image = UIImage(data: imageData)
         }
     }
 
@@ -35,7 +36,7 @@ class TrackCellViewController: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        trackImage.image = UIImage(named: MainHelper.Constant.placeholderImageName)
+        trackImageView.image = UIImage(named: MainHelper.Constant.placeholderImageName)
         trackNameLabel.text = ""
         singerNameLabel.text = ""
     }

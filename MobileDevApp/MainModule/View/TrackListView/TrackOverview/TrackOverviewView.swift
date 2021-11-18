@@ -99,6 +99,9 @@ class TrackOverviewView: UIControl {
     }
 
     private func setupTrackImageView() {
+        if let image = ImageManager.shared.getImageData(from: data?.images[2].url) {
+            self.trackImageView.image = UIImage(data: image)
+        }
         self.addSubview(trackImageView)
         trackImageView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(3)
@@ -156,12 +159,13 @@ class TrackOverviewView: UIControl {
 
     @objc private func playTrack() {
         playButton.isSelected.toggle()
+        delegate?.playButtonTaped(isPaused: playButton.isSelected)
     }
 
     @objc private func showSingleTrackView() {
-//        if let data = data, let delegate = delegate {
-//            delegate.presentSingleTrackView(data: data, isPaused: self.playButton.isSelected)
-//        }
+        if let data = data, let delegate = delegate {
+            delegate.presentSingleTrackView(data: data, isPaused: self.playButton.isSelected)
+        }
     }
 
     @objc private func closeTrack() {

@@ -11,6 +11,7 @@ import Moya
 class TrackListInteractor {
 
     weak var presenter: TrackListInteractorOutputProtocol?
+    var trackPlayer = TrackPlayer()
 
     required init(presenter: TrackListInteractorOutputProtocol) {
         self.presenter = presenter
@@ -38,5 +39,21 @@ extension TrackListInteractor: TrackListInteractorProtocol {
                 print("error")
             }
         }
+    }
+
+    func startTrack(data: TrackData) {
+        self.trackPlayer.startTrack(url: URL(string: data.previewURL)!)
+    }
+
+    func playTrack() {
+        self.trackPlayer.play()
+    }
+
+    func pauseTrack() {
+        self.trackPlayer.pause()
+    }
+
+    func closeTrack() {
+        self.trackPlayer.closeTrack()
     }
 }

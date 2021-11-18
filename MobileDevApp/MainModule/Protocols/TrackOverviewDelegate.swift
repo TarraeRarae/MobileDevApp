@@ -9,6 +9,7 @@ import Foundation
 
 protocol TrackOverviewDelegate: AnyObject {
 
-    func presentSingleTrackView(data: TrackDataJSON, isPaused: Bool)
+    func presentSingleTrackView(data: TrackData, isPaused: Bool)
     func closeTrack()
+    func playButtonTaped(isPaused: Bool)
 }
