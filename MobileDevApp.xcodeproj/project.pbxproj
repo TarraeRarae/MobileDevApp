@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		1F0CFBCD274974E300424B44 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0CFBCC274974E300424B44 /* CoreDataService.swift */; };
 		1F0CFBCF27497F3900424B44 /* TrackListTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0CFBCE27497F3900424B44 /* TrackListTableViewCellDelegate.swift */; };
+		1F0CFBD72749921B00424B44 /* TitleSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0CFBD62749921B00424B44 /* TitleSegmentedControl.swift */; };
+		1F0CFBD9274993B300424B44 /* TitleViewRightBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0CFBD8274993B300424B44 /* TitleViewRightBarButton.swift */; };
+		1F0CFBDB2749956200424B44 /* TitleSegmentedControlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0CFBDA2749956200424B44 /* TitleSegmentedControlDelegate.swift */; };
+		1F0CFBDD2749958200424B44 /* TitleViewRightBarButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0CFBDC2749958200424B44 /* TitleViewRightBarButtonDelegate.swift */; };
+		1F0CFBDF274999A600424B44 /* TrackListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0CFBDE274999A600424B44 /* TrackListRouter.swift */; };
 		1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */; };
 		1F1DA4AB2701A24700757C9E /* AuthenticationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */; };
 		1F40D2BD273B2672006569AF /* LocalizedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */; };
@@ -24,7 +29,6 @@
 		1F59B65726FE478100C5A614 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F59B65526FE478100C5A614 /* LaunchScreen.storyboard */; };
 		1F5E84E22732B46D00CAA36A /* TrackCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5E84E12732B46D00CAA36A /* TrackCellViewController.swift */; };
 		1F5E84E62732B4AD00CAA36A /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5E84E52732B4AD00CAA36A /* TrackCell.xib */; };
-		1F5E85092732D7AF00CAA36A /* TrackListTitleViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5E85082732D7AF00CAA36A /* TrackListTitleViewDelegate.swift */; };
 		1F65FFCF2722CFD7008BEF65 /* AuthenticationCellContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F65FFCE2722CFD7008BEF65 /* AuthenticationCellContentType.swift */; };
 		1F66D74F27416D2E0045CDD4 /* AuthenticationRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F66D74E27416D2E0045CDD4 /* AuthenticationRouterProtocol.swift */; };
 		1F6EDF01271052EC00DC994B /* AuthenticationCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF00271052EC00DC994B /* AuthenticationCellData.swift */; };
@@ -41,7 +45,6 @@
 		1FC706F5271CD4D3002BFC2F /* AuthenticationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC706F4271CD4D3002BFC2F /* AuthenticationHelper.swift */; };
 		1FC706F9271CD52A002BFC2F /* ValidationErrorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC706F8271CD52A002BFC2F /* ValidationErrorInfo.swift */; };
 		1FC7070E271DD5A8002BFC2F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FC70710271DD5A8002BFC2F /* Localizable.strings */; };
-		1FC70715271DDD2C002BFC2F /* TrackListTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC70714271DDD2C002BFC2F /* TrackListTitleView.swift */; };
 		1FD57E9B2741584200ECB77B /* AuthenticationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD57E9A2741584200ECB77B /* AuthenticationInteractor.swift */; };
 		1FD57E9D2741584C00ECB77B /* AuthenticationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD57E9C2741584C00ECB77B /* AuthenticationPresenter.swift */; };
 		1FD57E9F2741585600ECB77B /* AuthenticationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD57E9E2741585600ECB77B /* AuthenticationRouter.swift */; };
@@ -68,6 +71,11 @@
 /* Begin PBXFileReference section */
 		1F0CFBCC274974E300424B44 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		1F0CFBCE27497F3900424B44 /* TrackListTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTableViewCellDelegate.swift; sourceTree = "<group>"; };
+		1F0CFBD62749921B00424B44 /* TitleSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSegmentedControl.swift; sourceTree = "<group>"; };
+		1F0CFBD8274993B300424B44 /* TitleViewRightBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewRightBarButton.swift; sourceTree = "<group>"; };
+		1F0CFBDA2749956200424B44 /* TitleSegmentedControlDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSegmentedControlDelegate.swift; sourceTree = "<group>"; };
+		1F0CFBDC2749958200424B44 /* TitleViewRightBarButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewRightBarButtonDelegate.swift; sourceTree = "<group>"; };
+		1F0CFBDE274999A600424B44 /* TrackListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListRouter.swift; sourceTree = "<group>"; };
 		1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCell.swift; sourceTree = "<group>"; };
 		1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthenticationCell.xib; sourceTree = "<group>"; };
 		1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStringExtension.swift; sourceTree = "<group>"; };
@@ -84,7 +92,6 @@
 		1F59B65826FE478100C5A614 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F5E84E12732B46D00CAA36A /* TrackCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCellViewController.swift; sourceTree = "<group>"; };
 		1F5E84E52732B4AD00CAA36A /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
-		1F5E85082732D7AF00CAA36A /* TrackListTitleViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTitleViewDelegate.swift; sourceTree = "<group>"; };
 		1F65FFCE2722CFD7008BEF65 /* AuthenticationCellContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCellContentType.swift; sourceTree = "<group>"; };
 		1F66D74E27416D2E0045CDD4 /* AuthenticationRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRouterProtocol.swift; sourceTree = "<group>"; };
 		1F6EDF00271052EC00DC994B /* AuthenticationCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCellData.swift; sourceTree = "<group>"; };
@@ -104,7 +111,6 @@
 		1FC7070B271DD55B002BFC2F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1FC7070F271DD5A8002BFC2F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1FC70711271DD5AA002BFC2F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		1FC70714271DDD2C002BFC2F /* TrackListTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTitleView.swift; sourceTree = "<group>"; };
 		1FD57E9A2741584200ECB77B /* AuthenticationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationInteractor.swift; sourceTree = "<group>"; };
 		1FD57E9C2741584C00ECB77B /* AuthenticationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPresenter.swift; sourceTree = "<group>"; };
 		1FD57E9E2741585600ECB77B /* AuthenticationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRouter.swift; sourceTree = "<group>"; };
@@ -317,7 +323,8 @@
 				1FEC620A2742733A00361EEC /* TrackListRouterProtocol.swift */,
 				1F499B10273AA8A6006F62CC /* SingleTrackViewControllerDelegate.swift */,
 				1F499B12273AA986006F62CC /* SingleTrackViewDelegate.swift */,
-				1F5E85082732D7AF00CAA36A /* TrackListTitleViewDelegate.swift */,
+				1F0CFBDA2749956200424B44 /* TitleSegmentedControlDelegate.swift */,
+				1F0CFBDC2749958200424B44 /* TitleViewRightBarButtonDelegate.swift */,
 				1FB09148273488B40081EA22 /* TrackOverviewDelegate.swift */,
 				1F0CFBCE27497F3900424B44 /* TrackListTableViewCellDelegate.swift */,
 			);
@@ -422,7 +429,8 @@
 		1FC70712271DDD11002BFC2F /* TrackListTitle */ = {
 			isa = PBXGroup;
 			children = (
-				1FC70714271DDD2C002BFC2F /* TrackListTitleView.swift */,
+				1F0CFBD62749921B00424B44 /* TitleSegmentedControl.swift */,
+				1F0CFBD8274993B300424B44 /* TitleViewRightBarButton.swift */,
 			);
 			path = TrackListTitle;
 			sourceTree = "<group>";
@@ -433,6 +441,7 @@
 				1F550B4927144EE3007BADB6 /* TrackListViewController.swift */,
 				1FEC61F9274272DB00361EEC /* TrackListPresenter.swift */,
 				1FEC61FB274272E300361EEC /* TrackListInteractor.swift */,
+				1F0CFBDE274999A600424B44 /* TrackListRouter.swift */,
 				1FEC61FF274272FD00361EEC /* TrackListConfigurator.swift */,
 			);
 			path = TrackList;
@@ -621,8 +630,9 @@
 				1F40D2BD273B2672006569AF /* LocalizedStringExtension.swift in Sources */,
 				1FEC62072742732900361EEC /* TrackListInteractorProtocol.swift in Sources */,
 				1FE320B527467B780034FF0A /* TrackData.swift in Sources */,
+				1F0CFBD9274993B300424B44 /* TitleViewRightBarButton.swift in Sources */,
 				1FD57E9B2741584200ECB77B /* AuthenticationInteractor.swift in Sources */,
-				1F5E85092732D7AF00CAA36A /* TrackListTitleViewDelegate.swift in Sources */,
+				1F0CFBDB2749956200424B44 /* TitleSegmentedControlDelegate.swift in Sources */,
 				1FC706ED271C4E01002BFC2F /* TableFooterViewDelegate.swift in Sources */,
 				1FC706F5271CD4D3002BFC2F /* AuthenticationHelper.swift in Sources */,
 				1FEC61FC274272E300361EEC /* TrackListInteractor.swift in Sources */,
@@ -635,9 +645,12 @@
 				1F4114A52739C40F0013338D /* ParserJSON.swift in Sources */,
 				1F4114A32739C3A70013338D /* TrackDataJSON.swift in Sources */,
 				1F7D3F81271B73C000B9248F /* AuthenticationTableHeaderView.swift in Sources */,
+				1F0CFBDF274999A600424B44 /* TrackListRouter.swift in Sources */,
 				1F59B64826FE477400C5A614 /* AppDelegate.swift in Sources */,
 				1FD57E9F2741585600ECB77B /* AuthenticationRouter.swift in Sources */,
+				1F0CFBDD2749958200424B44 /* TitleViewRightBarButtonDelegate.swift in Sources */,
 				1FEC62092742733300361EEC /* TrackListInteractorOutputProtocol.swift in Sources */,
+				1F0CFBD72749921B00424B44 /* TitleSegmentedControl.swift in Sources */,
 				1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */,
 				1F5E84E22732B46D00CAA36A /* TrackCellViewController.swift in Sources */,
 				1FEC61FA274272DB00361EEC /* TrackListPresenter.swift in Sources */,
@@ -645,7 +658,6 @@
 				1FD57EA6274158A600ECB77B /* AuthenticationPresenterProtocol.swift in Sources */,
 				1FB258592733C7CD00438837 /* TrackOverviewView.swift in Sources */,
 				1F499B11273AA8A6006F62CC /* SingleTrackViewControllerDelegate.swift in Sources */,
-				1FC70715271DDD2C002BFC2F /* TrackListTitleView.swift in Sources */,
 				1F6EDF01271052EC00DC994B /* AuthenticationCellData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

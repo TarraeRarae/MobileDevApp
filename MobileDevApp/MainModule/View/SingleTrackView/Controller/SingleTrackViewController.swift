@@ -26,10 +26,9 @@ class SingleTrackViewController: UIViewController {
             singleTrackView = SingleTrackView(frame: self.view.frame)
             singleTrackView?.setTrackName(text: data.name)
             singleTrackView?.setSingerName(text: data.artists[0].name)
-            if let imageData = ImageManager.shared.getImageData(from: data.images[0].url) {
-                singleTrackView?.setTrackImage(image: UIImage(data: imageData))
-            }
             self.view = singleTrackView
+            guard data.images.count != 0 else { return }
+            singleTrackView?.setTrackImage(image: UIImage(data: data.images[0]))
         }
     }
 

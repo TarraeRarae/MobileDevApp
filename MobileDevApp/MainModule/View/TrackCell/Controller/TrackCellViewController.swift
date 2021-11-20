@@ -26,9 +26,8 @@ class TrackCellViewController: UITableViewCell {
             guard let cellData = cellData else { return }
             self.trackNameLabel.text = cellData.name
             self.singerNameLabel.text = cellData.artists[0].name
-            if let imageData = ImageManager.shared.getImageData(from: cellData.images[2].url) {
-                self.trackImageView.image = UIImage(data: imageData)
-            }
+            guard cellData.images.count != 0 else { return }
+            self.trackImageView.image = UIImage(data: cellData.images[0])
         }
     }
 
@@ -46,6 +45,9 @@ class TrackCellViewController: UITableViewCell {
 
     @IBAction func downloadButtonTapped(_ sender: Any) {
         guard let cellData = cellData else { return }
+        self.downloadButton.setImage(nil, for: .selected)
+        self.downloadButton.isSelected = true
+        self.downloadButton.isEnabled = false
         delegate?.downloadButtonTapped(data: cellData)
     }
 }

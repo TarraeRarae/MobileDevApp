@@ -9,8 +9,10 @@ import Foundation
 
 protocol TrackListInteractorProtocol: AnyObject {
 
-    func fetchData()
+    func fetchOnlineData()
+    func fetchDownloadedData()
     func startTrack(data: TrackData)
+    func clearDownloadedData()
     func playTrack()
     func pauseTrack()
     func closeTrack()

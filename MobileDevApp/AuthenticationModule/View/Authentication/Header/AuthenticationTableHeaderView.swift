@@ -21,7 +21,7 @@ class AuthenticationTableHeaderView: UIView {
         segmentedControll.insertSegment(withTitle: "Login".localized, at: 0, animated: true)
         segmentedControll.insertSegment(withTitle: "Registration".localized, at: 1, animated: true)
         segmentedControll.selectedSegmentIndex = 1
-        segmentedControll.addTarget(self, action: #selector(indexChanged(_:)), for: .valueChanged)
+        segmentedControll.addTarget(self, action: #selector(segmentedControllIndexChanged(_:)), for: .valueChanged)
         segmentedControll.endEditing(true)
         segmentedControll.layer.shadowColor = UIColor.black.cgColor
         segmentedControll.layer.shadowRadius = 10
@@ -62,7 +62,7 @@ class AuthenticationTableHeaderView: UIView {
         return pageControll.selectedSegmentIndex
     }
 
-    @objc func indexChanged(_ sender: UISegmentedControl) {
+    @objc func segmentedControllIndexChanged(_ sender: UISegmentedControl) {
         delegate?.updateTableView(indexOfSection: sender.selectedSegmentIndex)
     }
 }

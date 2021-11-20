@@ -27,3 +27,6 @@
 "More" = "Прочее";
 "Cancel" = "Назад";
 "Unable to check data" = "Невозможно проверить данные";
+"Online" = "Онлайн";
+"Downloaded" = "Загруженное";
+"Delete downloaded tracks" = "Удалить загруженные треки";

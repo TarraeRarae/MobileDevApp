@@ -19,9 +19,16 @@ class CoreDataService {
 
     func saveData(data: TrackData) {
         guard let context = context, let entity = NSEntityDescription.entity(forEntityName: "TrackDataEntity", in: context) else { return }
+        guard let records = checkCountOfTracks(for: NSPredicate(format: "trackName = %@", data.name)) else { return }
+        if records > 0 {
+            return
+        }
         let object = TrackDataEntity(entity: entity, insertInto: context)
         object.singerName = data.artists[0].name
         object.trackName = data.name
+        if let imagesForCoreData = ImageManager.shared.coreDataObjectFromImages(imagesData: data.images) {
+            object.images = imagesForCoreData
+        }
         appDelegate?.saveContext()
     }
 
@@ -37,15 +44,9 @@ class CoreDataService {
 
     func fetchData() -> [TrackDataEntity]? {
         guard let context = context else { return nil }
-        fetchRequest.predicate = NSPredicate(format: "%@")
-        var records = 0
-        do {
-            records = try context.count(for: fetchRequest)
-            if records == 0 {
-                return nil
-            }
-        } catch {
-            print("error")
+        guard let records = checkCountOfTracks(for: NSPredicate(format: "trackName != nil")) else { return nil }
+        if records == 0 {
+            return nil
         }
         var data: [TrackDataEntity] = []
         do {
@@ -54,5 +55,18 @@ class CoreDataService {
             print("error")
         }
         return data
+    }
+
+    private func checkCountOfTracks(for predicate: NSPredicate) -> Int? {
+        guard let context = context else { return nil }
+        fetchRequest.predicate = predicate
+        var records = 0
+        do {
+            records = try context.count(for: fetchRequest)
+            return records
+        } catch {
+            print("error")
+            return nil
+        }
     }
 }

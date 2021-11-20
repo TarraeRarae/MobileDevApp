@@ -20,7 +20,7 @@ class TrackListInteractor {
 
 extension TrackListInteractor: TrackListInteractorProtocol {
 
-    func fetchData() {
+    func fetchOnlineData() {
         let endpointClosure = { (target: SpotifyService) -> Endpoint in
             return Endpoint(url: URL(target: target).absoluteString, sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, task: target.task, httpHeaderFields: target.headers)
         }
@@ -34,11 +34,26 @@ extension TrackListInteractor: TrackListInteractorProtocol {
                 for item in data.tracks.items {
                     resultData.append(TrackData(data: item, images: data.images))
                 }
-                self.presenter?.didReceiveData(data: resultData)
+                DispatchQueue.main.async {
+                    self.presenter?.didReceiveOnlineData(data: resultData)
+                }
             case .failure:
                 print("error")
             }
         }
+    }
+
+    func fetchDownloadedData() {
+        guard let data = CoreDataService.shared.fetchData() else {
+            presenter?.diddReceiveDownloadeData(data: [])
+            return
+        }
+        presenter?.diddReceiveDownloadeData(data: data)
+    }
+
+    func clearDownloadedData() {
+        CoreDataService.shared.clearCoreDataStack()
+        presenter?.reloadData()
     }
 
     func saveData(data: TrackData) {
@@ -46,7 +61,8 @@ extension TrackListInteractor: TrackListInteractorProtocol {
     }
 
     func startTrack(data: TrackData) {
-        self.trackPlayer.startTrack(url: URL(string: data.previewURL)!)
+        guard let url = URL(string: data.previewURL) else { return }
+        self.trackPlayer.startTrack(url: url)
     }
 
     func playTrack() {

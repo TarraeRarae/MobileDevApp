@@ -99,9 +99,6 @@ class TrackOverviewView: UIControl {
     }
 
     private func setupTrackImageView() {
-        if let image = ImageManager.shared.getImageData(from: data?.images[2].url) {
-            self.trackImageView.image = UIImage(data: image)
-        }
         self.addSubview(trackImageView)
         trackImageView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(3)
@@ -109,6 +106,9 @@ class TrackOverviewView: UIControl {
             make.left.equalTo(self)
             make.width.equalTo(self.frame.width * 0.25)
         }
+        guard let data = data else { return }
+        guard data.images.count != 0 else { return }
+        self.trackImageView.image = UIImage(data: data.images[0])
     }
 
     private func setupPlayButton() {

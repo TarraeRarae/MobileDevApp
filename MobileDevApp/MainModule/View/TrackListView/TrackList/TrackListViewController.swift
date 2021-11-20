@@ -10,7 +10,20 @@ import UIKit
 class TrackListViewController: UIViewController {
 
     private var trackTableView = UITableView()
-    private var trackListTitleView: TrackListTitleView?
+    private var titleSegmentedControl: TitleSegmentedControl?
+    private var titleViewRightBarButton: TitleViewRightBarButton?
+
+    private var moreMenu: UIAlertController {
+        let alertController = UIAlertController(title: "More".localized, message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Exit".localized, style: .destructive, handler: { (_: UIAlertAction) in
+            self.presenter?.didExitButtonTap()
+        }))
+        alertController.addAction(UIAlertAction(title: "Clear downloaded tracks".localized, style: .default, handler: { (_: UIAlertAction) in
+            self.presenter?.didClearButtonTap()
+        }))
+        return alertController
+    }
 
     private var trackOverviewView: TrackOverviewView? {
         didSet {
@@ -30,15 +43,22 @@ class TrackListViewController: UIViewController {
         self.view.backgroundColor = .systemBackground
 		navigationController?.navigationBar.isHidden = false
         navigationItem.hidesBackButton = true
-        trackListTitleView = TrackListTitleView(frame: self.view.frame)
-        guard let trackListTitleView = trackListTitleView else { fatalError() }
-        trackListTitleView.delegate = self
-        navigationItem.titleView = trackListTitleView
+        customizeNavigationBar()
         setupTrackTableView()
-        if let presenter = presenter {
-            presenter.viewDidLoad()
+        if let presenter = presenter, let segmentedControl = titleSegmentedControl {
+            presenter.viewDidLoad(for: segmentedControl.selectedSegmentIndex)
         }
 	}
+
+    private func customizeNavigationBar() {
+        titleSegmentedControl = TitleSegmentedControl(frame: self.view.frame)
+        titleViewRightBarButton = TitleViewRightBarButton()
+        guard let segmentedControl = titleSegmentedControl, let rightBarButton = titleViewRightBarButton else { return }
+        segmentedControl.delegate = self
+        rightBarButton.delegate = self
+        navigationItem.titleView = segmentedControl
+        navigationItem.rightBarButtonItem = rightBarButton
+    }
 
     private func setupTrackTableView() {
         trackTableView = UITableView(frame: self.view.frame, style: .plain)
@@ -78,13 +98,17 @@ extension TrackListViewController: UITableViewDelegate {
     }
 }
 
-extension TrackListViewController: TrackListTitleViewDelegate {
+extension TrackListViewController: TitleSegmentedControlDelegate {
 
-    func presentMoreMenu(alertController: UIAlertController) {
-        alertController.addAction(UIAlertAction(title: "Exit".localized, style: .destructive, handler: { (_: UIAlertAction) in
-            self.show(AuthenticationViewController(), sender: nil)
-        }))
-        self.present(alertController, animated: true, completion: nil)
+    func updateTableView(indexOfSection index: Int) {
+        presenter?.viewDidLoad(for: index)
+    }
+}
+
+extension TrackListViewController: TitleViewRightBarButtonDelegate {
+
+    func presentMoreMenu() {
+        self.present(moreMenu, animated: true, completion: nil)
     }
 }
 
@@ -123,7 +147,7 @@ extension TrackListViewController: SingleTrackViewControllerDelegate {
 extension TrackListViewController: TrackListViewControllerProtocol {
 
     func reloadData() {
-        trackTableView.reloadData()
+        self.trackTableView.reloadData()
     }
 
     func showTrackOverview(with data: TrackData) {
@@ -144,6 +168,6 @@ extension TrackListViewController: TrackListViewControllerProtocol {
 extension TrackListViewController: TrackListTableViewCellDelegate {
 
     func downloadButtonTapped(data: TrackData) {
-        <#code#>
+        presenter?.saveData(data: data)
     }
 }

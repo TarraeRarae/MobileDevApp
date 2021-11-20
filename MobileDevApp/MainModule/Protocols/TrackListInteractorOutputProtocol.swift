@@ -9,5 +9,7 @@ import Foundation
 
 protocol TrackListInteractorOutputProtocol: AnyObject {
 
-    func didReceiveData(data: [TrackData])
+    func didReceiveOnlineData(data: [TrackData])
+    func diddReceiveDownloadeData(data: [TrackDataEntity])
+    func reloadData()
 }

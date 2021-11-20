@@ -12,6 +12,9 @@ class TrackPlayer {
     var player: AVPlayer?
 
     func startTrack(url: URL) {
+        if url.absoluteString.count == 0 {
+            return
+        }
         let playerItem = AVPlayerItem(url: url)
         player = AVPlayer(playerItem: playerItem)
         player?.play()

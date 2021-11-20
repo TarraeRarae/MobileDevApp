@@ -12,6 +12,8 @@ class TrackListPresenter {
     var data: [TrackData] = []
     weak var view: TrackListViewControllerProtocol?
     var interactor: TrackListInteractorProtocol?
+    var router: TrackListRouterProtocol?
+    private var currentDataIndex: Int = 0
 
     required init(view: TrackListViewControllerProtocol) {
         self.view = view
@@ -20,12 +22,23 @@ class TrackListPresenter {
 
 extension TrackListPresenter: TrackListPresenterProtocol {
 
-    func getCellData(for indexPath: IndexPath) -> TrackData {
-        return data[indexPath.row]
+    func viewDidLoad(for index: Int) {
+        switch index {
+        case 0:
+            currentDataIndex = 0
+            DispatchQueue.global().async {
+                self.interactor?.fetchOnlineData()
+            }
+        case 1:
+            currentDataIndex = 1
+            self.interactor?.fetchDownloadedData()
+        default:
+            return
+        }
     }
 
-    func viewDidLoad() {
-        interactor?.fetchData()
+    func getCellData(for indexPath: IndexPath) -> TrackData {
+        return data[indexPath.row]
     }
 
     func numberOfRows() -> Int {
@@ -50,13 +63,40 @@ extension TrackListPresenter: TrackListPresenterProtocol {
     }
 
     func saveData(data: TrackData) {
+        interactor?.saveData(data: data)
+    }
+
+    func didExitButtonTap() {
+        router?.showAuthenticationViewController()
+    }
+
+    func didClearButtonTap() {
+        interactor?.clearDownloadedData()
     }
 }
 
 extension TrackListPresenter: TrackListInteractorOutputProtocol {
 
-    func didReceiveData(data: [TrackData]) {
+    func didReceiveOnlineData(data: [TrackData]) {
         self.data = data
+        self.view?.reloadData()
+    }
+
+    func diddReceiveDownloadeData(data: [TrackDataEntity]) {
+        self.data = []
+        for item in data {
+            guard let trackName = item.trackName, let artistName = item.singerName, let images = item.images else { continue }
+            let trackData = Item(artists: [Artist(name: artistName)], name: trackName, previewURL: "")
+            let imagesData = ImageManager.shared.imagesFromCoreDataObject(object: images)
+            self.data.append(TrackData(data: trackData, images: imagesData))
+        }
         view?.reloadData()
+    }
+
+    func reloadData() {
+        if currentDataIndex == 1 {
+            self.data = []
+            view?.reloadData()
+        }
     }
 }
