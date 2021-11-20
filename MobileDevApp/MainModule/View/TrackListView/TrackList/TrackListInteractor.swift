@@ -41,6 +41,10 @@ extension TrackListInteractor: TrackListInteractorProtocol {
         }
     }
 
+    func saveData(data: TrackData) {
+        CoreDataService.shared.saveData(data: data)
+    }
+
     func startTrack(data: TrackData) {
         self.trackPlayer.startTrack(url: URL(string: data.previewURL)!)
     }

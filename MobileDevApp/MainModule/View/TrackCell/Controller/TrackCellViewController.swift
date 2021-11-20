@@ -20,12 +20,15 @@ class TrackCellViewController: UITableViewCell {
     @IBOutlet weak var singerNameLabel: UILabel!
     @IBOutlet weak var downloadButton: UIButton!
 
+    weak var delegate: TrackListTableViewCellDelegate?
     var cellData: TrackData? {
         willSet(cellData) {
-            guard let cellData = cellData, let imageData = ImageManager.shared.getImageData(from: cellData.images[2].url) else { return }
+            guard let cellData = cellData else { return }
             self.trackNameLabel.text = cellData.name
             self.singerNameLabel.text = cellData.artists[0].name
-            self.trackImageView.image = UIImage(data: imageData)
+            if let imageData = ImageManager.shared.getImageData(from: cellData.images[2].url) {
+                self.trackImageView.image = UIImage(data: imageData)
+            }
         }
     }
 
@@ -39,5 +42,10 @@ class TrackCellViewController: UITableViewCell {
         trackImageView.image = UIImage(named: MainHelper.Constant.placeholderImageName)
         trackNameLabel.text = ""
         singerNameLabel.text = ""
+    }
+
+    @IBAction func downloadButtonTapped(_ sender: Any) {
+        guard let cellData = cellData else { return }
+        delegate?.downloadButtonTapped(data: cellData)
     }
 }

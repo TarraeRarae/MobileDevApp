@@ -48,6 +48,9 @@ extension TrackListPresenter: TrackListPresenterProtocol {
             interactor?.playTrack()
         }
     }
+
+    func saveData(data: TrackData) {
+    }
 }
 
 extension TrackListPresenter: TrackListInteractorOutputProtocol {

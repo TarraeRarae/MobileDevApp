@@ -15,4 +15,5 @@ protocol TrackListPresenterProtocol: AnyObject {
     func numberOfRows() -> Int
     func changeTrackCondition(isPaused: Bool)
     func getCellData(for indexPath: IndexPath) -> TrackData
+    func saveData(data: TrackData)
 }

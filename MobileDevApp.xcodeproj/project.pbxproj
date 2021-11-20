@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F0CFBCD274974E300424B44 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0CFBCC274974E300424B44 /* CoreDataService.swift */; };
+		1F0CFBCF27497F3900424B44 /* TrackListTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0CFBCE27497F3900424B44 /* TrackListTableViewCellDelegate.swift */; };
 		1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */; };
 		1F1DA4AB2701A24700757C9E /* AuthenticationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */; };
 		1F40D2BD273B2672006569AF /* LocalizedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */; };
@@ -64,6 +66,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F0CFBCC274974E300424B44 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		1F0CFBCE27497F3900424B44 /* TrackListTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCell.swift; sourceTree = "<group>"; };
 		1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthenticationCell.xib; sourceTree = "<group>"; };
 		1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStringExtension.swift; sourceTree = "<group>"; };
@@ -193,6 +197,18 @@
 			path = TrackListView;
 			sourceTree = "<group>";
 		};
+		1F0CFBCB274974C300424B44 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1F4114A42739C40F0013338D /* ParserJSON.swift */,
+				1FE320BA2746A9730034FF0A /* ImageManager.swift */,
+				1FE3C2EE273BD2FE00BA858C /* SpotifyService.swift */,
+				1F0CFBCC274974E300424B44 /* CoreDataService.swift */,
+				1FE320B6274696B20034FF0A /* TrackPlayer.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		1F59B63B26FE477400C5A614 = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +265,7 @@
 			children = (
 				1FB2585527332BB700438837 /* Helper */,
 				1F5E85072732D7A200CAA36A /* Protocols */,
+				1F0CFBCB274974C300424B44 /* Services */,
 				1F5E850A2732DD0500CAA36A /* Model */,
 				1F5E84DF2732B29E00CAA36A /* View */,
 			);
@@ -298,10 +315,11 @@
 				1FEC62062742732900361EEC /* TrackListInteractorProtocol.swift */,
 				1FEC62082742733300361EEC /* TrackListInteractorOutputProtocol.swift */,
 				1FEC620A2742733A00361EEC /* TrackListRouterProtocol.swift */,
-				1F5E85082732D7AF00CAA36A /* TrackListTitleViewDelegate.swift */,
-				1FB09148273488B40081EA22 /* TrackOverviewDelegate.swift */,
 				1F499B10273AA8A6006F62CC /* SingleTrackViewControllerDelegate.swift */,
 				1F499B12273AA986006F62CC /* SingleTrackViewDelegate.swift */,
+				1F5E85082732D7AF00CAA36A /* TrackListTitleViewDelegate.swift */,
+				1FB09148273488B40081EA22 /* TrackOverviewDelegate.swift */,
+				1F0CFBCE27497F3900424B44 /* TrackListTableViewCellDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -309,12 +327,8 @@
 		1F5E850A2732DD0500CAA36A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1F4114A42739C40F0013338D /* ParserJSON.swift */,
 				1FE320B427467B780034FF0A /* TrackData.swift */,
 				1F4114A22739C3A70013338D /* TrackDataJSON.swift */,
-				1FE3C2EE273BD2FE00BA858C /* SpotifyService.swift */,
-				1FE320B6274696B20034FF0A /* TrackPlayer.swift */,
-				1FE320BA2746A9730034FF0A /* ImageManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -583,6 +597,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F0CFBCF27497F3900424B44 /* TrackListTableViewCellDelegate.swift in Sources */,
+				1F0CFBCD274974E300424B44 /* CoreDataService.swift in Sources */,
 				1FD57EA12741585F00ECB77B /* AuthenticationConfigurator.swift in Sources */,
 				1F550B4A27144EE3007BADB6 /* TrackListViewController.swift in Sources */,
 				1FE320BB2746A9730034FF0A /* ImageManager.swift in Sources */,

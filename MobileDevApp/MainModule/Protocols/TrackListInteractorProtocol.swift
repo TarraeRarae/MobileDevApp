@@ -14,4 +14,5 @@ protocol TrackListInteractorProtocol: AnyObject {
     func playTrack()
     func pauseTrack()
     func closeTrack()
+    func saveData(data: TrackData)
 }

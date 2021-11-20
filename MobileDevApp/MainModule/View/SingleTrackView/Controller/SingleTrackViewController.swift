@@ -22,11 +22,13 @@ class SingleTrackViewController: UIViewController {
 
     var data: TrackData? {
         willSet(data) {
-            guard let data = data, let imageData = ImageManager.shared.getImageData(from: data.images[0].url) else { return }
+            guard let data = data else { return }
             singleTrackView = SingleTrackView(frame: self.view.frame)
             singleTrackView?.setTrackName(text: data.name)
             singleTrackView?.setSingerName(text: data.artists[0].name)
-            singleTrackView?.setTrackImage(image: UIImage(data: imageData))
+            if let imageData = ImageManager.shared.getImageData(from: data.images[0].url) {
+                singleTrackView?.setTrackImage(image: UIImage(data: imageData))
+            }
             self.view = singleTrackView
         }
     }
