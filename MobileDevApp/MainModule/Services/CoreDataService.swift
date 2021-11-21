@@ -26,7 +26,7 @@ class CoreDataService {
         let object = TrackDataEntity(entity: entity, insertInto: context)
         object.singerName = data.artists[0].name
         object.trackName = data.name
-        if let imagesForCoreData = ImageManager.shared.coreDataObjectFromImages(imagesData: data.images) {
+        if let imagesForCoreData = coreDataObjectFromImages(imagesData: data.images) {
             object.images = imagesForCoreData
         }
         appDelegate?.saveContext()
@@ -68,5 +68,21 @@ class CoreDataService {
             print("error")
             return nil
         }
+    }
+
+    private func coreDataObjectFromImages(imagesData: [Data]) -> Data? {
+        let dataArray = NSMutableArray()
+        var images: [UIImage] = []
+        for item in imagesData {
+            if let image = UIImage(data: item) {
+                images.append(image)
+            }
+        }
+        for item in images {
+            if let data = item.pngData() {
+                dataArray.add(data)
+            }
+        }
+        return try? NSKeyedArchiver.archivedData(withRootObject: dataArray, requiringSecureCoding: true)
     }
 }

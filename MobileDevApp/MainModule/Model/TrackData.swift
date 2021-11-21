@@ -19,7 +19,7 @@ struct TrackData {
         self.name = data.name
         self.previewURL = data.previewURL
         for image in images {
-            guard let imageData = ImageManager.shared.getImageData(from: image.url) else { continue }
+            guard let imageData = getImageData(from: image.url) else { continue }
             self.images.append(imageData)
         }
     }
@@ -36,5 +36,12 @@ struct TrackData {
             return true
         }
         return false
+    }
+
+    private func getImageData(from imageURL: String?) -> Data? {
+        guard let stringURL = imageURL else { return nil }
+        guard let imageURL = URL(string: stringURL) else { return nil }
+        guard let imageData = try? Data(contentsOf: imageURL) else { return nil }
+        return imageData
     }
 }

@@ -18,6 +18,19 @@ class TrackListPresenter {
     required init(view: TrackListViewControllerProtocol) {
         self.view = view
     }
+
+    private func imagesFromCoreDataObject(object: Data?) -> [Data] {
+        var result: [Data] = []
+        guard let object = object else { return [] }
+        if let dataArray = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: object) {
+            for data in dataArray {
+                if let data = data as? Data {
+                    result.append(data)
+                }
+            }
+        }
+        return result
+    }
 }
 
 extension TrackListPresenter: TrackListPresenterProtocol {
@@ -87,7 +100,7 @@ extension TrackListPresenter: TrackListInteractorOutputProtocol {
         for item in data {
             guard let trackName = item.trackName, let artistName = item.singerName, let images = item.images else { continue }
             let trackData = Item(artists: [Artist(name: artistName)], name: trackName, previewURL: "")
-            let imagesData = ImageManager.shared.imagesFromCoreDataObject(object: images)
+            let imagesData = imagesFromCoreDataObject(object: images)
             self.data.append(TrackData(data: trackData, images: imagesData))
         }
         view?.reloadData()

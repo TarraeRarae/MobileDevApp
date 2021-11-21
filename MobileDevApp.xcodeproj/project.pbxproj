@@ -55,7 +55,6 @@
 		1FD57EAA274158D700ECB77B /* AuthenticationInteractorOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD57EA9274158D700ECB77B /* AuthenticationInteractorOutputProtocol.swift */; };
 		1FE320B527467B780034FF0A /* TrackData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE320B427467B780034FF0A /* TrackData.swift */; };
 		1FE320B7274696B20034FF0A /* TrackPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE320B6274696B20034FF0A /* TrackPlayer.swift */; };
-		1FE320BB2746A9730034FF0A /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE320BA2746A9730034FF0A /* ImageManager.swift */; };
 		1FE3C2EF273BD2FE00BA858C /* SpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3C2EE273BD2FE00BA858C /* SpotifyService.swift */; };
 		1FEC61FA274272DB00361EEC /* TrackListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC61F9274272DB00361EEC /* TrackListPresenter.swift */; };
 		1FEC61FC274272E300361EEC /* TrackListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC61FB274272E300361EEC /* TrackListInteractor.swift */; };
@@ -121,7 +120,6 @@
 		1FD57EA9274158D700ECB77B /* AuthenticationInteractorOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationInteractorOutputProtocol.swift; sourceTree = "<group>"; };
 		1FE320B427467B780034FF0A /* TrackData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackData.swift; sourceTree = "<group>"; };
 		1FE320B6274696B20034FF0A /* TrackPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackPlayer.swift; sourceTree = "<group>"; };
-		1FE320BA2746A9730034FF0A /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		1FE3C2EE273BD2FE00BA858C /* SpotifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyService.swift; sourceTree = "<group>"; };
 		1FEC61F9274272DB00361EEC /* TrackListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListPresenter.swift; sourceTree = "<group>"; };
 		1FEC61FB274272E300361EEC /* TrackListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListInteractor.swift; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				1F4114A42739C40F0013338D /* ParserJSON.swift */,
-				1FE320BA2746A9730034FF0A /* ImageManager.swift */,
 				1FE3C2EE273BD2FE00BA858C /* SpotifyService.swift */,
 				1F0CFBCC274974E300424B44 /* CoreDataService.swift */,
 				1FE320B6274696B20034FF0A /* TrackPlayer.swift */,
@@ -610,7 +607,6 @@
 				1F0CFBCD274974E300424B44 /* CoreDataService.swift in Sources */,
 				1FD57EA12741585F00ECB77B /* AuthenticationConfigurator.swift in Sources */,
 				1F550B4A27144EE3007BADB6 /* TrackListViewController.swift in Sources */,
-				1FE320BB2746A9730034FF0A /* ImageManager.swift in Sources */,
 				1FD57EA8274158B900ECB77B /* AuthenticationInteractorProtocol.swift in Sources */,
 				1F65FFCF2722CFD7008BEF65 /* AuthenticationCellContentType.swift in Sources */,
 				1FD57E9D2741584C00ECB77B /* AuthenticationPresenter.swift in Sources */,
