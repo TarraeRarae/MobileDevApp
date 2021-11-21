@@ -22,7 +22,7 @@ class TrackListPresenter {
     private func imagesFromCoreDataObject(object: Data?) -> [Data] {
         var result: [Data] = []
         guard let object = object else { return [] }
-        if let dataArray = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: object) {
+        if let dataArray = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSMutableArray.self, from: object) {
             for data in dataArray {
                 if let data = data as? Data {
                     result.append(data)
@@ -39,9 +39,7 @@ extension TrackListPresenter: TrackListPresenterProtocol {
         switch index {
         case 0:
             currentDataIndex = 0
-            DispatchQueue.global().async {
-                self.interactor?.fetchOnlineData()
-            }
+            self.interactor?.fetchOnlineData()
         case 1:
             currentDataIndex = 1
             self.interactor?.fetchDownloadedData()
@@ -75,7 +73,11 @@ extension TrackListPresenter: TrackListPresenterProtocol {
         }
     }
 
-    func saveData(data: TrackData) {
+    func didDataButtonTap(data: TrackData, isDataDownloaded: Bool) {
+        if isDataDownloaded {
+            interactor?.deleteObjectFromSavedData(data: data)
+            return
+        }
         interactor?.saveData(data: data)
     }
 
@@ -85,6 +87,11 @@ extension TrackListPresenter: TrackListPresenterProtocol {
 
     func didClearButtonTap() {
         interactor?.clearDownloadedData()
+    }
+
+    func isTrackDownloaded(for indexPath: IndexPath) -> Bool {
+        guard let interactor = interactor else { return false }
+        return interactor.isDataSaved(data: data[indexPath.row])
     }
 }
 
@@ -98,8 +105,8 @@ extension TrackListPresenter: TrackListInteractorOutputProtocol {
     func diddReceiveDownloadeData(data: [TrackDataEntity]) {
         self.data = []
         for item in data {
-            guard let trackName = item.trackName, let artistName = item.singerName, let images = item.images else { continue }
-            let trackData = Item(artists: [Artist(name: artistName)], name: trackName, previewURL: "")
+            guard let trackName = item.trackName, let artistName = item.singerName, let images = item.images, let previewURL = item.previewURL else { continue }
+            let trackData = Item(artists: [Artist(name: artistName)], name: trackName, previewURL: previewURL)
             let imagesData = imagesFromCoreDataObject(object: images)
             self.data.append(TrackData(data: trackData, images: imagesData))
         }
@@ -109,7 +116,9 @@ extension TrackListPresenter: TrackListInteractorOutputProtocol {
     func reloadData() {
         if currentDataIndex == 1 {
             self.data = []
-            view?.reloadData()
+            DispatchQueue.main.async {
+                self.view?.reloadData()
+            }
         }
     }
 }

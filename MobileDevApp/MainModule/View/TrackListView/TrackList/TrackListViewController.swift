@@ -80,6 +80,7 @@ extension TrackListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TrackCellViewController.Constant.cellID, for: indexPath) as? TrackCellViewController, let presenter = presenter else { fatalError() }
         cell.cellData = presenter.getCellData(for: indexPath)
+        cell.isDataDownloaded = presenter.isTrackDownloaded(for: indexPath)
         cell.delegate = self
         return cell
     }
@@ -167,7 +168,7 @@ extension TrackListViewController: TrackListViewControllerProtocol {
 
 extension TrackListViewController: TrackListTableViewCellDelegate {
 
-    func downloadButtonTapped(data: TrackData) {
-        presenter?.saveData(data: data)
+    func didDataButtonTap(data: TrackData, isDataDownloaded: Bool) {
+        presenter?.didDataButtonTap(data: data, isDataDownloaded: isDataDownloaded)
     }
 }

@@ -9,5 +9,5 @@ import Foundation
 
 protocol TrackListTableViewCellDelegate: AnyObject {
 
-    func downloadButtonTapped(data: TrackData)
+    func didDataButtonTap(data: TrackData, isDataDownloaded: Bool)
 }

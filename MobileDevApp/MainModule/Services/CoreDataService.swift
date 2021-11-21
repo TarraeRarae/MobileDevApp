@@ -26,6 +26,7 @@ class CoreDataService {
         let object = TrackDataEntity(entity: entity, insertInto: context)
         object.singerName = data.artists[0].name
         object.trackName = data.name
+        object.previewURL = data.previewURL
         if let imagesForCoreData = coreDataObjectFromImages(imagesData: data.images) {
             object.images = imagesForCoreData
         }
@@ -48,6 +49,7 @@ class CoreDataService {
         if records == 0 {
             return nil
         }
+        fetchRequest.predicate = nil
         var data: [TrackDataEntity] = []
         do {
             data = try context.fetch(fetchRequest)
@@ -55,6 +57,24 @@ class CoreDataService {
             print("error")
         }
         return data
+    }
+
+    func isDataSaved(data: TrackData) -> Bool {
+        guard let records = checkCountOfTracks(for: NSPredicate(format: "previewURL = %@", data.previewURL)) else { return false }
+        if records > 0 {
+            return true
+        }
+        return false
+    }
+
+    func deleteObjectFromSavedData(data: TrackData) {
+        guard let context = context else { return }
+        fetchRequest.predicate = NSPredicate(format: "previewURL = %@", data.previewURL)
+        if let objects = try? context.fetch(fetchRequest) {
+            for object in objects {
+                context.delete(object)
+            }
+        }
     }
 
     private func checkCountOfTracks(for predicate: NSPredicate) -> Int? {

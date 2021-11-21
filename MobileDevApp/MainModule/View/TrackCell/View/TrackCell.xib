@@ -36,9 +36,8 @@
                         </constraints>
                         <color key="tintColor" systemColor="labelColor"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" image="icloud.and.arrow.down" catalog="system"/>
                         <connections>
-                            <action selector="downloadButtonTapped:" destination="Dni-8r-sBs" eventType="touchUpInside" id="Fxs-vb-XgR"/>
+                            <action selector="didDataButtonTap:" destination="Dni-8r-sBs" eventType="touchUpInside" id="R1S-LO-R7j"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TrackName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbQ-BU-EXx">
@@ -66,7 +65,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="downloadButton" destination="xdw-Eb-tIy" id="zc2-1f-XIc"/>
+                <outlet property="dataButton" destination="xdw-Eb-tIy" id="zc2-1f-XIc"/>
                 <outlet property="singerNameLabel" destination="5rJ-Vg-qXc" id="3na-hI-oCl"/>
                 <outlet property="trackImageView" destination="Cnx-dU-LRe" id="Jbx-qt-Wik"/>
                 <outlet property="trackNameLabel" destination="gbQ-BU-EXx" id="rAJ-U7-PAj"/>
@@ -75,7 +74,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icloud.and.arrow.down" catalog="system" width="128" height="112"/>
         <image name="trackPlaceholder" width="350" height="350"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
