@@ -28,7 +28,9 @@ class TrackListViewController: UIViewController {
     private var trackOverviewView: TrackOverviewView? {
         didSet {
             guard let trackOverviewView = trackOverviewView else {
-                trackTableView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+                if let lastCell = trackTableView.visibleCells.last {
+                    trackTableView.contentSize = CGSize(width: self.view.frame.width, height: lastCell.frame.maxY)
+                }
                 return
             }
             self.view.insertSubview(trackOverviewView, aboveSubview: trackTableView)
@@ -53,6 +55,10 @@ class TrackListViewController: UIViewController {
         }
 	}
 
+    override func viewWillLayoutSubviews() {
+        trackTableView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+    }
+
     private func customizeNavigationBar() {
         titleSegmentedControl = TitleSegmentedControl(frame: self.view.frame)
         titleViewRightBarButton = TitleViewRightBarButton()
@@ -66,8 +72,8 @@ class TrackListViewController: UIViewController {
     private func setupTrackTableView() {
         trackTableView = UITableView(frame: self.view.frame, style: .plain)
         trackTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        trackTableView.backgroundColor = .clear
         trackTableView.register(UINib(nibName: TrackCellViewController.Constant.nibName, bundle: nil), forCellReuseIdentifier: TrackCellViewController.Constant.cellID)
-        trackTableView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
         trackTableView.dataSource = self
         trackTableView.delegate = self
         self.view.addSubview(trackTableView)

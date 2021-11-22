@@ -11,8 +11,6 @@ import CoreData
 
 class CoreDataService {
 
-    static let shared = CoreDataService()
-
     private weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
     private lazy var context = appDelegate?.persistentContainer.viewContext
     private let fetchRequest: NSFetchRequest<TrackDataEntity> = TrackDataEntity.fetchRequest()
@@ -35,6 +33,7 @@ class CoreDataService {
 
     func clearCoreDataStack() {
         guard let appDelegate = appDelegate, let context = context else { return }
+        fetchRequest.predicate = nil
         if let objects = try? context.fetch(fetchRequest) {
             for object in objects {
                 context.delete(object)

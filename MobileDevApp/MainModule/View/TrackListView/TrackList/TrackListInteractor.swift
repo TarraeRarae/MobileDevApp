@@ -11,7 +11,8 @@ import Moya
 class TrackListInteractor {
 
     weak var presenter: TrackListInteractorOutputProtocol?
-    var trackPlayer = TrackPlayer()
+    private let trackPlayer = TrackPlayer()
+    private let coreDataService = CoreDataService()
 
     required init(presenter: TrackListInteractorOutputProtocol) {
         self.presenter = presenter
@@ -21,11 +22,11 @@ class TrackListInteractor {
 extension TrackListInteractor: TrackListInteractorProtocol {
 
     func isDataSaved(data: TrackData) -> Bool {
-        return CoreDataService.shared.isDataSaved(data: data)
+        return coreDataService.isDataSaved(data: data)
     }
 
     func deleteObjectFromSavedData(data: TrackData) {
-        CoreDataService.shared.deleteObjectFromSavedData(data: data)
+        coreDataService.deleteObjectFromSavedData(data: data)
         presenter?.reloadData()
     }
 
@@ -34,28 +35,26 @@ extension TrackListInteractor: TrackListInteractorProtocol {
             return Endpoint(url: URL(target: target).absoluteString, sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, task: target.task, httpHeaderFields: target.headers)
         }
         let provider = MoyaProvider<SpotifyService>(endpointClosure: endpointClosure)
-        DispatchQueue.global().async {
-            provider.request(.getTracksFromAlbum(albumID: "43RGWSAgcUh3ytWu26mdGH")) { result in
-                switch result {
-                case .success(let moyaResponse):
-                    let data = ParserJSON.parseJSON(data: moyaResponse.data)
-                    guard let data = data else { return }
-                    var resultData: [TrackData] = []
-                    for item in data.tracks.items {
-                        resultData.append(TrackData(data: item, images: data.images))
-                    }
-                    DispatchQueue.main.async {
-                        self.presenter?.didReceiveOnlineData(data: resultData)
-                    }
-                case .failure:
-                    print("error")
+        provider.request(.getTracksFromAlbum(albumID: "43RGWSAgcUh3ytWu26mdGH")) { result in
+            switch result {
+            case .success(let moyaResponse):
+                let data = ParserJSON.parseJSON(data: moyaResponse.data)
+                guard let data = data else { return }
+                var resultData: [TrackData] = []
+                for item in data.tracks.items {
+                    resultData.append(TrackData(data: item, images: data.images))
                 }
+                DispatchQueue.main.async {
+                    self.presenter?.didReceiveOnlineData(data: resultData)
+                }
+            case .failure:
+                print("error")
             }
         }
     }
 
     func fetchDownloadedData() {
-        guard let data = CoreDataService.shared.fetchData() else {
+        guard let data = coreDataService.fetchData() else {
             presenter?.diddReceiveDownloadeData(data: [])
             return
         }
@@ -63,12 +62,12 @@ extension TrackListInteractor: TrackListInteractorProtocol {
     }
 
     func clearDownloadedData() {
-        CoreDataService.shared.clearCoreDataStack()
+        coreDataService.clearCoreDataStack()
         presenter?.reloadData()
     }
 
     func saveData(data: TrackData) {
-        CoreDataService.shared.saveData(data: data)
+        coreDataService.saveData(data: data)
     }
 
     func startTrack(data: TrackData) {

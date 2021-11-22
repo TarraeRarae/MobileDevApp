@@ -39,7 +39,10 @@ extension TrackListPresenter: TrackListPresenterProtocol {
         switch index {
         case 0:
             currentDataIndex = 0
-            self.interactor?.fetchOnlineData()
+            let queue = DispatchQueue.global(qos: .utility)
+            queue.async {
+                self.interactor?.fetchOnlineData()
+            }
         case 1:
             currentDataIndex = 1
             self.interactor?.fetchDownloadedData()
@@ -111,15 +114,15 @@ extension TrackListPresenter: TrackListInteractorOutputProtocol {
             let imagesData = imagesFromCoreDataObject(object: images)
             self.data.append(TrackData(data: trackData, images: imagesData))
         }
+        self.data.sort { $0.name < $1.name }
         view?.reloadData()
     }
 
     func reloadData() {
         if currentDataIndex == 1 {
-            self.data = []
-            DispatchQueue.main.async {
-                self.view?.reloadData()
-            }
+            interactor?.fetchDownloadedData()
+            return
         }
+        view?.reloadData()
     }
 }
