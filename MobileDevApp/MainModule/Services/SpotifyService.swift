@@ -44,7 +44,7 @@ extension SpotifyService: TargetType {
     var headers: [String: String]? {
         return ["Accept": "application/json",
                 "Content-Type": "application/json",
-                "Authorization": "Bearer BQBciRTuMqeZ7jO2_2jnz1q5J_JldNUPRlXLuEO-_8Njs7z7E_6-DbvR-7afR9EQsFFAK3bOfADjcg_CVsO4Fpv1FfZHBgCC4B2vX9yqiEcMf0HvZboWGpcz9e-w_p84mzMnbrqBZrJw4LjvUZdDAIVf2WGuPFXqXIMiBv9le7gedg"]
+                "Authorization": "Bearer BQAH63g8x5mHp94v2UrUSToTwyjdGVFeXyARTNdIefaKQaqg1W8vc0zRnZ8ASBnEzKglCjaNi79XE_5BsBkwF8nwvfBvLL5N5B7wX4crGVawrjo_lBc213HK-7A3xRevOSWNjqoJBUsB6ApzkqS7wMUMjHMPTRhzeYzx-QiTNYXdWA"]
     }
 
 }

@@ -76,6 +76,7 @@ extension TrackListPresenter: TrackListPresenterProtocol {
     func didDataButtonTap(data: TrackData, isDataDownloaded: Bool) {
         if isDataDownloaded {
             interactor?.deleteObjectFromSavedData(data: data)
+            view?.closeTrackOverview(for: data)
             return
         }
         interactor?.saveData(data: data)

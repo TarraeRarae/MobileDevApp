@@ -27,10 +27,13 @@ class TrackListViewController: UIViewController {
 
     private var trackOverviewView: TrackOverviewView? {
         didSet {
-            if let trackOverviewView = trackOverviewView {
-                self.view.insertSubview(trackOverviewView, aboveSubview: trackTableView)
-                trackTableView.contentSize = CGSize(width: self.view.frame.width, height: trackTableView.contentSize.height + trackOverviewView.frame.height * 0.7)
+            guard let trackOverviewView = trackOverviewView else {
+                trackTableView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+                return
             }
+            self.view.insertSubview(trackOverviewView, aboveSubview: trackTableView)
+            trackTableView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + (trackOverviewView.frame.height * 0.7))
+            return
         }
     }
 
@@ -64,6 +67,7 @@ class TrackListViewController: UIViewController {
         trackTableView = UITableView(frame: self.view.frame, style: .plain)
         trackTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         trackTableView.register(UINib(nibName: TrackCellViewController.Constant.nibName, bundle: nil), forCellReuseIdentifier: TrackCellViewController.Constant.cellID)
+        trackTableView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
         trackTableView.dataSource = self
         trackTableView.delegate = self
         self.view.addSubview(trackTableView)
@@ -126,7 +130,6 @@ extension TrackListViewController: TrackOverviewDelegate {
     func closeTrack() {
         if let trackOverviewView = trackOverviewView {
             trackOverviewView.removeFromSuperview()
-            trackTableView.frame = self.view.frame
             self.trackOverviewView = nil
             self.presenter?.closeTrack()
         }
@@ -163,6 +166,13 @@ extension TrackListViewController: TrackListViewControllerProtocol {
         }
         closeTrack()
         showTrackOverview(with: data)
+    }
+
+    func closeTrackOverview(for data: TrackData) {
+        guard let trackOverview = trackOverviewView, let trackOverviewData = trackOverview.data else { return }
+        if  trackOverviewData == data {
+            closeTrack()
+        }
     }
 }
 
