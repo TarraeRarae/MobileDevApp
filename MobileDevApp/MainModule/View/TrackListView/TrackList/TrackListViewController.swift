@@ -176,7 +176,7 @@ extension TrackListViewController: TrackListViewControllerProtocol {
 
     func closeTrackOverview(for data: TrackData) {
         guard let trackOverview = trackOverviewView, let trackOverviewData = trackOverview.data else { return }
-        if  trackOverviewData == data {
+        if trackOverviewData == data {
             closeTrack()
         }
     }

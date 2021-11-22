@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class TrackData {
+struct TrackData {
     let artists: [Artist]
     let name: String
     let previewURL: String
