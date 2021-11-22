@@ -25,7 +25,12 @@ class CoreDataService {
         object.singerName = data.artists[0].name
         object.trackName = data.name
         object.previewURL = data.previewURL
-        if let imagesForCoreData = coreDataObjectFromImages(imagesData: data.images) {
+        var imagesData: [Data] = []
+        for imageURL in data.imagesURLs {
+            guard let imageData = data.getImageData(from: imageURL) else { continue }
+            imagesData.append(imageData)
+        }
+        if let imagesForCoreData = coreDataObjectFromImages(imagesData: imagesData) {
             object.images = imagesForCoreData
         }
         appDelegate?.saveContext()

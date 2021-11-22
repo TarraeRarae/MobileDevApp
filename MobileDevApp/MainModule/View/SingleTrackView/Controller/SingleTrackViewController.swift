@@ -27,8 +27,16 @@ class SingleTrackViewController: UIViewController {
             singleTrackView?.setTrackName(text: data.name)
             singleTrackView?.setSingerName(text: data.artists[0].name)
             self.view = singleTrackView
-            guard data.images.count != 0 else { return }
-            singleTrackView?.setTrackImage(image: UIImage(data: data.images[0]))
+            if let storedImagesData = data.storedImagesData {
+                self.singleTrackView?.setTrackImage(image: UIImage(data: storedImagesData[1]))
+                return
+            }
+            DispatchQueue.global().async {
+                guard let data = self.data, let imageData = data.getImageData(from: data.imagesURLs[2]) else { return }
+                DispatchQueue.main.async {
+                    self.singleTrackView?.setTrackImage(image: UIImage(data: imageData))
+                }
+            }
         }
     }
 

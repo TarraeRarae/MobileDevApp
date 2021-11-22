@@ -8,19 +8,19 @@
 import Foundation
 import UIKit
 
-struct TrackData {
+class TrackData {
     let artists: [Artist]
     let name: String
     let previewURL: String
-    var images: [Data] = []
+    var imagesURLs: [String] = []
+    var storedImagesData: [Data]?
 
     init(data: Item, images: [Image]) {
         self.artists = data.artists
         self.name = data.name
         self.previewURL = data.previewURL
         for image in images {
-            guard let imageData = getImageData(from: image.url) else { continue }
-            self.images.append(imageData)
+            self.imagesURLs.append(image.url)
         }
     }
 
@@ -28,7 +28,7 @@ struct TrackData {
         self.artists = data.artists
         self.name = data.name
         self.previewURL = data.previewURL
-        self.images = images
+        self.storedImagesData = images
     }
 
     static func == (left: TrackData, right: TrackData) -> Bool {
@@ -38,7 +38,7 @@ struct TrackData {
         return false
     }
 
-    private func getImageData(from imageURL: String?) -> Data? {
+    func getImageData(from imageURL: String?) -> Data? {
         guard let stringURL = imageURL else { return nil }
         guard let imageURL = URL(string: stringURL) else { return nil }
         guard let imageData = try? Data(contentsOf: imageURL) else { return nil }

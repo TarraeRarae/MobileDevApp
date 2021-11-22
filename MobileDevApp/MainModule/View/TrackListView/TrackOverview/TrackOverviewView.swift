@@ -75,7 +75,6 @@ class TrackOverviewView: UIControl {
         self.addTarget(nil, action: #selector(showSingleTrackView), for: .touchUpInside)
         self.backgroundColor = .systemBackground
         customizeView()
-        setupTrackImageView()
         setupPlayButton()
         setupTrackNameLabel()
         setupSingerNameLabel()
@@ -90,6 +89,7 @@ class TrackOverviewView: UIControl {
         if let data = data {
             self.singerNameLabel.text = data.artists[0].name
             self.trackNameLabel.text = data.name
+            setupTrackImageView()
         }
         self.backgroundColor = .white
         let bottomLine = CALayer()
@@ -107,8 +107,17 @@ class TrackOverviewView: UIControl {
             make.width.equalTo(self.frame.width * 0.25)
         }
         guard let data = data else { return }
-        guard data.images.count != 0 else { return }
-        self.trackImageView.image = UIImage(data: data.images[0])
+        if let storedImages = data.storedImagesData {
+            self.trackImageView.image = UIImage(data: storedImages[0])
+            return
+        }
+        guard data.imagesURLs.count != 0 else { return }
+        DispatchQueue.global().async {
+            guard let data = self.data, let imageData = data.getImageData(from: data.imagesURLs[0]) else { return }
+            DispatchQueue.main.async {
+                self.trackImageView.image = UIImage(data: imageData)
+            }
+        }
     }
 
     private func setupPlayButton() {

@@ -36,8 +36,17 @@ class TrackCellViewController: UITableViewCell {
             guard let cellData = cellData else { return }
             self.trackNameLabel.text = cellData.name
             self.singerNameLabel.text = cellData.artists[0].name
-            guard cellData.images.count != 0 else { return }
-            self.trackImageView.image = UIImage(data: cellData.images[0])
+            if let storedImagesData = cellData.storedImagesData {
+                self.trackImageView.image = UIImage(data: storedImagesData[0])
+                return
+            }
+            guard cellData.imagesURLs.count != 0 else { return }
+            DispatchQueue.global().async {
+                guard let cellData = self.cellData, let imageData = cellData.getImageData(from: cellData.imagesURLs[0]) else { return }
+                DispatchQueue.main.async {
+                    self.trackImageView.image = UIImage(data: imageData)
+                }
+            }
         }
     }
 
