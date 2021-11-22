@@ -39,10 +39,7 @@ extension TrackListPresenter: TrackListPresenterProtocol {
         switch index {
         case 0:
             currentDataIndex = 0
-            let queue = DispatchQueue.global(qos: .utility)
-            queue.async {
-                self.interactor?.fetchOnlineData()
-            }
+            self.interactor?.fetchOnlineData()
         case 1:
             currentDataIndex = 1
             self.interactor?.fetchDownloadedData()

@@ -44,9 +44,7 @@ extension TrackListInteractor: TrackListInteractorProtocol {
                 for item in data.tracks.items {
                     resultData.append(TrackData(data: item, images: data.images))
                 }
-                DispatchQueue.main.async {
-                    self.presenter?.didReceiveOnlineData(data: resultData)
-                }
+                self.presenter?.didReceiveOnlineData(data: resultData)
             case .failure:
                 print("error")
             }
