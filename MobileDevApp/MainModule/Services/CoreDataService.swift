@@ -25,6 +25,9 @@ class CoreDataService {
         object.singerName = data.artists[0].name
         object.trackName = data.name
         object.previewURL = data.previewURL
+        if let destinationURL = data.destinationURL {
+            object.destinationURL = destinationURL
+        }
         var imagesData: [Data] = []
         for imageURL in data.imagesURLs {
             guard let imageData = data.getImageData(from: imageURL) else { continue }
@@ -43,6 +46,15 @@ class CoreDataService {
             for object in objects {
                 context.delete(object)
             }
+        }
+        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        do {
+            let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+            for fileURL in fileURLs where fileURL.pathExtension == "mp3" {
+                try FileManager.default.removeItem(at: fileURL)
+            }
+        } catch {
+            print("error of deleting tracks")
         }
         appDelegate.saveContext()
     }
@@ -74,6 +86,18 @@ class CoreDataService {
     func deleteObjectFromSavedData(data: TrackData) {
         guard let context = context else { return }
         fetchRequest.predicate = NSPredicate(format: "previewURL = %@", data.previewURL)
+        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let trackName = String(data.previewURL.split(separator: "/")[3].split(separator: "?")[0])
+        do {
+            let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+            for fileURL in fileURLs {
+                if fileURL.pathComponents.contains(trackName + ".mp3") {
+                    try FileManager.default.removeItem(at: fileURL)
+                }
+            }
+        } catch {
+            print("error of deleting tracks")
+        }
         if let objects = try? context.fetch(fetchRequest) {
             for object in objects {
                 context.delete(object)

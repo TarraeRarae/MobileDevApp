@@ -16,6 +16,7 @@
 		1F0CFBDF274999A600424B44 /* TrackListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0CFBDE274999A600424B44 /* TrackListRouter.swift */; };
 		1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */; };
 		1F1DA4AB2701A24700757C9E /* AuthenticationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */; };
+		1F248D40274D974A00D32A17 /* TrackDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F248D3F274D974A00D32A17 /* TrackDownloadService.swift */; };
 		1F40D2BD273B2672006569AF /* LocalizedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */; };
 		1F4114A32739C3A70013338D /* TrackDataJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4114A22739C3A70013338D /* TrackDataJSON.swift */; };
 		1F4114A52739C40F0013338D /* ParserJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4114A42739C40F0013338D /* ParserJSON.swift */; };
@@ -77,6 +78,7 @@
 		1F0CFBDE274999A600424B44 /* TrackListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListRouter.swift; sourceTree = "<group>"; };
 		1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCell.swift; sourceTree = "<group>"; };
 		1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthenticationCell.xib; sourceTree = "<group>"; };
+		1F248D3F274D974A00D32A17 /* TrackDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDownloadService.swift; sourceTree = "<group>"; };
 		1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStringExtension.swift; sourceTree = "<group>"; };
 		1F4114A22739C3A70013338D /* TrackDataJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDataJSON.swift; sourceTree = "<group>"; };
 		1F4114A42739C40F0013338D /* ParserJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserJSON.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			children = (
 				1F4114A42739C40F0013338D /* ParserJSON.swift */,
 				1FE3C2EE273BD2FE00BA858C /* SpotifyService.swift */,
+				1F248D3F274D974A00D32A17 /* TrackDownloadService.swift */,
 				1F0CFBCC274974E300424B44 /* CoreDataService.swift */,
 				1FE320B6274696B20034FF0A /* TrackPlayer.swift */,
 			);
@@ -649,6 +652,7 @@
 				1F0CFBD72749921B00424B44 /* TitleSegmentedControl.swift in Sources */,
 				1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */,
 				1F5E84E22732B46D00CAA36A /* TrackCellViewController.swift in Sources */,
+				1F248D40274D974A00D32A17 /* TrackDownloadService.swift in Sources */,
 				1FEC61FA274272DB00361EEC /* TrackListPresenter.swift in Sources */,
 				1FEC6200274272FD00361EEC /* TrackListConfigurator.swift in Sources */,
 				1FD57EA6274158A600ECB77B /* AuthenticationPresenterProtocol.swift in Sources */,

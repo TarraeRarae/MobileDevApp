@@ -12,7 +12,7 @@ class TrackListViewController: UIViewController {
     private var trackTableView = UITableView()
     private var titleSegmentedControl: TitleSegmentedControl?
     private var titleViewRightBarButton: TitleViewRightBarButton?
-
+    private var trackOverviewHeight: CGFloat = 0
     private var moreMenu: UIAlertController {
         let alertController = UIAlertController(title: "More".localized, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
@@ -28,13 +28,12 @@ class TrackListViewController: UIViewController {
     private var trackOverviewView: TrackOverviewView? {
         didSet {
             guard let trackOverviewView = trackOverviewView else {
-                if let lastCell = trackTableView.visibleCells.last {
-                    trackTableView.contentSize = CGSize(width: self.view.frame.width, height: lastCell.frame.maxY)
-                }
+                trackTableView.contentSize = CGSize(width: self.view.frame.width, height: trackTableView.contentSize.height - trackOverviewHeight)
                 return
             }
             self.view.insertSubview(trackOverviewView, aboveSubview: trackTableView)
-            trackTableView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + (trackOverviewView.frame.height * 0.7))
+            trackOverviewHeight = trackOverviewView.frame.height
+            trackTableView.contentSize = CGSize(width: self.view.frame.width, height: trackTableView.contentSize.height + trackOverviewHeight)
             return
         }
     }
@@ -55,9 +54,9 @@ class TrackListViewController: UIViewController {
         }
 	}
 
-    override func viewWillLayoutSubviews() {
-        trackTableView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
-    }
+//    override func viewWillLayoutSubviews() {
+//        trackTableView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+//    }
 
     private func customizeNavigationBar() {
         titleSegmentedControl = TitleSegmentedControl(frame: self.view.frame)

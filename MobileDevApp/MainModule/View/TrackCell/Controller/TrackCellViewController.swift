@@ -42,8 +42,9 @@ class TrackCellViewController: UITableViewCell {
             }
             guard cellData.imagesURLs.count != 0 else { return }
             DispatchQueue.global().async {
-                guard let cellData = self.cellData, let imageData = cellData.getImageData(from: cellData.imagesURLs[0]) else { return }
-                DispatchQueue.main.async {
+                guard let cellData = self.cellData else { return }
+                guard let imageData = cellData.getImageData(from: cellData.imagesURLs[0]) else { return }
+                DispatchQueue.main.sync {
                     self.trackImageView.image = UIImage(data: imageData)
                 }
             }

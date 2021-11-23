@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 struct TrackData {
     let artists: [Artist]
@@ -14,6 +15,7 @@ struct TrackData {
     let previewURL: String
     var imagesURLs: [String] = []
     var storedImagesData: [Data]?
+    var destinationURL: URL?
 
     init(data: Item, images: [Image]) {
         self.artists = data.artists
@@ -39,9 +41,13 @@ struct TrackData {
     }
 
     func getImageData(from imageURL: String?) -> Data? {
-        guard let stringURL = imageURL else { return nil }
-        guard let imageURL = URL(string: stringURL) else { return nil }
-        guard let imageData = try? Data(contentsOf: imageURL) else { return nil }
-        return imageData
+        guard let networkManager = NetworkReachabilityManager() else { return nil }
+        if networkManager.isReachable {
+            guard let stringURL = imageURL else { return nil }
+            guard let imageURL = URL(string: stringURL) else { return nil }
+            guard let imageData = try? Data(contentsOf: imageURL) else { return nil }
+            return imageData
+        }
+        return nil
     }
 }

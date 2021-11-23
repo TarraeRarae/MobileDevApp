@@ -46,7 +46,7 @@ extension TrackListInteractor: TrackListInteractorProtocol {
                 }
                 self.presenter?.didReceiveOnlineData(data: resultData)
             case .failure:
-                print("error")
+                self.presenter?.didReceiveOnlineData(data: [])
             }
         }
     }
@@ -65,12 +65,32 @@ extension TrackListInteractor: TrackListInteractorProtocol {
     }
 
     func saveData(data: TrackData) {
-        coreDataService.saveData(data: data)
+        let endpointClosure = { (target: TrackDownloadService) -> Endpoint in
+            return Endpoint(url: URL(target: target).absoluteString, sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, task: target.task, httpHeaderFields: target.headers)
+        }
+        let fileName = String(data.previewURL.split(separator: "/")[3].split(separator: "?")[0])
+        let provider = MoyaProvider<TrackDownloadService>(endpointClosure: endpointClosure)
+        provider.request(.downloadTrack(url: fileName)) { result in
+            switch result {
+            case .success:
+                let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                let destinationUrl = documentsDirectoryURL.appendingPathComponent(fileName + ".mp3")
+                var resultData = data
+                resultData.destinationURL = destinationUrl
+                self.coreDataService.saveData(data: resultData)
+            case .failure:
+                print("failure")
+            }
+        }
     }
 
     func startTrack(data: TrackData) {
-        guard let url = URL(string: data.previewURL) else { return }
-        self.trackPlayer.startTrack(url: url)
+        guard let destinationURL = data.destinationURL else {
+            guard let url = URL(string: data.previewURL) else { return }
+            self.trackPlayer.startOnlineTrack(url: url)
+            return
+        }
+        self.trackPlayer.startDownloadedTrack(url: destinationURL)
     }
 
     func playTrack() {

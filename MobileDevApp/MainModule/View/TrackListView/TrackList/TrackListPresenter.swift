@@ -106,12 +106,17 @@ extension TrackListPresenter: TrackListInteractorOutputProtocol {
     func diddReceiveDownloadeData(data: [TrackDataEntity]) {
         self.data = []
         for item in data {
-            guard let trackName = item.trackName, let artistName = item.singerName, let images = item.images, let previewURL = item.previewURL else { continue }
+            guard let trackName = item.trackName, let artistName = item.singerName, let images = item.images, let previewURL = item.previewURL, let destination = item.destinationURL else { return }
             let trackData = Item(artists: [Artist(name: artistName)], name: trackName, previewURL: previewURL)
             let imagesData = imagesFromCoreDataObject(object: images)
-            self.data.append(TrackData(data: trackData, images: imagesData))
+            var resultData = TrackData(data: trackData, images: imagesData)
+            resultData.destinationURL = destination
+            self.data.append(resultData)
         }
         self.data.sort { $0.name < $1.name }
+        for item in self.data {
+            print(item.destinationURL!)
+        }
         view?.reloadData()
     }
 
