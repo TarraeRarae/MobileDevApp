@@ -37,11 +37,6 @@ class CoreDataService {
         if let destinationURL = data.destinationURL {
             object.destinationURL = destinationURL
         }
-//        do {
-//            object.imagesURL = try NSKeyedArchiver.archivedData(withRootObject: data.imagesURLs, requiringSecureCoding: true)
-//        } catch {
-//            print("error")
-//        }
         saveContext()
     }
 

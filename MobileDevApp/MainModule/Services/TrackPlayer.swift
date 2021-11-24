@@ -11,19 +11,36 @@ class TrackPlayer {
 
     private var onlinePlayer: AVPlayer?
     private var offlinePlayer: AVAudioPlayer?
+    private var audioSession = AVAudioSession.sharedInstance()
+
+    init() {
+        do {
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            try audioSession.setCategory(.playback)
+            try audioSession.setMode(.moviePlayback)
+        } catch {
+            print("error")
+        }
+    }
+
+    deinit {
+        do {
+            try audioSession.setActive(false)
+        } catch {
+            print("error")
+        }
+    }
 
     func startOnlineTrack(url: URL) {
         if url.absoluteString.count == 0 {
             return
         }
-        print("Play online track")
         let playerItem = AVPlayerItem(url: url)
         onlinePlayer = AVPlayer(playerItem: playerItem)
         onlinePlayer?.play()
     }
 
     func startDownloadedTrack(url: URL) {
-        print("Play downloaded track")
         do {
             offlinePlayer = try AVAudioPlayer(contentsOf: url)
             guard let player = offlinePlayer else { return }

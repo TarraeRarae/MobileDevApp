@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import IQKeyboardManagerSwift
+import AVFoundation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,6 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enableAutoToolbar = true
         IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback, options: [])
+        } catch {
+            print("Failed to set audio session category.")
+        }
 		return true
 	}
 }
