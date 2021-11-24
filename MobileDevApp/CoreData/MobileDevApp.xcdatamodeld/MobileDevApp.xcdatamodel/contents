@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="TrackDataEntity" representedClassName=".TrackDataEntity" syncable="YES" codeGenerationType="class">
+    <entity name="TrackDataEntity" representedClassName=".TrackDataEntity" syncable="YES">
         <attribute name="destinationURL" optional="YES" attributeType="URI"/>
+        <attribute name="imagesURLs" optional="YES" attributeType="Transformable"/>
         <attribute name="previewURL" optional="YES" attributeType="String"/>
         <attribute name="singerName" optional="YES" attributeType="String"/>
         <attribute name="trackName" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="TrackDataEntity" positionX="-36" positionY="9" width="128" height="89"/>
+        <element name="TrackDataEntity" positionX="-36" positionY="9" width="128" height="104"/>
     </elements>
 </model>

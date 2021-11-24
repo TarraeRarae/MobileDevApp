@@ -37,6 +37,7 @@ class CoreDataService {
         if let destinationURL = data.destinationURL {
             object.destinationURL = destinationURL
         }
+        object.imagesURLs = data.imagesURLs
         saveContext()
     }
 
@@ -96,7 +97,7 @@ class CoreDataService {
         } catch {
             print("error of deleting tracks")
         }
-        if let objects = try? context.fetch(fetchRequest) {
+        if let objects = try? context.fetch(fetchRequest) as [TrackDataEntity] {
             for object in objects {
                 context.delete(object)
             }
