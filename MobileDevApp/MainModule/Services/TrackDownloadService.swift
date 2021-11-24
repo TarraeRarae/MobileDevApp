@@ -36,7 +36,7 @@ extension TrackDownloadService: TargetType {
     var task: Task {
         switch self {
         case .downloadTrack:
-            return .downloadParameters(parameters: ["cid": "774b29d4f13844c495f206cafdad9c86"], encoding: URLEncoding.queryString) { _, response in
+            return .downloadParameters(parameters: ["cid": MainHelper.Constant.cid], encoding: URLEncoding.queryString) { _, response in
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 let fileURL = documentsURL.appendingPathComponent(response.suggestedFilename!)
                 return (fileURL, [.createIntermediateDirectories])

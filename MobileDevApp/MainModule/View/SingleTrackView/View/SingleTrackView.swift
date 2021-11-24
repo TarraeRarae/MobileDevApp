@@ -11,7 +11,7 @@ import SnapKit
 class SingleTrackView: UIView {
 
     weak var delegate: SingleTrackViewDelegate?
-    private var trackImageView: UIImageView = UIImageView(image: UIImage(named: MainHelper.Constant.placeholderImageName))
+    private var trackImageView: UIImageView = UIImageView(image: UIImage(named: MainHelper.Constant.placeholderImageName.rawValue))
 
     private var trackNameLabel: UILabel = {
         let label = UILabel()
@@ -31,8 +31,8 @@ class SingleTrackView: UIView {
 
     private var playButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: MainHelper.Constant.pauseFillImageName), for: .normal)
-        button.setImage(UIImage(systemName: MainHelper.Constant.playImageName), for: .selected)
+        button.setImage(UIImage(systemName: MainHelper.Constant.pauseFillImageName.rawValue), for: .normal)
+        button.setImage(UIImage(systemName: MainHelper.Constant.playImageName.rawValue), for: .selected)
         button.addTarget(nil, action: #selector(playTrack), for: .touchUpInside)
         button.backgroundColor = .clear
         button.tintColor = .label
@@ -102,9 +102,8 @@ class SingleTrackView: UIView {
               right: playButton.frame.size.width / 2)
     }
 
-    public func setTrackImage(image: UIImage?) {
-        guard let image = image else { return }
-        self.trackImageView.image = image
+    public func setTrackImage(imageURL: URL) {
+        self.trackImageView.kf.setImage(with: imageURL)
     }
 
     public func setTrackCondition(isPaused: Bool) {

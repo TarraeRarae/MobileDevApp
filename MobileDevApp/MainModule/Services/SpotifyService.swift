@@ -51,7 +51,7 @@ extension SpotifyService: TargetType {
     var headers: [String: String]? {
         return ["Accept": "application/json",
                 "Content-Type": "application/json",
-                "Authorization": "Bearer BQBWo35AcUwEjXp76X0NqozRpPO9Gkxn1yOypaJVprsJ8YPmtu2FOBSNIIzIEhx78yKj51WGJeumnu53q5LBz-jloWm1L4ZT1GBBh6fTLJ0iQOOnhdPVoCuO0Pc8dM-R-qTC9V0_N2Rkv7iS6GcdQa7XwEBDnqIfqU-j6hAbyDeVAg"]
+                "Authorization": MainHelper.Constant.authToken.rawValue]
     }
 
 }

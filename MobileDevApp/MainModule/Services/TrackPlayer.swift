@@ -16,13 +16,14 @@ class TrackPlayer {
         if url.absoluteString.count == 0 {
             return
         }
+        print("Play online track")
         let playerItem = AVPlayerItem(url: url)
         onlinePlayer = AVPlayer(playerItem: playerItem)
         onlinePlayer?.play()
     }
 
     func startDownloadedTrack(url: URL) {
-        print(url)
+        print("Play downloaded track")
         do {
             offlinePlayer = try AVAudioPlayer(contentsOf: url)
             guard let player = offlinePlayer else { return }

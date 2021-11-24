@@ -12,11 +12,20 @@ import CoreData
 class CoreDataService {
 
     private weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
-    private lazy var context = appDelegate?.persistentContainer.viewContext
+    private lazy var context = self.persistentContainer.viewContext
     private let fetchRequest: NSFetchRequest<TrackDataEntity> = TrackDataEntity.fetchRequest()
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "MobileDevApp")
+        container.loadPersistentStores(completionHandler: { (_, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
 
     func saveData(data: TrackData) {
-        guard let context = context, let entity = NSEntityDescription.entity(forEntityName: "TrackDataEntity", in: context) else { return }
+        guard let entity = NSEntityDescription.entity(forEntityName: MainHelper.Constant.entityName.rawValue, in: context) else { return }
         guard let records = checkCountOfTracks(for: NSPredicate(format: "trackName = %@", data.name)) else { return }
         if records > 0 {
             return
@@ -28,19 +37,10 @@ class CoreDataService {
         if let destinationURL = data.destinationURL {
             object.destinationURL = destinationURL
         }
-        var imagesData: [Data] = []
-        for imageURL in data.imagesURLs {
-            guard let imageData = data.getImageData(from: imageURL) else { continue }
-            imagesData.append(imageData)
-        }
-        if let imagesForCoreData = coreDataObjectFromImages(imagesData: imagesData) {
-            object.images = imagesForCoreData
-        }
-        appDelegate?.saveContext()
+        saveContext()
     }
 
     func clearCoreDataStack() {
-        guard let appDelegate = appDelegate, let context = context else { return }
         fetchRequest.predicate = nil
         if let objects = try? context.fetch(fetchRequest) {
             for object in objects {
@@ -56,11 +56,10 @@ class CoreDataService {
         } catch {
             print("error of deleting tracks")
         }
-        appDelegate.saveContext()
+        saveContext()
     }
 
     func fetchData() -> [TrackDataEntity]? {
-        guard let context = context else { return nil }
         guard let records = checkCountOfTracks(for: NSPredicate(format: "trackName != nil")) else { return nil }
         if records == 0 {
             return nil
@@ -84,7 +83,6 @@ class CoreDataService {
     }
 
     func deleteObjectFromSavedData(data: TrackData) {
-        guard let context = context else { return }
         fetchRequest.predicate = NSPredicate(format: "previewURL = %@", data.previewURL)
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let trackName = String(data.previewURL.split(separator: "/")[3].split(separator: "?")[0])
@@ -106,7 +104,6 @@ class CoreDataService {
     }
 
     private func checkCountOfTracks(for predicate: NSPredicate) -> Int? {
-        guard let context = context else { return nil }
         fetchRequest.predicate = predicate
         var records = 0
         do {
@@ -118,19 +115,14 @@ class CoreDataService {
         }
     }
 
-    private func coreDataObjectFromImages(imagesData: [Data]) -> Data? {
-        let dataArray = NSMutableArray()
-        var images: [UIImage] = []
-        for item in imagesData {
-            if let image = UIImage(data: item) {
-                images.append(image)
+    private func saveContext () {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
-        for item in images {
-            if let data = item.pngData() {
-                dataArray.add(data)
-            }
-        }
-        return try? NSKeyedArchiver.archivedData(withRootObject: dataArray, requiringSecureCoding: true)
     }
 }

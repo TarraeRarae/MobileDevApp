@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TrackCellViewController: UITableViewCell {
 
@@ -25,10 +26,10 @@ class TrackCellViewController: UITableViewCell {
         willSet(isDataSaved) {
             guard let isDataSaved = isDataSaved else { return }
             if isDataSaved {
-                self.dataButton.setImage(UIImage(systemName: "multiply.circle"), for: .normal)
+                self.dataButton.setImage(UIImage(systemName: MainHelper.Constant.deleteButtonImageName.rawValue), for: .normal)
                 return
             }
-            self.dataButton.setImage(UIImage(systemName: "icloud.and.arrow.down"), for: .normal)
+            self.dataButton.setImage(UIImage(systemName: MainHelper.Constant.downloadButtonImageName.rawValue), for: .normal)
         }
     }
     var cellData: TrackData? {
@@ -36,18 +37,12 @@ class TrackCellViewController: UITableViewCell {
             guard let cellData = cellData else { return }
             self.trackNameLabel.text = cellData.name
             self.singerNameLabel.text = cellData.artists[0].name
-            if let storedImagesData = cellData.storedImagesData {
-                self.trackImageView.image = UIImage(data: storedImagesData[0])
-                return
-            }
-            guard cellData.imagesURLs.count != 0 else { return }
-            DispatchQueue.global().async {
-                guard let cellData = self.cellData else { return }
-                guard let imageData = cellData.getImageData(from: cellData.imagesURLs[0]) else { return }
-                DispatchQueue.main.sync {
-                    self.trackImageView.image = UIImage(data: imageData)
-                }
-            }
+//            if let storedImagesData = cellData.storedImagesData {
+//                self.trackImageView.image = UIImage(data: storedImagesData[0])
+//                return
+//            }
+            guard cellData.imagesURLs.count != 0, let imageUrl = URL(string: cellData.imagesURLs[0]) else { return }
+            self.trackImageView.kf.setImage(with: imageUrl)
         }
     }
 
@@ -58,7 +53,7 @@ class TrackCellViewController: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        trackImageView.image = UIImage(named: MainHelper.Constant.placeholderImageName)
+        trackImageView.image = UIImage(named: MainHelper.Constant.placeholderImageName.rawValue)
         trackNameLabel.text = ""
         singerNameLabel.text = ""
     }

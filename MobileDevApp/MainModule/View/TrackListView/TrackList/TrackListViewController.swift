@@ -54,10 +54,6 @@ class TrackListViewController: UIViewController {
         }
 	}
 
-//    override func viewWillLayoutSubviews() {
-//        trackTableView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
-//    }
-
     private func customizeNavigationBar() {
         titleSegmentedControl = TitleSegmentedControl(frame: self.view.frame)
         titleViewRightBarButton = TitleViewRightBarButton()

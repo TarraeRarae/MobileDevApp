@@ -2,12 +2,11 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="TrackDataEntity" representedClassName="TrackDataEntity" syncable="YES" codeGenerationType="class">
         <attribute name="destinationURL" optional="YES" attributeType="URI"/>
-        <attribute name="images" optional="YES" attributeType="Binary"/>
         <attribute name="previewURL" optional="YES" attributeType="String"/>
         <attribute name="singerName" optional="YES" attributeType="String"/>
         <attribute name="trackName" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="TrackDataEntity" positionX="-36" positionY="9" width="128" height="104"/>
+        <element name="TrackDataEntity" positionX="-36" positionY="9" width="128" height="89"/>
     </elements>
 </model>

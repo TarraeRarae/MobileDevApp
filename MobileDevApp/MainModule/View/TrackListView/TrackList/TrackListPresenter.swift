@@ -18,19 +18,6 @@ class TrackListPresenter {
     required init(view: TrackListViewControllerProtocol) {
         self.view = view
     }
-
-    private func imagesFromCoreDataObject(object: Data?) -> [Data] {
-        var result: [Data] = []
-        guard let object = object else { return [] }
-        if let dataArray = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSMutableArray.self, from: object) {
-            for data in dataArray {
-                if let data = data as? Data {
-                    result.append(data)
-                }
-            }
-        }
-        return result
-    }
 }
 
 extension TrackListPresenter: TrackListPresenterProtocol {
@@ -106,17 +93,13 @@ extension TrackListPresenter: TrackListInteractorOutputProtocol {
     func diddReceiveDownloadeData(data: [TrackDataEntity]) {
         self.data = []
         for item in data {
-            guard let trackName = item.trackName, let artistName = item.singerName, let images = item.images, let previewURL = item.previewURL, let destination = item.destinationURL else { return }
+            guard let trackName = item.trackName, let artistName = item.singerName, let previewURL = item.previewURL, let destination = item.destinationURL else { return }
             let trackData = Item(artists: [Artist(name: artistName)], name: trackName, previewURL: previewURL)
-            let imagesData = imagesFromCoreDataObject(object: images)
-            var resultData = TrackData(data: trackData, images: imagesData)
+            var resultData = TrackData(data: trackData, images: [])
             resultData.destinationURL = destination
             self.data.append(resultData)
         }
         self.data.sort { $0.name < $1.name }
-        for item in self.data {
-            print(item.destinationURL!)
-        }
         view?.reloadData()
     }
 
