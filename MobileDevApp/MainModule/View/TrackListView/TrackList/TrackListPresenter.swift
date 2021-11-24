@@ -90,13 +90,21 @@ extension TrackListPresenter: TrackListInteractorOutputProtocol {
         self.view?.reloadData()
     }
 
-    func diddReceiveDownloadeData(data: [TrackDataEntity]) {
+    func didReceiveDownloadeData(data: [TrackDataEntity]) {
         self.data = []
         for item in data {
             guard let trackName = item.trackName, let artistName = item.singerName, let previewURL = item.previewURL, let destination = item.destinationURL else { return }
+//                    let imagesURLs = item.imagesURL else { return }
             let trackData = Item(artists: [Artist(name: artistName)], name: trackName, previewURL: previewURL)
-            var resultData = TrackData(data: trackData, images: [])
+            var resultData = TrackData(data: trackData)
             resultData.destinationURL = destination
+//            do {
+//                if let urls = try NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: imagesURLs) as? [String] {
+//                    resultData.imagesURLs = urls
+//                }
+//            } catch {
+//                print("error of unarchive")
+//            }
             self.data.append(resultData)
         }
         self.data.sort { $0.name < $1.name }

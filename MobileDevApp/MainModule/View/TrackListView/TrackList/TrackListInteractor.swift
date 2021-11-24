@@ -53,10 +53,10 @@ extension TrackListInteractor: TrackListInteractorProtocol {
 
     func fetchDownloadedData() {
         guard let data = coreDataService.fetchData() else {
-            presenter?.diddReceiveDownloadeData(data: [])
+            presenter?.didReceiveDownloadeData(data: [])
             return
         }
-        presenter?.diddReceiveDownloadeData(data: data)
+        presenter?.didReceiveDownloadeData(data: data)
     }
 
     func clearDownloadedData() {

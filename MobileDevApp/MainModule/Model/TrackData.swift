@@ -16,7 +16,7 @@ struct TrackData {
     var imagesURLs: [String] = []
     var destinationURL: URL?
 
-    init(data: Item, images: [Image]) {
+    init(data: Item, images: [Image] = []) {
         self.artists = data.artists
         self.name = data.name
         self.previewURL = data.previewURL
