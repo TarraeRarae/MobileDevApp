@@ -146,8 +146,7 @@ extension AuthenticationViewController: UITableViewDelegate {
 extension AuthenticationViewController: TableHeaderViewDelegate {
 
     func updateTableView(indexOfSection index: Int) {
-        guard let tableHeaderView = authenticationTableHeaderView else { return }
-        presenter?.viewDidLoad(for: tableHeaderView.getCurrentSegmentIndex())
+        presenter?.viewDidLoad(for: index)
     }
 }
 

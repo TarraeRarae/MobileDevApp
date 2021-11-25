@@ -25,8 +25,14 @@ class SingleTrackViewController: UIViewController {
             guard let data = data else { return }
             singleTrackView = SingleTrackView(frame: self.view.frame)
             singleTrackView?.setTrackName(text: data.name)
-            singleTrackView?.setSingerName(text: data.artistsNames[0])
+            singleTrackView?.setSingerName(text: data.artists[0].name)
             self.view = singleTrackView
+//            if let storedImagesData = data.storedImagesData {
+//                self.singleTrackView?.setTrackImage(image: UIImage(data: storedImagesData[1]))
+//                return
+//            }
+            guard data.imagesURLs.count != 0, let imageURL = URL(string: data.imagesURLs[0]) else { return }
+            self.singleTrackView?.setTrackImage(imageURL: imageURL)
         }
     }
 
@@ -38,7 +44,7 @@ class SingleTrackViewController: UIViewController {
 
 extension SingleTrackViewController: SingleTrackViewDelegate {
 
-    func updateTrackCondition(isPaused: Bool) {
-        delegate?.updateTrackCondition(isPaused: isPaused)
+    func playButtonTapped(isPaused: Bool) {
+        delegate?.playButtonTapped(isPaused: isPaused)
     }
 }

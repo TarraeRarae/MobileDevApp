@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:MobileDevApp/TrackDataEntity+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:MobileDevApp/TrackDataEntity+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:MobileDevApp.xcodeproj">
    </FileRef>
    <FileRef

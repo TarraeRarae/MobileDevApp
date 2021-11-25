@@ -8,30 +8,35 @@
 import Foundation
 
 struct TrackDataJSON: Codable {
+    let images: [Image]
+    let tracks: TracksJSON
 
-    let tracks: [Tracks]
+    enum CodingKeys: String, CodingKey {
+        case images, tracks
+    }
 }
 
-struct Tracks: Codable {
-
-    let album: Album
-    let artists: [Artists]
-    let name: String
-    let uri: String
-}
-
-struct Album: Codable {
-
-    let images: [Images]
-}
-
-struct Images: Codable {
-    let url: URL
+struct Image: Codable {
     let height: Int
+    let url: String
     let width: Int
 }
 
-struct Artists: Codable {
+struct TracksJSON: Codable {
+    let items: [Item]
+}
 
+struct Item: Codable {
+    let artists: [Artist]
+    let name: String
+    let previewURL: String
+
+    enum CodingKeys: String, CodingKey {
+        case artists, name
+        case previewURL = "preview_url"
+    }
+}
+
+struct Artist: Codable {
     let name: String
 }

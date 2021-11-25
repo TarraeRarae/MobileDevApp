@@ -12,8 +12,10 @@ class TrackListConfigurator {
     func configure(view: TrackListViewController) {
         let presenter = TrackListPresenter(view: view)
         let interactor = TrackListInteractor(presenter: presenter)
+        let router = TrackListRouter(view: view)
 
         view.presenter = presenter
         presenter.interactor = interactor
+        presenter.router = router
     }
 }

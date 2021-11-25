@@ -11,4 +11,5 @@ protocol TrackOverviewDelegate: AnyObject {
 
     func presentSingleTrackView(data: TrackData, isPaused: Bool)
     func closeTrack()
+    func playButtonTaped(isPaused: Bool)
 }

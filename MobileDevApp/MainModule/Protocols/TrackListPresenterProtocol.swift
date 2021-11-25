@@ -9,8 +9,14 @@ import Foundation
 
 protocol TrackListPresenterProtocol: AnyObject {
 
-    func viewDidLoad()
+    func viewDidLoad(for index: Int)
+    func closeTrack()
+    func didExitButtonTap()
+    func didClearButtonTap()
     func didCellTap(at indexPath: IndexPath)
     func numberOfRows() -> Int
+    func changeTrackCondition(isPaused: Bool)
     func getCellData(for indexPath: IndexPath) -> TrackData
+    func isTrackDownloaded(for indexPath: IndexPath) -> Bool
+    func didDataButtonTap(data: TrackData, isDataDownloaded: Bool)
 }

@@ -2,29 +2,31 @@
 //  TrackData.swift
 //  MobileDevApp
 //
-//  Created by TarraeRarae on 09.11.2021.
+//  Created by TarraeRarae on 18.11.2021.
 //
 
 import Foundation
+import UIKit
+import Alamofire
 
 struct TrackData {
-
-    let images: [Images]
+    let artists: [Artist]
     let name: String
-    let uri: String
-    var artistsNames: [String] = []
+    let previewURL: String
+    var imagesURLs: [String] = []
+    var destinationURL: URL?
 
-    init(data: Tracks) {
+    init(data: Item, images: [Image] = []) {
+        self.artists = data.artists
         self.name = data.name
-        self.images = data.album.images
-        self.uri = data.uri
-        for item in data.artists {
-            artistsNames.append(item.name)
+        self.previewURL = data.previewURL
+        for image in images {
+            self.imagesURLs.append(image.url)
         }
     }
 
-    static func == (lhs: TrackData, rhs: TrackData) -> Bool {
-        if lhs.uri == rhs.uri {
+    static func == (left: TrackData, right: TrackData) -> Bool {
+        if left.previewURL == right.previewURL {
             return true
         }
         return false

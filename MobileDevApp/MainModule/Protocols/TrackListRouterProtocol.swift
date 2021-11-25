@@ -9,5 +9,5 @@ import Foundation
 
 protocol TrackListRouterProtocol: AnyObject {
 
-    func presentSingleTrackView(data: TrackData)
+    func showAuthenticationViewController()
 }
