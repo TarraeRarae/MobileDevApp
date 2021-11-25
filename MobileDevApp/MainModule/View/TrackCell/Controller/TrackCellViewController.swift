@@ -37,10 +37,6 @@ class TrackCellViewController: UITableViewCell {
             guard let cellData = cellData else { return }
             self.trackNameLabel.text = cellData.name
             self.singerNameLabel.text = cellData.artists[0].name
-//            if let storedImagesData = cellData.storedImagesData {
-//                self.trackImageView.image = UIImage(data: storedImagesData[0])
-//                return
-//            }
             guard cellData.imagesURLs.count != 0, let imageUrl = URL(string: cellData.imagesURLs[0]) else { return }
             self.trackImageView.kf.setImage(with: imageUrl)
         }

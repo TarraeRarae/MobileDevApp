@@ -105,10 +105,6 @@ class TrackOverviewView: UIControl {
             make.width.equalTo(self.frame.width * 0.25)
         }
         guard let data = data else { return }
-//        if let storedImages = data.storedImagesData {
-//            self.trackImageView.image = UIImage(data: storedImages[0])
-//            return
-//        }
         guard data.imagesURLs.count != 0, let imageURL = URL(string: data.imagesURLs[0]) else { return }
         self.trackImageView.kf.setImage(with: imageURL)
     }
