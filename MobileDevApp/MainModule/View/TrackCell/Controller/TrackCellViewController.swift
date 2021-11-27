@@ -26,10 +26,10 @@ class TrackCellViewController: UITableViewCell {
         willSet(isDataSaved) {
             guard let isDataSaved = isDataSaved else { return }
             if isDataSaved {
-                self.dataButton.setImage(UIImage(systemName: MainHelper.Constant.deleteButtonImageName.rawValue), for: .normal)
+                self.dataButton.setImage(UIImage(systemName: MainHelper.StringConstant.deleteButtonImageName.rawValue), for: .normal)
                 return
             }
-            self.dataButton.setImage(UIImage(systemName: MainHelper.Constant.downloadButtonImageName.rawValue), for: .normal)
+            self.dataButton.setImage(UIImage(systemName: MainHelper.StringConstant.downloadButtonImageName.rawValue), for: .normal)
         }
     }
     var cellData: TrackData? {
@@ -49,7 +49,7 @@ class TrackCellViewController: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        trackImageView.image = UIImage(named: MainHelper.Constant.placeholderImageName.rawValue)
+        trackImageView.image = UIImage(named: MainHelper.StringConstant.placeholderImageName.rawValue)
         trackNameLabel.text = ""
         singerNameLabel.text = ""
     }

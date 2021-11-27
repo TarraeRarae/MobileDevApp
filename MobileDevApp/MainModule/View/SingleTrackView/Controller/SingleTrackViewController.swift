@@ -22,12 +22,12 @@ class SingleTrackViewController: UIViewController {
     var data: TrackData? {
         willSet(data) {
             guard let data = data else { return }
+            AudioObserver.shared.viewWithSlider = self
             singleTrackView = SingleTrackView(frame: self.view.frame)
             singleTrackView?.delegate = self
             singleTrackView?.setTrackName(text: data.name)
             singleTrackView?.setSingerName(text: data.artists[0].name)
-            singleTrackView?.setSliderValues(maxValue: 30000)
-//            singleTrackView?.setDurationLabel(duration: data.duration)
+            singleTrackView?.setSliderMaxValue(maxValue: MainHelper.FloatConstant.previewDurationInMilliseconds.rawValue)
             self.view = singleTrackView
             guard data.imagesURLs.count != 0, let imageURL = URL(string: data.imagesURLs[0]) else { return }
             self.singleTrackView?.setTrackImage(imageURL: imageURL)
@@ -47,6 +47,13 @@ extension SingleTrackViewController: SingleTrackViewDelegate {
     }
 
     func sliderValueChanged(newValue value: Float) {
-        TrackPlayerManager.shared.setTrackTime(time: value)
+        AudioObserver.shared.changeTrackCurrentTime(newValue: value)
+    }
+}
+
+extension SingleTrackViewController: ObservableObjectProtocol {
+
+    func observableValueDidChange(newValue: Float) {
+        singleTrackView?.setSliderCurrentValue(newValue: newValue)
     }
 }

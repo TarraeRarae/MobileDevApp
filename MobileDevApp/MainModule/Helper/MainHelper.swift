@@ -6,11 +6,11 @@
 //
 
 import Foundation
+import CoreMedia
 
-class MainHelper {
+class MainHelper: NSObject {
 
-    enum Constant: String {
-
+    enum StringConstant: String {
         case playImageName = "play.fill"
         case pauseFillImageName = "pause.fill"
         case pauseImageName = "pause"
@@ -23,5 +23,10 @@ class MainHelper {
         case cid = "774b29d4f13844c495f206cafdad9c86"
         case entityName = "TrackDataEntity"
         case albumURL = "43RGWSAgcUh3ytWu26mdGH"
+    }
+
+    enum FloatConstant: Float {
+        case previewDurationInSeconds = 30
+        case previewDurationInMilliseconds = 30000
     }
 }

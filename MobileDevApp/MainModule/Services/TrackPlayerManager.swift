@@ -21,6 +21,7 @@ class TrackPlayerManager {
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             try audioSession.setCategory(.playback)
             try audioSession.setMode(.moviePlayback)
+            AudioObserver.shared.audioPlayer = self
         } catch {
             print("error")
         }
@@ -42,6 +43,9 @@ class TrackPlayerManager {
         onlinePlayer = AVPlayer(playerItem: playerItem)
         onlinePlayer?.play()
         addStopObserverForOnlineTrack()
+        onlinePlayer?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.0001, preferredTimescale: 60000), queue: DispatchQueue.main, using: { time in
+            AudioObserver.shared.trackCurrentTimeDidChange(newValue: Float(time.seconds))
+        })
     }
 
     func startDownloadedTrack(url: URL) {
@@ -101,5 +105,12 @@ class TrackPlayerManager {
         }
         onlinePlayer.currentItem?.seek(to: CMTimeMakeWithSeconds(0, preferredTimescale: 60000), completionHandler: nil)
         onlinePlayer.play()
+    }
+}
+
+extension TrackPlayerManager: ObservableObjectProtocol {
+
+    func observableValueDidChange(newValue: Float) {
+        setTrackTime(time: newValue)
     }
 }

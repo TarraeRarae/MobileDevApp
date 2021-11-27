@@ -7,11 +7,12 @@
 
 import UIKit
 import SnapKit
+import CoreMedia
 
 class SingleTrackView: UIView {
 
     weak var delegate: SingleTrackViewDelegate?
-    private var trackImageView: UIImageView = UIImageView(image: UIImage(named: MainHelper.Constant.placeholderImageName.rawValue))
+    private var trackImageView: UIImageView = UIImageView(image: UIImage(named: MainHelper.StringConstant.placeholderImageName.rawValue))
 
     private var trackNameLabel: UILabel = {
         let label = UILabel()
@@ -31,8 +32,8 @@ class SingleTrackView: UIView {
 
     private var playButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: MainHelper.Constant.pauseFillImageName.rawValue), for: .normal)
-        button.setImage(UIImage(systemName: MainHelper.Constant.playImageName.rawValue), for: .selected)
+        button.setImage(UIImage(systemName: MainHelper.StringConstant.pauseFillImageName.rawValue), for: .normal)
+        button.setImage(UIImage(systemName: MainHelper.StringConstant.playImageName.rawValue), for: .selected)
         button.addTarget(nil, action: #selector(playTrack), for: .touchUpInside)
         button.backgroundColor = .clear
         button.tintColor = .label
@@ -154,10 +155,19 @@ class SingleTrackView: UIView {
         self.singerNameLabel.text = text
     }
 
-    public func setSliderValues(maxValue: Int64) {
+    public func setSliderMaxValue(maxValue: Float) {
         trackSlider.minimumValue = 0
-        let duration = TimeData(milliseconds: maxValue)
-        trackSlider.maximumValue = Float(duration.getTimeInSeconds())
+        trackSlider.maximumValue = maxValue / 1000
+    }
+
+    public func setSliderCurrentValue(newValue: Float) {
+        trackSlider.value = newValue
+        print("newValue = \(newValue)")
+        if MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue >= 10 {
+            durationLabel.text = "0:\(Int(MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue))"
+        } else {
+            durationLabel.text = "0:0\(Int(MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue))"
+        }
     }
 
     @objc private func playTrack() {

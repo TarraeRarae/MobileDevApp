@@ -36,7 +36,7 @@ extension TrackListInteractor: TrackListInteractorProtocol {
             return Endpoint(url: URL(target: target).absoluteString, sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, task: target.task, httpHeaderFields: target.headers)
         }
         let provider = MoyaProvider<SpotifyService>(endpointClosure: endpointClosure)
-        provider.request(.getTracksFromAlbum(albumID: MainHelper.Constant.albumURL.rawValue)) { result in
+        provider.request(.getTracksFromAlbum(albumID: MainHelper.StringConstant.albumURL.rawValue)) { result in
             switch result {
             case .success(let moyaResponse):
                 let data = ParserJSON.parseJSON(data: moyaResponse.data)

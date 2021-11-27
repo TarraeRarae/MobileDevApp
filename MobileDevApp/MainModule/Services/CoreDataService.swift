@@ -25,7 +25,7 @@ class CoreDataService {
     }()
 
     func saveData(data: TrackData) {
-        guard let entity = NSEntityDescription.entity(forEntityName: MainHelper.Constant.entityName.rawValue, in: context) else { return }
+        guard let entity = NSEntityDescription.entity(forEntityName: MainHelper.StringConstant.entityName.rawValue, in: context) else { return }
         guard let records = checkCountOfTracks(for: NSPredicate(format: "trackName = %@", data.name)) else { return }
         if records > 0 {
             return
