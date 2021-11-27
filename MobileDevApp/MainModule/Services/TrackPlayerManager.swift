@@ -14,7 +14,6 @@ class TrackPlayerManager {
     public var onlinePlayer: AVPlayer?
     private var offlinePlayer: AVAudioPlayer?
     private var audioSession = AVAudioSession.sharedInstance()
-    private var timeObserverToken: Any?
     private var displayLink: CADisplayLink?
 
     init() {
