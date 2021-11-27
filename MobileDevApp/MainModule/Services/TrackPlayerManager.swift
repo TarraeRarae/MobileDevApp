@@ -7,11 +7,14 @@
 
 import AVFoundation
 
-class TrackPlayer {
+class TrackPlayerManager {
 
-    private var onlinePlayer: AVPlayer?
+    static let shared = TrackPlayerManager()
+
+    public var onlinePlayer: AVPlayer?
     private var offlinePlayer: AVAudioPlayer?
     private var audioSession = AVAudioSession.sharedInstance()
+    private var timeObserverToken: Any?
 
     init() {
         do {
@@ -38,6 +41,7 @@ class TrackPlayer {
         let playerItem = AVPlayerItem(url: url)
         onlinePlayer = AVPlayer(playerItem: playerItem)
         onlinePlayer?.play()
+        addStopObserverForOnlineTrack()
     }
 
     func startDownloadedTrack(url: URL) {
@@ -45,6 +49,7 @@ class TrackPlayer {
             offlinePlayer = try AVAudioPlayer(contentsOf: url)
             guard let player = offlinePlayer else { return }
             player.play()
+            player.numberOfLoops = Int(FP_INFINITE)
         } catch {
             print("error")
         }
@@ -73,5 +78,28 @@ class TrackPlayer {
     func closeTrack() {
         onlinePlayer = nil
         offlinePlayer = nil
+    }
+
+    func setTrackTime(time: Float) {
+        guard let offlinePlayer = offlinePlayer else {
+            guard let onlinePlayer = self.onlinePlayer else {
+                return
+            }
+            onlinePlayer.currentItem?.seek(to: CMTimeMakeWithSeconds(Float64(time), preferredTimescale: 60000), completionHandler: nil)
+            return
+        }
+        offlinePlayer.currentTime = TimeInterval(Double(time))
+    }
+
+    private func addStopObserverForOnlineTrack() {
+        NotificationCenter.default.addObserver(self, selector: #selector(restartOnlineTrack), name: .AVPlayerItemDidPlayToEndTime, object: onlinePlayer?.currentItem)
+    }
+
+    @objc private func restartOnlineTrack() {
+        guard let onlinePlayer = onlinePlayer else {
+            return
+        }
+        onlinePlayer.currentItem?.seek(to: CMTimeMakeWithSeconds(0, preferredTimescale: 60000), completionHandler: nil)
+        onlinePlayer.play()
     }
 }

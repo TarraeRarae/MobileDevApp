@@ -41,6 +41,20 @@ class SingleTrackView: UIView {
         return button
     }()
 
+    private var trackSlider: UISlider = {
+        let slider = UISlider()
+        slider.tintColor = .black
+        slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
+        return slider
+    }()
+
+    private var durationLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .label
+        label.text = "0:30"
+        return label
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.frame = frame
@@ -48,6 +62,8 @@ class SingleTrackView: UIView {
         setupTrackImageView()
         setupTrackNameLabel()
         setupSingerNameLabel()
+        setupTrackSlider()
+        setupDurationLabel()
         setupPlayButton()
     }
 
@@ -71,7 +87,7 @@ class SingleTrackView: UIView {
         self.addSubview(trackNameLabel)
         trackNameLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(self.frame.height * 0.55)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.3)
+            make.bottom.equalTo(self).offset(-self.frame.height * 0.35)
             make.left.equalTo(self).offset(self.frame.width * 0.05)
             make.right.equalTo(self).offset(-self.frame.width * 0.05)
         }
@@ -81,7 +97,7 @@ class SingleTrackView: UIView {
         self.addSubview(singerNameLabel)
         singerNameLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(self.frame.height * 0.6)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.25)
+            make.bottom.equalTo(self).offset(-self.frame.height * 0.3)
             make.left.equalTo(self).offset(self.frame.width * 0.05)
             make.right.equalTo(self).offset(-self.frame.width * 0.05)
         }
@@ -90,8 +106,8 @@ class SingleTrackView: UIView {
     private func setupPlayButton() {
         self.addSubview(playButton)
         playButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(self.frame.height * 0.7)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.13)
+            make.top.equalTo(self).offset(self.frame.height * 0.73)
+            make.bottom.equalTo(self).offset(-self.frame.height * 0.1)
             make.left.equalTo(self).offset(self.frame.width * 0.4)
             make.right.equalTo(self).offset(-self.frame.width * 0.4)
         }
@@ -100,6 +116,26 @@ class SingleTrackView: UIView {
               left: playButton.frame.size.width  / 2,
               bottom: playButton.frame.size.height / 2,
               right: playButton.frame.size.width / 2)
+    }
+
+    private func setupTrackSlider() {
+        self.addSubview(trackSlider)
+        trackSlider.snp.makeConstraints { make in
+            make.top.equalTo(self).offset(self.frame.height * 0.65)
+            make.bottom.equalTo(self).offset(-self.frame.height * 0.25)
+            make.left.equalTo(self).offset(self.frame.width * 0.2)
+            make.right.equalTo(self).offset(-self.frame.width * 0.2)
+        }
+    }
+
+    private func setupDurationLabel() {
+        self.addSubview(durationLabel)
+        durationLabel.snp.makeConstraints { make in
+            make.top.equalTo(self).offset(self.frame.height * 0.65)
+            make.bottom.equalTo(self).offset(-self.frame.height * 0.25)
+            make.left.equalTo(self).offset(self.frame.width * 0.82)
+            make.right.equalTo(self).offset(-self.frame.width * 0.02)
+        }
     }
 
     public func setTrackImage(imageURL: URL) {
@@ -118,8 +154,19 @@ class SingleTrackView: UIView {
         self.singerNameLabel.text = text
     }
 
+    public func setSliderValues(maxValue: Int64) {
+        trackSlider.minimumValue = 0
+        let duration = TimeData(milliseconds: maxValue)
+        trackSlider.maximumValue = Float(duration.getTimeInSeconds())
+    }
+
     @objc private func playTrack() {
         playButton.isSelected.toggle()
         delegate?.playButtonTapped(isPaused: playButton.isSelected)
     }
+
+    @objc private func sliderValueChanged() {
+        delegate?.sliderValueChanged(newValue: trackSlider.value)
+    }
+
 }

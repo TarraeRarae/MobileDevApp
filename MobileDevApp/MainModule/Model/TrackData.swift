@@ -13,6 +13,7 @@ struct TrackData {
     let artists: [Artist]
     let name: String
     let previewURL: String
+    let duration: Int64
     var imagesURLs: [String] = []
     var destinationURL: URL?
 
@@ -20,6 +21,7 @@ struct TrackData {
         self.artists = data.artists
         self.name = data.name
         self.previewURL = data.previewURL
+        self.duration = data.durationMS
         for image in images {
             self.imagesURLs.append(image.url)
         }

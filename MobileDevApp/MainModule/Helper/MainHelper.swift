@@ -19,7 +19,7 @@ class MainHelper {
         case moreMenuImageName = "ellipsis.circle"
         case deleteButtonImageName = "multiply.circle"
         case downloadButtonImageName = "icloud.and.arrow.down"
-        case authToken = "Bearer BQDYGmf8c78vvw8cS5Ej4Wpaen0AAEVW4Yg3LDHOdq5J7OihzSWCSnJtbsKGWVv-Z0yduSn_EBOTqUMQb3G73N6Te4ao2wsXEYPQLphy5RU5USZwqN7oKwnZE8n5ps9yEz8lRCMg3xPHXYnwK4182tzJ7-s-491qG97BAZiJtFmQ2A"
+        case authToken = "Bearer BQBHr-8EarZlCZjIfDNaJUoTPr46guJBHyk2SzXb_TiFK5TeEHGvcrurusgDnCuKcJZnnffb0Z07SNkK0YbKSD8kRZgCLIQewmC1BAwgpAZ9X7Vrs9ApR_g246Y2BQs7w76oBW60rQVw9YFfY0_-1hXnGzqMndBtVAXPIF-NoaAo-g"
         case cid = "774b29d4f13844c495f206cafdad9c86"
         case entityName = "TrackDataEntity"
         case albumURL = "43RGWSAgcUh3ytWu26mdGH"

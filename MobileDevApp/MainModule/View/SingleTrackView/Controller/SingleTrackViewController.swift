@@ -15,7 +15,6 @@ class SingleTrackViewController: UIViewController {
     var isPaused: Bool? {
         willSet(isPaused) {
             guard let isPaused = isPaused else { return }
-            singleTrackView?.delegate = self
             singleTrackView?.setTrackCondition(isPaused: isPaused)
         }
     }
@@ -24,8 +23,11 @@ class SingleTrackViewController: UIViewController {
         willSet(data) {
             guard let data = data else { return }
             singleTrackView = SingleTrackView(frame: self.view.frame)
+            singleTrackView?.delegate = self
             singleTrackView?.setTrackName(text: data.name)
             singleTrackView?.setSingerName(text: data.artists[0].name)
+            singleTrackView?.setSliderValues(maxValue: 30000)
+//            singleTrackView?.setDurationLabel(duration: data.duration)
             self.view = singleTrackView
             guard data.imagesURLs.count != 0, let imageURL = URL(string: data.imagesURLs[0]) else { return }
             self.singleTrackView?.setTrackImage(imageURL: imageURL)
@@ -42,5 +44,9 @@ extension SingleTrackViewController: SingleTrackViewDelegate {
 
     func playButtonTapped(isPaused: Bool) {
         delegate?.playButtonTapped(isPaused: isPaused)
+    }
+
+    func sliderValueChanged(newValue value: Float) {
+        TrackPlayerManager.shared.setTrackTime(time: value)
     }
 }

@@ -94,8 +94,9 @@ extension TrackListPresenter: TrackListInteractorOutputProtocol {
         self.data = []
         for item in data {
             guard let trackName = item.trackName, let artistName = item.singerName, let previewURL = item.previewURL, let destination = item.destinationURL, let imagesURLs = item.imagesURLs else { return }
-            let trackData = Item(artists: [Artist(name: artistName)], name: trackName, previewURL: previewURL)
+            let trackData = Item(artists: [Artist(name: artistName)], name: trackName, previewURL: previewURL, durationMS: item.duration)
             var resultData = TrackData(data: trackData)
+            print("Duration = \(item.duration)")
             resultData.destinationURL = destination
             resultData.imagesURLs = imagesURLs
             self.data.append(resultData)

@@ -34,6 +34,7 @@ class CoreDataService {
         object.singerName = data.artists[0].name
         object.trackName = data.name
         object.previewURL = data.previewURL
+        object.duration = data.duration
         if let destinationURL = data.destinationURL {
             object.destinationURL = destinationURL
         }

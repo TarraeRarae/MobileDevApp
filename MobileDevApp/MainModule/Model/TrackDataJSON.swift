@@ -30,10 +30,12 @@ struct Item: Codable {
     let artists: [Artist]
     let name: String
     let previewURL: String
+    let durationMS: Int64
 
     enum CodingKeys: String, CodingKey {
         case artists, name
         case previewURL = "preview_url"
+        case durationMS = "duration_ms"
     }
 }
 

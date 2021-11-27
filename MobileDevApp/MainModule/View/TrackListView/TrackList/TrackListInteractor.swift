@@ -12,7 +12,7 @@ import AVFoundation
 class TrackListInteractor {
 
     weak var presenter: TrackListInteractorOutputProtocol?
-    private let trackPlayer = TrackPlayer()
+//    private let trackPlayer = TrackPlayerManager()
     private let coreDataService = CoreDataService()
 
     required init(presenter: TrackListInteractorOutputProtocol) {
@@ -93,21 +93,21 @@ extension TrackListInteractor: TrackListInteractorProtocol {
     func startTrack(data: TrackData) {
         guard let destinationURL = data.destinationURL else {
             guard let url = URL(string: data.previewURL) else { return }
-            self.trackPlayer.startOnlineTrack(url: url)
+            TrackPlayerManager.shared.startOnlineTrack(url: url)
             return
         }
-        self.trackPlayer.startDownloadedTrack(url: destinationURL)
+        TrackPlayerManager.shared.startDownloadedTrack(url: destinationURL)
     }
 
     func playTrack() {
-        self.trackPlayer.play()
+        TrackPlayerManager.shared.play()
     }
 
     func pauseTrack() {
-        self.trackPlayer.pause()
+        TrackPlayerManager.shared.pause()
     }
 
     func closeTrack() {
-        self.trackPlayer.closeTrack()
+        TrackPlayerManager.shared.closeTrack()
     }
 }
