@@ -15,6 +15,7 @@ class TrackPlayerManager {
     private var offlinePlayer: AVAudioPlayer?
     private var audioSession = AVAudioSession.sharedInstance()
     private var timeObserverToken: Any?
+    private var displayLink: CADisplayLink?
 
     init() {
         do {
@@ -54,6 +55,8 @@ class TrackPlayerManager {
             guard let player = offlinePlayer else { return }
             player.play()
             player.numberOfLoops = Int(FP_INFINITE)
+            displayLink = CADisplayLink(target: self, selector: #selector(updateTrackCurrentTime))
+            displayLink?.add(to: .current, forMode: .common)
         } catch {
             print("error")
         }
@@ -61,7 +64,8 @@ class TrackPlayerManager {
 
     func play() {
         guard let player = onlinePlayer else {
-            if let audioPlayer = offlinePlayer {
+            if let audioPlayer = offlinePlayer, let displayLink = displayLink {
+                displayLink.isPaused = false
                 audioPlayer.play()
             }
             return
@@ -71,7 +75,8 @@ class TrackPlayerManager {
 
     func pause() {
         guard let player = onlinePlayer else {
-            if let audioPlayer = offlinePlayer {
+            if let audioPlayer = offlinePlayer, let displayLink = displayLink {
+                displayLink.isPaused = true
                 audioPlayer.pause()
             }
             return
@@ -80,6 +85,7 @@ class TrackPlayerManager {
     }
 
     func closeTrack() {
+        displayLink = nil
         onlinePlayer = nil
         offlinePlayer = nil
     }
@@ -105,6 +111,13 @@ class TrackPlayerManager {
         }
         onlinePlayer.currentItem?.seek(to: CMTimeMakeWithSeconds(0, preferredTimescale: 60000), completionHandler: nil)
         onlinePlayer.play()
+    }
+
+    @objc private func updateTrackCurrentTime() {
+        guard let offlinePlayer = offlinePlayer else {
+            return
+        }
+        AudioObserver.shared.trackCurrentTimeDidChange(newValue: Float(offlinePlayer.currentTime))
     }
 }
 
