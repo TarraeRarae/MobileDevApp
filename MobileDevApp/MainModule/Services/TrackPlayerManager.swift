@@ -37,7 +37,7 @@ class TrackPlayerManager {
     }
 
     func startOnlineTrack(url: URL) {
-        if url.absoluteString.count == 0 {
+        if url.absoluteString.count == 0 && onlinePlayer != nil {
             return
         }
         let playerItem = AVPlayerItem(url: url)
@@ -121,7 +121,7 @@ class TrackPlayerManager {
     }
 }
 
-extension TrackPlayerManager: ObservableObjectProtocol {
+extension TrackPlayerManager: ObservableAudioObjectProtocol {
 
     func observableValueDidChange(newValue: Float) {
         setTrackTime(time: newValue)

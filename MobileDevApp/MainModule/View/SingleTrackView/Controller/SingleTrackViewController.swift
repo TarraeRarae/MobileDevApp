@@ -38,20 +38,39 @@ class SingleTrackViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
     }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        guard let isPaused = isPaused else {
+            return
+        }
+//        if isPaused {
+//            AudioObserver.shared.pauseTrack()
+//        } else {
+//            AudioObserver.shared.playTrack()
+//        }
+        self.playButtonTapped(isPaused: isPaused)
+    }
 }
 
 extension SingleTrackViewController: SingleTrackViewDelegate {
 
+    func sliderDidTap() {
+        AudioObserver.shared.pauseTrack()
+    }
+
     func playButtonTapped(isPaused: Bool) {
+        self.isPaused = isPaused
         delegate?.playButtonTapped(isPaused: isPaused)
     }
 
     func sliderValueChanged(newValue value: Float) {
+        isPaused = false
         AudioObserver.shared.changeTrackCurrentTime(newValue: value)
+        AudioObserver.shared.playTrack()
     }
 }
 
-extension SingleTrackViewController: ObservableObjectProtocol {
+extension SingleTrackViewController: ObservingAudioObjectProtocol {
 
     func observableValueDidChange(newValue: Float) {
         singleTrackView?.setSliderCurrentValue(newValue: newValue)

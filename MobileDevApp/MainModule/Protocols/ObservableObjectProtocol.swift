@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ObservableObjectProtocol: AnyObject {
+protocol ObservingAudioObjectProtocol: AnyObject {
 
     func observableValueDidChange(newValue: Float)
 }

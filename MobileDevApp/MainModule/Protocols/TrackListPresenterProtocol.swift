@@ -15,6 +15,7 @@ protocol TrackListPresenterProtocol: AnyObject {
     func didClearButtonTap()
     func didCellTap(at indexPath: IndexPath)
     func numberOfRows() -> Int
+    func trackOverviewDidCreate(with data: TrackData)
     func changeTrackCondition(isPaused: Bool)
     func getCellData(for indexPath: IndexPath) -> TrackData
     func isTrackDownloaded(for indexPath: IndexPath) -> Bool

@@ -11,4 +11,5 @@ protocol SingleTrackViewDelegate: AnyObject {
 
     func playButtonTapped(isPaused: Bool)
     func sliderValueChanged(newValue value: Float)
+    func sliderDidTap()
 }

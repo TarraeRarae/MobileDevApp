@@ -12,8 +12,8 @@ class AudioObserver: NSObject {
 
     static let shared = AudioObserver()
 
-    weak var audioPlayer: ObservableObjectProtocol?
-    weak var viewWithSlider: ObservableObjectProtocol?
+    weak var audioPlayer: ObservableAudioObjectProtocol?
+    weak var viewWithSlider: ObservingAudioObjectProtocol?
 }
 
 extension AudioObserver: AudioObserverProtocol {
@@ -24,5 +24,13 @@ extension AudioObserver: AudioObserverProtocol {
 
     func trackCurrentTimeDidChange(newValue: Float) {
         viewWithSlider?.observableValueDidChange(newValue: newValue)
+    }
+
+    func pauseTrack() {
+        audioPlayer?.pause()
+    }
+
+    func playTrack() {
+        audioPlayer?.play()
     }
 }

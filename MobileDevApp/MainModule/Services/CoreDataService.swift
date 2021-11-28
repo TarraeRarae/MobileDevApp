@@ -85,7 +85,7 @@ class CoreDataService {
         return false
     }
 
-    func deleteObjectFromSavedData(data: TrackData) {
+    func deleteObjectFromSavedData(data: TrackData, closure: @escaping () -> Void) {
         fetchRequest.predicate = NSPredicate(format: "previewURL = %@", data.previewURL)
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let trackName = String(data.previewURL.split(separator: "/")[3].split(separator: "?")[0])
@@ -104,6 +104,8 @@ class CoreDataService {
                 context.delete(object)
             }
         }
+        saveContext()
+        closure()
     }
 
     private func checkCountOfTracks(for predicate: NSPredicate) -> Int? {

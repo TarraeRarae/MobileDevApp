@@ -12,7 +12,6 @@ import AVFoundation
 class TrackListInteractor {
 
     weak var presenter: TrackListInteractorOutputProtocol?
-//    private let trackPlayer = TrackPlayerManager()
     private let coreDataService = CoreDataService()
 
     required init(presenter: TrackListInteractorOutputProtocol) {
@@ -26,8 +25,8 @@ extension TrackListInteractor: TrackListInteractorProtocol {
         return coreDataService.isDataSaved(data: data)
     }
 
-    func deleteObjectFromSavedData(data: TrackData) {
-        coreDataService.deleteObjectFromSavedData(data: data)
+    func deleteObjectFromSavedData(data: TrackData, closure: @escaping () -> Void) {
+        coreDataService.deleteObjectFromSavedData(data: data, closure: closure)
         presenter?.reloadData()
     }
 

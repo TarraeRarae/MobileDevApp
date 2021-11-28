@@ -45,7 +45,10 @@ extension TrackListPresenter: TrackListPresenterProtocol {
 
     func didCellTap(at indexPath: IndexPath) {
         view?.showTrackOverview(with: data[indexPath.row])
-        interactor?.startTrack(data: data[indexPath.row])
+    }
+
+    func trackOverviewDidCreate(with data: TrackData) {
+        interactor?.startTrack(data: data)
     }
 
     func closeTrack() {
@@ -62,7 +65,7 @@ extension TrackListPresenter: TrackListPresenterProtocol {
 
     func didDataButtonTap(data: TrackData, isDataDownloaded: Bool, closure: @escaping () -> Void) {
         if isDataDownloaded {
-            interactor?.deleteObjectFromSavedData(data: data)
+            interactor?.deleteObjectFromSavedData(data: data, closure: closure)
             view?.closeTrackOverview(for: data)
             return
         }
@@ -109,6 +112,6 @@ extension TrackListPresenter: TrackListInteractorOutputProtocol {
             interactor?.fetchDownloadedData()
             return
         }
-        view?.reloadData()
+//        view?.reloadData()
     }
 }

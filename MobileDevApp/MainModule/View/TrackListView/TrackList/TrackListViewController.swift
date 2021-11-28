@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TrackListViewController: UIViewController {
 
@@ -136,7 +137,7 @@ extension TrackListViewController: TrackOverviewDelegate {
         }
     }
 
-    func playButtonTaped(isPaused: Bool) {
+    func trackOverviewPlayButtonTapped(isPaused: Bool) {
         presenter?.changeTrackCondition(isPaused: isPaused)
     }
 }
@@ -159,10 +160,11 @@ extension TrackListViewController: TrackListViewControllerProtocol {
         guard let trackOverview = trackOverviewView, let overviewData = trackOverview.data else {
             trackOverviewView = TrackOverviewView(frame: self.view.frame, data: data)
             trackOverviewView?.delegate = self
+            presenter?.trackOverviewDidCreate(with: data)
             return
         }
         if overviewData == data {
-            self.playButtonTapped(isPaused: !trackOverview.isTrackPaused)
+            self.playButtonTapped(isPaused: trackOverview.isTrackPaused)
             return
         }
         closeTrack()

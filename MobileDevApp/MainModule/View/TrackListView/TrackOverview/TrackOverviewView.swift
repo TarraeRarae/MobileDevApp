@@ -107,6 +107,7 @@ class TrackOverviewView: UIControl {
         guard let data = data else { return }
         guard data.imagesURLs.count != 0, let imageURL = URL(string: data.imagesURLs[0]) else { return }
         self.trackImageView.kf.setImage(with: imageURL)
+        self.backgroundColor = trackImageView.image?.increaseContrast().areaAverage().mix(with: UIColor.white, amount: 0.8)
     }
 
     private func setupPlayButton() {
@@ -157,7 +158,8 @@ class TrackOverviewView: UIControl {
 
     @objc private func playTrack() {
         playButton.isSelected.toggle()
-        delegate?.playButtonTaped(isPaused: playButton.isSelected)
+        print(playButton.isSelected)
+        delegate?.trackOverviewPlayButtonTapped(isPaused: playButton.isSelected)
     }
 
     @objc private func showSingleTrackView() {

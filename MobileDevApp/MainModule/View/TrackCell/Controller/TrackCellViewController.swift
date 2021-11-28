@@ -21,7 +21,6 @@ class TrackCellViewController: UITableViewCell {
     @IBOutlet weak var singerNameLabel: UILabel!
     @IBOutlet weak var dataButton: UIButton!
 
-//    private lazy var progressView = ProgressView(frame: CGRect(x: self.dataButton.frame.width * 0.5 - 10, y: self.dataButton.frame.height * 0.5 - 10, width: 20, height: 20), colors: [.label], lineWidth: 5)
     private var progressView: ProgressView?
     weak var delegate: TrackListTableViewCellDelegate?
     var isDataDownloaded: Bool? {
@@ -55,6 +54,10 @@ class TrackCellViewController: UITableViewCell {
         trackNameLabel.text = ""
         singerNameLabel.text = ""
         dataButton.isEnabled = true
+        if let progressView = progressView {
+            progressView.removeFromSuperview()
+        }
+        progressView = nil
     }
 
     @IBAction func didDataButtonTap(_ sender: UIButton!) {
@@ -67,15 +70,19 @@ class TrackCellViewController: UITableViewCell {
                 self.dataButton.addSubview(progressView)
             }
             progressView?.animateStroke()
-            delegate?.didDataButtonTap(data: cellData, isDataDownloaded: isDataSaved, closure: {
+            delegate?.didDataButtonTap(data: cellData, isDataDownloaded: isDataSaved) {
                 [weak self] in
                 self?.progressView?.removeFromSuperview()
                 self?.progressView = nil
                 self?.isDataDownloaded = !isDataSaved
                 self?.dataButton.isEnabled = true
-            })
-            return
+            }
+        } else {
+            self.delegate?.didDataButtonTap(data: cellData, isDataDownloaded: isDataSaved) {
+                [weak self] in
+                self?.progressView = nil
+                self?.isDataDownloaded = !isDataSaved
+            }
         }
-        delegate?.didDataButtonTap(data: cellData, isDataDownloaded: isDataSaved, closure: {})
     }
 }

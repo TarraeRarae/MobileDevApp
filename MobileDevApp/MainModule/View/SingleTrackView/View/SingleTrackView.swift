@@ -45,7 +45,8 @@ class SingleTrackView: UIView {
     private var trackSlider: UISlider = {
         let slider = UISlider()
         slider.tintColor = .label
-        slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
+        slider.addTarget(self, action: #selector(sliderValueChangingDidStart), for: .touchDown)
+        slider.addTarget(self, action: #selector(sliderValueChangingDidEnd), for: .touchUpInside)
         return slider
     }()
 
@@ -60,12 +61,13 @@ class SingleTrackView: UIView {
         super.init(frame: frame)
         self.frame = frame
         self.backgroundColor = .systemBackground
-        setupTrackImageView()
+        setupDurationLabel()
         setupTrackNameLabel()
         setupSingerNameLabel()
+        setupTrackImageView()
         setupTrackSlider()
-        setupDurationLabel()
         setupPlayButton()
+        print(durationLabel.text)
     }
 
     required init?(coder: NSCoder) {
@@ -141,6 +143,7 @@ class SingleTrackView: UIView {
 
     public func setTrackImage(imageURL: URL) {
         self.trackImageView.kf.setImage(with: imageURL)
+        self.backgroundColor = trackImageView.image?.increaseContrast().areaAverage().mix(with: UIColor.white, amount: 0.5)
     }
 
     public func setTrackCondition(isPaused: Bool) {
@@ -162,7 +165,6 @@ class SingleTrackView: UIView {
 
     public func setSliderCurrentValue(newValue: Float) {
         trackSlider.value = newValue
-        print("newValue = \(newValue)")
         if MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue >= 10 {
             durationLabel.text = "0:\(Int(MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue))"
         } else {
@@ -175,7 +177,11 @@ class SingleTrackView: UIView {
         delegate?.playButtonTapped(isPaused: playButton.isSelected)
     }
 
-    @objc private func sliderValueChanged() {
+    @objc private func sliderValueChangingDidStart() {
+        delegate?.sliderDidTap()
+    }
+
+    @objc private func sliderValueChangingDidEnd() {
         delegate?.sliderValueChanged(newValue: trackSlider.value)
     }
 }

@@ -18,5 +18,5 @@ protocol TrackListInteractorProtocol: AnyObject {
     func closeTrack()
     func saveData(data: TrackData, closure: @escaping () -> Void)
     func isDataSaved(data: TrackData) -> Bool
-    func deleteObjectFromSavedData(data: TrackData)
+    func deleteObjectFromSavedData(data: TrackData, closure: @escaping () -> Void)
 }
