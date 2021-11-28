@@ -44,7 +44,7 @@ class SingleTrackView: UIView {
 
     private var trackSlider: UISlider = {
         let slider = UISlider()
-        slider.tintColor = .black
+        slider.tintColor = .label
         slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         return slider
     }()
@@ -52,7 +52,7 @@ class SingleTrackView: UIView {
     private var durationLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.text = "0:30"
+        label.text = "0:\(MainHelper.FloatConstant.previewDurationInSeconds)"
         return label
     }()
 
