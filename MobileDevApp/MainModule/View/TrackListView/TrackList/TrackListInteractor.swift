@@ -12,7 +12,7 @@ import AVFoundation
 class TrackListInteractor {
 
     weak var presenter: TrackListInteractorOutputProtocol?
-    private let trackPlayer = TrackPlayer()
+//    private let trackPlayer = TrackPlayerManager()
     private let coreDataService = CoreDataService()
 
     required init(presenter: TrackListInteractorOutputProtocol) {
@@ -36,7 +36,7 @@ extension TrackListInteractor: TrackListInteractorProtocol {
             return Endpoint(url: URL(target: target).absoluteString, sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, task: target.task, httpHeaderFields: target.headers)
         }
         let provider = MoyaProvider<SpotifyService>(endpointClosure: endpointClosure)
-        provider.request(.getTracksFromAlbum(albumID: MainHelper.Constant.albumURL.rawValue)) { result in
+        provider.request(.getTracksFromAlbum(albumID: MainHelper.StringConstant.albumURL.rawValue)) { result in
             switch result {
             case .success(let moyaResponse):
                 let data = ParserJSON.parseJSON(data: moyaResponse.data)
@@ -65,7 +65,7 @@ extension TrackListInteractor: TrackListInteractorProtocol {
         presenter?.reloadData()
     }
 
-    func saveData(data: TrackData) {
+    func saveData(data: TrackData, closure: @escaping () -> Void) {
         let endpointClosure = { (target: TrackDownloadService) -> Endpoint in
             return Endpoint(
                 url: URL(target: target).absoluteString,
@@ -83,7 +83,7 @@ extension TrackListInteractor: TrackListInteractorProtocol {
                 let destinationUrl = documentsDirectoryURL.appendingPathComponent(fileName + ".mp3")
                 var resultData = data
                 resultData.destinationURL = destinationUrl
-                self.coreDataService.saveData(data: resultData)
+                self.coreDataService.saveData(data: resultData, closure: closure)
             case .failure:
                 print("failure")
             }
@@ -93,21 +93,21 @@ extension TrackListInteractor: TrackListInteractorProtocol {
     func startTrack(data: TrackData) {
         guard let destinationURL = data.destinationURL else {
             guard let url = URL(string: data.previewURL) else { return }
-            self.trackPlayer.startOnlineTrack(url: url)
+            TrackPlayerManager.shared.startOnlineTrack(url: url)
             return
         }
-        self.trackPlayer.startDownloadedTrack(url: destinationURL)
+        TrackPlayerManager.shared.startDownloadedTrack(url: destinationURL)
     }
 
     func playTrack() {
-        self.trackPlayer.play()
+        TrackPlayerManager.shared.play()
     }
 
     func pauseTrack() {
-        self.trackPlayer.pause()
+        TrackPlayerManager.shared.pause()
     }
 
     func closeTrack() {
-        self.trackPlayer.closeTrack()
+        TrackPlayerManager.shared.closeTrack()
     }
 }

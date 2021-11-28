@@ -20,5 +20,6 @@ extension TrackDataEntity {
     @NSManaged public var singerName: String?
     @NSManaged public var trackName: String?
     @NSManaged public var imagesURLs: [String]?
+    @NSManaged public var duration: Int64
 
 }

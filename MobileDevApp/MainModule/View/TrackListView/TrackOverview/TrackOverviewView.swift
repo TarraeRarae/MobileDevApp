@@ -17,7 +17,7 @@ class TrackOverviewView: UIControl {
     }
 
     private var trackImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: MainHelper.Constant.placeholderImageName.rawValue))
+        let imageView = UIImageView(image: UIImage(named: MainHelper.StringConstant.placeholderImageName.rawValue))
         imageView.tintColor = .label
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .clear
@@ -27,8 +27,8 @@ class TrackOverviewView: UIControl {
     private var playButton: UIButton = {
         let button = UIButton()
         button.tintColor = .label
-        button.setImage(UIImage(systemName: MainHelper.Constant.pauseImageName.rawValue), for: .normal)
-        button.setImage(UIImage(systemName: MainHelper.Constant.playImageName.rawValue), for: .selected)
+        button.setImage(UIImage(systemName: MainHelper.StringConstant.pauseImageName.rawValue), for: .normal)
+        button.setImage(UIImage(systemName: MainHelper.StringConstant.playImageName.rawValue), for: .selected)
         button.addTarget(nil, action: #selector(playTrack), for: .touchUpInside)
         button.imageView?.contentMode = .scaleAspectFit
         button.contentHorizontalAlignment = .fill
@@ -56,7 +56,7 @@ class TrackOverviewView: UIControl {
     private var closeButton: UIButton = {
         let button = UIButton()
         button.tintColor = .label
-        button.setImage(UIImage(systemName: MainHelper.Constant.multiplyImageName.rawValue), for: .normal)
+        button.setImage(UIImage(systemName: MainHelper.StringConstant.multiplyImageName.rawValue), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
         button.addTarget(nil, action: #selector(closeTrack), for: .touchUpInside)
         button.contentHorizontalAlignment = .fill
@@ -105,10 +105,6 @@ class TrackOverviewView: UIControl {
             make.width.equalTo(self.frame.width * 0.25)
         }
         guard let data = data else { return }
-//        if let storedImages = data.storedImagesData {
-//            self.trackImageView.image = UIImage(data: storedImages[0])
-//            return
-//        }
         guard data.imagesURLs.count != 0, let imageURL = URL(string: data.imagesURLs[0]) else { return }
         self.trackImageView.kf.setImage(with: imageURL)
     }

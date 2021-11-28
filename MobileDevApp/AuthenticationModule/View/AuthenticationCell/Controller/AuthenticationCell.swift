@@ -38,17 +38,6 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
             makeTextFieldValid()
         }
     }
-//    var viewModel: TableViewCellViewModelProtocol? {
-//        willSet(viewModel) {
-//            guard let viewModel = viewModel else { return }
-//            textField.tag = viewModel.tag
-//            textField.placeholder = viewModel.placeholder
-//            textField.textContentType = viewModel.contentType
-//            textField.isSecureTextEntry = viewModel.isSequreTextField
-//            setupShowPasswordButton(isSecure: textField.isSecureTextEntry)
-//            makeTextFieldValid()
-//        }
-//    }
 
     override func draw(_ rect: CGRect) {
         customizeTextField()
@@ -118,10 +107,7 @@ class AuthenticationCell: UITableViewCell, UITextFieldDelegate {
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        guard let viewModel = viewModel else { return false }
         textField.resignFirstResponder()
-//        viewModel.moveToNextTextField()
         return true
     }
-
 }

@@ -6,11 +6,11 @@
 //
 
 import Foundation
+import CoreMedia
 
-class MainHelper {
+class MainHelper: NSObject {
 
-    enum Constant: String {
-
+    enum StringConstant: String {
         case playImageName = "play.fill"
         case pauseFillImageName = "pause.fill"
         case pauseImageName = "pause"
@@ -19,9 +19,14 @@ class MainHelper {
         case moreMenuImageName = "ellipsis.circle"
         case deleteButtonImageName = "multiply.circle"
         case downloadButtonImageName = "icloud.and.arrow.down"
-        case authToken = "Bearer BQDYGmf8c78vvw8cS5Ej4Wpaen0AAEVW4Yg3LDHOdq5J7OihzSWCSnJtbsKGWVv-Z0yduSn_EBOTqUMQb3G73N6Te4ao2wsXEYPQLphy5RU5USZwqN7oKwnZE8n5ps9yEz8lRCMg3xPHXYnwK4182tzJ7-s-491qG97BAZiJtFmQ2A"
+        case authToken = "Bearer BQDlB_cgWhv9qF5R0Ibqjc_tIbMJWn639tcap4BLMcEuf8BFJoQschBNzvGDL7ruFCorSzH-hJfPHScydZrvvMg28XBIaxbY26Og4mlrRaHgXHmySHkhL8Ki2U09RcEHARY0rZAaTYUfdq6-EhPM2n-wCFGM0vKOwN-UcJM_TZ6IXg"
         case cid = "774b29d4f13844c495f206cafdad9c86"
         case entityName = "TrackDataEntity"
         case albumURL = "43RGWSAgcUh3ytWu26mdGH"
+    }
+
+    enum FloatConstant: Float {
+        case previewDurationInSeconds = 30
+        case previewDurationInMilliseconds = 30000
     }
 }

@@ -60,13 +60,13 @@ extension TrackListPresenter: TrackListPresenterProtocol {
         }
     }
 
-    func didDataButtonTap(data: TrackData, isDataDownloaded: Bool) {
+    func didDataButtonTap(data: TrackData, isDataDownloaded: Bool, closure: @escaping () -> Void) {
         if isDataDownloaded {
             interactor?.deleteObjectFromSavedData(data: data)
             view?.closeTrackOverview(for: data)
             return
         }
-        interactor?.saveData(data: data)
+        interactor?.saveData(data: data, closure: closure)
     }
 
     func didExitButtonTap() {
@@ -94,7 +94,7 @@ extension TrackListPresenter: TrackListInteractorOutputProtocol {
         self.data = []
         for item in data {
             guard let trackName = item.trackName, let artistName = item.singerName, let previewURL = item.previewURL, let destination = item.destinationURL, let imagesURLs = item.imagesURLs else { return }
-            let trackData = Item(artists: [Artist(name: artistName)], name: trackName, previewURL: previewURL)
+            let trackData = Item(artists: [Artist(name: artistName)], name: trackName, previewURL: previewURL, durationMS: item.duration)
             var resultData = TrackData(data: trackData)
             resultData.destinationURL = destination
             resultData.imagesURLs = imagesURLs

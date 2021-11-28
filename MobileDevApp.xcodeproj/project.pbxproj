@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,9 @@
 		1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */; };
 		1F1DA4AB2701A24700757C9E /* AuthenticationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */; };
 		1F248D40274D974A00D32A17 /* TrackDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F248D3F274D974A00D32A17 /* TrackDownloadService.swift */; };
+		1F39EE2C275401320054771B /* ProgressShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39EE29275401320054771B /* ProgressShapeLayer.swift */; };
+		1F39EE2D275401320054771B /* StrrokeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39EE2A275401320054771B /* StrrokeAnimation.swift */; };
+		1F39EE2E275401320054771B /* ProgressiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F39EE2B275401320054771B /* ProgressiveView.swift */; };
 		1F40D2BD273B2672006569AF /* LocalizedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */; };
 		1F4114A32739C3A70013338D /* TrackDataJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4114A22739C3A70013338D /* TrackDataJSON.swift */; };
 		1F4114A52739C40F0013338D /* ParserJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4114A42739C40F0013338D /* ParserJSON.swift */; };
@@ -34,6 +37,9 @@
 		1F66D74F27416D2E0045CDD4 /* AuthenticationRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F66D74E27416D2E0045CDD4 /* AuthenticationRouterProtocol.swift */; };
 		1F6EDF01271052EC00DC994B /* AuthenticationCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6EDF00271052EC00DC994B /* AuthenticationCellData.swift */; };
 		1F7D3F81271B73C000B9248F /* AuthenticationTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D3F80271B73C000B9248F /* AuthenticationTableHeaderView.swift */; };
+		1FA5FF132752E56300FFBF95 /* AudioObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5FF122752E56300FFBF95 /* AudioObserver.swift */; };
+		1FA5FF152752E7AA00FFBF95 /* ObservableObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5FF142752E7AA00FFBF95 /* ObservableObjectProtocol.swift */; };
+		1FA5FF172752E7D900FFBF95 /* AudioObserverProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5FF162752E7D900FFBF95 /* AudioObserverProtocol.swift */; };
 		1FB09149273488B40081EA22 /* TrackOverviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB09148273488B40081EA22 /* TrackOverviewDelegate.swift */; };
 		1FB258512732EE6000438837 /* SingleTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB258502732EE6000438837 /* SingleTrackViewController.swift */; };
 		1FB258532732EE7000438837 /* SingleTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB258522732EE7000438837 /* SingleTrackView.swift */; };
@@ -57,7 +63,7 @@
 		1FD57EA8274158B900ECB77B /* AuthenticationInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD57EA7274158B900ECB77B /* AuthenticationInteractorProtocol.swift */; };
 		1FD57EAA274158D700ECB77B /* AuthenticationInteractorOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD57EA9274158D700ECB77B /* AuthenticationInteractorOutputProtocol.swift */; };
 		1FE320B527467B780034FF0A /* TrackData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE320B427467B780034FF0A /* TrackData.swift */; };
-		1FE320B7274696B20034FF0A /* TrackPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE320B6274696B20034FF0A /* TrackPlayer.swift */; };
+		1FE320B7274696B20034FF0A /* TrackPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE320B6274696B20034FF0A /* TrackPlayerManager.swift */; };
 		1FE3C2EF273BD2FE00BA858C /* SpotifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3C2EE273BD2FE00BA858C /* SpotifyService.swift */; };
 		1FEC61FA274272DB00361EEC /* TrackListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC61F9274272DB00361EEC /* TrackListPresenter.swift */; };
 		1FEC61FC274272E300361EEC /* TrackListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC61FB274272E300361EEC /* TrackListInteractor.swift */; };
@@ -67,7 +73,7 @@
 		1FEC62072742732900361EEC /* TrackListInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC62062742732900361EEC /* TrackListInteractorProtocol.swift */; };
 		1FEC62092742733300361EEC /* TrackListInteractorOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC62082742733300361EEC /* TrackListInteractorOutputProtocol.swift */; };
 		1FEC620B2742733A00361EEC /* TrackListRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC620A2742733A00361EEC /* TrackListRouterProtocol.swift */; };
-		4C257D7803253976545BC902 /* libPods-MobileDevApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B30EA81D0D50590655F1D803 /* libPods-MobileDevApp.a */; };
+		A3B13D601AFE439BB342D0B8 /* Pods_MobileDevApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0643D7133B8ABC295765 /* Pods_MobileDevApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +87,9 @@
 		1F1DA4A72701A22500757C9E /* AuthenticationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCell.swift; sourceTree = "<group>"; };
 		1F1DA4AA2701A24700757C9E /* AuthenticationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthenticationCell.xib; sourceTree = "<group>"; };
 		1F248D3F274D974A00D32A17 /* TrackDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDownloadService.swift; sourceTree = "<group>"; };
+		1F39EE29275401320054771B /* ProgressShapeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressShapeLayer.swift; sourceTree = "<group>"; };
+		1F39EE2A275401320054771B /* StrrokeAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrrokeAnimation.swift; sourceTree = "<group>"; };
+		1F39EE2B275401320054771B /* ProgressiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressiveView.swift; sourceTree = "<group>"; };
 		1F40D2BC273B2672006569AF /* LocalizedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStringExtension.swift; sourceTree = "<group>"; };
 		1F4114A22739C3A70013338D /* TrackDataJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDataJSON.swift; sourceTree = "<group>"; };
 		1F4114A42739C40F0013338D /* ParserJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserJSON.swift; sourceTree = "<group>"; };
@@ -99,6 +108,9 @@
 		1F66D74E27416D2E0045CDD4 /* AuthenticationRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRouterProtocol.swift; sourceTree = "<group>"; };
 		1F6EDF00271052EC00DC994B /* AuthenticationCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCellData.swift; sourceTree = "<group>"; };
 		1F7D3F80271B73C000B9248F /* AuthenticationTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTableHeaderView.swift; sourceTree = "<group>"; };
+		1FA5FF122752E56300FFBF95 /* AudioObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioObserver.swift; sourceTree = "<group>"; };
+		1FA5FF142752E7AA00FFBF95 /* ObservableObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableObjectProtocol.swift; sourceTree = "<group>"; };
+		1FA5FF162752E7D900FFBF95 /* AudioObserverProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioObserverProtocol.swift; sourceTree = "<group>"; };
 		1FB09148273488B40081EA22 /* TrackOverviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOverviewDelegate.swift; sourceTree = "<group>"; };
 		1FB258502732EE6000438837 /* SingleTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTrackViewController.swift; sourceTree = "<group>"; };
 		1FB258522732EE7000438837 /* SingleTrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTrackView.swift; sourceTree = "<group>"; };
@@ -125,7 +137,7 @@
 		1FD57EA7274158B900ECB77B /* AuthenticationInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationInteractorProtocol.swift; sourceTree = "<group>"; };
 		1FD57EA9274158D700ECB77B /* AuthenticationInteractorOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationInteractorOutputProtocol.swift; sourceTree = "<group>"; };
 		1FE320B427467B780034FF0A /* TrackData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackData.swift; sourceTree = "<group>"; };
-		1FE320B6274696B20034FF0A /* TrackPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackPlayer.swift; sourceTree = "<group>"; };
+		1FE320B6274696B20034FF0A /* TrackPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackPlayerManager.swift; sourceTree = "<group>"; };
 		1FE3C2EE273BD2FE00BA858C /* SpotifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyService.swift; sourceTree = "<group>"; };
 		1FEC61F9274272DB00361EEC /* TrackListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListPresenter.swift; sourceTree = "<group>"; };
 		1FEC61FB274272E300361EEC /* TrackListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListInteractor.swift; sourceTree = "<group>"; };
@@ -135,7 +147,7 @@
 		1FEC62062742732900361EEC /* TrackListInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListInteractorProtocol.swift; sourceTree = "<group>"; };
 		1FEC62082742733300361EEC /* TrackListInteractorOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListInteractorOutputProtocol.swift; sourceTree = "<group>"; };
 		1FEC620A2742733A00361EEC /* TrackListRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListRouterProtocol.swift; sourceTree = "<group>"; };
-		B30EA81D0D50590655F1D803 /* libPods-MobileDevApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MobileDevApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50FC0643D7133B8ABC295765 /* Pods_MobileDevApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileDevApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C08727D070CCCF1D49523852 /* Pods-MobileDevApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileDevApp.debug.xcconfig"; path = "Target Support Files/Pods-MobileDevApp/Pods-MobileDevApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CEE5D37FF9C31D89AA24BCCE /* Pods-MobileDevApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileDevApp.release.xcconfig"; path = "Target Support Files/Pods-MobileDevApp/Pods-MobileDevApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,7 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C257D7803253976545BC902 /* libPods-MobileDevApp.a in Frameworks */,
+				A3B13D601AFE439BB342D0B8 /* Pods_MobileDevApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,9 +226,19 @@
 				1FE3C2EE273BD2FE00BA858C /* SpotifyService.swift */,
 				1F248D3F274D974A00D32A17 /* TrackDownloadService.swift */,
 				1F0CFBCC274974E300424B44 /* CoreDataService.swift */,
-				1FE320B6274696B20034FF0A /* TrackPlayer.swift */,
+				1FE320B6274696B20034FF0A /* TrackPlayerManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		1F39EE2F275401370054771B /* ProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				1F39EE2B275401320054771B /* ProgressiveView.swift */,
+				1F39EE29275401320054771B /* ProgressShapeLayer.swift */,
+				1F39EE2A275401320054771B /* StrrokeAnimation.swift */,
+			);
+			path = ProgressView;
 			sourceTree = "<group>";
 		};
 		1F59B63B26FE477400C5A614 = {
@@ -312,6 +334,7 @@
 		1F5E84E42732B49800CAA36A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F39EE2F275401370054771B /* ProgressView */,
 				1F5E84E52732B4AD00CAA36A /* TrackCell.xib */,
 			);
 			path = View;
@@ -331,6 +354,8 @@
 				1F0CFBDC2749958200424B44 /* TitleViewRightBarButtonDelegate.swift */,
 				1FB09148273488B40081EA22 /* TrackOverviewDelegate.swift */,
 				1F0CFBCE27497F3900424B44 /* TrackListTableViewCellDelegate.swift */,
+				1FA5FF142752E7AA00FFBF95 /* ObservableObjectProtocol.swift */,
+				1FA5FF162752E7D900FFBF95 /* AudioObserverProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -412,6 +437,7 @@
 			isa = PBXGroup;
 			children = (
 				1FB2585627332BCC00438837 /* MainHelper.swift */,
+				1FA5FF122752E56300FFBF95 /* AudioObserver.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -490,7 +516,7 @@
 		CAA1E47F9DE2EB6B9852CB33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B30EA81D0D50590655F1D803 /* libPods-MobileDevApp.a */,
+				50FC0643D7133B8ABC295765 /* Pods_MobileDevApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -507,6 +533,7 @@
 				1F59B64126FE477400C5A614 /* Frameworks */,
 				1F59B64226FE477400C5A614 /* Resources */,
 				1F1DA43C26FF88DF00757C9E /* ShellScript */,
+				50C775ED90F2D3E04973875A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -583,6 +610,23 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
 		};
+		50C775ED90F2D3E04973875A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MobileDevApp/Pods-MobileDevApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MobileDevApp/Pods-MobileDevApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MobileDevApp/Pods-MobileDevApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B89F8C5D69E5A75624FA4F17 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -617,15 +661,17 @@
 				1FD57EA12741585F00ECB77B /* AuthenticationConfigurator.swift in Sources */,
 				1F550B4A27144EE3007BADB6 /* TrackListViewController.swift in Sources */,
 				1FD57EA8274158B900ECB77B /* AuthenticationInteractorProtocol.swift in Sources */,
+				1F39EE2E275401320054771B /* ProgressiveView.swift in Sources */,
 				1F65FFCF2722CFD7008BEF65 /* AuthenticationCellContentType.swift in Sources */,
 				1FD57E9D2741584C00ECB77B /* AuthenticationPresenter.swift in Sources */,
 				1FD57EA42741588A00ECB77B /* AuthenticationViewControllerProtocol.swift in Sources */,
 				1FB09149273488B40081EA22 /* TrackOverviewDelegate.swift in Sources */,
 				1FEC620B2742733A00361EEC /* TrackListRouterProtocol.swift in Sources */,
 				1FC706EB271C4925002BFC2F /* RegistrationTableFooterView.swift in Sources */,
+				1FA5FF172752E7D900FFBF95 /* AudioObserverProtocol.swift in Sources */,
 				1FB258512732EE6000438837 /* SingleTrackViewController.swift in Sources */,
 				1FC90E02274EF52B007749E7 /* TrackDataEntity+CoreDataClass.swift in Sources */,
-				1FE320B7274696B20034FF0A /* TrackPlayer.swift in Sources */,
+				1FE320B7274696B20034FF0A /* TrackPlayerManager.swift in Sources */,
 				1F499B13273AA986006F62CC /* SingleTrackViewDelegate.swift in Sources */,
 				1FB2585727332BCC00438837 /* MainHelper.swift in Sources */,
 				1FC706F9271CD52A002BFC2F /* ValidationErrorInfo.swift in Sources */,
@@ -639,16 +685,19 @@
 				1F0CFBD9274993B300424B44 /* TitleViewRightBarButton.swift in Sources */,
 				1FD57E9B2741584200ECB77B /* AuthenticationInteractor.swift in Sources */,
 				1F0CFBDB2749956200424B44 /* TitleSegmentedControlDelegate.swift in Sources */,
+				1FA5FF132752E56300FFBF95 /* AudioObserver.swift in Sources */,
 				1FC706ED271C4E01002BFC2F /* TableFooterViewDelegate.swift in Sources */,
 				1FC706F5271CD4D3002BFC2F /* AuthenticationHelper.swift in Sources */,
 				1FEC61FC274272E300361EEC /* TrackListInteractor.swift in Sources */,
 				1FC706EF271C50C8002BFC2F /* LoginTableFooterView.swift in Sources */,
 				1F66D74F27416D2E0045CDD4 /* AuthenticationRouterProtocol.swift in Sources */,
 				1FEC62052742732100361EEC /* TrackListPresenterProtocol.swift in Sources */,
+				1F39EE2D275401320054771B /* StrrokeAnimation.swift in Sources */,
 				1F59B65226FE477500C5A614 /* MobileDevApp.xcdatamodeld in Sources */,
 				1FC90E03274EF52B007749E7 /* TrackDataEntity+CoreDataProperties.swift in Sources */,
 				1FD57EAA274158D700ECB77B /* AuthenticationInteractorOutputProtocol.swift in Sources */,
 				1FE3C2EF273BD2FE00BA858C /* SpotifyService.swift in Sources */,
+				1FA5FF152752E7AA00FFBF95 /* ObservableObjectProtocol.swift in Sources */,
 				1F4114A52739C40F0013338D /* ParserJSON.swift in Sources */,
 				1F4114A32739C3A70013338D /* TrackDataJSON.swift in Sources */,
 				1F7D3F81271B73C000B9248F /* AuthenticationTableHeaderView.swift in Sources */,
@@ -667,6 +716,7 @@
 				1FB258592733C7CD00438837 /* TrackOverviewView.swift in Sources */,
 				1F499B11273AA8A6006F62CC /* SingleTrackViewControllerDelegate.swift in Sources */,
 				1F6EDF01271052EC00DC994B /* AuthenticationCellData.swift in Sources */,
+				1F39EE2C275401320054771B /* ProgressShapeLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,4 @@
-module Pods_MobileDevApp {
+framework module Pods_MobileDevApp {
   umbrella header "Pods-MobileDevApp-umbrella.h"
 
   export *

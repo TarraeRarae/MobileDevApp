@@ -24,8 +24,8 @@ class CoreDataService {
         return container
     }()
 
-    func saveData(data: TrackData) {
-        guard let entity = NSEntityDescription.entity(forEntityName: MainHelper.Constant.entityName.rawValue, in: context) else { return }
+    func saveData(data: TrackData, closure: @escaping () -> Void) {
+        guard let entity = NSEntityDescription.entity(forEntityName: MainHelper.StringConstant.entityName.rawValue, in: context) else { return }
         guard let records = checkCountOfTracks(for: NSPredicate(format: "trackName = %@", data.name)) else { return }
         if records > 0 {
             return
@@ -34,11 +34,13 @@ class CoreDataService {
         object.singerName = data.artists[0].name
         object.trackName = data.name
         object.previewURL = data.previewURL
+        object.duration = data.duration
         if let destinationURL = data.destinationURL {
             object.destinationURL = destinationURL
         }
         object.imagesURLs = data.imagesURLs
         saveContext()
+        closure()
     }
 
     func clearCoreDataStack() {

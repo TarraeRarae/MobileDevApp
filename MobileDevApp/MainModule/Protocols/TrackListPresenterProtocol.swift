@@ -18,5 +18,5 @@ protocol TrackListPresenterProtocol: AnyObject {
     func changeTrackCondition(isPaused: Bool)
     func getCellData(for indexPath: IndexPath) -> TrackData
     func isTrackDownloaded(for indexPath: IndexPath) -> Bool
-    func didDataButtonTap(data: TrackData, isDataDownloaded: Bool)
+    func didDataButtonTap(data: TrackData, isDataDownloaded: Bool, closure: @escaping () -> Void)
 }
