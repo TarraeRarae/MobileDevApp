@@ -179,7 +179,7 @@ extension TrackListViewController: TrackListViewControllerProtocol {
 
 extension TrackListViewController: TrackListTableViewCellDelegate {
 
-    func didDataButtonTap(data: TrackData, isDataDownloaded: Bool) {
-        presenter?.didDataButtonTap(data: data, isDataDownloaded: isDataDownloaded)
+    func didDataButtonTap(data: TrackData, isDataDownloaded: Bool, closure: @escaping () -> Void) {
+        presenter?.didDataButtonTap(data: data, isDataDownloaded: isDataDownloaded, closure: closure)
     }
 }

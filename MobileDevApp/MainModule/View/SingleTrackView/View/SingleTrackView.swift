@@ -178,5 +178,4 @@ class SingleTrackView: UIView {
     @objc private func sliderValueChanged() {
         delegate?.sliderValueChanged(newValue: trackSlider.value)
     }
-
 }

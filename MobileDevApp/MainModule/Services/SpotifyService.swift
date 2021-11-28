@@ -53,5 +53,4 @@ extension SpotifyService: TargetType {
                 "Content-Type": "application/json",
                 "Authorization": MainHelper.StringConstant.authToken.rawValue]
     }
-
 }

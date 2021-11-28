@@ -21,6 +21,8 @@ class TrackCellViewController: UITableViewCell {
     @IBOutlet weak var singerNameLabel: UILabel!
     @IBOutlet weak var dataButton: UIButton!
 
+//    private lazy var progressView = ProgressView(frame: CGRect(x: self.dataButton.frame.width * 0.5 - 10, y: self.dataButton.frame.height * 0.5 - 10, width: 20, height: 20), colors: [.label], lineWidth: 5)
+    private var progressView: ProgressView?
     weak var delegate: TrackListTableViewCellDelegate?
     var isDataDownloaded: Bool? {
         willSet(isDataSaved) {
@@ -52,11 +54,28 @@ class TrackCellViewController: UITableViewCell {
         trackImageView.image = UIImage(named: MainHelper.StringConstant.placeholderImageName.rawValue)
         trackNameLabel.text = ""
         singerNameLabel.text = ""
+        dataButton.isEnabled = true
     }
 
     @IBAction func didDataButtonTap(_ sender: UIButton!) {
         guard let cellData = cellData, let isDataSaved = isDataDownloaded else { return }
-        self.isDataDownloaded = !isDataSaved
-        delegate?.didDataButtonTap(data: cellData, isDataDownloaded: isDataSaved)
+        if !isDataSaved {
+            progressView = ProgressView(frame: CGRect(x: self.dataButton.frame.width * 0.5 - 10, y: self.dataButton.frame.height * 0.5 - 10, width: 20, height: 20), colors: [.label], lineWidth: 2)
+            self.dataButton.isEnabled = false
+            self.dataButton.setImage(nil, for: .normal)
+            if let progressView = progressView {
+                self.dataButton.addSubview(progressView)
+            }
+            progressView?.animateStroke()
+            delegate?.didDataButtonTap(data: cellData, isDataDownloaded: isDataSaved, closure: {
+                [weak self] in
+                self?.progressView?.removeFromSuperview()
+                self?.progressView = nil
+                self?.isDataDownloaded = !isDataSaved
+                self?.dataButton.isEnabled = true
+            })
+            return
+        }
+        delegate?.didDataButtonTap(data: cellData, isDataDownloaded: isDataSaved, closure: {})
     }
 }

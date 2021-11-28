@@ -65,7 +65,7 @@ extension TrackListInteractor: TrackListInteractorProtocol {
         presenter?.reloadData()
     }
 
-    func saveData(data: TrackData) {
+    func saveData(data: TrackData, closure: @escaping () -> Void) {
         let endpointClosure = { (target: TrackDownloadService) -> Endpoint in
             return Endpoint(
                 url: URL(target: target).absoluteString,
@@ -83,7 +83,7 @@ extension TrackListInteractor: TrackListInteractorProtocol {
                 let destinationUrl = documentsDirectoryURL.appendingPathComponent(fileName + ".mp3")
                 var resultData = data
                 resultData.destinationURL = destinationUrl
-                self.coreDataService.saveData(data: resultData)
+                self.coreDataService.saveData(data: resultData, closure: closure)
             case .failure:
                 print("failure")
             }

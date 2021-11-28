@@ -24,7 +24,7 @@ class CoreDataService {
         return container
     }()
 
-    func saveData(data: TrackData) {
+    func saveData(data: TrackData, closure: @escaping () -> Void) {
         guard let entity = NSEntityDescription.entity(forEntityName: MainHelper.StringConstant.entityName.rawValue, in: context) else { return }
         guard let records = checkCountOfTracks(for: NSPredicate(format: "trackName = %@", data.name)) else { return }
         if records > 0 {
@@ -40,6 +40,7 @@ class CoreDataService {
         }
         object.imagesURLs = data.imagesURLs
         saveContext()
+        closure()
     }
 
     func clearCoreDataStack() {
