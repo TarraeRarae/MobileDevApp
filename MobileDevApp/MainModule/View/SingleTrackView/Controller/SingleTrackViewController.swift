@@ -40,6 +40,7 @@ class SingleTrackViewController: UIViewController {
     }
 
     override func viewDidDisappear(_ animated: Bool) {
+        AudioObserver.shared.viewWithSlider = nil
         guard let isPaused = isPaused else {
             return
         }

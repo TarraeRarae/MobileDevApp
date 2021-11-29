@@ -11,7 +11,6 @@ extension UIImage {
 
     func areaAverage() -> UIColor {
         var bitmap = [UInt8](repeating: 0, count: 4)
-
         if #available(iOS 9.0, *) {
             let context = CIContext()
             let inputImage: CIImage = ciImage ?? CoreImage.CIImage(cgImage: cgImage!)

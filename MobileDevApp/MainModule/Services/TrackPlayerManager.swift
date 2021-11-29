@@ -16,6 +16,7 @@ class TrackPlayerManager {
     private var audioSession = AVAudioSession.sharedInstance()
     private var audioObserver = AudioObserver.shared
     private var displayLink: CADisplayLink?
+    private var periodicTimeObserver: Any?
 
     init() {
         do {
@@ -44,7 +45,7 @@ class TrackPlayerManager {
         onlinePlayer = AVPlayer(playerItem: playerItem)
         onlinePlayer?.play()
         addStopObserverForOnlineTrack()
-        onlinePlayer?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.0001, preferredTimescale: 60000), queue: DispatchQueue.main, using: { time in
+        periodicTimeObserver = onlinePlayer?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.0001, preferredTimescale: 60000), queue: DispatchQueue.main, using: { time in
             self.audioObserver.trackCurrentTimeDidChange(newValue: Float(time.seconds))
         })
     }
@@ -86,6 +87,9 @@ class TrackPlayerManager {
 
     func closeTrack() {
         displayLink = nil
+        if let periodicTimeObserver = periodicTimeObserver {
+            onlinePlayer?.removeTimeObserver(periodicTimeObserver)
+        }
         onlinePlayer = nil
         offlinePlayer = nil
     }

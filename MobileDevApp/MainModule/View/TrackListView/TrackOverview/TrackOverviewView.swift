@@ -71,7 +71,6 @@ class TrackOverviewView: UIControl {
         let size = CGRect(x: 0, y: frame.height * 0.9, width: frame.width, height: frame.height * 0.1)
         self.frame = size
         self.addTarget(nil, action: #selector(showSingleTrackView), for: .touchUpInside)
-        self.backgroundColor = .systemBackground
         customizeView()
         setupPlayButton()
         setupTrackNameLabel()

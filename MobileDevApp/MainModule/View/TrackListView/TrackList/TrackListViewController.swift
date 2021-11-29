@@ -32,7 +32,8 @@ class TrackListViewController: UIViewController {
                 trackTableView.contentSize = CGSize(width: self.view.frame.width, height: trackTableView.contentSize.height - trackOverviewHeight)
                 return
             }
-            self.view.insertSubview(trackOverviewView, aboveSubview: trackTableView)
+            self.view.addSubview(trackOverviewView)
+            trackOverviewView.backgroundColor = .systemBackground
             trackOverviewHeight = trackOverviewView.frame.height
             trackTableView.contentSize = CGSize(width: self.view.frame.width, height: trackTableView.contentSize.height + trackOverviewHeight)
             return
