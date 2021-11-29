@@ -3,12 +3,12 @@
     <entity name="TrackDataEntity" representedClassName=".TrackDataEntity" syncable="YES">
         <attribute name="destinationURL" optional="YES" attributeType="URI"/>
         <attribute name="duration" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="imagesURLs" optional="YES" attributeType="Transformable"/>
+        <attribute name="imagesURLs" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="previewURL" optional="YES" attributeType="String"/>
         <attribute name="singerName" optional="YES" attributeType="String"/>
         <attribute name="trackName" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="TrackDataEntity" positionX="-36" positionY="9" width="128" height="119"/>
+        <element name="TrackDataEntity" positionX="-36" positionY="9" width="128" height="133"/>
     </elements>
 </model>
