@@ -9,5 +9,5 @@ import Foundation
 
 protocol SingleTrackViewControllerDelegate: AnyObject {
 
-    func playButtonTapped(isPaused: Bool)
+    func playButtonDidTap(isPaused: Bool)
 }

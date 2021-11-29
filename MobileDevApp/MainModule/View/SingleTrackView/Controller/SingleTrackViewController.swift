@@ -60,7 +60,7 @@ extension SingleTrackViewController: SingleTrackViewDelegate {
 
     func playButtonTapped(isPaused: Bool) {
         self.isPaused = isPaused
-        delegate?.playButtonTapped(isPaused: isPaused)
+        delegate?.playButtonDidTap(isPaused: isPaused)
     }
 
     func sliderValueChanged(newValue value: Float) {

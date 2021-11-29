@@ -159,7 +159,7 @@ class TrackOverviewView: UIControl {
     @objc private func playTrack() {
         playButton.isSelected.toggle()
         print(playButton.isSelected)
-        delegate?.trackOverviewPlayButtonTapped(isPaused: playButton.isSelected)
+        delegate?.trackOverviewPlayButtonDidTap(isPaused: playButton.isSelected)
     }
 
     @objc private func showSingleTrackView() {

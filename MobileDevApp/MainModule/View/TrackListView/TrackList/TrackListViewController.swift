@@ -137,14 +137,14 @@ extension TrackListViewController: TrackOverviewDelegate {
         }
     }
 
-    func trackOverviewPlayButtonTapped(isPaused: Bool) {
+    func trackOverviewPlayButtonDidTap(isPaused: Bool) {
         presenter?.changeTrackCondition(isPaused: isPaused)
     }
 }
 
 extension TrackListViewController: SingleTrackViewControllerDelegate {
 
-    func playButtonTapped(isPaused: Bool) {
+    func playButtonDidTap(isPaused: Bool) {
         trackOverviewView?.updateTrackCondition(isPaused: isPaused)
         presenter?.changeTrackCondition(isPaused: isPaused)
     }
@@ -164,7 +164,7 @@ extension TrackListViewController: TrackListViewControllerProtocol {
             return
         }
         if overviewData == data {
-            self.playButtonTapped(isPaused: trackOverview.isTrackPaused)
+            self.playButtonDidTap(isPaused: trackOverview.isTrackPaused)
             return
         }
         closeTrack()

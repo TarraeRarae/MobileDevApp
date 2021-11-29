@@ -67,7 +67,6 @@ class SingleTrackView: UIView {
         setupTrackImageView()
         setupTrackSlider()
         setupPlayButton()
-        print(durationLabel.text)
     }
 
     required init?(coder: NSCoder) {
@@ -165,6 +164,7 @@ class SingleTrackView: UIView {
 
     public func setSliderCurrentValue(newValue: Float) {
         trackSlider.value = newValue
+        // MARK: - ?????????
         if MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue >= 10 {
             durationLabel.text = "0:\(Int(MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue))"
         } else {
