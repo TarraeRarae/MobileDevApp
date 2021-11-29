@@ -20,9 +20,9 @@ class TrackPlayerManager {
 
     init() {
         do {
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-            try audioSession.setCategory(.playback)
-            try audioSession.setMode(.moviePlayback)
+            try audioSession.setActive(true, options: [])
+            try audioSession.setCategory(.playback, options: [.duckOthers])
+            try audioSession.setMode(.spokenAudio)
             AudioObserver.shared.audioPlayer = self
         } catch {
             print("error")
