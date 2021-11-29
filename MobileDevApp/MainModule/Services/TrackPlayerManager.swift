@@ -88,7 +88,7 @@ class TrackPlayerManager {
     }
 
     func closeTrack() {
-        displayLink = nil
+        displayLink?.isPaused = true
         if let periodicTimeObserver = periodicTimeObserver {
             onlinePlayer?.removeTimeObserver(periodicTimeObserver)
         }
