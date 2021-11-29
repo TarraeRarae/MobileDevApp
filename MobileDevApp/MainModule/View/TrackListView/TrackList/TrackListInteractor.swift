@@ -27,12 +27,16 @@ extension TrackListInteractor: TrackListInteractorProtocol {
 
     func deleteObjectFromSavedData(data: TrackData, closure: @escaping () -> Void) {
         coreDataService.deleteObjectFromSavedData(data: data, closure: closure)
-        presenter?.reloadData()
+        presenter?.reloadDataAfterDeletingOneObject()
     }
 
     func fetchOnlineData() {
         let endpointClosure = { (target: SpotifyService) -> Endpoint in
-            return Endpoint(url: URL(target: target).absoluteString, sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, task: target.task, httpHeaderFields: target.headers)
+            return Endpoint(url: URL(target: target).absoluteString,
+                            sampleResponseClosure: { .networkResponse(200, target.sampleData)},
+                            method: target.method,
+                            task: target.task,
+                            httpHeaderFields: target.headers)
         }
         let provider = MoyaProvider<SpotifyService>(endpointClosure: endpointClosure)
         provider.request(.getTracksFromAlbum(albumID: MainHelper.StringConstant.albumURL.rawValue)) { result in
@@ -61,7 +65,7 @@ extension TrackListInteractor: TrackListInteractorProtocol {
 
     func clearDownloadedData() {
         coreDataService.clearCoreDataStack()
-        presenter?.reloadData()
+        presenter?.reloadDataAfterClearingAllData()
     }
 
     func saveData(data: TrackData, closure: @escaping () -> Void) {

@@ -11,5 +11,6 @@ protocol TrackListInteractorOutputProtocol: AnyObject {
 
     func didReceiveOnlineData(data: [TrackData])
     func didReceiveDownloadeData(data: [TrackDataEntity])
-    func reloadData()
+    func reloadDataAfterDeletingOneObject()
+    func reloadDataAfterClearingAllData()
 }

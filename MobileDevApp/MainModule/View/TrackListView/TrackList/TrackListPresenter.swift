@@ -106,11 +106,19 @@ extension TrackListPresenter: TrackListInteractorOutputProtocol {
         view?.reloadData()
     }
 
-    func reloadData() {
+    func reloadDataAfterClearingAllData() {
         if currentDataIndex == 1 {
             interactor?.fetchDownloadedData()
             return
         }
-//        view?.reloadData()
+        view?.reloadData()
+    }
+
+    func reloadDataAfterDeletingOneObject() {
+        if currentDataIndex == 1 {
+            interactor?.fetchDownloadedData()
+            view?.reloadData()
+            return
+        }
     }
 }
