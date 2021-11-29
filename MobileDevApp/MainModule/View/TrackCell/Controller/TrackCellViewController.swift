@@ -63,11 +63,11 @@ class TrackCellViewController: UITableViewCell {
     @IBAction func didDataButtonTap(_ sender: UIButton!) {
         guard let cellData = cellData, let isDataSaved = isDataDownloaded else { return }
         if !isDataSaved {
-            progressView = ProgressView(frame: CGRect(x: self.dataButton.frame.width * 0.5 - 10, y: self.dataButton.frame.height * 0.5 - 10, width: 20, height: 20), colors: [.label], lineWidth: 2)
-            self.dataButton.isEnabled = false
-            self.dataButton.setImage(nil, for: .normal)
+            progressView = ProgressView(frame: CGRect(x: dataButton.frame.width * 0.5 - 10, y: dataButton.frame.height * 0.5 - 10, width: 20, height: 20), colors: [.systemRed], lineWidth: 2)
+            dataButton.isEnabled = false
+            dataButton.setImage(nil, for: .normal)
             if let progressView = progressView {
-                self.dataButton.addSubview(progressView)
+                dataButton.addSubview(progressView)
             }
             progressView?.animateStroke()
             delegate?.didDataButtonTap(data: cellData, isDataDownloaded: isDataSaved) {

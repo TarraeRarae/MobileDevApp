@@ -24,7 +24,7 @@ class TitleViewRightBarButton: UIBarButtonItem {
         self.image = UIImage(systemName: MainHelper.StringConstant.moreMenuImageName.rawValue)
         self.style = .plain
         self.action = #selector(tapped)
-        self.tintColor = .label
+        self.tintColor = .systemRed
     }
 
     @objc private func tapped() {

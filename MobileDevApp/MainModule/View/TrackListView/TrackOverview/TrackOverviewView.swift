@@ -48,7 +48,7 @@ class TrackOverviewView: UIControl {
     private var singerNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = .label
+        label.textColor = .systemRed
         label.backgroundColor = .clear
         return label
     }()

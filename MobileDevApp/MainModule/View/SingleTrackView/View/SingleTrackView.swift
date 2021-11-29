@@ -24,7 +24,7 @@ class SingleTrackView: UIView {
 
     private var singerNameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .label
+        label.textColor = .systemRed
         label.backgroundColor = .clear
         label.font = UIFont.systemFont(ofSize: 15)
         return label
@@ -44,7 +44,8 @@ class SingleTrackView: UIView {
 
     private var trackSlider: UISlider = {
         let slider = UISlider()
-        slider.tintColor = .label
+        slider.tintColor = .systemRed
+        slider.thumbTintColor = .label
         slider.addTarget(self, action: #selector(sliderValueChangingDidStart), for: .touchDown)
         slider.addTarget(self, action: #selector(sliderValueChangingDidEnd), for: .touchUpInside)
         slider.addTarget(self, action: #selector(sliderValueChangingDidEnd), for: .touchUpOutside)
@@ -152,7 +153,7 @@ class SingleTrackView: UIView {
 
     public func setTrackImage(imageURL: URL) {
         self.trackImageView.kf.setImage(with: imageURL)
-        self.backgroundColor = trackImageView.image?.increaseContrast().areaAverage().mix(with: UIColor.white, amount: 0.5)
+//        self.backgroundColor = trackImageView.image?.increaseContrast().areaAverage().mix(with: UIColor.white, amount: 0.1)
     }
 
     public func setTrackCondition(isPaused: Bool) {

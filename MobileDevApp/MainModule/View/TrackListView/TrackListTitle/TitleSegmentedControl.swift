@@ -24,8 +24,8 @@ class TitleSegmentedControl: UISegmentedControl {
         self.layer.zPosition = 2
         self.isEnabled = true
         self.backgroundColor = .clear
-        self.selectedSegmentTintColor = .white
-        self.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        self.selectedSegmentTintColor = .systemRed
+        self.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.label], for: .normal)
         self.insertSegment(withTitle: "Online".localized, at: 0, animated: true)
         self.insertSegment(withTitle: "Downloaded".localized, at: 1, animated: true)
         self.selectedSegmentIndex = 0
