@@ -12,6 +12,7 @@ class AudioObserver: NSObject {
 
     static let shared = AudioObserver()
 
+    var currentTime: Float = 0
     weak var audioPlayer: ObservableAudioObjectProtocol?
     weak var viewWithSlider: ObservingAudioObjectProtocol?
 }
@@ -23,6 +24,7 @@ extension AudioObserver: AudioObserverProtocol {
     }
 
     func trackCurrentTimeDidChange(newValue: Float) {
+        self.currentTime = newValue
         viewWithSlider?.observableValueDidChange(newValue: newValue)
     }
 

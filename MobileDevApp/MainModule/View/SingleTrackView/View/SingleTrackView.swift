@@ -47,6 +47,8 @@ class SingleTrackView: UIView {
         slider.tintColor = .label
         slider.addTarget(self, action: #selector(sliderValueChangingDidStart), for: .touchDown)
         slider.addTarget(self, action: #selector(sliderValueChangingDidEnd), for: .touchUpInside)
+        slider.addTarget(self, action: #selector(sliderValueChangingDidEnd), for: .touchUpOutside)
+        slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         return slider
     }()
 
@@ -140,6 +142,14 @@ class SingleTrackView: UIView {
         }
     }
 
+    private func setDurationLabelValue(newValue value: Float) {
+        if trackSlider.maximumValue - value >= 10 {
+            durationLabel.text = "0:\(Int(trackSlider.maximumValue - value))"
+        } else {
+            durationLabel.text = "0:0\(Int(trackSlider.maximumValue - value))"
+        }
+    }
+
     public func setTrackImage(imageURL: URL) {
         self.trackImageView.kf.setImage(with: imageURL)
         self.backgroundColor = trackImageView.image?.increaseContrast().areaAverage().mix(with: UIColor.white, amount: 0.5)
@@ -164,12 +174,12 @@ class SingleTrackView: UIView {
 
     public func setSliderCurrentValue(newValue: Float) {
         trackSlider.value = newValue
-        // MARK: - ?????????
-        if MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue >= 10 {
-            durationLabel.text = "0:\(Int(MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue))"
-        } else {
-            durationLabel.text = "0:0\(Int(MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue))"
-        }
+        setDurationLabelValue(newValue: newValue)
+//        if MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue >= 10 {
+//            durationLabel.text = "0:\(Int(MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue))"
+//        } else {
+//            durationLabel.text = "0:0\(Int(MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue))"
+//        }
     }
 
     @objc private func playTrack() {
@@ -183,5 +193,9 @@ class SingleTrackView: UIView {
 
     @objc private func sliderValueChangingDidEnd() {
         delegate?.sliderValueChanged(newValue: trackSlider.value)
+    }
+
+    @objc private func sliderValueChanged() {
+        setDurationLabelValue(newValue: trackSlider.value)
     }
 }

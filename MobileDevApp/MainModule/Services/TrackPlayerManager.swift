@@ -41,6 +41,7 @@ class TrackPlayerManager {
         if url.absoluteString.count == 0 && onlinePlayer != nil {
             return
         }
+        AudioObserver.shared.currentTime = 0
         let playerItem = AVPlayerItem(url: url)
         onlinePlayer = AVPlayer(playerItem: playerItem)
         onlinePlayer?.play()
@@ -52,6 +53,7 @@ class TrackPlayerManager {
 
     func startDownloadedTrack(url: URL) {
         do {
+            AudioObserver.shared.currentTime = 0
             offlinePlayer = try AVAudioPlayer(contentsOf: url)
             guard let player = offlinePlayer else { return }
             player.play()

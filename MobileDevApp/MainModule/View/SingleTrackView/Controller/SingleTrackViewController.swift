@@ -28,6 +28,7 @@ class SingleTrackViewController: UIViewController {
             singleTrackView?.setTrackName(text: data.name)
             singleTrackView?.setSingerName(text: data.artists[0].name)
             singleTrackView?.setSliderMaxValue(maxValue: MainHelper.FloatConstant.previewDurationInMilliseconds.rawValue)
+            singleTrackView?.setSliderCurrentValue(newValue: AudioObserver.shared.currentTime)
             self.view = singleTrackView
             guard data.imagesURLs.count != 0, let imageURL = URL(string: data.imagesURLs[0]) else { return }
             self.singleTrackView?.setTrackImage(imageURL: imageURL)
@@ -44,11 +45,6 @@ class SingleTrackViewController: UIViewController {
         guard let isPaused = isPaused else {
             return
         }
-//        if isPaused {
-//            AudioObserver.shared.pauseTrack()
-//        } else {
-//            AudioObserver.shared.playTrack()
-//        }
         self.playButtonTapped(isPaused: isPaused)
     }
 }

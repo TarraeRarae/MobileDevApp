@@ -165,7 +165,7 @@ extension TrackListViewController: TrackListViewControllerProtocol {
             return
         }
         if overviewData == data {
-            self.playButtonDidTap(isPaused: trackOverview.isTrackPaused)
+            self.playButtonDidTap(isPaused: !trackOverview.isTrackPaused)
             return
         }
         closeTrack()
