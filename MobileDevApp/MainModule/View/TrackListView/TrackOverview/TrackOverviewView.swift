@@ -11,7 +11,8 @@ import SnapKit
 class TrackOverviewView: UIControl {
 
     weak var delegate: TrackOverviewDelegate?
-    var data: TrackData?
+    let data: TrackData
+
     var isTrackPaused: Bool {
         return playButton.isSelected
     }
@@ -66,89 +67,81 @@ class TrackOverviewView: UIControl {
     }()
 
     init(frame: CGRect, data: TrackData) {
-        super.init(frame: frame)
         self.data = data
+        super.init(frame: .zero)
         let size = CGRect(x: 0, y: frame.height * 0.9, width: frame.width, height: frame.height * 0.1)
         self.frame = size
-        self.addTarget(nil, action: #selector(showSingleTrackView), for: .touchUpInside)
-        customizeView()
-        setupPlayButton()
-        setupTrackNameLabel()
-        setupSingerNameLabel()
-        setupCloseButton()
+        setUpUI()
+        setUpLayout()
+        customize()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func customizeView() {
-        if let data = data {
-            self.singerNameLabel.text = data.artists[0].name
-            self.trackNameLabel.text = data.name
-            setupTrackImageView()
+    private func setUpUI() {
+        self.addSubview(trackImageView)
+        self.addSubview(playButton)
+        self.addSubview(trackNameLabel)
+        self.addSubview(singerNameLabel)
+        self.addSubview(closeButton)
+    }
+
+    private func setUpLayout() {
+        trackImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(3)
+            $0.bottom.equalToSuperview().offset(-self.frame.height * 0.2)
+            $0.left.equalToSuperview()
+            $0.width.equalTo(self.frame.width * 0.25)
         }
+
+        playButton.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.left.equalToSuperview().offset(self.frame.width * 0.7)
+            $0.bottom.equalToSuperview().inset(self.frame.height * 0.2)
+            $0.width.equalTo(self.frame.width * 0.15)
+        }
+
+        trackNameLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.left.equalToSuperview().offset(self.frame.width * 0.26)
+            $0.bottom.equalToSuperview().inset(self.frame.height * 0.4)
+            $0.width.equalTo(self.frame.width * 0.44)
+        }
+
+        singerNameLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(self.frame.height * 0.4)
+            $0.bottom.equalToSuperview().offset(-self.frame.height * 0.2)
+            $0.left.equalToSuperview().offset(self.frame.width * 0.26)
+            $0.width.equalTo(self.frame.width * 0.44)
+        }
+
+        closeButton.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-self.frame.height * 0.2)
+            $0.right.equalToSuperview()
+            $0.width.equalTo(self.frame.width * 0.15)
+        }
+    }
+
+    private func customize() {
+        self.addTarget(nil, action: #selector(showSingleTrackView), for: .touchUpInside)
         self.backgroundColor = .white
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0.0, y: 0.5, width: self.frame.width, height: 0.3)
         bottomLine.backgroundColor = UIColor.lightGray.cgColor
         self.layer.addSublayer(bottomLine)
+        singerNameLabel.text = data.artists[0].name
+        trackNameLabel.text = data.name
+        playButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        closeButton.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        setupTrackImageView()
     }
 
     private func setupTrackImageView() {
-        self.addSubview(trackImageView)
-        trackImageView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(3)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.2)
-            make.left.equalTo(self)
-            make.width.equalTo(self.frame.width * 0.25)
-        }
-        guard let data = data else { return }
         guard data.imagesURLs.count != 0, let imageURL = URL(string: data.imagesURLs[0]) else { return }
         self.trackImageView.kf.setImage(with: imageURL)
-        self.backgroundColor = trackImageView.image?.increaseContrast().areaAverage().mix(with: UIColor.white, amount: 0.8)
-    }
-
-    private func setupPlayButton() {
-        self.addSubview(playButton)
-        playButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.2)
-            make.left.equalTo(self).offset(self.frame.width * 0.7)
-            make.width.equalTo(self.frame.width * 0.15)
-        }
-        playButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
-    }
-
-    private func setupTrackNameLabel() {
-        self.addSubview(trackNameLabel)
-        trackNameLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.4)
-            make.left.equalTo(self).offset(self.frame.width * 0.26)
-            make.width.equalTo(self.frame.width * 0.44)
-        }
-    }
-
-    private func setupSingerNameLabel() {
-        self.addSubview(singerNameLabel)
-        singerNameLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(self.frame.height * 0.4)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.2)
-            make.left.equalTo(self).offset(self.frame.width * 0.26)
-            make.width.equalTo(self.frame.width * 0.44)
-        }
-    }
-
-    private func setupCloseButton() {
-        self.addSubview(closeButton)
-        closeButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(0)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.2)
-            make.right.equalTo(self).offset(0)
-            make.width.equalTo(self.frame.width * 0.15)
-        }
-        closeButton.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     }
 
     public func updateTrackCondition(isPaused: Bool) {
@@ -161,7 +154,7 @@ class TrackOverviewView: UIControl {
     }
 
     @objc private func showSingleTrackView() {
-        if let data = data, let delegate = delegate {
+        if let delegate = delegate {
             delegate.presentSingleTrackView(data: data, isPaused: self.playButton.isSelected)
         }
     }

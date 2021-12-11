@@ -10,10 +10,13 @@ import Kingfisher
 
 class TrackListViewController: UIViewController {
 
+    var presenter: TrackListPresenterProtocol?
+    var configurator = TrackListConfigurator()
     private var trackTableView = UITableView()
     private var titleSegmentedControl: TitleSegmentedControl?
     private var titleViewRightBarButton: TitleViewRightBarButton?
     private var trackOverviewHeight: CGFloat = 0
+
     private var moreMenu: UIAlertController {
         let alertController = UIAlertController(title: "More".localized, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
@@ -39,9 +42,6 @@ class TrackListViewController: UIViewController {
             return
         }
     }
-
-    var presenter: TrackListPresenterProtocol?
-    var configurator = TrackListConfigurator()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -70,6 +70,7 @@ class TrackListViewController: UIViewController {
         trackTableView = UITableView(frame: self.view.frame, style: .plain)
         trackTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         trackTableView.backgroundColor = .clear
+        trackTableView.showsVerticalScrollIndicator = false
         trackTableView.register(UINib(nibName: TrackCellViewController.Constant.nibName, bundle: nil), forCellReuseIdentifier: TrackCellViewController.Constant.cellID)
         trackTableView.dataSource = self
         trackTableView.delegate = self
@@ -158,13 +159,13 @@ extension TrackListViewController: TrackListViewControllerProtocol {
     }
 
     func showTrackOverview(with data: TrackData) {
-        guard let trackOverview = trackOverviewView, let overviewData = trackOverview.data else {
+        guard let trackOverview = trackOverviewView else {
             trackOverviewView = TrackOverviewView(frame: self.view.frame, data: data)
             trackOverviewView?.delegate = self
             presenter?.trackOverviewDidCreate(with: data)
             return
         }
-        if overviewData == data {
+        if trackOverview.data == data {
             self.playButtonDidTap(isPaused: !trackOverview.isTrackPaused)
             return
         }
@@ -173,8 +174,8 @@ extension TrackListViewController: TrackListViewControllerProtocol {
     }
 
     func closeTrackOverview(for data: TrackData) {
-        guard let trackOverview = trackOverviewView, let trackOverviewData = trackOverview.data else { return }
-        if trackOverviewData == data {
+        guard let trackOverview = trackOverviewView else { return }
+        if trackOverview.data == data {
             closeTrack()
         }
     }
