@@ -8,7 +8,6 @@
 import Foundation
 
 protocol TrackListPresenterProtocol: AnyObject {
-
     func viewDidLoad(for index: Int)
     func closeTrack()
     func didExitButtonTap()

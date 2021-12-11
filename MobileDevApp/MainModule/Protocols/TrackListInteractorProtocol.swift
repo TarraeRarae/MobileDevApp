@@ -8,7 +8,6 @@
 import Foundation
 
 protocol TrackListInteractorProtocol: AnyObject {
-
     func fetchOnlineData()
     func fetchDownloadedData()
     func startTrack(data: TrackData)

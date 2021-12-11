@@ -8,6 +8,5 @@
 import UIKit
 
 protocol TitleViewRightBarButtonDelegate: AnyObject {
-
     func presentMoreMenu()
 }

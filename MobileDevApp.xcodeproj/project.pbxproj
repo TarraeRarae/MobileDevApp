@@ -45,8 +45,6 @@
 		1FB258532732EE7000438837 /* SingleTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB258522732EE7000438837 /* SingleTrackView.swift */; };
 		1FB2585727332BCC00438837 /* MainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2585627332BCC00438837 /* MainHelper.swift */; };
 		1FB258592733C7CD00438837 /* TrackOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB258582733C7CD00438837 /* TrackOverviewView.swift */; };
-		1FBF2FBE275424BB00ED0C62 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF2FBD275424BB00ED0C62 /* UIImage+Extension.swift */; };
-		1FBF2FC0275424C600ED0C62 /* UIColor+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF2FBF275424C600ED0C62 /* UIColor+Extenstion.swift */; };
 		1FBF2FC22754314C00ED0C62 /* ObservingObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF2FC12754314C00ED0C62 /* ObservingObjectProtocol.swift */; };
 		1FC706E9271C4586002BFC2F /* TableHeaderViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC706E8271C4586002BFC2F /* TableHeaderViewDelegate.swift */; };
 		1FC706EB271C4925002BFC2F /* RegistrationTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC706EA271C4925002BFC2F /* RegistrationTableFooterView.swift */; };
@@ -119,8 +117,6 @@
 		1FB258522732EE7000438837 /* SingleTrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTrackView.swift; sourceTree = "<group>"; };
 		1FB2585627332BCC00438837 /* MainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHelper.swift; sourceTree = "<group>"; };
 		1FB258582733C7CD00438837 /* TrackOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOverviewView.swift; sourceTree = "<group>"; };
-		1FBF2FBD275424BB00ED0C62 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
-		1FBF2FBF275424C600ED0C62 /* UIColor+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extenstion.swift"; sourceTree = "<group>"; };
 		1FBF2FC12754314C00ED0C62 /* ObservingObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservingObjectProtocol.swift; sourceTree = "<group>"; };
 		1FC706E8271C4586002BFC2F /* TableHeaderViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderViewDelegate.swift; sourceTree = "<group>"; };
 		1FC706EA271C4925002BFC2F /* RegistrationTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTableFooterView.swift; sourceTree = "<group>"; };
@@ -445,8 +441,6 @@
 			children = (
 				1FB2585627332BCC00438837 /* MainHelper.swift */,
 				1FA5FF122752E56300FFBF95 /* AudioObserver.swift */,
-				1FBF2FBD275424BB00ED0C62 /* UIImage+Extension.swift */,
-				1FBF2FBF275424C600ED0C62 /* UIColor+Extenstion.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -701,7 +695,6 @@
 				1FEC61FC274272E300361EEC /* TrackListInteractor.swift in Sources */,
 				1FC706EF271C50C8002BFC2F /* LoginTableFooterView.swift in Sources */,
 				1F66D74F27416D2E0045CDD4 /* AuthenticationRouterProtocol.swift in Sources */,
-				1FBF2FBE275424BB00ED0C62 /* UIImage+Extension.swift in Sources */,
 				1FEC62052742732100361EEC /* TrackListPresenterProtocol.swift in Sources */,
 				1F39EE2D275401320054771B /* StrrokeAnimation.swift in Sources */,
 				1F59B65226FE477500C5A614 /* MobileDevApp.xcdatamodeld in Sources */,
@@ -718,7 +711,6 @@
 				1F0CFBDD2749958200424B44 /* TitleViewRightBarButtonDelegate.swift in Sources */,
 				1FEC62092742733300361EEC /* TrackListInteractorOutputProtocol.swift in Sources */,
 				1F0CFBD72749921B00424B44 /* TitleSegmentedControl.swift in Sources */,
-				1FBF2FC0275424C600ED0C62 /* UIColor+Extenstion.swift in Sources */,
 				1F1DA4A82701A22500757C9E /* AuthenticationCell.swift in Sources */,
 				1F5E84E22732B46D00CAA36A /* TrackCellViewController.swift in Sources */,
 				1F248D40274D974A00D32A17 /* TrackDownloadService.swift in Sources */,

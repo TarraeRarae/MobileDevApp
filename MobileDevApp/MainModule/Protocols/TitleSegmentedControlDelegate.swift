@@ -8,6 +8,5 @@
 import Foundation
 
 protocol TitleSegmentedControlDelegate: AnyObject {
-
     func updateTableView(indexOfSection index: Int)
 }

@@ -8,6 +8,5 @@
 import Foundation
 
 protocol ObservingAudioObjectProtocol: AnyObject {
-
     func observableValueDidChange(newValue: Float)
 }

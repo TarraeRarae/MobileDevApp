@@ -8,7 +8,6 @@
 import Foundation
 
 protocol AudioObserverProtocol: AnyObject {
-
     func changeTrackCurrentTime(newValue: Float)
     func trackCurrentTimeDidChange(newValue: Float)
 }

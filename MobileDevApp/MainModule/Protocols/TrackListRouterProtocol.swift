@@ -8,6 +8,5 @@
 import Foundation
 
 protocol TrackListRouterProtocol: AnyObject {
-
     func showAuthenticationViewController()
 }

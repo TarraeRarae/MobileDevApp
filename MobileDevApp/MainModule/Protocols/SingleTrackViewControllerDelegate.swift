@@ -8,6 +8,5 @@
 import Foundation
 
 protocol SingleTrackViewControllerDelegate: AnyObject {
-
     func playButtonDidTap(isPaused: Bool)
 }

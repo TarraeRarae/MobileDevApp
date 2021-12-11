@@ -8,7 +8,6 @@
 import Foundation
 
 protocol TrackListViewControllerProtocol: AnyObject {
-
     func reloadData()
     func showTrackOverview(with data: TrackData)
     func closeTrackOverview(for data: TrackData)
