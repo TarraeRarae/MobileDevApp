@@ -91,9 +91,23 @@ class TrackOverviewView: UIControl {
     private func setUpLayout() {
         trackImageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(3)
-            $0.bottom.equalToSuperview().offset(-self.frame.height * 0.2)
-            $0.left.equalToSuperview()
-            $0.width.equalTo(self.frame.width * 0.25)
+            $0.left.equalToSuperview().offset(20)
+            $0.width.equalTo(56)
+            $0.height.equalTo(56)
+        }
+
+        trackNameLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(10)
+            $0.left.equalTo(trackImageView.snp.right).offset(20)
+            $0.height.equalTo(20)
+            $0.right.equalTo(playButton.snp.left).inset(0)
+        }
+
+        singerNameLabel.snp.makeConstraints {
+            $0.top.equalTo(trackNameLabel.snp.bottom).offset(3)
+            $0.left.equalTo(trackImageView.snp.right).offset(20)
+            $0.right.equalTo(playButton.snp.left).inset(35)
+            $0.height.equalTo(20)
         }
 
         playButton.snp.makeConstraints {
@@ -101,20 +115,6 @@ class TrackOverviewView: UIControl {
             $0.left.equalToSuperview().offset(self.frame.width * 0.7)
             $0.bottom.equalToSuperview().inset(self.frame.height * 0.2)
             $0.width.equalTo(self.frame.width * 0.15)
-        }
-
-        trackNameLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.left.equalToSuperview().offset(self.frame.width * 0.26)
-            $0.bottom.equalToSuperview().inset(self.frame.height * 0.4)
-            $0.width.equalTo(self.frame.width * 0.44)
-        }
-
-        singerNameLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(self.frame.height * 0.4)
-            $0.bottom.equalToSuperview().offset(-self.frame.height * 0.2)
-            $0.left.equalToSuperview().offset(self.frame.width * 0.26)
-            $0.width.equalTo(self.frame.width * 0.44)
         }
 
         closeButton.snp.makeConstraints {
@@ -127,11 +127,11 @@ class TrackOverviewView: UIControl {
 
     private func customize() {
         self.addTarget(nil, action: #selector(showSingleTrackView), for: .touchUpInside)
-        self.backgroundColor = .white
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0.0, y: 0.5, width: self.frame.width, height: 0.3)
-        bottomLine.backgroundColor = UIColor.lightGray.cgColor
-        self.layer.addSublayer(bottomLine)
+        // topLine - hz
+//        let topLine = CALayer()
+//        topLine.frame = CGRect(x: 0.0, y: 0.1, width: self.frame.width, height: 1)
+//        topLine.backgroundColor = UIColor.red.withAlphaComponent(0.3).cgColor
+//        self.layer.addSublayer(topLine)
         singerNameLabel.text = data.artists[0].name
         trackNameLabel.text = data.name
         playButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
