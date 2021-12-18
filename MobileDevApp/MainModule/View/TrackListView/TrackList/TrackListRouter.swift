@@ -19,6 +19,6 @@ class TrackListRouter {
 extension TrackListRouter: TrackListRouterProtocol {
 
     func showAuthenticationViewController() {
-        view?.show(AuthenticationViewController(), sender: nil)
+        view?.navigationController?.popViewController(animated: true)
     }
 }

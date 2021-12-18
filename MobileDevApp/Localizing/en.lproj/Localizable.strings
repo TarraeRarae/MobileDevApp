@@ -29,4 +29,9 @@
 "Unable to check data" = "Unable to check data";
 "Online" = "Online";
 "Downloaded" = "Downloaded";
-"Clear downloaded tracks" = "Clear downloaded tracks";
+"Clear downloaded audio" = "Clear downloaded audio";
+"Are you sure you want to delete downloaded audio?" = "Are you sure you want to delete downloaded audio";
+"Yes" = "Yes";
+"No" = "No";
+"Are you sure you want to log out?" = "Are you sure you want to log out?";
+"Exit" = "Exit";

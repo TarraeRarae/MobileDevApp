@@ -21,13 +21,13 @@ class TitleViewRightBarButton: UIBarButtonItem {
     }
 
     private func customizeRightBarButton() {
-        self.image = UIImage(systemName: MainHelper.StringConstant.moreMenuImageName.rawValue)
+        self.image = UIImage(systemName: MainHelper.StringConstant.trashCircleImageName.rawValue)
         self.style = .plain
         self.action = #selector(tapped)
         self.tintColor = .systemRed
     }
 
     @objc private func tapped() {
-        delegate?.presentMoreMenu()
+        delegate?.presentClearTracksAlert()
     }
 }

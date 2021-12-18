@@ -15,17 +15,24 @@ class TrackListViewController: UIViewController {
     private var trackTableView = UITableView()
     private var titleSegmentedControl: TitleSegmentedControl?
     private var titleViewRightBarButton: TitleViewRightBarButton?
+    private var titleViewLeftBarButton: TitleViewLeftBarButton?
     private var trackOverviewHeight: CGFloat = 0
 
-    private var moreMenu: UIAlertController {
-        let alertController = UIAlertController(title: "More".localized, message: nil, preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "Exit".localized, style: .destructive, handler: { (_: UIAlertAction) in
-            self.presenter?.didExitButtonTap()
-        }))
-        alertController.addAction(UIAlertAction(title: "Clear downloaded tracks".localized, style: .default, handler: { (_: UIAlertAction) in
+    private var clearSavedTracksData: UIAlertController {
+        let alertController = UIAlertController(title: "Clear downloaded audio".localized, message: "Are you sure you want to delete downloaded audio?".localized, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Yes".localized, style: .destructive, handler: { (_: UIAlertAction) in
             self.presenter?.didClearButtonTap()
         }))
+        alertController.addAction(UIAlertAction(title: "No".localized, style: .cancel))
+        return alertController
+    }
+
+    private var toAuthorize: UIAlertController {
+        let alertController = UIAlertController(title: "Exit".localized, message: "Are you sure you want to log out?".localized, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Yes".localized, style: .destructive, handler: { (_: UIAlertAction) in
+            self.presenter?.didExitButtonTap()
+        }))
+        alertController.addAction(UIAlertAction(title: "No".localized, style: .cancel))
         return alertController
     }
 
@@ -59,11 +66,16 @@ class TrackListViewController: UIViewController {
     private func customizeNavigationBar() {
         titleSegmentedControl = TitleSegmentedControl(frame: self.view.frame)
         titleViewRightBarButton = TitleViewRightBarButton()
-        guard let segmentedControl = titleSegmentedControl, let rightBarButton = titleViewRightBarButton else { return }
+        titleViewLeftBarButton = TitleViewLeftBarButton()
+        guard let segmentedControl = titleSegmentedControl,
+              let rightBarButton = titleViewRightBarButton,
+              let leftBarButton = titleViewLeftBarButton else { return }
         segmentedControl.delegate = self
         rightBarButton.delegate = self
+        leftBarButton.delegate = self
         navigationItem.titleView = segmentedControl
         navigationItem.rightBarButtonItem = rightBarButton
+        navigationItem.leftBarButtonItem = leftBarButton
     }
 
     private func setupTrackTableView() {
@@ -116,8 +128,15 @@ extension TrackListViewController: TitleSegmentedControlDelegate {
 
 extension TrackListViewController: TitleViewRightBarButtonDelegate {
 
-    func presentMoreMenu() {
-        self.present(moreMenu, animated: true, completion: nil)
+    func presentClearTracksAlert() {
+        self.present(clearSavedTracksData, animated: true, completion: nil)
+    }
+}
+
+extension TrackListViewController: TitleViewLeftBarButtonDelegate {
+
+    func presentExitAlert() {
+        self.present(toAuthorize, animated: true, completion: nil)
     }
 }
 

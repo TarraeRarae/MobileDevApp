@@ -29,4 +29,9 @@
 "Unable to check data" = "Невозможно проверить данные";
 "Online" = "Онлайн";
 "Downloaded" = "Загруженное";
-"Clear downloaded tracks" = "Удалить загруженные треки";
+"Clear downloaded audio" = "Удалить аудиозаписей";
+"Are you sure you want to delete downloaded audio?" = "Вы уверены, что хотите удалить все аудиозаписи?";
+"Yes" = "Да";
+"No" = "Нет";
+"Are you sure you want to log out?" = "Вы уверены, что хотите выйти из аккаунта?";
+"Exit" = "Выход";

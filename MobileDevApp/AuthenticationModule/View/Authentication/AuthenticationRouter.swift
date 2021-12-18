@@ -19,6 +19,8 @@ class AuthenticationRouter {
 extension AuthenticationRouter: AuthenticationRouterProtocol {
 
     func presentTrackList() {
-        view?.show(TrackListViewController(), sender: nil)
+        let trackListController = TrackListViewController()
+        view?.navigationController?.pushViewController(trackListController, animated: true)
+//        view?.show(TrackListViewController(), sender: nil)
     }
 }

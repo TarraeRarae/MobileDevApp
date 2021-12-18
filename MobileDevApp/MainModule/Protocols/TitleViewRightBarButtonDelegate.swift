@@ -5,8 +5,8 @@
 //  Created by TarraeRarae on 20.11.2021.
 //
 
-import UIKit
+import Foundation
 
 protocol TitleViewRightBarButtonDelegate: AnyObject {
-    func presentMoreMenu()
+    func presentClearTracksAlert()
 }
