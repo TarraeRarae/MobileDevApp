@@ -12,12 +12,27 @@ import CoreMedia
 class SingleTrackView: UIView {
 
     weak var delegate: SingleTrackViewDelegate?
-    private var trackImageView: UIImageView = UIImageView(image: UIImage(named: MainHelper.StringConstant.placeholderImageName.rawValue))
+
+    private let trackImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: MainHelper.StringConstant.placeholderImageName.rawValue)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+
+    private let infoLabelsContainer: UIView = {
+        let view = UIView()
+        return view
+    }()
+
+    private let bottomContainer: UIView = {
+        let view = UIView()
+        return view
+    }()
 
     private var trackNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.backgroundColor = .clear
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
     }()
@@ -25,7 +40,6 @@ class SingleTrackView: UIView {
     private var singerNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .systemRed
-        label.backgroundColor = .clear
         label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
@@ -35,7 +49,6 @@ class SingleTrackView: UIView {
         button.setImage(UIImage(systemName: MainHelper.StringConstant.pauseFillImageName.rawValue), for: .normal)
         button.setImage(UIImage(systemName: MainHelper.StringConstant.playImageName.rawValue), for: .selected)
         button.addTarget(nil, action: #selector(playTrack), for: .touchUpInside)
-        button.backgroundColor = .clear
         button.tintColor = .label
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
@@ -64,82 +77,79 @@ class SingleTrackView: UIView {
         super.init(frame: frame)
         self.frame = frame
         self.backgroundColor = .systemBackground
-        setupDurationLabel()
-        setupTrackNameLabel()
-        setupSingerNameLabel()
-        setupTrackImageView()
-        setupTrackSlider()
-        setupPlayButton()
+        setUpUI()
+        setUpLayout()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupTrackImageView() {
-        trackImageView.backgroundColor = .clear
-        trackImageView.contentMode = .scaleAspectFit
+    private func setUpUI() {
         self.addSubview(trackImageView)
-        trackImageView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(self.frame.width * 0.05)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.4)
-            make.left.equalTo(self).offset(self.frame.width * 0.05)
-            make.right.equalTo(self).offset(-self.frame.width * 0.05)
-        }
+        self.addSubview(infoLabelsContainer)
+        self.addSubview(bottomContainer)
+        infoLabelsContainer.addSubview(trackNameLabel)
+        infoLabelsContainer.addSubview(singerNameLabel)
+        bottomContainer.addSubview(trackSlider)
+        bottomContainer.addSubview(durationLabel)
+        bottomContainer.addSubview(playButton)
     }
 
-    private func setupTrackNameLabel() {
-        self.addSubview(trackNameLabel)
-        trackNameLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(self.frame.height * 0.55)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.35)
-            make.left.equalTo(self).offset(self.frame.width * 0.05)
-            make.right.equalTo(self).offset(-self.frame.width * 0.05)
+    private func setUpLayout() {
+        trackImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.left.equalToSuperview().offset(20)
+            $0.right.equalToSuperview().inset(20)
+            $0.height.lessThanOrEqualTo(self.frame.height / 2)
         }
-    }
 
-    private func setupSingerNameLabel() {
-        self.addSubview(singerNameLabel)
-        singerNameLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(self.frame.height * 0.6)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.3)
-            make.left.equalTo(self).offset(self.frame.width * 0.05)
-            make.right.equalTo(self).offset(-self.frame.width * 0.05)
+        infoLabelsContainer.snp.makeConstraints {
+            $0.top.equalTo(trackImageView.snp.bottom)
+            $0.left.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(170)
+            $0.right.equalToSuperview()
         }
-    }
 
-    private func setupPlayButton() {
-        self.addSubview(playButton)
-        playButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(self.frame.height * 0.73)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.1)
-            make.left.equalTo(self).offset(self.frame.width * 0.4)
-            make.right.equalTo(self).offset(-self.frame.width * 0.4)
+        bottomContainer.snp.makeConstraints {
+            $0.top.equalTo(infoLabelsContainer.snp.bottom)
+            $0.left.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.right.equalToSuperview()
         }
-        playButton.imageEdgeInsets = UIEdgeInsets(
-              top: playButton.frame.size.height / 2,
-              left: playButton.frame.size.width  / 2,
-              bottom: playButton.frame.size.height / 2,
-              right: playButton.frame.size.width / 2)
-    }
 
-    private func setupTrackSlider() {
-        self.addSubview(trackSlider)
-        trackSlider.snp.makeConstraints { make in
-            make.top.equalTo(self).offset(self.frame.height * 0.65)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.25)
-            make.left.equalTo(self).offset(self.frame.width * 0.2)
-            make.right.equalTo(self).offset(-self.frame.width * 0.2)
+        trackNameLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(10)
+            $0.left.equalToSuperview().offset(20)
+            $0.bottom.equalToSuperview().inset(50)
+            $0.right.equalToSuperview().inset(20)
         }
-    }
 
-    private func setupDurationLabel() {
-        self.addSubview(durationLabel)
-        durationLabel.snp.makeConstraints { make in
-            make.top.equalTo(self).offset(self.frame.height * 0.65)
-            make.bottom.equalTo(self).offset(-self.frame.height * 0.25)
-            make.left.equalTo(self).offset(self.frame.width * 0.82)
-            make.right.equalTo(self).offset(-self.frame.width * 0.02)
+        singerNameLabel.snp.makeConstraints {
+            $0.top.equalTo(trackNameLabel.snp.bottom).offset(10)
+            $0.left.equalToSuperview().offset(20)
+            $0.bottom.equalToSuperview()
+            $0.right.equalToSuperview().inset(20)
+        }
+
+        trackSlider.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.left.equalToSuperview().offset(20)
+            $0.right.equalToSuperview().inset(20)
+            $0.height.equalTo(20)
+        }
+
+        durationLabel.snp.makeConstraints {
+            $0.top.equalTo(trackSlider.snp.bottom).offset(10)
+            $0.left.equalTo(playButton.snp.right).offset(95)
+            $0.right.equalToSuperview().inset(20)
+        }
+
+        playButton.snp.makeConstraints {
+            $0.top.equalTo(trackSlider.snp.bottom).offset(20)
+            $0.bottom.equalToSuperview().inset(40)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(60)
         }
     }
 
@@ -153,7 +163,6 @@ class SingleTrackView: UIView {
 
     public func setTrackImage(imageURL: URL) {
         self.trackImageView.kf.setImage(with: imageURL)
-//        self.backgroundColor = trackImageView.image?.increaseContrast().areaAverage().mix(with: UIColor.white, amount: 0.1)
     }
 
     public func setTrackCondition(isPaused: Bool) {
@@ -176,11 +185,6 @@ class SingleTrackView: UIView {
     public func setSliderCurrentValue(newValue: Float) {
         trackSlider.value = newValue
         setDurationLabelValue(newValue: newValue)
-//        if MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue >= 10 {
-//            durationLabel.text = "0:\(Int(MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue))"
-//        } else {
-//            durationLabel.text = "0:0\(Int(MainHelper.FloatConstant.previewDurationInSeconds.rawValue - newValue))"
-//        }
     }
 
     @objc private func playTrack() {
@@ -200,3 +204,4 @@ class SingleTrackView: UIView {
         setDurationLabelValue(newValue: trackSlider.value)
     }
 }
+
