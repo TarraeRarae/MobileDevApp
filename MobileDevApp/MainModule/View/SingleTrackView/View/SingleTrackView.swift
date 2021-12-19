@@ -204,4 +204,3 @@ class SingleTrackView: UIView {
         setDurationLabelValue(newValue: trackSlider.value)
     }
 }
-

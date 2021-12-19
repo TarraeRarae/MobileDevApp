@@ -22,7 +22,7 @@ class MainHelper: NSObject {
         case deleteButtonImageName = "multiply.circle"
         case downloadButtonImageName = "icloud.and.arrow.down"
         // should be in keychain
-        case authToken = "Bearer BQB96Z3co3mDdhbMeMJsXhGe0v8x4pX36yn64D3YHSSTG4MBZSzUpiTCvC1GFsENWaOsdFt0F3JmM9i4p9AmWcz8tVSEtLAVo8zS1y_0auC5cNNdwRvYjtPgrWLbtXiGx-1lQ51BMtwSopXYEd-q4tnnqwyESyD75836WQT_Q0U3rg"
+        case authToken = "Bearer BQCpskQPBJZ78ZD9-_QcX5la1VRIeetuA4dcFFiCfvjj5EaojGhg26qifN1Hl1_ERC8bSdfB3MbsHBC0cjZQ8EJ_6QchdB9vWlEzsput5Lm4VNH9h-mhtA8k6lKH2zxE7TEKHCqMEoVMNpulgV41jqgKwvd2Zy7yEtZxsQYHdTyyCQ"
         case cid = "774b29d4f13844c495f206cafdad9c86"
         case entityName = "TrackDataEntity"
         case albumURL = "43RGWSAgcUh3ytWu26mdGH"
